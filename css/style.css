@@ -124,6 +124,7 @@ main header h1 {
 
 main p {
     margin: 10px;
+    text-align: center;
 }
 
 .support-squares-container {
