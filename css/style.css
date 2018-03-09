@@ -94,5 +94,16 @@ main>header a>img#reagentLogo {
 }
 
 main header h1 {
+    margin: auto;
+    vertical-align: middle;
     display: inline-block;
+}
+
+main header a img,
+main header h1 {
+    margin: 10px;
+}
+
+main p {
+    margin: 10px;
 }
