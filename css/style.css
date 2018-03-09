@@ -1,0 +1,49 @@
+body {
+    font-size: 16px;
+}
+
+.reagent-container {
+    max-width: 376px;
+    height: 538px;
+    background-color: #505050;
+    color: white;
+    margin: auto;
+    vertical-align: middle;
+    border-radius: 0.3em;
+}
+
+.home,
+.close-button {
+    display: inline;
+}
+
+.home {
+    position: relative;
+    left: 5%;
+}
+
+.close-button {
+    position: relative;
+    left: 80%;
+}
+
+main {
+    margin: 0 auto;
+    width: 95%;
+    height: 94%;
+    background-color: black;
+}
+
+main header {
+    background-color: red;
+}
+
+main>header a>img#reagentLogo {
+    width: 80px;
+    height: auto;
+    display: inline-block;
+}
+
+main header h1 {
+    display: inline-block;
+}
