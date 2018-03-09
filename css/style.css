@@ -46,7 +46,7 @@ html {
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#e73333', endColorstr='#ac2626', GradientType=0);
     /* IE6-9 */
-    height: 60px;
+    height: 65px;
 }
 
 .greyToDarkGreyGradient {
@@ -124,7 +124,7 @@ main header h1 {
 
 main header a img,
 main header h1 {
-    margin: 10px;
+    margin: 3px;
 }
 
 main p {
