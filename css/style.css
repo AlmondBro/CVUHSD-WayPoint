@@ -129,3 +129,29 @@ main header h1 {
 main p {
     margin: 10px;
 }
+
+.support-squares-container {
+    margin: 10px auto;
+    text-align: center;
+}
+
+.support-square {
+    background-color: #2B2B2B;
+    color: white;
+    text-align: center;
+    width: 150px;
+    padding: 10px;
+    /* margin-left: 12px; */
+    display: inline-block;
+    margin: 10px 3px;
+}
+
+.support-square i {
+    font-size: 1.6em;
+    display: block;
+}
+
+.support-square h3 {
+    display: block;
+    font-size: 0.8em;
+}
