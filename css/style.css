@@ -146,6 +146,10 @@ main p {
     margin: 10px 3px;
 }
 
+.support-square a {
+    color: white;
+}
+
 .support-square i {
     font-size: 1.6em;
     display: block;
