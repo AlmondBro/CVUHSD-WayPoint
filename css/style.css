@@ -36,12 +36,16 @@ html {
 
 .redToDarkRedgradient {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e73333+0,d02d2d+50,ac2626+100 */
-    background: #e73333; /* Old browsers */
-    background: -moz-linear-gradient(top, #e73333 0%, #d02d2d 50%, #ac2626 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #e73333 0%,#d02d2d 50%,#ac2626 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #e73333 0%,#d02d2d 50%,#ac2626 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e73333', endColorstr='#ac2626',GradientType=0 ); /* IE6-9 */
-
+    background: #e73333;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #e73333 0%, #d02d2d 50%, #ac2626 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #e73333 0%, #d02d2d 50%, #ac2626 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #e73333 0%, #d02d2d 50%, #ac2626 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#e73333', endColorstr='#ac2626', GradientType=0);
+    /* IE6-9 */
 }
 
 .greyToDarkGreyGradient {
@@ -64,7 +68,7 @@ a.close-button {
     color: white;
     background-color: #1c1c1c;
     padding: 5px;
-    border-radius: 15px;
+    border-radius: 5px;
     margin: 0px 12px;
 }
 
@@ -155,4 +159,9 @@ main p {
 .support-square h3 {
     display: block;
     font-size: 0.8em;
+}
+
+i.fat-times {
+    width: 18px;
+    text-align: center;
 }
