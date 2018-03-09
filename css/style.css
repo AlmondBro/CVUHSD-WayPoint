@@ -46,6 +46,7 @@ html {
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#e73333', endColorstr='#ac2626', GradientType=0);
     /* IE6-9 */
+    height: 60px;
 }
 
 .greyToDarkGreyGradient {
@@ -110,7 +111,7 @@ main header {
 }
 
 main>header a>img#reagentLogo {
-    width: 80px;
+    width: 60px;
     height: auto;
     display: inline-block;
 }
