@@ -66,7 +66,7 @@ a.home,
 a.close-button {
     display: inline;
     color: white;
-    background-color: #1c1c1c;
+    background-color: #3c3c3c;
     padding: 5px;
     border-radius: 5px;
     margin: 0px 12px;
@@ -102,7 +102,7 @@ main {
     margin: 15px auto;
     width: 95%;
     height: 94%;
-    background-color: black;
+    background-color: #1c1c1c;
 }
 
 main header {
