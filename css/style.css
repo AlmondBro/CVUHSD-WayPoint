@@ -24,13 +24,14 @@ html {
     margin-left: -188px;
     margin-top: -269px; */
     max-width: 376px;
-    height: 538px;
+    height: 660px;
+    /* height was 538px */
     background-color: #505050;
     color: white;
     /* margin: 0 auto; */
     border-radius: 0.3em;
     margin: 10% auto;
-    padding: 10px 0px;
+    padding: 8px 0px;
 }
 
 .redToDarkRedgradient {
@@ -68,21 +69,37 @@ a.close-button {
     background-color: #9f0326;
     padding: 5px;
     border-radius: 15px;
+    margin: 0px 12px;
 }
 
 .home {
-    position: relative;
-    left: 5%;
+    /* position: relative; */
+    /* left: 5%; */
+    float: left;
 }
 
 .close-button {
-    position: relative;
-    left: 82%;
+    /* position: relative; */
+    /* left: 82%; */
+    float: right;
 }
+
+h2.window-title {
+    text-align: center;
+    margin: 5px 0px 0px 0px;
+    font-size: 1.2em;
+}
+
+
+/* .window-title,
+.close-button,
+.home {
+    height: 20px;
+} */
 
 main {
     display: block;
-    margin: 8px auto;
+    margin: 15px auto;
     width: 95%;
     height: 94%;
     background-color: black;
