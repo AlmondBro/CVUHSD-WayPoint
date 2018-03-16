@@ -151,8 +151,14 @@ main p {
     margin: 10px 3px;
 }
 
+.support-square:hover,
+.support-square:active {
+    background-color: #3c3c3c;
+}
+
 .support-square a {
     color: white;
+    text-decoration: none;
 }
 
 .support-square i {
