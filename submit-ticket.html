@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="author" content="Juan David Lopez Londono and Kevin Erkelenz">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Centinella Valley School District Single Sign-On (SSO) Dashboard">
+
+    <link href="css/grid-system.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/ksv3qfn.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <title>CVUHSD Codename Reagent</title>
+</head>
+
+<body>
+    <div class="reagent-container greyToDarkGreyGradient animated fadeInUp">
+        <a href="index.html" class="home"><i class="fas fa-home"></i></a>
+        <a href="#" class="close-button"><i class="fas fa-times"></i></a>
+        <h2 class="window-title">Project reAgent</h2>
+        <main>
+            <header class="redToDarkRedgradient">
+                <a href="#"><img src="https://portal.centinela.k12.ca.us/images/CV-600x600.png" class="img-responsive" id="reagentLogo" alt="Centinela Valley Union High School District Logo" /></a>
+                <h1>Waypoint</h1>
+            </header>
+            <!-- <p>Please select an option from below:</p> -->
+            <form class="helpDeskTicket-form">
+                <fieldset>
+                    <legend>
+                        <h3>Submit Helpdesk Ticket</h3>
+                    </legend>
+                    <p>
+                        <label for="summary">Summary/Title:</label>
+                        <input type="text" name="summary" id="summary" />
+                    </p>
+                    <p>
+                        <label for="detailed-description">Detailed Description</label>
+                        <textarea id="detailed-description" name="detailed-description" placeholder="Type the technical issue you are facing here..."></textarea>
+                    </p>
+                    <p>
+                        <label for="category">Category:</label>
+                        <select name="category" id="category-select">
+                            <option>Computer Issue</option>
+                            <option>Printer Issue</option>
+                            <option>Projector Issue</option>
+                            <option>Password Issue</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="location">Location:</label>
+                        <select name="location" id="location-select">
+                            <option>Lawndale</option>
+                            <option>Leuzinger</option>
+                            <option>Hawthorne</option>
+                            <option>Lloyde</option>
+                            <option>District Office</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="phone-extension">Phone Extension</label>
+                        <input type="tel" name="phone-extension" id="phone-extension">
+                    </p>
+                    <p>
+                        <label for="building-number">Room Number or Office</label>
+                        <input type="text" name="building-number" id="building-number">
+                    </p>
+                    <p>
+                        <label for="attachment">Optional Attachment:</label>
+                        <input type="file" name="attachment" id="file-input" value="Choose File">
+                    </p>
+                    <p>
+                        <button type="submit">Submit</button>
+                    </p>
+
+                </fieldset>
+
+
+            </form>
+        </main>
+    </div>
+
+</body>
+
+</html>

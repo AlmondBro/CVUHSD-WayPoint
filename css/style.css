@@ -179,3 +179,20 @@ i.fa-times {
     width: 18px;
     text-align: center;
 }
+
+
+/* Form styling */
+
+form.helpDeskTicket-form p label {
+    text-align: left;
+}
+
+.helpDeskTicket-form fieldset {
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+input#summary {
+    display: block;
+}
