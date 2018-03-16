@@ -13,7 +13,7 @@ body {
 
 body,
 html {
-    height: 100%;
+    min-height: 100%;
 }
 
 .reagent-container {
@@ -183,8 +183,39 @@ i.fa-times {
 
 /* Form styling */
 
+.inline {
+    display: inline-block;
+}
+
+p label.inline,
+p input.inline {
+    display: inline;
+}
+
+p label.block,
+p input.block {
+    display: block;
+}
+
+main form.helpDeskTicket-form {
+    height: 550px;
+    overflow-y: auto;
+    margin: 8px;
+}
+
 main form.helpDeskTicket-form p {
     text-align: left;
+    margin: 12px 0;
+}
+
+main form.helpDeskTicket-form p input,
+select {
+    color: black;
+}
+
+main form.helpDeskTicket-form p input,
+file {
+    color: white;
 }
 
 .helpDeskTicket-form fieldset {
@@ -200,4 +231,67 @@ main form.helpDeskTicket-form p {
 
 input#summary {
     display: block;
+}
+
+textarea {
+    color: black;
+    resize: vertical;
+}
+
+.fileUpload-button,
+button[type="submit"],
+button[type="reset"] {
+    border: 0px;
+    padding: 4px;
+    display: inline-block;
+    height: 100%;
+    border-radius: 5px;
+    font-size: 1.25em;
+    margin: 0px 30px;
+    margin-top: 5px;
+    margin-bottom: 1em;
+}
+
+.fileUpload-button:hover,
+button[type="submit"]:hover,
+button[type="reset"]:hover,
+.fileUpload-button:active,
+button[type="submit"]:active,
+button[type="reset"]:active {
+    -webkit-filter: grayscale(30%);
+    filter: grayscale(30%);
+}
+
+.fileUpload-button {
+    font-size: 1.1em;
+}
+
+input[type="file"]#file-input {
+    position: absolute;
+    left: -99999rem;
+    z-index: -99999;
+}
+
+form.helpDeskTicket-form fieldset p button[type="submit"] {
+    float: left;
+}
+
+form.helpDeskTicket-form fieldset p button[type="reset"] {
+    float: right;
+}
+
+#category-select,
+#location-select,
+#phone-extension,
+#building-number {
+    width: 150px;
+    color: black;
+}
+
+#summary {
+    color: black;
+}
+
+form p.fieldMargin {
+    margin: 0px 25px;
 }

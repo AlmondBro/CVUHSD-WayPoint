@@ -28,30 +28,31 @@
                 <h1>Waypoint</h1>
             </header>
             <!-- <p>Please select an option from below:</p> -->
-            <form class="helpDeskTicket-form">
+            <form class="helpDeskTicket-form" action="https://helpdesk.centinela.k12.ca.us/portal/new_ticket" method="post" enctype="multipart/form-data">
                 <fieldset>
                     <legend>
                         <h3>Submit Helpdesk Ticket</h3>
                     </legend>
                     <p>
                         <label for="summary">Summary/Title:</label>
-                        <input type="text" name="summary" id="summary" />
+                        <input type="text" name="summary" id="summary" placeholder="Title or summary of the technical issue..." />
                     </p>
                     <p>
-                        <label for="detailed-description">Detailed Description</label>
-                        <textarea id="detailed-description" name="detailed-description" placeholder="Type the technical issue you are facing here..."></textarea>
+                        <label for="detailed-description">Detailed Description:</label>
+                        <textarea id="detailed-description" name="detailed-description" placeholder="Type the technical issue you are facing here..." cols="5" rows="3"></textarea>
                     </p>
-                    <p>
-                        <label for="category">Category:</label>
+                    <p class="inline fieldMargin">
+                        <label for="category" class="block">Category:</label>
                         <select name="category" id="category-select">
                             <option>Computer Issue</option>
                             <option>Printer Issue</option>
                             <option>Projector Issue</option>
                             <option>Password Issue</option>
+                            <option>Other Type of Issue</option>
                         </select>
                     </p>
-                    <p>
-                        <label for="location">Location:</label>
+                    <p class="inline fieldMargin">
+                        <label for="location" class="block">Location:</label>
                         <select name="location" id="location-select">
                             <option>Lawndale</option>
                             <option>Leuzinger</option>
@@ -60,25 +61,26 @@
                             <option>District Office</option>
                         </select>
                     </p>
-                    <p>
-                        <label for="phone-extension">Phone Extension</label>
-                        <input type="tel" name="phone-extension" id="phone-extension">
+                    <p class="inline fieldMargin">
+                        <label for="phone-extension" class="block">Phone Extension:</label>
+                        <input type="tel" name="phone-extension" id="phone-extension" placeholder="7811">
+                    </p>
+                    <p class="inline fieldMargin">
+                        <label for="building-number" class="block">Office/Number #:</label>
+                        <input type="text" name="building-number" id="building-number" placeholder="A13">
                     </p>
                     <p>
-                        <label for="building-number">Room Number or Office</label>
-                        <input type="text" name="building-number" id="building-number">
+                        <label for="file-input">Optional Attachment:</label>
+                        <label class="fileUpload-button redToDarkRedgradient">
+                            Upload File
+                            <input type="file" name="attachment" id="file-input" value="Choose File">
+                        </label>
                     </p>
                     <p>
-                        <label for="attachment">Optional Attachment:</label>
-                        <input type="file" name="attachment" id="file-input" value="Choose File">
+                        <button type="submit" class="redToDarkRedgradient">Submit</button>
+                        <button type="reset" class="redToDarkRedgradient">Reset</button>
                     </p>
-                    <p>
-                        <button type="submit">Submit</button>
-                    </p>
-
                 </fieldset>
-
-
             </form>
         </main>
     </div>
