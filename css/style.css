@@ -138,6 +138,8 @@ main p {
 .support-squares-container {
     margin: 10px auto;
     text-align: center;
+    height: 500px;
+    overflow-y: auto;
 }
 
 .support-square {
@@ -151,18 +153,26 @@ main p {
     margin: 10px 3px;
 }
 
+.support-square:hover,
+.support-square:active {
+    background-color: #3c3c3c;
+}
+
 .support-square a {
     color: white;
+    text-decoration: none;
 }
 
 .support-square i {
-    font-size: 1.6em;
+    font-size: 2em;
+    /*was 1.6em */
     display: block;
 }
 
 .support-square h3 {
     display: block;
-    font-size: 0.8em;
+    font-size: 0.95em;
+    /*Was 0.8em */
 }
 
 i.fa-times {
