@@ -138,6 +138,8 @@ main p {
 .support-squares-container {
     margin: 10px auto;
     text-align: center;
+    height: 500px;
+    overflow-y: auto;
 }
 
 .support-square {
