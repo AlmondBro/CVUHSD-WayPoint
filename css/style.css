@@ -65,7 +65,7 @@ html {
 
 a.home,
 a.close-button {
-    display: inline;
+    display: inline-block;
     color: white;
     background-color: #3c3c3c;
     padding: 5px;
