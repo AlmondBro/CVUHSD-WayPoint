@@ -183,8 +183,34 @@ i.fa-times {
 
 /* Form styling */
 
+.inline {
+    display: inline;
+}
+
+p label.inline,
+p input.inline {
+    display: inline;
+}
+
+main form.helpDeskTicket-form {
+    height: 550px;
+    overflow-y: auto;
+    margin: 8px;
+}
+
 main form.helpDeskTicket-form p {
     text-align: left;
+    margin: 25px 0;
+}
+
+main form.helpDeskTicket-form p input,
+select {
+    color: black;
+}
+
+main form.helpDeskTicket-form p input,
+file {
+    color: white;
 }
 
 .helpDeskTicket-form fieldset {
@@ -200,4 +226,42 @@ main form.helpDeskTicket-form p {
 
 input#summary {
     display: block;
+}
+
+textarea {
+    color: black;
+    resize: vertical;
+}
+
+button[type="submit"],
+button[type="reset"] {
+    border: 0px;
+    padding: 4px;
+    display: inline;
+    height: 100%;
+    border-radius: 5px;
+    font-size: 1.25em;
+    margin: 0px 30px;
+    margin-top: 5px;
+    margin-bottom: 1em;
+}
+
+form.helpDeskTicket-form fieldset p button[type="submit"] {
+    float: left;
+}
+
+form.helpDeskTicket-form fieldset p button[type="reset"] {
+    float: right;
+}
+
+form.helpDeskTicket-form fieldset p button[type="reset"] #category-select,
+#location-select,
+#phone-extension,
+#building-number {
+    width: 90px;
+    color: black;
+}
+
+#summary {
+    color: black;
 }

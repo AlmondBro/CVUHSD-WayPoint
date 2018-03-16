@@ -35,13 +35,13 @@
                     </legend>
                     <p>
                         <label for="summary">Summary/Title:</label>
-                        <input type="text" name="summary" id="summary" />
+                        <input type="text" name="summary" id="summary" placeholder="Title or summary of the technical issue..." />
                     </p>
                     <p>
-                        <label for="detailed-description">Detailed Description</label>
-                        <textarea id="detailed-description" name="detailed-description" placeholder="Type the technical issue you are facing here..."></textarea>
+                        <label for="detailed-description">Detailed Description:</label>
+                        <textarea id="detailed-description" name="detailed-description" placeholder="Type the technical issue you are facing here..." cols="5" rows="3"></textarea>
                     </p>
-                    <p>
+                    <p class="inline">
                         <label for="category">Category:</label>
                         <select name="category" id="category-select">
                             <option>Computer Issue</option>
@@ -50,9 +50,9 @@
                             <option>Password Issue</option>
                         </select>
                     </p>
-                    <p>
-                        <label for="location">Location:</label>
-                        <select name="location" id="location-select">
+                    <p class="inline">
+                        <label for="location" class="inline">Location:</label>
+                        <select name="location" id="location-select" class="inline">
                             <option>Lawndale</option>
                             <option>Leuzinger</option>
                             <option>Hawthorne</option>
@@ -60,29 +60,27 @@
                             <option>District Office</option>
                         </select>
                     </p>
-                    <p>
-                        <label for="phone-extension">Phone Extension</label>
-                        <input type="tel" name="phone-extension" id="phone-extension">
+                    <p class="inline">
+                        <label for="phone-extension" class="inline">Phone Ext.:</label>
+                        <input type="tel" class="inline" name="phone-extension" id="phone-extension">
                     </p>
-                    <p>
-                        <label for="building-number">Room Number or Office</label>
-                        <input type="text" name="building-number" id="building-number">
+                    <p class="inline">
+                        <label for="building-number" class="inline">Room #:</label>
+                        <input type="text" class="inline" name="building-number" id="building-number">
                     </p>
                     <p>
                         <label for="attachment">Optional Attachment:</label>
                         <input type="file" name="attachment" id="file-input" value="Choose File">
                     </p>
                     <p>
-                        <button type="submit">Submit</button>
+                        <button type="submit" class="redToDarkRedgradient">Submit</button>
+                        <button type="reset" class="redToDarkRedgradient">Reset</button>
                     </p>
-
                 </fieldset>
-
-
             </form>
         </main>
     </div>
 
 </body>
 
-</html>
+</html>s
