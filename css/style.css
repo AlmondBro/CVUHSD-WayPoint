@@ -156,13 +156,15 @@ main p {
 }
 
 .support-square i {
-    font-size: 1.6em;
+    font-size: 2em;
+    /*was 1.6em */
     display: block;
 }
 
 .support-square h3 {
     display: block;
-    font-size: 0.8em;
+    font-size: 0.95em;
+    /*Was 0.8em */
 }
 
 i.fa-times {
