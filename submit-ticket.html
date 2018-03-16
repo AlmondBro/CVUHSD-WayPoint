@@ -28,7 +28,7 @@
                 <h1>Waypoint</h1>
             </header>
             <!-- <p>Please select an option from below:</p> -->
-            <form class="helpDeskTicket-form">
+            <form class="helpDeskTicket-form" action="https://helpdesk.centinela.k12.ca.us/portal/new_ticket" method="post" enctype="multipart/form-data">
                 <fieldset>
                     <legend>
                         <h3>Submit Helpdesk Ticket</h3>
@@ -41,18 +41,19 @@
                         <label for="detailed-description">Detailed Description:</label>
                         <textarea id="detailed-description" name="detailed-description" placeholder="Type the technical issue you are facing here..." cols="5" rows="3"></textarea>
                     </p>
-                    <p class="inline">
-                        <label for="category">Category:</label>
+                    <p class="inline fieldMargin">
+                        <label for="category" class="block">Category:</label>
                         <select name="category" id="category-select">
                             <option>Computer Issue</option>
                             <option>Printer Issue</option>
                             <option>Projector Issue</option>
                             <option>Password Issue</option>
+                            <option>Other Type of Issue</option>
                         </select>
                     </p>
-                    <p class="inline">
-                        <label for="location" class="inline">Location:</label>
-                        <select name="location" id="location-select" class="inline">
+                    <p class="inline fieldMargin">
+                        <label for="location" class="block">Location:</label>
+                        <select name="location" id="location-select">
                             <option>Lawndale</option>
                             <option>Leuzinger</option>
                             <option>Hawthorne</option>
@@ -60,17 +61,20 @@
                             <option>District Office</option>
                         </select>
                     </p>
-                    <p class="inline">
-                        <label for="phone-extension" class="inline">Phone Ext.:</label>
-                        <input type="tel" class="inline" name="phone-extension" id="phone-extension">
+                    <p class="inline fieldMargin">
+                        <label for="phone-extension" class="block">Phone Extension:</label>
+                        <input type="tel" name="phone-extension" id="phone-extension" placeholder="7811">
                     </p>
-                    <p class="inline">
-                        <label for="building-number" class="inline">Room #:</label>
-                        <input type="text" class="inline" name="building-number" id="building-number">
+                    <p class="inline fieldMargin">
+                        <label for="building-number" class="block">Office/Number #:</label>
+                        <input type="text" name="building-number" id="building-number" placeholder="A13">
                     </p>
                     <p>
-                        <label for="attachment">Optional Attachment:</label>
-                        <input type="file" name="attachment" id="file-input" value="Choose File">
+                        <label for="file-input">Optional Attachment:</label>
+                        <label class="fileUpload-button redToDarkRedgradient">
+                            Upload File
+                            <input type="file" name="attachment" id="file-input" value="Choose File">
+                        </label>
                     </p>
                     <p>
                         <button type="submit" class="redToDarkRedgradient">Submit</button>
