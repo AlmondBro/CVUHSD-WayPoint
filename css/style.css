@@ -65,7 +65,7 @@ html {
 
 a.home,
 a.close-button {
-    display: inline;
+    display: inline-block;
     color: white;
     background-color: #3c3c3c;
     padding: 5px;
@@ -178,4 +178,26 @@ main p {
 i.fa-times {
     width: 18px;
     text-align: center;
+}
+
+
+/* Form styling */
+
+main form.helpDeskTicket-form p {
+    text-align: left;
+}
+
+.helpDeskTicket-form fieldset {
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.helpDeskTicket-form fieldset p input,
+.helpDeskTicket-form fieldset textarea {
+    width: 100%;
+}
+
+input#summary {
+    display: block;
 }
