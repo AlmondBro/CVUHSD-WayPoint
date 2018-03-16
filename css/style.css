@@ -183,7 +183,7 @@ i.fa-times {
 
 /* Form styling */
 
-form.helpDeskTicket-form p label {
+main form.helpDeskTicket-form p {
     text-align: left;
 }
 
@@ -191,6 +191,11 @@ form.helpDeskTicket-form p label {
     border: 0px;
     margin: 0px;
     padding: 0px;
+}
+
+.helpDeskTicket-form fieldset p input,
+.helpDeskTicket-form fieldset textarea {
+    width: 100%;
 }
 
 input#summary {
