@@ -153,6 +153,18 @@ main p {
     margin: 10px 3px;
 }
 
+#helpdeskHotline-supportSquare {
+    width: 310px;
+    text-align: center;
+}
+
+@media only screen and (max-width: 333px) {
+    #helpdeskHotline-supportSquare {
+        width: 150px;
+        text-align: center;
+    }
+}
+
 .support-square:hover,
 .support-square:active {
     background-color: #3c3c3c;
@@ -294,4 +306,48 @@ form.helpDeskTicket-form fieldset p button[type="reset"] {
 
 form p.fieldMargin {
     margin: 0px 25px;
+}
+
+.wiFi-magic {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.wiFi-magic i {
+    font-size: 3em;
+    text-align: center;
+    display: block;
+}
+
+.wiFi-magic p {
+    font-size: 1.05em;
+}
+
+.wiggle {
+    animation: shake 1.5s cubic-bezier(.36, .07, .19, .97) infinite;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+@keyframes shake {
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
 }
