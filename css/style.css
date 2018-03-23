@@ -153,6 +153,18 @@ main p {
     margin: 10px 3px;
 }
 
+#helpdeskHotline-supportSquare {
+    width: 310px;
+    text-align: center;
+}
+
+@media only screen and (max-width: 333px) {
+    #helpdeskHotline-supportSquare {
+        width: 150px;
+        text-align: center;
+    }
+}
+
 .support-square:hover,
 .support-square:active {
     background-color: #3c3c3c;
