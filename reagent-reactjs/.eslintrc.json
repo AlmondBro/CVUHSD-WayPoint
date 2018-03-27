@@ -17,13 +17,9 @@
     ],
     "rules": {
         "indent": [
-            "error",
-            "tab"
+
         ],
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
+        "linebreak-style": [],
         "quotes": [
             "error",
             "double"
