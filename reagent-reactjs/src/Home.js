@@ -11,23 +11,23 @@ class Home extends Component {
            <SupportSquaresContainer>
                 <SupportSquare pageLink="auto-fix-tools.html" 
                                icon="fas fa-wrench" 
-                               title="Autofix Tools" />,
+                               title="Autofix Tools" />
 
                 <SupportSquare pageLink="submit-ticket.html" 
                             icon="fas fa-newspaper" 
-                            title="Submit Ticket" />,
+                            title="Submit Ticket" />
 
                 <SupportSquare pageLink="quickFix-tutorials.html" 
                             icon="fas fa-book" 
-                            title="QuickFix Tutorials" />,
+                            title="QuickFix Tutorials" />
 
                <SupportSquare pageLink="helpdesk.html" 
                             icon="fas fa-phone" 
-                            title="Call Helpdesk" />,
+                            title="Call Helpdesk" />
 
                 <SupportSquare pageLink="#" 
                         icon="fas fa-bullseye" 
-                        title="Staff Portal" />,
+                        title="Staff Portal" />
 
                 <SupportSquare pageLink="#" 
                     icon="fas fa-bullhorn" 

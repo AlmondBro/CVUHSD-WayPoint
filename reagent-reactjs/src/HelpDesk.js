@@ -12,23 +12,23 @@ class HelpDesk extends Component {
     render() {
         return (
             <SupportSquaresContainer>
-                
+
                 <SupportSquare pageLink="tel:+13102633100" 
                             icon="fab fa-building" 
                             title="Lawndale"
-                            id="helpdeskHotline-supportSquare" />,
+                            id="helpdeskHotline-supportSquare" />
 
                 <SupportSquare pageLink="tel:+13102633100" 
                             icon="fab fa-building" 
-                            title="Lawndale" />,
+                            title="Lawndale" />
 
                 <SupportSquare pageLink="tel:+13102632346" 
                             icon="fab fa-building" 
-                            title="Leuzinger" />,
+                            title="Leuzinger" />
 
                 <SupportSquare pageLink="tel:+13102633286" 
                             icon="fab fa-building" 
-                            title="Hawthorne" />,
+                            title="Hawthorne" />
 
                 <SupportSquare pageLink="tel:+13102633286" 
                     icon="fab fa-building" 

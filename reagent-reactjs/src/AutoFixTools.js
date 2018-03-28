@@ -11,23 +11,23 @@ class AutoFixTools extends Component {
             <SupportSquaresContainer>
                  <SupportSquare pageLink="wiFiMagic.html" 
                                 icon="fas fa-wifi" 
-                                title="Wi-Fi Magic" />,
+                                title="Wi-Fi Magic" />
 
                 <SupportSquare pageLink="#" 
                         icon="fas fa-desktop" 
-                        title="Projector Magic" />,
+                        title="Projector Magic" />
 
                 <SupportSquare pageLink="#" 
                         icon="far fa-file-audio" 
-                        title="Audio Magic" />,
+                        title="Audio Magic" />
 
                 <SupportSquare pageLink="#" 
                 icon="fas fa-print" 
-                title="Printer Magic" />,
+                title="Printer Magic" />
 
                 <SupportSquare pageLink="#" 
                 icon="fas fa-question-circle" 
-                title="Autofix" />,
+                title="Autofix" />
 
                 <SupportSquare pageLink="#" 
                 icon="fas fa-question-circle" 
