@@ -1,33 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+import React, { Component } from "react";
 
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE-edge">
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta name="author" content="Juan David Lopez Londono and Kevin Erkelenz">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Centinella Valley School District Single Sign-On (SSO) Dashboard">
+class SubmitTicket extends Component {
+    constructor(props) {
+        super(props);
+    }
 
-    <link href="css/grid-system.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.typekit.net/ksv3qfn.css">
-    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-    <title>CVUHSD Codename Reagent</title>
-</head>
-
-<body>
-    <div class="reagent-container greyToDarkGreyGradient animated fadeInUp">
-        <a href="index.html" class="home-button"><i class="fas fa-home"></i></a>
-        <a href="#" class="close-button"><i class="fas fa-times"></i></a>
-        <h2 class="window-title">Project reAgent</h2>
-        <main>
-            <header class="redToDarkRedgradient">
-                <a href="#"><img src="https://portal.centinela.k12.ca.us/images/CV-600x600.png" class="img-responsive" id="reagentLogo" alt="Centinela Valley Union High School District Logo" /></a>
-                <h1>Waypoint</h1>
-            </header>
-            
+    render() {
+        return(
             <form class="helpDeskTicket-form" action="https://helpdesk.centinela.k12.ca.us/portal/new_ticket" method="post" enctype="multipart/form-data">
                 <fieldset>
                     <legend>
@@ -63,17 +42,17 @@
                     </p>
                     <p class="inline fieldMargin">
                         <label for="phone-extension" class="block">Phone Extension:</label>
-                        <input type="tel" name="phone-extension" id="phone-extension" placeholder="7811">
+                        <input type="tel" name="phone-extension" id="phone-extension" placeholder="7811" />
                     </p>
                     <p class="inline fieldMargin">
                         <label for="building-number" class="block">Office/Number #:</label>
-                        <input type="text" name="building-number" id="building-number" placeholder="A13">
+                        <input type="text" name="building-number" id="building-number" placeholder="A13" /> 
                     </p>
                     <p>
                         <label for="file-input">Optional Attachment:</label>
                         <label class="fileUpload-button redToDarkRedgradient">
                             Upload File
-                            <input type="file" name="attachment" id="file-input" value="Choose File">
+                            <input type="file" name="attachment" id="file-input" value="Choose File" />
                         </label>
                     </p>
                     <p>
@@ -81,10 +60,9 @@
                         <button type="reset" class="redToDarkRedgradient">Reset</button>
                     </p>
                 </fieldset>
-            </form>
-        </main>
-    </div>
+        </form>
+        );
+    }
+}
 
-</body>
-
-</html>
+export default SubmitTicket;

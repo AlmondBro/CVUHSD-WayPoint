@@ -1,53 +1,39 @@
 import React, { Component } from "react";
 
+import SupportSquaresContainer from "./SupportSquaresContainer.js";
+import SupportSquare from "./SupportSquare.js";
+
 class Home extends Component {
     render() {
         return (
             <p>Please select an option from below:</p>,
 
-            <div class="support-squares-container">
-                <section class="support-square">
-                    <a href="auto-fix-tools.html">
-                        <i class="fas fa-wrench"></i>
-                        <h3>Autofix Tools</h3>
-                    </a>
-                </section>
+           <SupportSquaresContainer>
+                <SupportSquare pageLink="auto-fix-tools.html" 
+                               icon="fas fa-wrench" 
+                               title="Autofix Tools" />,
 
-                <section class="support-square">
-                    <a href="submit-ticket.html">
-                        <i class="fas fa-newspaper"></i>
-                        <h3>Submit Ticket</h3>
-                    </a>
-                </section>
+                <SupportSquare pageLink="submit-ticket.html" 
+                            icon="fas fa-newspaper" 
+                            title="Submit Ticket" />,
 
-                <section class="support-square">
-                    <a href="quickFix-tutorials.html">
-                        <i class="fas fa-book"></i>
-                        <h3>QuickFix Tutorials</h3>
-                    </a>
-                </section>
+                <SupportSquare pageLink="quickFix-tutorials.html" 
+                            icon="fas fa-book" 
+                            title="QuickFix Tutorials" />,
 
-                <section class="support-square">
-                    <a href="helpdesk.html">
-                        <i class="fas fa-phone"></i>
-                        <h3>Call Helpdesk</h3>
-                    </a>
-                </section>
+               <SupportSquare pageLink="helpdesk.html" 
+                            icon="fas fa-phone" 
+                            title="Call Helpdesk" />,
 
-                <section class="support-square">
-                    <a href="#">
-                        <i class="fas fa-bullseye"></i>
-                        <h3>Staff Portal</h3>
-                    </a>
-                </section>
+                <SupportSquare pageLink="#" 
+                        icon="fas fa-bullseye" 
+                        title="Staff Portal" />,
 
-                <section class="support-square">
-                    <a href="#">
-                        <i class="fas fa-bullhorn"></i>
-                        <h3>Announcements</h3>
-                    </a>
-                </section>
-            </div>
+                <SupportSquare pageLink="#" 
+                    icon="fas fa-bullhorn" 
+                    title="Announcements" />
+
+            </SupportSquaresContainer>
         );
     }
 }
