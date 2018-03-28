@@ -38,3 +38,5 @@ class HelpDesk extends Component {
         );
     }
 }
+
+export default HelpDesk;

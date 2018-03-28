@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class wiFiMagic extends Component {
+class WiFiMagic extends Component {
     constructor(props) {
         super(props);
     }
@@ -14,3 +14,5 @@ class wiFiMagic extends Component {
         );
     }
 }
+
+export default WiFiMagic;

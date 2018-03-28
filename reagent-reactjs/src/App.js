@@ -10,6 +10,12 @@ import Header from "./Header.js";
 
 // Import Pages
 import Home from "./Home.js";
+import WiFiMagic from "./WiFiMagic.js";
+import SubmitTicket from "./SubmitTicket.js";
+import QuickFixTutorials from "./QuickFixTutorials.js";
+import HelpDesk from "./HelpDesk.js";
+import AutoFixTools from "./AutoFixTools.js";
+
 
 class App extends Component {
   render() {
