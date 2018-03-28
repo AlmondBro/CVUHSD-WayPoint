@@ -8,7 +8,7 @@ body {
     background-image: url("https://media.cntraveler.com/photos/56549cc6659c4b4874865502/master/pass/mu-cang-chai-vietnam-cr-getty.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    font-family: Futura, sans-serif;
+    font-family: Futura, "Liberation Sans", Trebuchet MS, Arial, sans-serif;
 }
 
 body,
@@ -19,10 +19,10 @@ html {
 .reagent-container {
     position: relative;
     /* top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-left: -188px;
-    margin-top: -269px; */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-left: -188px;
+  margin-top: -269px; */
     max-width: 376px;
     height: 660px;
     /* height was 538px */
@@ -98,7 +98,7 @@ h2.window-title {
 /* .window-title,
 .close-button,
 .home {
-    height: 20px;
+  height: 20px;
 } */
 
 main {
@@ -111,6 +111,7 @@ main {
 
 main header {
     background-color: red;
+    position: relative;
 }
 
 main>header a>img#reagentLogo {
@@ -120,10 +121,13 @@ main>header a>img#reagentLogo {
 }
 
 main header h1 {
-    margin: auto;
-    vertical-align: middle;
-    display: inline-block;
-    font-size: 28px;
+	vertical-align: middle;
+	display: inline-block;
+	font-size: 28px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 }
 
 main header a img,
@@ -244,10 +248,18 @@ file {
 
 input#summary {
     display: block;
+    color: white;
+}
+
+textarea#detailed-description,
+textarea#detailed-description::-webkit-input-placeholder, 
+textarea#detailed-description::-moz-placeholder,
+textarea#detailed-description:-moz-placeholder,
+textarea#detailed-description:-ms-input-placeholder {
+    color: white;
 }
 
 textarea {
-    color: black;
     resize: vertical;
 }
 
@@ -261,7 +273,6 @@ button[type="reset"] {
     border-radius: 5px;
     font-size: 1.25em;
     margin: 0px 30px;
-    margin-top: 5px;
     margin-bottom: 1em;
 }
 
@@ -298,7 +309,7 @@ form.helpDeskTicket-form fieldset p button[type="reset"] {
 #phone-extension,
 #building-number {
     width: 150px;
-    color: black;
+    color: white;
 }
 
 #summary {

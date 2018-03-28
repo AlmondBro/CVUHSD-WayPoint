@@ -1,18 +1,14 @@
 import React, { Component } from "react";
+
 class Header extends Component {
     render() {
         return(
-        [  
-            <a href="index.html" class="home-button">
-                <i class="fas fa-home"></i>
-            </a>,
-            <a href="#" class="close-button">
-                <i class="fas fa-times"></i>
-            </a>,
-            <h2 class="window-title">Project reAgent</h2>
-        ]
+            <header class="redToDarkRedgradient">
+                    <a href="#"><img src="https://portal.centinela.k12.ca.us/images/CV-600x600.png" class="img-responsive" id="reagentLogo" alt="Centinela Valley Union High School District Logo" /></a>
+                    <h1>Waypoint</h1>
+            </header>
         );
     }
 }
 
-export default Header; 
+export default Header;

@@ -1,5 +1,18 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
+#Visual Studio Code Settings
+.vscode/
+/.vscode
+
+#Ignore React Build folder, since you can generate this at any time
+build
+/build
+
+#Ignore NPM & yarn lock files
+package-lock.json
+yarn.lock
+
+
 # dependencies
 node_modules
 /node_modules
