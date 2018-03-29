@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 
 import SupportSquaresContainer from "./SupportSquaresContainer.js";
 import SupportSquare from "./SupportSquare.js";
+
+
 
 class Home extends Component {
     render() {
@@ -9,19 +12,19 @@ class Home extends Component {
             <p>Please select an option from below:</p>,
 
            <SupportSquaresContainer>
-                <SupportSquare pageLink="auto-fix-tools.html" 
+                <SupportSquare pageLink="/autoFix-tools" 
                                icon="fas fa-wrench" 
                                title="Autofix Tools" />
 
-                <SupportSquare pageLink="submit-ticket.html" 
+                <SupportSquare pageLink="/submit-ticket" 
                             icon="fas fa-newspaper" 
                             title="Submit Ticket" />
 
-                <SupportSquare pageLink="quickFix-tutorials.html" 
+                <SupportSquare pageLink="/quickFix-tutorials" 
                             icon="fas fa-book" 
                             title="QuickFix Tutorials" />
 
-               <SupportSquare pageLink="helpdesk.html" 
+               <SupportSquare pageLink="/call-helpdesk" 
                             icon="fas fa-phone" 
                             title="Call Helpdesk" />
 

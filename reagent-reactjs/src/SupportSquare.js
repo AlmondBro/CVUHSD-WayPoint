@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { Route, NavLink, HashRouter } from "react-router-dom"
 import PropTypes from "prop-types";
 
 class SupportSquare extends Component {
@@ -9,10 +10,10 @@ class SupportSquare extends Component {
     render() {
         return(
             <section className="support-square" id={this.props.id}>
-                    <a href={this.props.pageLink}>
+                    <NavLink to={this.props.pageLink}>
                         <i className={this.props.icon}></i>
                         <h3>{this.props.title}</h3>
-                    </a>
+                    </NavLink>
                 </section>);
     }
 
