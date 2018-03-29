@@ -31,7 +31,7 @@ class AutoFixTools extends Component {
 
                 <SupportSquare pageLink="#" 
                 icon="fas fa-question-circle" 
-                title="Autogix" />
+                title="Autofix" />
  
              </SupportSquaresContainer>);
     }

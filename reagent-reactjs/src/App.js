@@ -6,8 +6,8 @@ import { Route, NavLink, HashRouter } from "react-router-dom";
 //import logo from "./logo.svg";
 
 //Import CSS Styles
-import "./style.css";
-import "./grid-system.css";
+// import "./grid-system.css";
+// import "./style.css";
 
 // Import General Page Components
 import Container from "./Container.js";
