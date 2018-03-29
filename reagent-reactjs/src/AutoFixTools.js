@@ -9,7 +9,7 @@ class AutoFixTools extends Component {
         return(<p>AutoFix Tools:</p>,
 
             <SupportSquaresContainer>
-                 <SupportSquare pageLink="wiFiMagic.html" 
+                 <SupportSquare pageLink="/wiFiMagic" 
                                 icon="fas fa-wifi" 
                                 title="Wi-Fi Magic" />
 

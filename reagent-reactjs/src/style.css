@@ -180,6 +180,12 @@ main p {
     text-decoration: none;
 }
 
+.support-square a:hover,
+.support-square a:focus{
+    color: white;
+    text-decoration: none;
+}
+
 .support-square i {
     font-size: 2em;
     /*was 1.6em */
@@ -244,11 +250,21 @@ file {
 .helpDeskTicket-form fieldset p input,
 .helpDeskTicket-form fieldset textarea {
     width: 100%;
+    font-size: 1em;
+}
+
+form fieldset p input,
+form fieldset p select,
+form fieldset p textarea {
+    margin-top: 5px;
+    font-family: Futura, "Liberation Sans", Trebuchet MS, Arial, sans-serif;
+    padding: 5px;
 }
 
 input#summary {
     display: block;
     color: white;
+    font-size: 1em;
 }
 
 textarea#detailed-description,
