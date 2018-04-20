@@ -280,7 +280,7 @@ section.notifications-section {
     padding: 0.5em;
     width: 250px;
     height: 500px;
-    background-color: #3C3C3C;
+    background-color: rgb(60, 60, 60, 0.95);
     z-index: 4;
     left: 22%;
     top: 16%;
@@ -292,9 +292,26 @@ section.notifications-section h4 {
     font-size: 1.2em;
 }
 
+section.notifications-section button {
+    float: right;
+    border: 0;
+    padding: 0.5em;
+    color: white;
+    border-radius: 0.25em;
+}
+
+.test {
+    display: block;
+}
+
 section.notifications-section hr {
     max-width: 100%;
     margin: 0;
+}
+
+section.notifications-section div.notifications-content {
+    overflow-y: auto;
+    max-height: 413px;
 }
 
 
