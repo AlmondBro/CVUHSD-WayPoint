@@ -188,11 +188,19 @@ div.messageAndGoBack-container {
 }
 
 div.goBack-container {
-    display: inline;
+    display: block;
+    background-color: #AC2626;
+    border-radius: 1em;
+    padding: 0.2em 0.4em;
+    text-align: center;
+    width: 70px;
+    height: 100%;
+    margin: 0 auto;
 }
 
 div.goBack-container i {
     display: inline;
+    color: #a3a3a3;
 }
 
 div.goBack-container p {
@@ -201,8 +209,9 @@ div.goBack-container p {
 }
 
 p.optionMessage {
-    display: inline-block;
+    display: block;
     margin: 0 auto;
+    text-align: center;
 }
 
 .support-squares-container {
