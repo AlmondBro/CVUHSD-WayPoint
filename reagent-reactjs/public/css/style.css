@@ -123,13 +123,13 @@ main>header a>img#reagentLogo {
 }
 
 main header h1 {
-	vertical-align: middle;
-	display: inline-block;
-	font-size: 28px;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
+    vertical-align: middle;
+    display: inline-block;
+    font-size: 28px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 main header a img,
@@ -140,6 +140,11 @@ main header h1 {
 main p {
     margin: 10px;
     text-align: center;
+}
+
+a i.feedback-icon {
+    font-size: 2em;
+    color: white;
 }
 
 .support-squares-container {
@@ -183,7 +188,7 @@ main p {
 }
 
 .support-square a:hover,
-.support-square a:focus{
+.support-square a:focus {
     color: white;
     text-decoration: none;
 }
@@ -270,7 +275,7 @@ input#summary {
 }
 
 textarea#detailed-description,
-textarea#detailed-description::-webkit-input-placeholder, 
+textarea#detailed-description::-webkit-input-placeholder,
 textarea#detailed-description::-moz-placeholder,
 textarea#detailed-description:-moz-placeholder,
 textarea#detailed-description:-ms-input-placeholder {

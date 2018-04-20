@@ -4,7 +4,7 @@
 
 body {
     font-size: 16px;
-    background-color: #C4C4C4;
+    background-color: #757575;
     background-image: url("https://media.cntraveler.com/photos/56549cc6659c4b4874865502/master/pass/mu-cang-chai-vietnam-cr-getty.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -51,15 +51,16 @@ html {
 
 .greyToDarkGreyGradient {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6b6b6b+0,353535+100 */
-    background: #6b6b6b;
+    /* background: #6b6b6b; #636363 */
+    background: #636363;
     /* Old browsers */
-    background: -moz-linear-gradient(top, #6b6b6b 0%, #353535 100%);
+    background: -moz-linear-gradient(top, #757575 0%, #353535 100%);
     /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #6b6b6b 0%, #353535 100%);
+    background: -webkit-linear-gradient(top, #757575 0%, #353535 100%);
     /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #6b6b6b 0%, #353535 100%);
+    background: linear-gradient(to bottom, #757575 0%, #353535 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#6b6b6b', endColorstr='#353535', GradientType=0);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#757575', endColorstr='#353535', GradientType=0);
     /* IE6-9 */
 }
 
@@ -121,13 +122,16 @@ main>header a>img#reagentLogo {
 }
 
 main header h1 {
-	vertical-align: middle;
-	display: inline-block;
-	font-size: 28px;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
+    font-family: "Levenim MT";
+    vertical-align: middle;
+    display: inline-block;
+    font-size: 1.9em;
+    position: absolute;
+    left: 42%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: left;
+    font-weight: 400;
 }
 
 main header a img,
@@ -135,13 +139,75 @@ main header h1 {
     margin: 3px;
 }
 
+main div.notificationIcon-container {
+    background-color: white;
+    padding: 0.7em;
+    border-radius: 1.5em;
+    position: absolute;
+    top: 10%;
+    left: 80%;
+}
+
 main p {
     margin: 10px;
     text-align: center;
 }
 
+main header a .notificationIcon {
+    position: absolute;
+    top: 30%;
+    left: 85%;
+}
+
+main header a i.feedback-icon {
+    display: inline;
+    font-size: 1.8em;
+    /* color: #cb2c2c; */
+    color: white;
+    /* position: absolute;
+    top: 30%;
+    left: 85%; */
+}
+
+main header a p.notifications-count {
+    display: inline;
+    background-color: #3c3c3c;
+    text-decoration: none;
+    color: white;
+    padding: 0.2em 0.5em;
+    border-radius: 100%;
+    position: absolute;
+    bottom: 15%;
+    font-size: 1em;
+}
+
+div.messageAndGoBack-container {
+    margin: 1em;
+    width: 320px;
+    position: relative;
+}
+
+div.goBack-container {
+    display: inline;
+}
+
+div.goBack-container i {
+    display: inline;
+}
+
+div.goBack-container p {
+    display: inline-block;
+    margin: 0;
+}
+
+p.optionMessage {
+    display: inline-block;
+    margin: 0 auto;
+}
+
 .support-squares-container {
-    margin: 10px auto;
+    margin: 0em auto;
+    /*margin on top/bott. was 10px */
     text-align: center;
     height: 500px;
     overflow-y: auto;
@@ -181,7 +247,7 @@ main p {
 }
 
 .support-square a:hover,
-.support-square a:focus{
+.support-square a:focus {
     color: white;
     text-decoration: none;
 }
@@ -195,12 +261,30 @@ main p {
 .support-square h3 {
     display: block;
     font-size: 0.95em;
-    /*Was 0.8em */
+    font-weight: 500;
 }
 
 i.fa-times {
     width: 18px;
     text-align: center;
+}
+
+p.IP-message {
+    /* position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline; */
+    margin: 17% auto;
+}
+
+p.IP-message span {
+    display: inline;
+    font-weight: bold;
+    /* position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
 }
 
 
@@ -249,7 +333,7 @@ file {
 
 .helpDeskTicket-form fieldset p input,
 .helpDeskTicket-form fieldset textarea {
-    width: 100%;
+    width: 95%;
     font-size: 1em;
 }
 
@@ -268,7 +352,7 @@ input#summary {
 }
 
 textarea#detailed-description,
-textarea#detailed-description::-webkit-input-placeholder, 
+textarea#detailed-description::-webkit-input-placeholder,
 textarea#detailed-description::-moz-placeholder,
 textarea#detailed-description:-moz-placeholder,
 textarea#detailed-description:-ms-input-placeholder {
@@ -351,7 +435,8 @@ form p.fieldMargin {
 }
 
 .wiFi-magic p {
-    font-size: 1.05em;
+    font-size: 1em;
+    font-weight: 100;
 }
 
 .wiggle {

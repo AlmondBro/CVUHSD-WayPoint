@@ -8,10 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Centinella Valley School District Single Sign-On (SSO) Dashboard">
 
-    <link href="css/grid-system.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.typekit.net/ksv3qfn.css">
     <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/normalize.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
     <title>CVUHSD Codename Reagent</title>
@@ -26,8 +25,24 @@
             <header class="redToDarkRedgradient">
                 <a href="#"><img src="https://portal.centinela.k12.ca.us/images/CV-600x600.png" class="img-responsive" id="reagentLogo" alt="Centinela Valley Union High School District Logo" /></a>
                 <h1>Waypoint</h1>
+                <!-- <div class="notificationIcon-container"> -->
+                <a href="#">
+                    <div class="notificationIcon">
+                        <p class="notifications-count">1</p>
+                        <i class="fas fa-bell feedback-icon"></i>
+                    </div>
+                </a>
+                <!-- </div> -->
             </header>
-            <p>Please select an option from below:</p>
+
+            <div class="messageAndGoBack-container">
+                <div class="goBack-container">
+                    <i class="fas fa-chevron-circle-left"></i>
+                    <p>Back</p>
+                </div>
+                <p class="optionMessage">Please select an option from below:</p>
+            </div>
+
 
             <div class="support-squares-container">
                 <section class="support-square">
@@ -71,6 +86,7 @@
                         <h3>Announcements</h3>
                     </a>
                 </section>
+                <p class="IP-message">Your IP Addresss:&#9;<span>127.0.01</span></p>
             </div>
         </main>
     </div>
