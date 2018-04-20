@@ -187,8 +187,9 @@ div.messageAndGoBack-container {
     position: relative;
 }
 
-div.goBack-container {
+a.goBack-container {
     display: block;
+    color: white;
     background-color: #AC2626;
     border-radius: 1em;
     padding: 0.2em 0.4em;
@@ -196,14 +197,15 @@ div.goBack-container {
     width: 70px;
     height: 100%;
     margin: 0 auto;
+    text-decoration: none;
 }
 
-div.goBack-container i {
+a.goBack-container i {
     display: inline;
     color: #a3a3a3;
 }
 
-div.goBack-container p {
+a.goBack-container p {
     display: inline-block;
     margin: 0;
 }
@@ -244,6 +246,59 @@ p.optionMessage {
         text-align: center;
     }
 }
+
+
+/* Notifications modal styling */
+
+
+/* CSS Checkbox hack -- Allows one to simulate a click event listener
+and apply different styles depending on whether or not 
+the checkbox is hacked. */
+
+input.checkbox-hack {
+    display: none;
+}
+
+input.checkbox-hack:checked~section.notifications-section {
+    display: block;
+}
+
+section.notifications-section::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 94%;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 16px solid #a5a5a5;
+    z-index: 5;
+}
+
+section.notifications-section {
+    display: none;
+    position: absolute;
+    padding: 0.5em;
+    width: 250px;
+    height: 500px;
+    background-color: #3C3C3C;
+    z-index: 4;
+    left: 22%;
+    top: 16%;
+    border: 2px solid #a5a5a5;
+    border-radius: 0.25em;
+}
+
+section.notifications-section h4 {
+    font-size: 1.2em;
+}
+
+section.notifications-section hr {
+    max-width: 100%;
+    margin: 0;
+}
+
+
+/* End Notifications modal styling */
 
 .support-square:hover,
 .support-square:active {

@@ -22,24 +22,30 @@
         <a href="#" class="close-button"><i class="fas fa-times"></i></a>
         <h2 class="window-title">Project reAgent</h2>
         <main>
+            <input type="checkbox" class="checkbox-hack" id="notification-icon-checkbox">
             <header class="redToDarkRedgradient">
                 <a href="#"><img src="https://portal.centinela.k12.ca.us/images/CV-600x600.png" class="img-responsive" id="reagentLogo" alt="Centinela Valley Union High School District Logo" /></a>
                 <h1>Waypoint</h1>
                 <!-- <div class="notificationIcon-container"> -->
                 <a href="#">
-                    <div class="notificationIcon">
+                    <label class="notificationIcon" id="notification-icon" for="notification-icon-checkbox">
                         <p class="notifications-count">1</p>
                         <i class="fas fa-bell feedback-icon"></i>
-                    </div>
+                    </label>
                 </a>
                 <!-- </div> -->
             </header>
 
+            <section class="notifications-section">
+                <h4>Notifications</h4>
+                <hr>
+            </section>
+
             <div class="messageAndGoBack-container">
-                <div class="goBack-container">
+                <a class="goBack-container" href="#">
                     <i class="fas fa-chevron-circle-left"></i>
                     <p>Back</p>
-                </div>
+                </a>
                 <p class="optionMessage">Please select an option from below:</p>
             </div>
 
