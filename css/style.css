@@ -1,548 +1,592 @@
-* {
-    box-sizing: border-box;
-}
-
-body {
-    font-size: 16px;
-    background-color: #757575;
-    background-image: url("https://media.cntraveler.com/photos/56549cc6659c4b4874865502/master/pass/mu-cang-chai-vietnam-cr-getty.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    font-family: Futura, "Liberation Sans", Trebuchet MS, Arial, sans-serif;
-}
-
-body,
-html {
-    min-height: 100%;
-}
-
-.reagent-container {
-    position: relative;
-    /* top: 50%;
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-size: 16px;
+        background-color: #757575;
+        background-image: url("https://media.cntraveler.com/photos/56549cc6659c4b4874865502/master/pass/mu-cang-chai-vietnam-cr-getty.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        font-family: Futura, "Liberation Sans", Trebuchet MS, Arial, sans-serif;
+    }
+    
+    body,
+    html {
+        min-height: 100%;
+    }
+    
+    .reagent-container {
+        position: relative;
+        /* top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   margin-left: -188px;
   margin-top: -269px; */
-    max-width: 376px;
-    height: 660px;
-    /* height was 538px */
-    background-color: #505050;
-    color: white;
-    /* margin: 0 auto; */
-    border-radius: 0.3em;
-    margin: 10% auto;
-    padding: 2px 0px;
-}
-
-.redToDarkRedgradient {
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e73333+0,d02d2d+50,ac2626+100 */
-    background: #e73333;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #e73333 0%, #d02d2d 50%, #ac2626 100%);
-    /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #e73333 0%, #d02d2d 50%, #ac2626 100%);
-    /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #e73333 0%, #d02d2d 50%, #ac2626 100%);
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#e73333', endColorstr='#ac2626', GradientType=0);
-    /* IE6-9 */
-    height: 65px;
-}
-
-.greyToDarkGreyGradient {
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6b6b6b+0,353535+100 */
-    /* background: #6b6b6b; #636363 */
-    background: #636363;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #757575 0%, #353535 100%);
-    /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #757575 0%, #353535 100%);
-    /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #757575 0%, #353535 100%);
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#757575', endColorstr='#353535', GradientType=0);
-    /* IE6-9 */
-}
-
-a.home-button,
-a.close-button {
-    display: inline-block;
-    color: white;
-    background-color: #3c3c3c;
-    /*  */
-    padding: 5px;
-    border-radius: 5px;
-    margin: 2px 10px;
-    width: 32px;
-    text-align: center;
-}
-
-.home-button {
-    /* position: relative; */
-    /* left: 5%; */
-    float: left;
-}
-
-.close-button {
-    /* position: relative; */
-    /* left: 82%; */
-    float: right;
-}
-
-h2.window-title {
-    text-align: center;
-    margin: 5px 0px 0px 0px;
-    font-size: 1.0em;
-}
-
-
-/* .window-title,
+        max-width: 376px;
+        height: 660px;
+        /* height was 538px */
+        background-color: #505050;
+        color: white;
+        /* margin: 0 auto; */
+        border-radius: 0.3em;
+        margin: 10% auto;
+        padding: 2px 0px;
+    }
+    
+    .redToDarkRedgradient {
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e73333+0,d02d2d+50,ac2626+100 */
+        background: #e73333;
+        /* Old browsers */
+        background: -moz-linear-gradient(top, #e73333 0%, #d02d2d 50%, #ac2626 100%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #e73333 0%, #d02d2d 50%, #ac2626 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #e73333 0%, #d02d2d 50%, #ac2626 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#e73333', endColorstr='#ac2626', GradientType=0);
+        /* IE6-9 */
+        height: 65px;
+    }
+    
+    .greyToDarkGreyGradient {
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6b6b6b+0,353535+100 */
+        /* background: #6b6b6b; #636363 */
+        background: #636363;
+        /* Old browsers */
+        background: -moz-linear-gradient(top, #757575 0%, #353535 100%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #757575 0%, #353535 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #757575 0%, #353535 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#757575', endColorstr='#353535', GradientType=0);
+        /* IE6-9 */
+    }
+    
+    a.home-button,
+    a.close-button {
+        display: inline-block;
+        color: white;
+        background-color: #3c3c3c;
+        /*  */
+        padding: 5px;
+        border-radius: 5px;
+        margin: 2px 10px;
+        width: 32px;
+        text-align: center;
+    }
+    
+    .home-button {
+        /* position: relative; */
+        /* left: 5%; */
+        float: left;
+    }
+    
+    .close-button {
+        /* position: relative; */
+        /* left: 82%; */
+        float: right;
+    }
+    
+    h2.window-title {
+        text-align: center;
+        margin: 5px 0px 0px 0px;
+        font-size: 1.0em;
+    }
+    /* .window-title,
 .close-button,
 .home {
   height: 20px;
 } */
-
-main {
-    display: block;
-    margin: 15px auto;
-    width: 95%;
-    height: 94%;
-    background-color: #1c1c1c;
-}
-
-main header {
-    background-color: red;
-    position: relative;
-}
-
-main>header a>img#reagentLogo {
-    width: 60px;
-    height: auto;
-    display: inline-block;
-}
-
-main header h1 {
-    font-family: "Levenim MT";
-    vertical-align: middle;
-    display: inline-block;
-    font-size: 1.9em;
-    position: absolute;
-    left: 42%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    text-align: left;
-    font-weight: 400;
-}
-
-main header a img,
-main header h1 {
-    margin: 3px;
-}
-
-main div.notificationIcon-container {
-    background-color: white;
-    padding: 0.7em;
-    border-radius: 1.5em;
-    position: absolute;
-    top: 10%;
-    left: 80%;
-}
-
-main p {
-    margin: 10px;
-    text-align: center;
-}
-
-main header a .notificationIcon {
-    position: absolute;
-    top: 30%;
-    left: 85%;
-}
-
-main header a i.feedback-icon {
-    display: inline;
-    font-size: 1.8em;
-    /* color: #cb2c2c; */
-    color: white;
-    /* position: absolute;
-    top: 30%;
-    left: 85%; */
-}
-
-main header a p.notifications-count {
-    display: inline;
-    background-color: #3c3c3c;
-    text-decoration: none;
-    color: white;
-    padding: 0.2em 0.5em;
-    border-radius: 100%;
-    position: absolute;
-    bottom: 15%;
-    font-size: 1em;
-}
-
-div.messageAndGoBack-container {
-    margin: 1em;
-    width: 320px;
-    position: relative;
-}
-
-a.goBack-container {
-    display: block;
-    color: white;
-    background-color: #AC2626;
-    border-radius: 1em;
-    padding: 0.2em 0.4em;
-    text-align: center;
-    width: 70px;
-    height: 100%;
-    margin: 0 auto;
-    text-decoration: none;
-}
-
-a.goBack-container i {
-    display: inline;
-    color: #a3a3a3;
-}
-
-a.goBack-container p {
-    display: inline-block;
-    margin: 0;
-}
-
-p.optionMessage {
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.support-squares-container {
-    margin: 0em auto;
-    /*margin on top/bott. was 10px */
-    text-align: center;
-    height: 500px;
-    overflow-y: auto;
-}
-
-.support-square {
-    background-color: #2B2B2B;
-    color: white;
-    text-align: center;
-    width: 150px;
-    padding: 10px;
-    /* margin-left: 12px; */
-    display: inline-block;
-    margin: 10px 3px;
-}
-
-#helpdeskHotline-supportSquare {
-    width: 310px;
-    text-align: center;
-}
-
-@media only screen and (max-width: 333px) {
-    #helpdeskHotline-supportSquare {
-        width: 150px;
+    
+    main {
+        display: block;
+        margin: 15px auto;
+        width: 95%;
+        height: 94%;
+        background-color: #1c1c1c;
+    }
+    
+    main header {
+        background-color: red;
+        position: relative;
+    }
+    
+    main>header a>img#reagentLogo {
+        width: 60px;
+        height: auto;
+        display: inline-block;
+    }
+    
+    main header h1 {
+        font-family: "Levenim MT";
+        vertical-align: middle;
+        display: inline-block;
+        font-size: 1.9em;
+        position: absolute;
+        left: 42%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: left;
+        font-weight: 400;
+    }
+    
+    main header a img,
+    main header h1 {
+        margin: 3px;
+    }
+    
+    main p {
+        margin: 10px;
         text-align: center;
     }
-}
-
-
-/* Notifications modal styling */
-
-
-/* CSS Checkbox hack -- Allows one to simulate a click event listener
+    
+    main header .notificationIcon {
+        position: absolute;
+        top: 30%;
+        left: 85%;
+    }
+    
+    main header .notificationIcon i {
+        display: inline;
+        font-size: 1.8em;
+        color: white;
+    }
+    
+    main header .notifications-count {
+        display: inline;
+        background-color: #3c3c3c;
+        text-decoration: none;
+        color: white;
+        padding: 0.2em 0.5em;
+        border-radius: 100%;
+        position: absolute;
+        bottom: 60%;
+        font-size: 1em;
+        left: 35%;
+    }
+    
+    div.messageAndGoBack-container {
+        margin: 1em;
+        width: 320px;
+        position: relative;
+    }
+    
+    a.goBack-container {
+        display: inline-block;
+        color: white;
+        /* background-color: #AC2626; */
+        border-radius: 1em;
+        padding: 0.2em 0.4em;
+        text-align: center;
+        max-width: 70px;
+        height: 100%;
+        margin: 0 auto;
+        text-decoration: none;
+    }
+    
+    a.goBack-container i {
+        display: inline;
+        color: #a3a3a3;
+    }
+    
+    a.goBack-container p {
+        display: inline-block;
+        margin: 0;
+    }
+    
+    p.optionMessage {
+        display: inline-block;
+        margin: 0 auto;
+        text-align: center;
+        max-width: 240px;
+    }
+    
+    .support-squares-container {
+        margin: 0em auto;
+        /*margin on top/bott. was 10px */
+        text-align: center;
+        height: 480px;
+        overflow-y: auto;
+    }
+    
+    .support-square {
+        background-color: #2B2B2B;
+        color: white;
+        text-align: center;
+        width: 150px;
+        padding: 10px;
+        /* margin-left: 12px; */
+        display: inline-block;
+        margin: 10px 3px;
+    }
+    
+    #helpdeskHotline-supportSquare {
+        width: 310px;
+        text-align: center;
+    }
+    
+    @media only screen and (max-width: 333px) {
+        #helpdeskHotline-supportSquare {
+            width: 150px;
+            text-align: center;
+        }
+    }
+    /* Notifications modal styling */
+    /* CSS Checkbox hack -- Allows one to simulate a click event listener
 and apply different styles depending on whether or not 
 the checkbox is hacked. */
-
-input.checkbox-hack {
-    display: none;
-}
-
-input.checkbox-hack:checked~section.notifications-section {
-    display: block;
-}
-
-section.notifications-section::after {
-    content: "";
-    position: absolute;
-    bottom: 100%;
-    left: 94%;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 16px solid #a5a5a5;
-    z-index: 5;
-}
-
-section.notifications-section {
-    display: none;
-    position: absolute;
-    padding: 0.5em;
-    width: 250px;
-    height: 500px;
-    background-color: rgb(60, 60, 60, 0.95);
-    z-index: 4;
-    left: 22%;
-    top: 16%;
-    border: 2px solid #a5a5a5;
-    border-radius: 0.25em;
-}
-
-section.notifications-section h4 {
-    font-size: 1.2em;
-}
-
-section.notifications-section button {
-    float: right;
-    border: 0;
-    padding: 0.5em;
-    color: white;
-    border-radius: 0.25em;
-}
-
-.test {
-    display: block;
-}
-
-section.notifications-section hr {
-    max-width: 100%;
-    margin: 0;
-}
-
-section.notifications-section div.notifications-content {
-    overflow-y: auto;
-    max-height: 413px;
-}
-
-
-/* End Notifications modal styling */
-
-.support-square:hover,
-.support-square:active {
-    background-color: #3c3c3c;
-}
-
-.support-square a {
-    color: white;
-    text-decoration: none;
-}
-
-.support-square a:hover,
-.support-square a:focus {
-    color: white;
-    text-decoration: none;
-}
-
-.support-square i {
-    font-size: 2em;
-    /*was 1.6em */
-    display: block;
-}
-
-.support-square h3 {
-    display: block;
-    font-size: 0.95em;
-    font-weight: 500;
-}
-
-i.fa-times {
-    width: 18px;
-    text-align: center;
-}
-
-p.IP-message {
-    /* position: absolute;
+    
+    input.checkbox-hack {
+        display: none;
+    }
+    
+    input.checkbox-hack:checked~section.notifications-section {
+        display: block;
+    }
+    
+    section.notifications-section::after {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 95%;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 16px solid #a5a5a5;
+        z-index: 5;
+    }
+    
+    section.notifications-section {
+        display: none;
+        position: absolute;
+        padding: 0.5em;
+        width: 250px;
+        height: 500px;
+        background-color: rgb(60, 60, 60, 0.95);
+        z-index: 4;
+        left: 22%;
+        top: 16%;
+        border: 2px solid #a5a5a5;
+        border-radius: 0.25em;
+    }
+    
+    section.notifications-section h4 {
+        font-size: 1.2em;
+    }
+    
+    section.notifications-section button {
+        float: right;
+        border: 0;
+        padding: 0.5em;
+        color: white;
+        border-radius: 0.25em;
+    }
+    
+    .test {
+        display: block;
+    }
+    
+    section.notifications-section div.notifications-content {
+        overflow-y: auto;
+        max-height: 413px;
+    }
+    
+    i.greenCheck {
+        color: green;
+    }
+    
+    i.archive {
+        color: orange;
+    }
+    
+    i.coffee {
+        color: brown;
+    }
+    
+    .update-notification p {
+        display: inline-block;
+        margin: 0;
+    }
+    
+    .notifications-content hr {
+        margin: 0.8em 0.2em;
+        max-width: 100%;
+    }
+    
+    .notification-content-rectangle {
+        background-color: rgb(115, 115, 115, 0.75);
+        padding: 1em;
+    }
+    
+    #exclamation-button {
+        float: none;
+        display: inline-block;
+        border-radius: 1em;
+        background-color: #E03131;
+        padding: 0.4em 0.7em;
+        margin-right: 0.15em;
+    }
+    
+    section.notifications-section div.notification-content-rectangle-container {
+        margin: 1.5em 0em;
+    }
+    
+    @media only screen and (min-width: 342px) and (max-width: 358px) {
+        section.notifications-section {
+            left: 19%;
+        }
+    }
+    
+    @media only screen and (min-width: 334px) and (max-width: 341px) {
+        section.notifications-section {
+            left: 17%;
+        }
+    }
+    
+    @media only screen and (min-width: 321px) and (max-width: 333px) {
+        section.notifications-section {
+            left: 15%;
+        }
+    }
+    
+    @media only screen and (min-width: 309px) and (max-width: 320px) {
+        section.notifications-section {
+            left: 12%;
+        }
+    }
+    
+    @media only screen and (min-width: 200px) and (max-width: 308px) {
+        section.notifications-section {
+            left: 7%;
+        }
+    }
+    /* End Notifications modal styling */
+    
+    .support-square:hover,
+    .support-square:active {
+        background-color: #3c3c3c;
+    }
+    
+    .support-square a {
+        color: white;
+        text-decoration: none;
+    }
+    
+    .support-square a:hover,
+    .support-square a:focus {
+        color: white;
+        text-decoration: none;
+    }
+    
+    .support-square i {
+        font-size: 2em;
+        /*was 1.6em */
+        display: block;
+    }
+    
+    .support-square h3 {
+        display: block;
+        font-size: 0.95em;
+        font-weight: 500;
+    }
+    
+    i.fa-times {
+        width: 18px;
+        text-align: center;
+    }
+    
+    p.IP-message {
+        /* position: absolute;
     top: 90%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: inline; */
-    margin: 17% auto;
-}
-
-p.IP-message span {
-    display: inline;
-    font-weight: bold;
-    /* position: absolute;
+        margin: 10% auto;
+    }
+    
+    p.IP-message span {
+        display: inline;
+        font-weight: bold;
+        /* position: absolute;
     top: 90%;
     left: 50%;
     transform: translate(-50%, -50%); */
-}
-
-
-/* Form styling */
-
-.inline {
-    display: inline-block;
-}
-
-p label.inline,
-p input.inline {
-    display: inline;
-}
-
-p label.block,
-p input.block {
-    display: block;
-}
-
-main form.helpDeskTicket-form {
-    height: 550px;
-    overflow-y: auto;
-    margin: 8px;
-}
-
-main form.helpDeskTicket-form p {
-    text-align: left;
-    margin: 12px 0;
-}
-
-main form.helpDeskTicket-form p input,
-select {
-    color: black;
-}
-
-main form.helpDeskTicket-form p input,
-file {
-    color: white;
-}
-
-.helpDeskTicket-form fieldset {
-    border: 0px;
-    margin: 0px;
-    padding: 0px;
-}
-
-.helpDeskTicket-form fieldset p input,
-.helpDeskTicket-form fieldset textarea {
-    width: 95%;
-    font-size: 1em;
-}
-
-form fieldset p input,
-form fieldset p select,
-form fieldset p textarea {
-    margin-top: 5px;
-    font-family: Futura, "Liberation Sans", Trebuchet MS, Arial, sans-serif;
-    padding: 5px;
-}
-
-input#summary {
-    display: block;
-    color: white;
-    font-size: 1em;
-}
-
-textarea#detailed-description,
-textarea#detailed-description::-webkit-input-placeholder,
-textarea#detailed-description::-moz-placeholder,
-textarea#detailed-description:-moz-placeholder,
-textarea#detailed-description:-ms-input-placeholder {
-    color: white;
-}
-
-textarea {
-    resize: vertical;
-}
-
-.fileUpload-button,
-button[type="submit"],
-button[type="reset"] {
-    border: 0px;
-    padding: 4px;
-    display: inline-block;
-    height: 100%;
-    border-radius: 5px;
-    font-size: 1.25em;
-    margin: 0px 30px;
-    margin-top: 5px;
-    margin-bottom: 1em;
-}
-
-.fileUpload-button:hover,
-button[type="submit"]:hover,
-button[type="reset"]:hover,
-.fileUpload-button:active,
-button[type="submit"]:active,
-button[type="reset"]:active {
-    -webkit-filter: grayscale(30%);
-    filter: grayscale(30%);
-}
-
-.fileUpload-button {
-    font-size: 1.1em;
-}
-
-input[type="file"]#file-input {
-    position: absolute;
-    left: -99999rem;
-    z-index: -99999;
-}
-
-form.helpDeskTicket-form fieldset p button[type="submit"] {
-    float: left;
-}
-
-form.helpDeskTicket-form fieldset p button[type="reset"] {
-    float: right;
-}
-
-#category-select,
-#location-select,
-#phone-extension,
-#building-number {
-    width: 150px;
-    color: white;
-}
-
-#summary {
-    color: black;
-}
-
-form p.fieldMargin {
-    margin: 0px 25px;
-}
-
-.wiFi-magic {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.wiFi-magic i {
-    font-size: 3em;
-    text-align: center;
-    display: block;
-}
-
-.wiFi-magic p {
-    font-size: 1em;
-    font-weight: 100;
-}
-
-.wiggle {
-    animation: shake 1.5s cubic-bezier(.36, .07, .19, .97) infinite;
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-}
-
-@keyframes shake {
-    10%,
-    90% {
-        transform: translate3d(-1px, 0, 0);
     }
-    20%,
-    80% {
-        transform: translate3d(2px, 0, 0);
+    /* Form styling */
+    
+    .inline {
+        display: inline-block;
     }
-    30%,
-    50%,
-    70% {
-        transform: translate3d(-4px, 0, 0);
+    
+    p label.inline,
+    p input.inline {
+        display: inline;
     }
-    40%,
-    60% {
-        transform: translate3d(4px, 0, 0);
+    
+    p label.block,
+    p input.block {
+        display: block;
     }
-}
+    
+    main form.helpDeskTicket-form {
+        height: 550px;
+        overflow-y: auto;
+        margin: 8px;
+    }
+    
+    main form.helpDeskTicket-form p {
+        text-align: left;
+        margin: 12px 0;
+    }
+    
+    main form.helpDeskTicket-form p input,
+    select {
+        color: black;
+    }
+    
+    main form.helpDeskTicket-form p input,
+    file {
+        color: white;
+    }
+    
+    .helpDeskTicket-form fieldset {
+        border: 0px;
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    .helpDeskTicket-form fieldset p input,
+    .helpDeskTicket-form fieldset textarea {
+        width: 95%;
+        font-size: 1em;
+    }
+    
+    form fieldset p input,
+    form fieldset p select,
+    form fieldset p textarea {
+        margin-top: 5px;
+        font-family: Futura, "Liberation Sans", Trebuchet MS, Arial, sans-serif;
+        padding: 5px;
+    }
+    
+    input#summary {
+        display: block;
+        color: white;
+        font-size: 1em;
+    }
+    
+    textarea#detailed-description,
+    textarea#detailed-description::-webkit-input-placeholder,
+    textarea#detailed-description::-moz-placeholder,
+    textarea#detailed-description:-moz-placeholder,
+    textarea#detailed-description:-ms-input-placeholder {
+        color: white;
+    }
+    
+    textarea {
+        resize: vertical;
+    }
+    
+    .fileUpload-button,
+    button[type="submit"],
+    button[type="reset"] {
+        border: 0px;
+        padding: 4px;
+        display: inline-block;
+        height: 100%;
+        border-radius: 5px;
+        font-size: 1.25em;
+        margin: 0px 30px;
+        margin-top: 5px;
+        margin-bottom: 1em;
+    }
+    
+    .fileUpload-button:hover,
+    button[type="submit"]:hover,
+    button[type="reset"]:hover,
+    .fileUpload-button:active,
+    button[type="submit"]:active,
+    button[type="reset"]:active {
+        -webkit-filter: grayscale(30%);
+        filter: grayscale(30%);
+    }
+    
+    .fileUpload-button {
+        font-size: 1.1em;
+    }
+    
+    input[type="file"]#file-input {
+        position: absolute;
+        left: -99999rem;
+        z-index: -99999;
+    }
+    
+    form.helpDeskTicket-form fieldset p button[type="submit"] {
+        float: left;
+    }
+    
+    form.helpDeskTicket-form fieldset p button[type="reset"] {
+        float: right;
+    }
+    
+    #category-select,
+    #location-select,
+    #phone-extension,
+    #building-number {
+        width: 150px;
+        color: white;
+    }
+    
+    #summary {
+        color: black;
+    }
+    
+    form p.fieldMargin {
+        margin: 0px 25px;
+    }
+    
+    .wiFi-magic {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .wiFi-magic i {
+        font-size: 3em;
+        text-align: center;
+        display: block;
+    }
+    
+    .wiFi-magic p {
+        font-size: 1em;
+        font-weight: 100;
+    }
+    
+    .wiggle {
+        animation: shake 1.5s cubic-bezier(.36, .07, .19, .97) infinite;
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+    }
+    
+    @keyframes shake {
+        10%,
+        90% {
+            transform: translate3d(-1px, 0, 0);
+        }
+        20%,
+        80% {
+            transform: translate3d(2px, 0, 0);
+        }
+        30%,
+        50%,
+        70% {
+            transform: translate3d(-4px, 0, 0);
+        }
+        40%,
+        60% {
+            transform: translate3d(4px, 0, 0);
+        }
+    }
