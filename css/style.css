@@ -138,8 +138,13 @@ header a>img#reagentLogo {
     font-weight: 400;
 } */
 
+.announcements-list img,
+.announcement-text {
+    display: inline-block;
+}
+
 .headerLogo {
-    display: inline;
+    display: inline-block;
     width: 13em;
     /* margin-bottom: 8px; */
     max-height: 45px;
