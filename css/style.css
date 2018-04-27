@@ -124,7 +124,8 @@ header a>img#reagentLogo {
     display: inline-block;
 }
 
-main header h1 {
+
+/* main header h1 {
     font-family: "Levenim MT";
     vertical-align: middle;
     display: inline-block;
@@ -135,6 +136,16 @@ main header h1 {
     transform: translate(-50%, -50%);
     text-align: left;
     font-weight: 400;
+} */
+
+.headerLogo {
+    display: inline;
+    width: 13em;
+    /* margin-bottom: 8px; */
+    max-height: 45px;
+    top: 70%;
+    position: absolute;
+    transform: translateY(-70%);
 }
 
 header a img,
