@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Route, NavLink, HashRouter } from "react-router-dom";
+//import { Route, NavLink, HashRouter } from "react-router-dom";
+
+import {Route, BrowserRouter, HashRouter, Switch} from "react-router-dom";
 
 //import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 
@@ -27,7 +29,7 @@ import AutoFixTools from "./AutoFixTools.js";
 class App extends Component {
   render() {
     return (
-      <HashRouter>
+      <BrowserRouter>
         <Container>
             <Frame/>
             <Main>
@@ -35,16 +37,18 @@ class App extends Component {
             {/* <Home/>*/}   {/* This is is the component you change when 
                           the page changes, since all components have a 
                           container, a main element, and a header. */}
-              <Route exact path="/" component={Home} />
-              <Route path="/autoFix-tools" component={AutoFixTools} />
-              <Route path="/submit-ticket" component={SubmitTicket} />
-              <Route path="/quickFix-tutorials" component={QuickFixTutorials} />
-              <Route path="/call-helpdesk" component={HelpDesk} />
-
-               <Route path="/wiFiMagic" component={WiFiMagic} />
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/autoFix-tools" component={AutoFixTools} />
+                <Route path="/submit-ticket" component={SubmitTicket} />
+                <Route path="/quickFix-tutorials" component={QuickFixTutorials} />
+                <Route path="/call-helpdesk" component={HelpDesk} />
+                <Route path="/wiFiMagic" component={WiFiMagic} /> 
+              </Switch>
+             
             </Main>
         </Container>
-      </HashRouter>
+      </BrowserRouter>
     );
   }
 }
