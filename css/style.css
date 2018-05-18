@@ -4,7 +4,7 @@
 
 body {
     font-size: 16px;
-    background-color: #C4C4C4;
+    background-color: #757575;
     background-image: url("https://media.cntraveler.com/photos/56549cc6659c4b4874865502/master/pass/mu-cang-chai-vietnam-cr-getty.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -19,12 +19,13 @@ html {
 .reagent-container {
     position: relative;
     /* top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin-left: -188px;
-  margin-top: -269px; */
+left: 50%;
+transform: translate(-50%, -50%);
+margin-left: -188px;
+margin-top: -269px; */
     max-width: 376px;
-    height: 660px;
+    height: 700px;
+    /* 660px */
     /* height was 538px */
     background-color: #505050;
     color: white;
@@ -51,15 +52,16 @@ html {
 
 .greyToDarkGreyGradient {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6b6b6b+0,353535+100 */
-    background: #6b6b6b;
+    /* background: #6b6b6b; #636363 */
+    background: #636363;
     /* Old browsers */
-    background: -moz-linear-gradient(top, #6b6b6b 0%, #353535 100%);
+    background: -moz-linear-gradient(top, #757575 0%, #353535 100%);
     /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #6b6b6b 0%, #353535 100%);
+    background: -webkit-linear-gradient(top, #757575 0%, #353535 100%);
     /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #6b6b6b 0%, #353535 100%);
+    background: linear-gradient(to bottom, #757575 0%, #353535 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#6b6b6b', endColorstr='#353535', GradientType=0);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#757575', endColorstr='#353535', GradientType=0);
     /* IE6-9 */
 }
 
@@ -98,7 +100,7 @@ h2.window-title {
 /* .window-title,
 .close-button,
 .home {
-  height: 20px;
+height: 20px;
 } */
 
 main {
@@ -107,6 +109,8 @@ main {
     width: 95%;
     height: 94%;
     background-color: #1c1c1c;
+    /* overflow-y: auto;
+    overflow-x: hidden; */
 }
 
 main header {
@@ -114,24 +118,43 @@ main header {
     position: relative;
 }
 
-main>header a>img#reagentLogo {
+header a>img#reagentLogo {
     width: 60px;
     height: auto;
     display: inline-block;
 }
 
-main header h1 {
-	vertical-align: middle;
-	display: inline-block;
-	font-size: 28px;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
+
+/* main header h1 {
+    font-family: "Levenim MT";
+    vertical-align: middle;
+    display: inline-block;
+    font-size: 1.9em;
+    position: absolute;
+    left: 42%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: left;
+    font-weight: 400;
+} */
+
+.announcements-list img,
+.announcement-text {
+    display: inline-block;
 }
 
-main header a img,
-main header h1 {
+.headerLogo {
+    display: inline-block;
+    width: 13em;
+    /* margin-bottom: 8px; */
+    max-height: 45px;
+    top: 70%;
+    position: absolute;
+    transform: translateY(-70%);
+}
+
+header a img,
+header h1 {
     margin: 3px;
 }
 
@@ -140,10 +163,93 @@ main p {
     text-align: center;
 }
 
-.support-squares-container {
-    margin: 10px auto;
+header .notificationIcon {
+    position: absolute;
+    top: 30%;
+    left: 85%;
+}
+
+main header .notificationIcon i {
+    display: inline;
+    font-size: 1.8em;
+    color: white;
+}
+
+main header .notifications-count {
+    display: inline;
+    background-color: #3c3c3c;
+    text-decoration: none;
+    color: white;
+    padding: 0.2em 0.5em;
+    border-radius: 100%;
+    position: absolute;
+    bottom: 60%;
+    font-size: 1em;
+    left: 35%;
+}
+
+.fas.fa-bell .notification-icon-i:hover,
+.fas.fa-bell .notification-icon-i:active {
+    color: #A4A2A2;
+}
+
+#clear-button {
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+    left: 20%;
+    float: none;
+    border: 0;
+    padding: 0.5em;
+    color: white;
+    border-radius: 0.25em;
+    height: 2em;
     text-align: center;
-    height: 500px;
+}
+
+div.messageAndGoBack-container {
+    max-width: 357px;
+    position: relative;
+    max-height: 30px;
+    text-align: center;
+    padding-top: 0.25em;
+}
+
+a.goBack-container {
+    display: inline-block;
+    color: white;
+    /* background-color: #AC2626; */
+    border-radius: 1em;
+    padding: 0.2em 0.4em;
+    text-align: center;
+    max-width: 70px;
+    height: 100%;
+    margin: 0 auto;
+    text-decoration: none;
+}
+
+a.goBack-container i {
+    display: inline;
+    color: #a3a3a3;
+}
+
+a.goBack-container p {
+    display: inline-block;
+    margin: 0;
+}
+
+p.optionMessage {
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+    max-width: 240px;
+}
+
+.support-squares-container {
+    margin: 0em auto;
+    /*margin on top/bott. was 10px */
+    text-align: center;
+    height: 480px;
     overflow-y: auto;
 }
 
@@ -170,6 +276,151 @@ main p {
     }
 }
 
+
+/* Notifications modal styling */
+
+
+/* CSS Checkbox hack -- Allows one to simulate a click event listener
+and apply different styles depending on whether or not 
+the checkbox is hacked. */
+
+section.page-content {
+    /* margin-top: 95px; */
+    overflow-y: auto;
+    max-height: 560px;
+}
+
+.header-frame {
+    position: relative;
+}
+
+input.checkbox-hack {
+    display: none;
+}
+
+input.checkbox-hack:checked~section.notifications-section {
+    display: block;
+}
+
+section.notifications-section::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 93%;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 16px solid #a5a5a5;
+    z-index: 5;
+}
+
+section.notifications-section {
+    display: none;
+    position: absolute;
+    padding: 0.5em;
+    width: 250px;
+    height: 500px;
+    background-color: rgb(60, 60, 60, 0.95);
+    z-index: 4;
+    left: 22%;
+    /* top: 16%; */
+    border: 2px solid #a5a5a5;
+    border-radius: 0.25em;
+}
+
+section.notifications-section h4 {
+    font-size: 1.2em;
+}
+
+section.notifications-section button {
+    float: right;
+    border: 0;
+    padding: 0.5em;
+    color: white;
+    border-radius: 0.25em;
+}
+
+.test {
+    display: block;
+}
+
+section.notifications-section div.notifications-content {
+    overflow-y: auto;
+    max-height: 413px;
+}
+
+i.greenCheck {
+    color: green;
+}
+
+i.archive {
+    color: orange;
+}
+
+i.coffee {
+    color: brown;
+}
+
+.update-notification p {
+    display: inline-block;
+    margin: 0;
+}
+
+.notifications-content hr {
+    margin: 0.8em 0.2em;
+    max-width: 100%;
+}
+
+.notification-content-rectangle {
+    background-color: rgb(115, 115, 115, 0.75);
+    padding: 1em;
+}
+
+#exclamation-button {
+    float: none;
+    display: inline-block;
+    border-radius: 1em;
+    background-color: #E03131;
+    padding: 0.4em 0.7em;
+    margin-right: 0.15em;
+}
+
+section.notifications-section div.notification-content-rectangle-container {
+    margin: 1.5em 0em;
+}
+
+@media only screen and (min-width: 342px) and (max-width: 358px) {
+    section.notifications-section {
+        left: 19%;
+    }
+}
+
+@media only screen and (min-width: 334px) and (max-width: 341px) {
+    section.notifications-section {
+        left: 17%;
+    }
+}
+
+@media only screen and (min-width: 321px) and (max-width: 333px) {
+    section.notifications-section {
+        left: 15%;
+    }
+}
+
+@media only screen and (min-width: 309px) and (max-width: 320px) {
+    section.notifications-section {
+        left: 12%;
+    }
+}
+
+@media only screen and (min-width: 200px) and (max-width: 308px) {
+    section.notifications-section {
+        left: 7%;
+    }
+}
+
+
+/* End Notifications modal styling */
+
 .support-square:hover,
 .support-square:active {
     background-color: #3c3c3c;
@@ -181,7 +432,7 @@ main p {
 }
 
 .support-square a:hover,
-.support-square a:focus{
+.support-square a:focus {
     color: white;
     text-decoration: none;
 }
@@ -195,7 +446,7 @@ main p {
 .support-square h3 {
     display: block;
     font-size: 0.95em;
-    /*Was 0.8em */
+    font-weight: 500;
 }
 
 i.fa-times {
@@ -203,8 +454,30 @@ i.fa-times {
     text-align: center;
 }
 
+p.IP-message {
+    /* position: absolute;
+top: 90%;
+left: 50%;
+transform: translate(-50%, -50%);
+display: inline; */
+    margin: 10% auto;
+}
+
+p.IP-message span {
+    display: inline;
+    font-weight: bold;
+    /* position: absolute;
+top: 90%;
+left: 50%;
+transform: translate(-50%, -50%); */
+}
+
 
 /* Form styling */
+
+input {
+    border: 0;
+}
 
 .inline {
     display: inline-block;
@@ -221,19 +494,31 @@ p input.block {
 }
 
 main form.helpDeskTicket-form {
-    height: 550px;
     overflow-y: auto;
     margin: 8px;
+    margin-top: 0;
 }
 
 main form.helpDeskTicket-form p {
     text-align: left;
-    margin: 12px 0;
+    margin: 7px 0;
 }
 
 main form.helpDeskTicket-form p input,
 select {
     color: black;
+}
+
+.form-legend {
+    height: 45px;
+}
+
+input#uploadFile-path {
+    color: black;
+    margin-top: -25px;
+    margin-bottom: 10px;
+    width: 241px;
+    margin-left: 12px;
 }
 
 main form.helpDeskTicket-form p input,
@@ -249,7 +534,7 @@ file {
 
 .helpDeskTicket-form fieldset p input,
 .helpDeskTicket-form fieldset textarea {
-    width: 100%;
+    width: 95%;
     font-size: 1em;
 }
 
@@ -261,18 +546,22 @@ form fieldset p textarea {
     padding: 5px;
 }
 
+form fieldset p button {
+    color: white;
+}
+
 input#summary {
     display: block;
-    color: white;
+    color: black;
     font-size: 1em;
 }
 
 textarea#detailed-description,
-textarea#detailed-description::-webkit-input-placeholder, 
+textarea#detailed-description::-webkit-input-placeholder,
 textarea#detailed-description::-moz-placeholder,
 textarea#detailed-description:-moz-placeholder,
 textarea#detailed-description:-ms-input-placeholder {
-    color: white;
+    color: grey;
 }
 
 textarea {
@@ -321,12 +610,12 @@ form.helpDeskTicket-form fieldset p button[type="reset"] {
     float: right;
 }
 
-#category-select,
-#location-select,
+#category,
+#location,
 #phone-extension,
 #building-number {
-    width: 150px;
-    color: white;
+    width: 160px;
+    color: black;
 }
 
 #summary {
@@ -351,7 +640,8 @@ form p.fieldMargin {
 }
 
 .wiFi-magic p {
-    font-size: 1.05em;
+    font-size: 1em;
+    font-weight: 100;
 }
 
 .wiggle {
@@ -379,4 +669,135 @@ form p.fieldMargin {
     60% {
         transform: translate3d(4px, 0, 0);
     }
+}
+
+
+/* Simple Bar */
+
+
+/*!
+ * 
+ *         SimpleBar.js - v2.6.1
+ *         Scrollbars, simpler.
+ *         https://grsmto.github.io/simplebar/
+ *         
+ *         Made by Adrien Grsmto from a fork by Jonathan Nicol
+ *         Under MIT License
+ *       
+ */
+
+[data-simplebar] {
+    position: relative;
+    z-index: 0;
+    overflow: hidden!important;
+    max-height: inherit;
+    -webkit-overflow-scrolling: touch;
+    /* Trigger native scrolling for mobile, if not supported, plugin is used. */
+}
+
+[data-simplebar="init"] {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.simplebar-scroll-content {
+    overflow-x: hidden!important;
+    overflow-y: scroll;
+    min-width: 100%!important;
+    max-height: inherit!important;
+    -webkit-box-sizing: content-box!important;
+    box-sizing: content-box!important;
+}
+
+.simplebar-content {
+    overflow-y: hidden!important;
+    overflow-x: scroll;
+    -webkit-box-sizing: border-box!important;
+    box-sizing: border-box!important;
+    min-height: 100%!important;
+}
+
+.simplebar-track {
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 11px;
+}
+
+.simplebar-scrollbar {
+    position: absolute;
+    right: 2px;
+    width: 7px;
+    min-height: 10px;
+}
+
+.simplebar-scrollbar:before {
+    position: absolute;
+    content: "";
+    background: black;
+    border-radius: 7px;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    -webkit-transition: opacity 0.2s linear;
+    transition: opacity 0.2s linear;
+}
+
+.simplebar-track:hover .simplebar-scrollbar:before,
+.simplebar-track .simplebar-scrollbar.visible:before {
+    /* When hovered, remove all transitions from drag handle */
+    opacity: 0.5;
+    -webkit-transition: opacity 0 linear;
+    transition: opacity 0 linear;
+}
+
+.simplebar-track.vertical {
+    top: 0;
+}
+
+.simplebar-track.vertical .simplebar-scrollbar:before {
+    top: 2px;
+    bottom: 2px;
+}
+
+.simplebar-track.horizontal {
+    left: 0;
+    width: auto;
+    height: 11px;
+}
+
+.simplebar-track.horizontal .simplebar-scrollbar:before {
+    height: 100%;
+    left: 2px;
+    right: 2px;
+}
+
+.horizontal.simplebar-track .simplebar-scrollbar {
+    right: auto;
+    top: 2px;
+    height: 7px;
+    min-height: 0;
+    min-width: 10px;
+    width: auto;
+}
+
+
+/* Style scrollbars on chrome */
+
+
+/*Style scrollbar BG */
+
+::-webkit-scrollbar {
+    background-color: rgb(60, 60, 60, 0.95);
+    width: .8em
+}
+
+
+/*Style actual scrollbar */
+
+::-webkit-scrollbar-thumb:window-inactive,
+::-webkit-scrollbar-thumb {
+    background: black;
 }

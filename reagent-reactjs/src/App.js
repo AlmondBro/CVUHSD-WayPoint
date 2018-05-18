@@ -25,7 +25,6 @@ import QuickFixTutorials from "./QuickFixTutorials.js";
 import HelpDesk from "./HelpDesk.js";
 import AutoFixTools from "./AutoFixTools.js";
 
-
 class App extends Component {
   render() {
     return (
