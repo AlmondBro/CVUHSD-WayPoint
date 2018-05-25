@@ -552,6 +552,7 @@ input#uploadFile-path {
     margin-bottom: 10px;
     width: 241px;
     margin-left: 12px;
+    background-color: #f6f6f6;
 }
 
 main form.helpDeskTicket-form p input,
