@@ -26,13 +26,17 @@ window.onload = function() {
 
 
     //Add custom scroll styling to firefox since it does not support styling via CSS.
-    if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+   /* if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
         SimpleBarCode();
         
         //Add elements which are to have their scroll styled in Firefox. 
         new SimpleBar(document.getElementsByClassName("page-content")[0]);
         new SimpleBar(document.getElementsByClassName("notifications-content")[0]);
-    }
+        
+        // for (var i = 0; i <= document.getElementsByClassName("announcement-details").length; i++) {
+        //     new SimpleBar(document.getElementsByClassName("announcement-details")[i]);    
+        // }
+    } */
 
     function SimpleBarCode() {
                 /*!
