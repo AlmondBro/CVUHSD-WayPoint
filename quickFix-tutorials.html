@@ -17,25 +17,53 @@
 </head>
 
 <body>
-    <div class="reagent-container greyToDarkGreyGradient animated fadeInUp">
-        <a href="index.html" class="home-button"><i class="fas fa-home"></i></a>
-        <a href="#" class="close-button"><i class="fas fa-times"></i></a>
-        <h2 class="window-title">Project reAgent</h2>
+    <div class="reagent-container animated fadeInUp">
+        <section id="titlebar">
+            <div class="titleBarButtons-container">
+                <!-- <div class="titleBar-button" id="titleBar-menuIcon">
+                        <p>&#9776;</p>
+                        <img src="./img/icon-hamburger.png" title="Open Notification Menu">
+                    </div> -->
+
+                <div class="titleBar-button" id="button-feedback" title="Provide Feedback">
+                    <!-- <p>Feedback</p> -->
+                    <img src="img/icon-feedback.png">
+                </div>
+
+                <div class="titleBar-button" id="button-minimize" title="Minimize Window">
+                    <!-- <p>_</p> -->
+                    <img src="img/icon-minimize.png">
+                </div>
+
+                <div class="titleBar-button" id="button-close" title="Close Window">
+                    <!-- <p>X</p> -->
+                    <img src="img/icon-close.png">
+                </div>
+            </div>
+
+            <div id="title">
+                <div id="wp-icon-container">
+                    <img id="wp-icon" src="img/wp-icon-grey.png" title="Waypoint Version 0.1">
+                </div>
+                <p id="home-text">Home</p>
+            </div>
+        </section>
+
         <main>
             <div class="header-frame">
                 <input type="checkbox" class="checkbox-hack" id="notification-icon-checkbox">
                 <header class="redToDarkRedgradient">
                     <a href="#"><img src="https://portal.centinela.k12.ca.us/images/CV-600x600.png" class="img-responsive" id="reagentLogo" alt="Centinela Valley Union High School District Logo" /></a>
-                    <!-- <h1> -->
-                    <img src="img/wp-type.svg" class="headerLogo" alt="Waypoint">
-                    <!-- </h1> -->
-                    <!-- <div class="notificationIcon-container"> -->
+                    <img src="img/wp-logo.svg" class="headerLogo" alt="Waypoint">
+
+                    <!-- <div id="button-menu">
+                                <img src="img/icon-hamburger.png" title="Open Notification Menu">
+                            </div> -->
 
                     <label class="notificationIcon clickable" id="notification-icon" for="notification-icon-checkbox">
-                                        <div class="notifications-count">1</div>
-                                        <i class="fas fa-bell"></i>
-                                    </label>
-                    <!-- </div> -->
+                                <div class="notifications-count">1</div>
+                                <i class="fas fa-bell notification-icon-i"></i>
+                            </label>
                 </header>
 
                 <section class="notifications-section">
@@ -87,13 +115,13 @@
 
                 <div class="messageAndGoBack-container">
                     <a class="goBack-container" href="#">
-                        <i class="fas fa-chevron-circle-left"></i>
+                        <!-- <i class="fa fa-chevron-left"></i> -->
+                        <img src="img/icon-back.png" id="back-icon" title="Go Back One Page">
                         <p>Back</p>
                     </a>
                     <p class="optionMessage">Please select an option:</p>
                 </div>
             </div>
-            <!-- /.header-frame -->
 
             <section class="page-content">
                 <div class="support-squares-container">
