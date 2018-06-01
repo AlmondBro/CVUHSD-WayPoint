@@ -40,12 +40,24 @@ window.onload = function() {
         SimpleBarCode();
         
         //Add elements which are to have their scroll styled in Firefox. 
-        new SimpleBar(document.getElementsByClassName("page-content")[0]);
-        new SimpleBar(document.getElementsByClassName("notifications-content")[0]);
+        console.log("Exists:\t" + document.body.contains(document.getElementsByClassName("page-content")[0]));
 
-        document.getElementsByClassName("page-content")[0].style.maxHeight = "86%"; 
-        //567px
-        document.getElementsByClassName("staff-portal-embed")[0].style.height = "560px"; 
+        if (document.body.contains(document.getElementsByClassName("page-content")[0])) {
+            new SimpleBar(document.getElementsByClassName("page-content")[0]);
+        }
+        
+        if (document.body.contains(document.getElementsByClassName("notifications-content")[0])) {
+            new SimpleBar(document.getElementsByClassName("notifications-content")[0]);
+        }
+      
+        if (document.body.contains(document.getElementsByClassName("page-content")[0])) {
+            document.getElementsByClassName("page-content")[0].style.maxHeight = "85%"; //567px
+        }
+        
+        if (document.body.contains(document.getElementsByClassName("staff-portal-embed")[0])) {
+            document.getElementsByClassName("staff-portal-embed")[0].style.height = "560px"; 
+        }
+        
    }    
 }; //end window.onload
    
