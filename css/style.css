@@ -315,6 +315,12 @@ section.page-content {
     max-height: 560px;
 }
 
+.staff-portal-embed {
+    margin: auto;
+    width: 100%;
+    height: 555px;
+}
+
 .blur-effect {
     width: 95%;
     height: 65px;
