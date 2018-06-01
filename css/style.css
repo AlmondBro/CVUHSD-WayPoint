@@ -237,7 +237,11 @@ div.messageAndGoBack-container {
     position: relative;
     max-height: 30px;
     text-align: center;
-    padding-top: 0.25em;
+    padding: 0.25em 0em;
+    -webkit-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.75);
+    z-index: 2;
 }
 
 a.goBack-container {
