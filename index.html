@@ -19,28 +19,36 @@
 <body>
     <div class="reagent-container animated fadeInUp">
         <section id="titlebar">
+            <div class="titleBarButtons-container">
+                <div class="titleBar-button" id="titleBar-menuIcon">
+                    <!-- <p>&#9776;</p> -->
+                    <img src="./img/icon-hamburger.png" title="Open Notification Menu">
+                </div>
+
+                <div class="titleBar-button" id="button-feedback" title="Provide Feedback">
+                    <!-- <p>Feedback</p> -->
+                    <img src="img/icon-feedback.png">
+                </div>
+
+                <div class="titleBar-button" id="button-minimize" title="Minimize Window">
+                    <!-- <p>_</p> -->
+                    <img src="img/icon-minimize.png">
+                </div>
+
+                <div class="titleBar-button" id="button-close" title="Close Window">
+                    <!-- <p>X</p> -->
+                    <img src="img/icon-close.png">
+                </div>
+            </div>
+
             <div id="title">
                 <div id="wp-icon-container">
                     <img id="wp-icon" src="img/wp-icon-grey.png" title="Waypoint Version 0.1">
                 </div>
-                <p>Home</p>
-                <!-- <div id="wp-logo-title-container">
-                    <img id="wp-logo-title" src="img/wp-logo.svg">
-                </div> -->
-            </div>
-            <div id="button-close" title="Close Window">
-                <!-- <p>X</p> -->
-                <img src="img/icon-close.png">
-            </div>
-            <div id="button-minimize" title="Minimize Window">
-                <!-- <p>_</p> -->
-                <img src="img/icon-minimize.png">
-            </div>
-            <div id="button-feedback" title="Provide Feedback">
-                <!-- <p>Feedback</p> -->
-                <img src="img/icon-feedback.png">
+                <p id="home-text">Home</p>
             </div>
         </section>
+
         <main>
             <div class="header-frame">
                 <input type="checkbox" class="checkbox-hack" id="notification-icon-checkbox">
@@ -107,7 +115,7 @@
 
                 <div class="messageAndGoBack-container">
                     <a class="goBack-container" href="#">
-                        <i class="fas fa-chevron-circle-left"></i>
+                        <i class="fa fa-chevron-left"></i>
                         <p>Back</p>
                     </a>
                     <p class="optionMessage">Please select an option:</p>

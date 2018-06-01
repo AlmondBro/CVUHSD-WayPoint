@@ -23,10 +23,10 @@ html {
 .reagent-container {
     position: relative;
     /* top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-margin-left: -188px;
-margin-top: -269px; */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-left: -188px;
+    margin-top: -269px; */
     max-width: 376px;
     height: 700px;
     /* 660px */
@@ -45,7 +45,7 @@ margin-top: -269px; */
     color: white;
     background-color: #1c1c1c;
     /* border-bottom: 1px solid black; */
-    z-index: 100;
+    z-index: 2;
 }
 
 #title {
@@ -53,17 +53,24 @@ margin-top: -269px; */
     width: 100%;
 }
 
-#title p {
+#home-text {
     position: relative;
     display: inline;
     line-height: 25px;
     right: 9px;
 }
 
-#title img {
+
+/* #title img {
     position: absolute;
     height: 20px;
     bottom: 1px;
+} */
+
+.titleBarButtons-container {
+    float: right;
+    z-index: 1;
+    position: relative;
 }
 
 #wp-logo {
@@ -103,63 +110,27 @@ margin-top: -269px; */
     left: 25px;
 }
 
-#button-close {
+.titleBar-button {
     position: relative;
-    float: right;
+    display: inline-block;
     width: 35px;
     height: 25px;
     background-color: #1c1c1c;
     text-align: center;
     vertical-align: middle;
     line-height: 0px;
+}
+
+.titleBar-button img {
+    width: 25px;
+}
+
+.titleBar-button:hover {
+    background-color: #4c4c4c;
 }
 
 #button-close:hover {
     background-color: red;
-}
-
-#button-close img {
-    width: 25px;
-}
-
-#button-close p {
-    position: relative;
-    bottom: 2px;
-}
-
-#button-minimize {
-    position: relative;
-    float: right;
-    width: 35px;
-    height: 25px;
-    background-color: #1c1c1c;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 0px;
-}
-
-#button-minimize img {
-    width: 25px;
-}
-
-#button-minimize:hover {
-    background-color: #4c4c4c;
-}
-
-#button-minimize p {
-    position: relative;
-    bottom: 2px;
-}
-
-#button-feedback {
-    position: absolute;
-    width: 35px;
-    height: 25px;
-    right: 80px;
-    background-color: #1c1c1c;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 0px;
 }
 
 #button-feedback:hover {
@@ -406,6 +377,7 @@ div.messageAndGoBack-container {
     -moz-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.75);
     z-index: 2;
+    margin: 0 auto;
 }
 
 a.goBack-container {
