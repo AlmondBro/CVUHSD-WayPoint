@@ -39,6 +39,10 @@ window.onload = function() {
    if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
         SimpleBarCode();
         
+        if (document.body.contains(document.getElementsByTagName("main")[0])) {
+            new SimpleBar(document.getElementsByTagName("main")[0]);
+        }
+
         //Add elements which are to have their scroll styled in Firefox. 
         console.log("Exists:\t" + document.body.contains(document.getElementsByClassName("page-content")[0]));
 
