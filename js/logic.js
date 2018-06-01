@@ -36,12 +36,14 @@ window.onload = function() {
     }
 
     //If browser is Firefox, add custom scroll styling to firefox since it does not support styling via CSS.
-   if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+   if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
         SimpleBarCode();
         
         //Add elements which are to have their scroll styled in Firefox. 
         new SimpleBar(document.getElementsByClassName("page-content")[0]);
         new SimpleBar(document.getElementsByClassName("notifications-content")[0]);
+
+        document.getElementsByClassName("page-content")[0].style.maxHeight = "86%"; //567px
    }    
 }; //end window.onload
    
