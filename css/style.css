@@ -429,6 +429,12 @@ p.optionMessage {
     margin: 10px 3px;
 }
 
+.square-icon {
+    padding-top: 5px;
+    width: 2.7em;
+    /* 40px*/
+}
+
 #helpdeskHotline-supportSquare {
     width: 310px;
     text-align: center;
