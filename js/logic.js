@@ -61,6 +61,10 @@ window.onload = function() {
         if (document.body.contains(document.getElementsByClassName("staff-portal-embed")[0])) {
             document.getElementsByClassName("staff-portal-embed")[0].style.height = "560px"; 
         }
+
+        if (document.body.contains(document.getElementsByClassName("blur-effect")[0])) {
+            document.getElementsByClassName("blur-effect")[0].style.maxHeight = "85%"; //567px
+        }
         
    }    
 }; //end window.onload

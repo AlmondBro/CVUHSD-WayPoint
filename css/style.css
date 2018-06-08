@@ -39,6 +39,8 @@ html {
 }
 
 #titlebar {
+    -webkit-app-region: drag;
+    /* ElectronJS - make draggable */
     position: relative;
     width: 100%;
     margin: auto;
@@ -71,6 +73,8 @@ html {
     float: right;
     z-index: 1;
     position: relative;
+    -webkit-app-region: no-drag;
+    /* ElectronJS */
 }
 
 #wp-logo {
@@ -547,7 +551,7 @@ section.notifications-section {
     padding: 0.5em;
     width: 250px;
     height: 500px;
-    background-color: rgb(60, 60, 60, 0.95);
+    background-color: rgba(60, 60, 60, 0.95);
     z-index: 4;
     left: 25%;
     /* top: 16%; */
@@ -681,6 +685,10 @@ section.notifications-section div.notification-content-rectangle-container {
 i.fa-times {
     width: 18px;
     text-align: center;
+}
+
+span.currentUserName {
+    font-weight: bold;
 }
 
 p.IP-message {
