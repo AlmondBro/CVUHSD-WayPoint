@@ -409,6 +409,7 @@ a.goBack-container {
     margin: 0 auto;
     text-decoration: none;
     float: left;
+    padding: 0em 0.4em;
 }
 
 a.goBack-container i {
@@ -483,10 +484,11 @@ the checkbox is hacked. */
 section.page-content {
     /* overflow-y: auto;
     max-height: 560px; */
-    position: absolute;
-    max-height: 83.4%;
+    position: relative;
+    max-height: 88%;
+    /* 83.4%; */
     overflow-y: auto;
-    top: 16%;
+    top: 93px;
     z-index: 1;
     /* 92px  or ~15%*/
     margin: 0 auto;
