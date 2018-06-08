@@ -382,8 +382,8 @@ main header .notifications-count {
 }
 
 div.messageAndGoBack-container {
-    max-width: 357px;
-    position: relative;
+    /* max-width: 357px; */
+    position: fixed;
     max-height: 30px;
     text-align: center;
     padding: 0.25em 0em;
@@ -392,6 +392,9 @@ div.messageAndGoBack-container {
     box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.75);
     z-index: 2;
     margin: 0 auto;
+    background: #1c1c1c;
+    width: 357px;
+    display: block;
 }
 
 a.goBack-container {
@@ -482,10 +485,11 @@ section.page-content {
     max-height: 560px; */
     position: absolute;
     max-height: 83.4%;
-    overflow-y: hidden;
-    /* top: 15%; */
+    overflow-y: auto;
+    top: 16%;
     z-index: 1;
-    /* 92px */
+    /* 92px  or ~15%*/
+    margin: 0 auto;
 }
 
 .staff-portal-embed {
@@ -520,7 +524,7 @@ section.page-content {
 }
 
 .header-frame {
-    position: relative;
+    position: fixed;
     display: block;
     width: 376px;
     z-index: 3;
@@ -697,7 +701,7 @@ top: 90%;
 left: 50%;
 transform: translate(-50%, -50%);
 display: inline; */
-    margin: 10% auto;
+    margin: 5% auto;
 }
 
 p.IP-message span {
