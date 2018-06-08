@@ -1,17 +1,11 @@
-import React, {Component} from "react";
+import React from "react";
 
-class Main extends Component {
-    constructor(props) {
-        super(props);
-    }
-    
-    render() {
-        return(
-            <main>
-                {this.props.children}
-            </main>
-        );
-    }
+const main = (props) => {
+    return(
+        <main>
+            {props.children}
+        </main>
+    );
 }
-
-export default Main;
+    
+export default main;

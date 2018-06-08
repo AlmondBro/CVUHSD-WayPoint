@@ -8,7 +8,7 @@ class Container extends Component {
     render() {
         return(
             <div className="reagent-container greyToDarkGreyGradient animated fadeInUp">
-            {this.props.children}
+                {this.props.children}
             </div>
         );
     }

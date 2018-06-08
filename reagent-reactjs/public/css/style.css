@@ -4,13 +4,11 @@
 
 body {
     font-size: 16px;
-    background-color: #C4C4C4;
+    background-color: #757575;
     background-image: url("https://media.cntraveler.com/photos/56549cc6659c4b4874865502/master/pass/mu-cang-chai-vietnam-cr-getty.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    font-family: "futura-pt", Futura, Trebuchet MS, Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    font-family: Futura, "Liberation Sans", Trebuchet MS, Arial, sans-serif;
 }
 
 body,
@@ -18,22 +16,172 @@ html {
     min-height: 100%;
 }
 
+.clickable {
+    cursor: pointer;
+}
+
 .reagent-container {
     position: relative;
     /* top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin-left: -188px;
-  margin-top: -269px; */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-left: -188px;
+    margin-top: -269px; */
     max-width: 376px;
-    height: 660px;
+    height: 700px;
+    /* 660px */
     /* height was 538px */
-    background-color: #505050;
+    background-color: #1c1c1c;
     color: white;
     /* margin: 0 auto; */
     border-radius: 0.3em;
     margin: 10% auto;
-    padding: 2px 0px;
+}
+
+#titlebar {
+    -webkit-app-region: drag;
+    /* ElectronJS - make draggable */
+    position: relative;
+    width: 100%;
+    margin: auto;
+    color: white;
+    background-color: #1c1c1c;
+    /* border-bottom: 1px solid black; */
+    z-index: 2;
+}
+
+#title {
+    position: relative;
+    width: 100%;
+}
+
+#home-text {
+    position: relative;
+    display: inline;
+    line-height: 25px;
+    right: 9px;
+}
+
+
+/* #title img {
+    position: absolute;
+    height: 20px;
+    bottom: 1px;
+} */
+
+.titleBarButtons-container {
+    float: right;
+    z-index: 1;
+    position: relative;
+    -webkit-app-region: no-drag;
+    /* ElectronJS */
+}
+
+#wp-logo {
+    position: absolute;
+    vertical-align: middle;
+    height: 40px;
+    top: 3px;
+    bottom: 0px;
+    left: 67px;
+    margin: auto;
+}
+
+#wp-icon-container {
+    height: 25px;
+    width: 35px;
+    float: left;
+}
+
+#wp-icon {
+    position: relative;
+    height: 20px;
+    top: 2px;
+    left: 2px;
+}
+
+#wp-logo-title-container {
+    position: relative;
+    height: 22px;
+    width: 100%;
+    top: 1px;
+}
+
+#wp-logo-title {
+    height: 20px;
+    position: relative;
+    vertical-align: middle;
+    left: 25px;
+}
+
+.titleBar-button {
+    position: relative;
+    display: inline-block;
+    width: 35px;
+    height: 25px;
+    background-color: #1c1c1c;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 0px;
+}
+
+.titleBar-button img {
+    width: 25px;
+}
+
+.titleBar-button:hover {
+    background-color: #4c4c4c;
+}
+
+#button-feedback {
+    margin-right: 22px;
+}
+
+#button-close:hover {
+    background-color: red;
+}
+
+#button-feedback:hover {
+    background-color: #4c4c4c;
+}
+
+#button-feedback img {
+    width: 22px;
+}
+
+#button-feedback p {
+    position: relative;
+    bottom: 2px;
+}
+
+#header {
+    position: relative;
+    height: 60px;
+    width: 100%;
+    top: 25px;
+    background-color: red;
+}
+
+#button-menu {
+    position: relative;
+    float: right;
+    top: 10px;
+    right: 11px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 0px;
+}
+
+#button-menu:hover {
+    background-color: darkred;
+}
+
+#button-menu img {
+    position: relative;
+    width: 30px;
+    top: 5px;
 }
 
 .redToDarkRedgradient {
@@ -48,20 +196,21 @@ html {
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#e73333', endColorstr='#ac2626', GradientType=0);
     /* IE6-9 */
-    height: 65px;
+    max-height: 65px;
 }
 
 .greyToDarkGreyGradient {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6b6b6b+0,353535+100 */
-    background: #6b6b6b;
+    /* background: #6b6b6b; #636363 */
+    background: #636363;
     /* Old browsers */
-    background: -moz-linear-gradient(top, #6b6b6b 0%, #353535 100%);
+    background: -moz-linear-gradient(top, #757575 0%, #353535 100%);
     /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #6b6b6b 0%, #353535 100%);
+    background: -webkit-linear-gradient(top, #757575 0%, #353535 100%);
     /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #6b6b6b 0%, #353535 100%);
+    background: linear-gradient(to bottom, #757575 0%, #353535 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#6b6b6b', endColorstr='#353535', GradientType=0);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#757575', endColorstr='#353535', GradientType=0);
     /* IE6-9 */
 }
 
@@ -100,15 +249,15 @@ h2.window-title {
 /* .window-title,
 .close-button,
 .home {
-  height: 20px;
+height: 20px;
 } */
 
 main {
-    display: block;
-    margin: 15px auto;
-    width: 95%;
+    width: 100%;
     height: 94%;
     background-color: #1c1c1c;
+    /* overflow-y: auto; */
+    /* overflow-x: hidden; */
 }
 
 main header {
@@ -116,40 +265,64 @@ main header {
     position: relative;
 }
 
-main>header a>img#reagentLogo {
+header a>img#reagentLogo {
     width: 60px;
     height: auto;
     display: inline-block;
 }
 
-main header h1 {
+
+/* main header h1 {
+    font-family: "Levenim MT";
     vertical-align: middle;
     display: inline-block;
-    font-size: 28px;
+    font-size: 1.9em;
     position: absolute;
-    left: 50%;
+    left: 42%;
     top: 50%;
     transform: translate(-50%, -50%);
+    text-align: left;
+    font-weight: 400;
+} */
+
+.announcements-list {
+    padding: 0.3em;
 }
 
-main header a img,
-main header h1 {
+.announcements-list img,
+.announcement-text {
+    display: inline-block;
+}
+
+.announcement-text {
+    width: 70%;
+    padding: 0.5em;
+}
+
+.announcement-text h3,
+.announcement-text p {
+    text-align: left;
+    margin: 0;
+}
+
+.announcement-text p {
+    max-height: 75px;
+    overflow-y: auto;
+    /* -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0))); */
+}
+
+.headerLogo {
+    display: inline-block;
+    /* margin-bottom: 8px; */
+    max-height: 45px;
+    top: 70%;
+    position: absolute;
+    transform: translateY(-70%);
+}
+
+header a img,
+header h1 {
     margin: 3px;
-}
-
-header div.back-button {
-    float: right;
-    margin: 12px 22px; /*  margins were 13px 9px */
-    font-size: 1.5em;
-    color: white;
-    background-color: #3c3c3c;
-    border-radius: 1em;
-    padding: 8px 14px;
-}
-
-header div.back-button a {
-    color: white;
-    text-decoration: none;
 }
 
 main p {
@@ -157,15 +330,113 @@ main p {
     text-align: center;
 }
 
-a i.feedback-icon {
-    font-size: 2em;
+header .notificationIcon {
+    position: absolute;
+    top: 30%;
+    left: 85%;
+}
+
+main header .notificationIcon i {
+    display: inline;
+    font-size: 1.8em;
     color: white;
 }
 
-.support-squares-container {
-    margin: 10px auto;
+main header .notifications-count {
+    display: inline;
+    background-color: #3c3c3c;
+    text-decoration: none;
+    color: white;
+    padding: 0.2em 0.5em;
+    border-radius: 100%;
+    position: absolute;
+    bottom: 60%;
+    font-size: 1em;
+    left: 35%;
+}
+
+.fas.fa-bell .notification-icon-i:hover,
+.fas.fa-bell .notification-icon-i:active {
+    color: #A4A2A2;
+}
+
+#clear-button {
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+    left: 20%;
+    float: none;
+    border: 0;
+    padding: 0.5em;
+    color: white;
+    border-radius: 0.25em;
+    height: 2em;
     text-align: center;
-    height: 500px;
+}
+
+#clear-button:hover,
+#clear-button:active {
+    -webkit-filter: grayscale(30%);
+    filter: grayscale(30%);
+}
+
+div.messageAndGoBack-container {
+    width: 376px;
+    position: fixed;
+    max-height: 30px;
+    text-align: center;
+    padding: 0.25em 0em;
+    z-index: 2;
+    margin: 0 auto;
+    background: #1c1c1c;
+    display: block;
+}
+
+a.goBack-container {
+    display: inline-block;
+    position: relative;
+    right: 3.2em;
+    color: white;
+    /* background-color: #AC2626; */
+    border-radius: 1em;
+    /* padding: 0.2em 0.4em; */
+    text-align: center;
+    max-width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    text-decoration: none;
+    /* float: left; */
+}
+
+a.goBack-container i {
+    display: inline;
+    color: #a3a3a3;
+}
+
+a.goBack-container p {
+    display: inline-block;
+    margin: 0;
+}
+
+#back-icon {
+    max-width: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+p.optionMessage {
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+    max-width: 240px;
+    vertical-align: text-bottom;
+}
+
+.support-squares-container {
+    margin: 0em auto;
+    /*margin on top/bott. was 10px */
+    text-align: center;
+    max-height: 90%;
     overflow-y: auto;
 }
 
@@ -180,6 +451,12 @@ a i.feedback-icon {
     margin: 10px 3px;
 }
 
+.square-icon {
+    padding-top: 5px;
+    width: 2.7em;
+    /* 40px*/
+}
+
 #helpdeskHotline-supportSquare {
     width: 310px;
     text-align: center;
@@ -191,6 +468,193 @@ a i.feedback-icon {
         text-align: center;
     }
 }
+
+
+/* Notifications modal styling */
+
+
+/* CSS Checkbox hack -- Allows one to simulate a click event listener
+and apply different styles depending on whether or not 
+the checkbox is hacked. */
+
+section.page-content {
+    /* overflow-y: auto;
+    max-height: 560px; */
+    position: relative;
+    max-height: 88%;
+    /* 83.4%; */
+    overflow-y: auto;
+    top: 93px;
+    z-index: 1;
+    /* 92px  or ~15%*/
+    margin: 0 auto;
+}
+
+.staff-portal-embed {
+    margin: auto;
+    width: 100%;
+    height: 555px;
+}
+
+.blur-effect {
+    width: 95%;
+    height: 65px;
+    position: absolute;
+    z-index: 2;
+    /* top: 94%; */
+    bottom: 0.1%;
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(28, 28, 28, 1) 100%);
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(28, 28, 28, 1) 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(28, 28, 28, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#1c1c1c', GradientType=0);
+}
+
+#notifications-blur-effect {
+    width: 95%;
+    height: 65px;
+    position: absolute;
+    /* top: 94%; */
+    bottom: 0.5%;
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(65, 59, 59, 1) 100%);
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(65, 59, 59, 1) 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(65, 59, 59, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#413B3B', GradientType=0);
+}
+
+.header-frame {
+    position: fixed;
+    display: block;
+    width: 376px;
+    z-index: 3;
+}
+
+input.checkbox-hack {
+    display: none;
+}
+
+input.checkbox-hack:checked~section.notifications-section {
+    display: block;
+}
+
+section.notifications-section::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 93%;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 16px solid #a5a5a5;
+    z-index: 5;
+}
+
+section.notifications-section {
+    display: none;
+    position: absolute;
+    padding: 0.5em;
+    width: 250px;
+    height: 500px;
+    background-color: rgba(60, 60, 60, 0.95);
+    z-index: 4;
+    left: 25%;
+    /* top: 16%; */
+    border: 2px solid #a5a5a5;
+    border-radius: 0.25em;
+}
+
+section.notifications-section h4 {
+    font-size: 1.2em;
+}
+
+section.notifications-section button {
+    float: right;
+    border: 0;
+    padding: 0.5em;
+    color: white;
+    border-radius: 0.25em;
+}
+
+.test {
+    display: block;
+}
+
+section.notifications-section div.notifications-content {
+    overflow-y: auto;
+    max-height: 85%;
+    /* 413px*/
+}
+
+i.greenCheck {
+    color: green;
+}
+
+i.archive {
+    color: orange;
+}
+
+i.coffee {
+    color: brown;
+}
+
+.update-notification p {
+    display: inline-block;
+    margin: 0;
+}
+
+.notifications-content hr {
+    margin: 0.8em 0.2em;
+    max-width: 100%;
+}
+
+.notification-content-rectangle {
+    background-color: rgb(115, 115, 115, 0.75);
+    padding: 1em;
+}
+
+#exclamation-button {
+    float: none;
+    display: inline-block;
+    border-radius: 1em;
+    background-color: #E03131;
+    padding: 0.4em 0.7em;
+    margin-right: 0.15em;
+}
+
+section.notifications-section div.notification-content-rectangle-container {
+    margin: 1.5em 0em;
+}
+
+@media only screen and (min-width: 342px) and (max-width: 358px) {
+    section.notifications-section {
+        left: 19%;
+    }
+}
+
+@media only screen and (min-width: 334px) and (max-width: 341px) {
+    section.notifications-section {
+        left: 17%;
+    }
+}
+
+@media only screen and (min-width: 321px) and (max-width: 333px) {
+    section.notifications-section {
+        left: 15%;
+    }
+}
+
+@media only screen and (min-width: 309px) and (max-width: 320px) {
+    section.notifications-section {
+        left: 12%;
+    }
+}
+
+@media only screen and (min-width: 200px) and (max-width: 308px) {
+    section.notifications-section {
+        left: 7%;
+    }
+}
+
+
+/* End Notifications modal styling */
 
 .support-square:hover,
 .support-square:active {
@@ -217,7 +681,7 @@ a i.feedback-icon {
 .support-square h3 {
     display: block;
     font-size: 0.95em;
-    /*Was 0.8em */
+    font-weight: 500;
 }
 
 i.fa-times {
@@ -225,8 +689,42 @@ i.fa-times {
     text-align: center;
 }
 
+span.currentUserName {
+    font-weight: bold;
+}
+
+p.IP-message {
+    /* position: absolute;
+top: 90%;
+left: 50%;
+transform: translate(-50%, -50%);
+display: inline; */
+    margin: 5% auto;
+}
+
+p.IP-message span {
+    display: inline;
+    font-weight: bold;
+    /* position: absolute;
+top: 90%;
+left: 50%;
+transform: translate(-50%, -50%); */
+}
+
+p.cv-way {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    color: gray;
+    font-size: 11px;
+}
+
 
 /* Form styling */
+
+input {
+    border: 0;
+}
 
 .inline {
     display: inline-block;
@@ -243,19 +741,32 @@ p input.block {
 }
 
 main form.helpDeskTicket-form {
-    height: 550px;
     overflow-y: auto;
     margin: 8px;
+    margin-top: 0;
 }
 
 main form.helpDeskTicket-form p {
     text-align: left;
-    margin: 12px 0;
+    margin: 7px 0;
 }
 
 main form.helpDeskTicket-form p input,
 select {
     color: black;
+}
+
+.form-legend {
+    height: 45px;
+}
+
+input#uploadFile-path {
+    color: black;
+    margin-top: -25px;
+    margin-bottom: 10px;
+    width: 241px;
+    margin-left: 12px;
+    background-color: #f6f6f6;
 }
 
 main form.helpDeskTicket-form p input,
@@ -271,7 +782,7 @@ file {
 
 .helpDeskTicket-form fieldset p input,
 .helpDeskTicket-form fieldset textarea {
-    width: 100%;
+    width: 95%;
     font-size: 1em;
 }
 
@@ -283,9 +794,13 @@ form fieldset p textarea {
     padding: 5px;
 }
 
+form fieldset p button {
+    color: white;
+}
+
 input#summary {
     display: block;
-    color: white;
+    color: black;
     font-size: 1em;
 }
 
@@ -294,7 +809,7 @@ textarea#detailed-description::-webkit-input-placeholder,
 textarea#detailed-description::-moz-placeholder,
 textarea#detailed-description:-moz-placeholder,
 textarea#detailed-description:-ms-input-placeholder {
-    color: white;
+    color: grey;
 }
 
 textarea {
@@ -313,6 +828,7 @@ button[type="reset"] {
     margin: 0px 30px;
     margin-top: 5px;
     margin-bottom: 1em;
+    margin-right: 3em;
 }
 
 .fileUpload-button:hover,
@@ -343,12 +859,12 @@ form.helpDeskTicket-form fieldset p button[type="reset"] {
     float: right;
 }
 
-#category-select,
-#location-select,
+#category,
+#location,
 #phone-extension,
 #building-number {
-    width: 150px;
-    color: white;
+    width: 160px;
+    color: black;
 }
 
 #summary {
@@ -373,7 +889,8 @@ form p.fieldMargin {
 }
 
 .wiFi-magic p {
-    font-size: 1.05em;
+    font-size: 1em;
+    font-weight: 100;
 }
 
 .wiggle {
@@ -401,4 +918,135 @@ form p.fieldMargin {
     60% {
         transform: translate3d(4px, 0, 0);
     }
+}
+
+
+/* Simple Bar */
+
+
+/*!
+ * 
+ *         SimpleBar.js - v2.6.1
+ *         Scrollbars, simpler.
+ *         https://grsmto.github.io/simplebar/
+ *         
+ *         Made by Adrien Grsmto from a fork by Jonathan Nicol
+ *         Under MIT License
+ *       
+ */
+
+[data-simplebar] {
+    position: relative;
+    z-index: 0;
+    overflow: hidden!important;
+    max-height: inherit;
+    -webkit-overflow-scrolling: touch;
+    /* Trigger native scrolling for mobile, if not supported, plugin is used. */
+}
+
+[data-simplebar="init"] {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.simplebar-scroll-content {
+    overflow-x: hidden!important;
+    overflow-y: scroll;
+    min-width: 100%!important;
+    max-height: inherit!important;
+    -webkit-box-sizing: content-box!important;
+    box-sizing: content-box!important;
+}
+
+.simplebar-content {
+    overflow-y: hidden!important;
+    overflow-x: scroll;
+    -webkit-box-sizing: border-box!important;
+    box-sizing: border-box!important;
+    min-height: 100%!important;
+}
+
+.simplebar-track {
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 11px;
+}
+
+.simplebar-scrollbar {
+    position: absolute;
+    right: 2px;
+    width: 7px;
+    min-height: 10px;
+}
+
+.simplebar-scrollbar:before {
+    position: absolute;
+    content: "";
+    background: black;
+    border-radius: 7px;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    -webkit-transition: opacity 0.2s linear;
+    transition: opacity 0.2s linear;
+}
+
+.simplebar-track:hover .simplebar-scrollbar:before,
+.simplebar-track .simplebar-scrollbar.visible:before {
+    /* When hovered, remove all transitions from drag handle */
+    opacity: 0.5;
+    -webkit-transition: opacity 0 linear;
+    transition: opacity 0 linear;
+}
+
+.simplebar-track.vertical {
+    top: 0;
+}
+
+.simplebar-track.vertical .simplebar-scrollbar:before {
+    top: 2px;
+    bottom: 2px;
+}
+
+.simplebar-track.horizontal {
+    left: 0;
+    width: auto;
+    height: 11px;
+}
+
+.simplebar-track.horizontal .simplebar-scrollbar:before {
+    height: 100%;
+    left: 2px;
+    right: 2px;
+}
+
+.horizontal.simplebar-track .simplebar-scrollbar {
+    right: auto;
+    top: 2px;
+    height: 7px;
+    min-height: 0;
+    min-width: 10px;
+    width: auto;
+}
+
+
+/* Style scrollbars on chrome */
+
+
+/*Style scrollbar BG */
+
+::-webkit-scrollbar {
+    background-color: rgb(60, 60, 60, 0.95);
+    width: .8em
+}
+
+
+/*Style actual scrollbar */
+
+::-webkit-scrollbar-thumb:window-inactive,
+::-webkit-scrollbar-thumb {
+    background: black;
 }

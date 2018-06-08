@@ -16,9 +16,15 @@ class BackButton extends Component {
     }
 
     render() {
-        return(<div class="back-button">
-                    <a href="#"><i class="fa fa-angle-left"></i></a>
-                </div>);
+        return(
+            <div class="messageAndGoBack-container">
+                <a class="goBack-container" href="#">
+                    <img src="img/icon-back.png" id="back-icon" title="Go Back One Page" />
+                    <p>Back</p>
+                </a>
+                <p class="optionMessage">Please select an option:</p>
+            </div>
+        );
     }
 }
 

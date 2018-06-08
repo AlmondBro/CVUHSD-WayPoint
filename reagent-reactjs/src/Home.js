@@ -4,8 +4,6 @@ import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import SupportSquaresContainer from "./SupportSquaresContainer.js";
 import SupportSquare from "./SupportSquare.js";
 
-
-
 class Home extends Component {
     render() {
         return (
