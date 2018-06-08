@@ -398,7 +398,7 @@ div.messageAndGoBack-container {
 }
 
 a.goBack-container {
-    display: inline-block;
+    /* display: inline-block; */
     color: white;
     /* background-color: #AC2626; */
     border-radius: 1em;
