@@ -268,6 +268,7 @@ main header {
 header a>img#reagentLogo {
     position: relative;
     right: 25px;
+    left: 1%;
     width: 60px;
     height: auto;
     display: inline-block;
@@ -319,7 +320,7 @@ header a>img#reagentLogo {
     max-height: 45px;
     top: 70%;
     position: absolute;
-    transform: translateY(-70%);
+    transform: translateY(-72%);
 }
 
 header a img,

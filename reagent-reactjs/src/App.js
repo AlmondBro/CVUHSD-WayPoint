@@ -47,8 +47,6 @@ class App extends Component {
                   <Route path="/wiFiMagic" component={WiFiMagic} /> 
                 </Switch>  
               </PageContentContainer>
-           
-             
             </Main>
         </Container>
       </BrowserRouter>

@@ -67,7 +67,8 @@ window.onload = function() {
         }
         
         if (document.body.contains(document.getElementsByClassName("headerLogo")[0])) {
-            document.getElementsByClassName("headerLogo")[0].left = 2
+            console.log("Header-logo");
+            document.getElementsByClassName("headerLogo")[0].style.left = "22%";
         }
 
    }    
