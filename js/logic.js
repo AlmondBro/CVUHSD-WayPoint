@@ -66,6 +66,10 @@ window.onload = function() {
             document.getElementsByClassName("blur-effect")[0].style.maxHeight = "85%"; //567px
         }
         
+        if (document.body.contains(document.getElementsByClassName("headerLogo")[0])) {
+            document.getElementsByClassName("headerLogo")[0].left = 2
+        }
+
    }    
 }; //end window.onload
    
