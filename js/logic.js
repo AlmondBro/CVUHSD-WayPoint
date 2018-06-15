@@ -64,12 +64,15 @@ window.onload = function() {
 
         if (document.body.contains(document.getElementsByClassName("blur-effect")[0])) {
             document.getElementsByClassName("blur-effect")[0].style.maxHeight = "85%"; //567px
+            document.getElementsByClassName("blur-effect")[0].style.bottom = "0%";
         }
         
         if (document.body.contains(document.getElementsByClassName("headerLogo")[0])) {
             console.log("Header-logo");
             document.getElementsByClassName("headerLogo")[0].style.left = "22%";
         }
+
+
 
    }    
 }; //end window.onload
