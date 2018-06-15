@@ -1,15 +1,11 @@
-import React, {Component} from "react";
+import React from "react";
 
-class SupportSquaresContainer extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return(<div class="support-squares-container">
-                    {this.props.children}
-                </div>);
-    }
-}
+const SupportSquaresContainer = (props) => {
+    return(
+        <div class="support-squares-container">
+            {props.children}
+        </div>
+    );
+};
 
 export default SupportSquaresContainer;

@@ -266,6 +266,9 @@ main header {
 }
 
 header a>img#reagentLogo {
+    position: relative;
+    right: 25px;
+    left: 1%;
     width: 60px;
     height: auto;
     display: inline-block;
@@ -317,7 +320,7 @@ header a>img#reagentLogo {
     max-height: 45px;
     top: 70%;
     position: absolute;
-    transform: translateY(-70%);
+    transform: translateY(-72%);
 }
 
 header a img,
@@ -382,7 +385,7 @@ main header .notifications-count {
 
 div.messageAndGoBack-container {
     width: 376px;
-    position: fixed;
+    position: relative;
     max-height: 30px;
     text-align: center;
     padding: 0.25em 0em;
@@ -484,10 +487,11 @@ section.page-content {
     max-height: 88%;
     /* 83.4%; */
     overflow-y: auto;
-    top: 93px;
+    top: 30px;
     z-index: 1;
     /* 92px  or ~15%*/
     margin: 0 auto;
+    width: 100%;
 }
 
 .staff-portal-embed {
@@ -522,7 +526,7 @@ section.page-content {
 }
 
 .header-frame {
-    position: fixed;
+    position: relative;
     display: block;
     width: 376px;
     z-index: 3;

@@ -7,31 +7,29 @@ import SupportSquare from "./SupportSquare.js";
 class Home extends Component {
     render() {
         return (
-            <p>Please select an option from below:</p>,
-
            <SupportSquaresContainer>
                 <SupportSquare pageLink="/autoFix-tools" 
-                               icon="fas fa-wrench" 
+                               imgSrc="img/icon-autofix.png" 
                                title="Autofix Tools" />
 
                 <SupportSquare pageLink="/submit-ticket" 
-                            icon="fas fa-newspaper" 
+                            imgSrc="img/icon-ticketsubmit.png" 
                             title="Submit Ticket" />
 
                 <SupportSquare pageLink="/quickFix-tutorials" 
-                            icon="fas fa-book" 
+                            ImgSrc="img/icon-tutorial.png" 
                             title="QuickFix Tutorials" />
 
                <SupportSquare pageLink="/call-helpdesk" 
-                            icon="fas fa-phone" 
+                            imgSrc="img/icon-phone.png" 
                             title="Call Helpdesk" />
 
                 <SupportSquare pageLink="#" 
-                        icon="fas fa-bullseye" 
+                        imgSrc="img/icon-portal.png" 
                         title="Staff Portal" />
 
                 <SupportSquare pageLink="#" 
-                    icon="fas fa-bullhorn" 
+                    imgSrc="img/icon-announce2.png" 
                     title="Announcements" />
 
             </SupportSquaresContainer>
