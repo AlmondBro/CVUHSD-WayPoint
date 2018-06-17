@@ -1,3 +1,10 @@
+@font-face {
+    font-family: "FuturaLight";
+    src: url("../fonts/Futura_Light.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -8,7 +15,7 @@ body {
     background-image: url("https://media.cntraveler.com/photos/56549cc6659c4b4874865502/master/pass/mu-cang-chai-vietnam-cr-getty.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    font-family: Futura, "Liberation Sans", Trebuchet MS, Arial, sans-serif;
+    font-family: "FuturaLight", "Liberation Sans", Trebuchet MS, Arial, sans-serif;
 }
 
 body,
