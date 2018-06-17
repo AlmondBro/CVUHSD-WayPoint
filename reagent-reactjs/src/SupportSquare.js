@@ -1,12 +1,12 @@
-import React, {Component} from "react";
-import { Route, NavLink, HashRouter } from "react-router-dom"
+import React from "react";
+import {NavLink} from "react-router-dom"
 import PropTypes from "prop-types";
 
 const SupportSquare = (props) => {
     return(
         <section className="support-square" id={props.id}>
                 <NavLink to={props.pageLink}>
-                    <img src={props.imgSrc} class="square-icon"/>
+                    <img src={props.imgSrc} className="square-icon"/>
                     <h3>{props.title}</h3>
                 </NavLink>
             </section>);
