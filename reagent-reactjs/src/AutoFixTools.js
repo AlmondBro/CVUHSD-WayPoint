@@ -13,28 +13,23 @@ class AutoFixTools extends Component {
                     {/* {<Route path={this.props.match.url+"/wiFiMagic"} component={WiFiMagic} />} */}
                     <SupportSquare pageLink="/wiFiMagic" 
                                     icon="fas fa-wifi" 
-                                    title="Wi-Fi Magic" />
+                                    title="Wi-Fi Magic"
+                                    imgSrc="./img/icon-wifi.png" />
 
                     <SupportSquare pageLink="#" 
                             icon="fas fa-desktop" 
-                            title="Projector Magic" />
+                            title="Projector Magic"
+                            imgSrc="./img/icon-projector.png" />
 
                     <SupportSquare pageLink="#" 
                             icon="far fa-file-audio" 
-                            title="Audio Magic" />
+                            title="Audio Magic"
+                            imgSrc="./img/icon-audio.png"  />
 
                     <SupportSquare pageLink="#" 
                         icon="fas fa-print" 
-                        title="Printer Magic" />
-
-                    <SupportSquare pageLink="#" 
-                        icon="fas fa-question-circle" 
-                        title="Autofix" />
-
-                    <SupportSquare pageLink="#" 
-                        icon="fas fa-question-circle" 
-                        title="Autofix" />
-    
+                        title="Printer Magic"
+                        imgSrc="./img/icon-printer.png"  />
                 </div>);
     }
 }

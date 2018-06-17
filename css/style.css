@@ -47,6 +47,7 @@ html {
     color: white;
     background-color: #1c1c1c;
     /* border-bottom: 1px solid black; */
+    height: 25px;
     z-index: 2;
 }
 

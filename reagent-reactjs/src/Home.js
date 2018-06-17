@@ -22,15 +22,13 @@ class Home extends Component {
                             imgSrc="./img/icon-phone.png" 
                             title="Call Helpdesk" />
 
-                <SupportSquare pageLink="#" 
+                <SupportSquare pageLink="/staffPortal" 
                         imgSrc="./img/icon-portal.png" 
                         title="Staff Portal" />
 
-                <SupportSquare pageLink="#" 
+                <SupportSquare pageLink="/announcements" 
                     imgSrc="./img/icon-announce2.png" 
                     title="Announcements" />
-
-                <Footer />
             </div>
         );
     }

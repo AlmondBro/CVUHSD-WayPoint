@@ -12,6 +12,9 @@ import WiFiMagic from "./WiFiMagic.js";
 import QuickFixTutorials from "./QuickFixTutorials.js";
 import HelpDesk from "./HelpDesk.js";
 import AutoFixTools from "./AutoFixTools.js";
+import StaffPortal from "./StaffPortal.js";
+import Announcements from "./Announcements.js";
+import Footer from "./Footer.js";
 
 class App extends Component {
   render() {
@@ -32,8 +35,11 @@ class App extends Component {
                 <Route path="/quickFix-tutorials" component={QuickFixTutorials} />
                 <Route path="/call-helpdesk" component={HelpDesk} />
                 <Route path="/wiFiMagic" component={WiFiMagic} /> 
+                <Route path="/staffPortal" component={StaffPortal} /> 
+                <Route path="/announcements" component={Announcements} /> 
               </Switch>  
             </section>
+            <Footer />
             <div className="blur-effect"></div>
           </main>
         </div>

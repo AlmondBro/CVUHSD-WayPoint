@@ -8,19 +8,23 @@ const quickFixTutorials = (props) => {
         <div class="support-squares-container">
             <SupportSquare pageLink="#" 
                         icon="fab fa-chrome" 
-                        title="Chrome OS" />
+                        title="Chrome OS"
+                        imgSrc="./img/icon-chrome.png" />
 
             <SupportSquare pageLink="#" 
                             icon="fab fa-windows" 
-                            title="Windows 10" />
+                            title="Windows 10" 
+                            imgSrc="./img/icon-win10.png" />
 
               <SupportSquare pageLink="#" 
                             icon="fab fa-windows" 
-                            title="Windows 8" />
+                            title="Windows 8" 
+                            imgSrc="./img/icon-win7.png" />
 
              <SupportSquare pageLink="#" 
                             icon="fab fa-apple" 
-                            title="Mac OS X" />   
+                            title="Mac OS X"
+                            imgSrc="./img/icon-mac.png" />   
 
         </div>
     );

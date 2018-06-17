@@ -1,18 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 
-class WiFiMagic extends Component {
-    constructor(props) {
-        super(props);
-    }
+const wifiMagic = () => {
+   const wifiIconSrc = "./img/icon-wifi.png";
 
-    render() {
-        return(
+    return(
         <section class="wiFi-magic">
-            <i class="fas fa-wifi wiggle"></i>
+            <img src={wifiIconSrc} className="img-responsive wiggle" id="wifiMagic-fixingIcon" />
             <p>Attempting repairs...</p>
         </section>
         );
-    }
-}
+};
 
-export default WiFiMagic;
+
+export default wifiMagic;
