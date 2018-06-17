@@ -29,8 +29,6 @@ class Home extends Component {
                 <SupportSquare pageLink="/announcements" 
                     imgSrc="./img/icon-announce2.png" 
                     title="Announcements" />
-
-                <Footer />
             </div>
         );
     }

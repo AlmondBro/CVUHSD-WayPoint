@@ -27,7 +27,7 @@ html {
     transform: translate(-50%, -50%);
     margin-left: -188px;
     margin-top: -269px; */
-    max-width: 376px;
+    width: 376px;
     height: 700px;
     /* 660px */
     /* height was 538px */
@@ -403,6 +403,7 @@ div.messageAndGoBack-container {
     padding: 0.25em 0em;
     z-index: 2;
     margin: 0 auto;
+    margin-bottom: 30px;
     background: #1c1c1c;
     display: block;
 }
@@ -496,20 +497,30 @@ section.page-content {
     /* overflow-y: auto;
     max-height: 560px; */
     position: relative;
-    max-height: 88%;
+    max-height: 450px; /* 88% */
     /* 83.4%; */
     overflow-y: auto;
-    top: 30px;
+     /*top: 30px;comment out*/
     z-index: 1;
     /* 92px  or ~15%*/
     margin: 0 auto;
     width: 100%;
 }
 
+footer {
+    position: absolute;
+    display: block;
+    bottom: 2%;
+    text-align: center;
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .staff-portal-embed {
     margin: auto;
     width: 100%;
-    height: 555px;
+    height: 450px; /*Was 555px before shrinking to add space for footer */
 }
 
 .blur-effect {
@@ -879,8 +890,9 @@ form.helpDeskTicket-form fieldset p button[type="reset"] {
 #location,
 #phone-extension,
 #building-number {
-    width: 160px;
+    width: 168px;
     color: black;
+    margin-left: 3px;
 }
 
 #summary {
