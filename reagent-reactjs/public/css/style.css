@@ -551,6 +551,7 @@ section.page-content {
     /* 92px  or ~15%*/
     margin: 0 auto;
     width: 100%;
+    top: 35px;
 }
 
 footer {
