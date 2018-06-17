@@ -56,6 +56,17 @@ html {
     width: 100%;
 }
 
+
+#page-title {
+    font-weight: normal;
+    font-size: 1em;
+    margin: 0 auto;
+    vertical-align: middle;
+    top: 15%;
+    position: relative;
+    transform: translateY(15%);
+}
+
 #home-text {
     position: relative;
     display: inline;
