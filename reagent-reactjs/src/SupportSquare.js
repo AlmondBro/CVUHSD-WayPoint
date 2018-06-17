@@ -6,7 +6,7 @@ const SupportSquare = (props) => {
     return(
         <section className="support-square" id={props.id}>
                 <NavLink to={props.pageLink}>
-                    <img src={props.imageSrc} class="square-icon"/>
+                    <img src={props.imgSrc} class="square-icon"/>
                     <h3>{props.title}</h3>
                 </NavLink>
             </section>);

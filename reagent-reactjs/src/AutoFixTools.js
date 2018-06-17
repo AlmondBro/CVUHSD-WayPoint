@@ -25,16 +25,16 @@ class AutoFixTools extends Component {
                             title="Audio Magic" />
 
                     <SupportSquare pageLink="#" 
-                    icon="fas fa-print" 
-                    title="Printer Magic" />
+                        icon="fas fa-print" 
+                        title="Printer Magic" />
 
                     <SupportSquare pageLink="#" 
-                    icon="fas fa-question-circle" 
-                    title="Autofix" />
+                        icon="fas fa-question-circle" 
+                        title="Autofix" />
 
                     <SupportSquare pageLink="#" 
-                    icon="fas fa-question-circle" 
-                    title="Autofix" />
+                        icon="fas fa-question-circle" 
+                        title="Autofix" />
     
                 </SupportSquaresContainer>);
     }
