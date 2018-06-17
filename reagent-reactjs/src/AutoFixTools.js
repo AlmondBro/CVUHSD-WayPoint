@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {Route, BrowserRouter} from "react-router-dom";
 
-import SupportSquaresContainer from "./SupportSquaresContainer.js";
 import SupportSquare from "./SupportSquare.js";
 import WiFiMagic from "./WiFiMagic.js";
 
@@ -10,7 +9,7 @@ class AutoFixTools extends Component {
     render() {
         console.log("Props:\t\n"+this.props);
         return( <p>AutoFix Tools:</p>,
-                <SupportSquaresContainer>
+                <div class="support-squares-container">
                     {/* {<Route path={this.props.match.url+"/wiFiMagic"} component={WiFiMagic} />} */}
                     <SupportSquare pageLink="/wiFiMagic" 
                                     icon="fas fa-wifi" 
@@ -36,7 +35,7 @@ class AutoFixTools extends Component {
                         icon="fas fa-question-circle" 
                         title="Autofix" />
     
-                </SupportSquaresContainer>);
+                </div>);
     }
 }
 

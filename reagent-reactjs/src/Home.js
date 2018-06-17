@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
-
-import SupportSquaresContainer from "./SupportSquaresContainer.js";
 import SupportSquare from "./SupportSquare.js";
+import Footer from "./Footer.js";
 
 class Home extends Component {
     render() {
         return (
-           <SupportSquaresContainer>
+            <div className="support-squares-container">
                 <SupportSquare pageLink="/autoFix-tools" 
                                imgSrc="./img/icon-autofix.png" 
                                title="Autofix Tools" />
@@ -32,7 +30,8 @@ class Home extends Component {
                     imgSrc="./img/icon-announce2.png" 
                     title="Announcements" />
 
-            </SupportSquaresContainer>
+                <Footer />
+            </div>
         );
     }
 }
