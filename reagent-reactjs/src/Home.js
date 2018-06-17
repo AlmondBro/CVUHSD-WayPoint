@@ -22,7 +22,7 @@ class Home extends Component {
                             imgSrc="./img/icon-phone.png" 
                             title="Call Helpdesk" />
 
-                <SupportSquare pageLink="/staff-portal" 
+                <SupportSquare pageLink="/staffPortal" 
                         imgSrc="./img/icon-portal.png" 
                         title="Staff Portal" />
 
