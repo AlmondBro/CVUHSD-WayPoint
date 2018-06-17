@@ -48,6 +48,7 @@ html {
     background-color: #1c1c1c;
     /* border-bottom: 1px solid black; */
     z-index: 2;
+    height: 25px;
 }
 
 #title {
