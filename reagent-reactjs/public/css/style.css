@@ -53,6 +53,7 @@ html {
 #title {
     position: relative;
     width: 100%;
+    height: 25px;
 }
 
 #home-text {
@@ -318,9 +319,10 @@ header a>img#reagentLogo {
     display: inline-block;
     /* margin-bottom: 8px; */
     max-height: 45px;
-    top: 70%;
+    top: 20%;
+    right: 15px;
     position: absolute;
-    transform: translateY(-72%);
+    /* transform: translateY(-72%); */
 }
 
 header a img,
@@ -335,8 +337,15 @@ main p {
 
 header .notificationIcon {
     position: absolute;
-    top: 30%;
-    left: 85%;
+    top: 13px;
+    left: 322px;
+    width: 40px;
+    height: 40px;
+    
+}
+
+header .notificationIcon:hover {
+    background-color: darkred;
 }
 
 main header .notificationIcon i {
@@ -346,7 +355,7 @@ main header .notificationIcon i {
 }
 
 main header .notifications-count {
-    display: inline;
+    display: none;
     background-color: #3c3c3c;
     text-decoration: none;
     color: white;
@@ -356,11 +365,18 @@ main header .notifications-count {
     bottom: 60%;
     font-size: 1em;
     left: 35%;
+    
 }
 
 .fas.fa-bell .notification-icon-i:hover,
 .fas.fa-bell .notification-icon-i:active {
     color: #A4A2A2;
+}
+
+main header .notificationIcon i {
+    position: relative;
+    left: 6px;
+    top: 5px;
 }
 
 #clear-button {
@@ -385,30 +401,40 @@ main header .notifications-count {
 
 div.messageAndGoBack-container {
     width: 376px;
-    position: relative;
+    height: 30px;
+    position: absolute;
     max-height: 30px;
     text-align: center;
-    padding: 0.25em 0em;
+    padding: 0;
     z-index: 2;
     margin: 0 auto;
     background: #1c1c1c;
     display: block;
+    top: 65px;
+
+    
 }
 
 a.goBack-container {
     display: inline-block;
     position: relative;
-    right: 3.2em;
+    /* right: 3.2em; */
     color: white;
     /* background-color: #AC2626; */
-    border-radius: 1em;
+    /* border-radius: 1em; */
     /* padding: 0.2em 0.4em; */
     text-align: center;
     max-width: 100%;
-    height: 100%;
+    height: 30px;
+    width: 60px;
     margin: 0 auto;
     text-decoration: none;
-    /* float: left; */
+    float: left;
+    
+}
+
+a.goBack-container:hover {
+    background-color: #4c4c4c;
 }
 
 a.goBack-container i {
@@ -416,9 +442,21 @@ a.goBack-container i {
     color: #a3a3a3;
 }
 
-a.goBack-container p {
+a.goBack-container img {
+    position: relative;
     display: inline-block;
+    height: 20px;
+    top: 1px;
+    right: 2px;
+}
+
+a.goBack-container p {
+    position: relative;
+    display: inline-block;
+    right: 6px;
+    top: 2px;
     margin: 0;
+    line-height: 25px;
 }
 
 #back-icon {
@@ -429,14 +467,22 @@ a.goBack-container p {
 
 p.optionMessage {
     display: inline-block;
+    position: relative;
     margin: 0 auto;
-    text-align: center;
-    max-width: 240px;
-    vertical-align: text-bottom;
+    right: 30px;
+    /* text-align: center; */
+    /* align-content: center; */
+    /* align-items: center; */
+    /* max-width: 240px; */
+    /* vertical-align: text-bottom; */
+    height: 30px;
+    top: 2px;
+    line-height: 25px;
+    /* background-color: red; */
 }
 
 .support-squares-container {
-    margin: 0em auto;
+    margin: 0 auto;
     /*margin on top/bott. was 10px */
     text-align: center;
     max-height: 90%;
@@ -451,7 +497,7 @@ p.optionMessage {
     padding: 10px;
     /* margin-left: 12px; */
     display: inline-block;
-    margin: 10px 3px;
+    margin: 5px 5px;
 }
 
 .square-icon {
@@ -527,7 +573,7 @@ section.page-content {
 
 .header-frame {
     position: relative;
-    display: block;
+    display: flex;
     width: 376px;
     z-index: 3;
 }
@@ -1053,4 +1099,8 @@ form p.fieldMargin {
 ::-webkit-scrollbar-thumb:window-inactive,
 ::-webkit-scrollbar-thumb {
     background: black;
+}
+
+.flex {
+    display: flex;
 }
