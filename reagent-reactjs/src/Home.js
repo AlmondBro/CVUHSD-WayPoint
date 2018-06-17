@@ -26,7 +26,7 @@ class Home extends Component {
                         imgSrc="./img/icon-portal.png" 
                         title="Staff Portal" />
 
-                <SupportSquare pageLink="#" 
+                <SupportSquare pageLink="/announcements" 
                     imgSrc="./img/icon-announce2.png" 
                     title="Announcements" />
 
