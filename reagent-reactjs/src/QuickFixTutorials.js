@@ -18,7 +18,7 @@ const quickFixTutorials = (props) => {
 
               <SupportSquare pageLink="#" 
                             icon="fab fa-windows" 
-                            title="Windows 8" 
+                            title="Windows 7" 
                             imgSrc="./img/icon-win7.png" />
 
              <SupportSquare pageLink="#" 

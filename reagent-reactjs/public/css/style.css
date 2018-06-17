@@ -41,8 +41,9 @@ html {
     background-color: #1c1c1c;
     color: white;
     /* margin: 0 auto; */
-    border-radius: 0.3em;
-    margin: 10% auto;
+    /* border-radius: 0.3em; */
+    /* border: 1px solid black; */
+    /* margin: 10% auto; */
 }
 
 #titlebar {
