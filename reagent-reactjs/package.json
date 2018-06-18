@@ -3,7 +3,7 @@
   "description": "The CVUHSD reagent is a web app where teachers can quickly access functions such as submitting a helpdesk ticket, calling the helpdesk, accessing the troubleshootign tutorials, or viewing announcements.",
   "version": "0.1.0",
   "private": true,
-  "main": "index.js",
+  "main": "./src/electron-starter.js",
   "dependencies": {
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
@@ -16,13 +16,15 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron": "electron ."
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "electron": "^2.0.2",
     "eslint-plugin-react": "^7.7.0",
     "serve": "^6.5.3"
   },

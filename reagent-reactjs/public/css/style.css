@@ -1,3 +1,10 @@
+@font-face {
+    font-family: "FuturaLight";
+    src: url("../fonts/Futura_Light.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -8,7 +15,7 @@ body {
     background-image: url("https://media.cntraveler.com/photos/56549cc6659c4b4874865502/master/pass/mu-cang-chai-vietnam-cr-getty.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    font-family: Futura, "Liberation Sans", Trebuchet MS, Arial, sans-serif;
+    font-family: "FuturaLight", "Liberation Sans", Trebuchet MS, Arial, sans-serif;
 }
 
 body,
@@ -27,15 +34,16 @@ html {
     transform: translate(-50%, -50%);
     margin-left: -188px;
     margin-top: -269px; */
-    max-width: 376px;
+    width: 376px;
     height: 700px;
     /* 660px */
     /* height was 538px */
     background-color: #1c1c1c;
     color: white;
     /* margin: 0 auto; */
-    border-radius: 0.3em;
-    margin: 10% auto;
+    /* border-radius: 0.3em; */
+    /* border: 1px solid black; */
+    /* margin: 10% auto; */
 }
 
 #titlebar {
@@ -48,11 +56,24 @@ html {
     background-color: #1c1c1c;
     /* border-bottom: 1px solid black; */
     z-index: 2;
+    height: 25px;
 }
 
 #title {
     position: relative;
     width: 100%;
+    height: 25px;
+}
+
+
+#page-title {
+    font-weight: normal;
+    font-size: 1em;
+    margin: 0 auto;
+    vertical-align: middle;
+    top: 15%;
+    position: relative;
+    transform: translateY(15%);
 }
 
 #home-text {
@@ -318,9 +339,10 @@ header a>img#reagentLogo {
     display: inline-block;
     /* margin-bottom: 8px; */
     max-height: 45px;
-    top: 70%;
+    top: 20%;
+    right: 15px;
     position: absolute;
-    transform: translateY(-72%);
+    /* transform: translateY(-72%); */
 }
 
 header a img,
@@ -335,8 +357,15 @@ main p {
 
 header .notificationIcon {
     position: absolute;
-    top: 30%;
-    left: 85%;
+    top: 13px;
+    left: 322px;
+    width: 40px;
+    height: 40px;
+    
+}
+
+header .notificationIcon:hover {
+    background-color: darkred;
 }
 
 main header .notificationIcon i {
@@ -346,7 +375,7 @@ main header .notificationIcon i {
 }
 
 main header .notifications-count {
-    display: inline;
+    display: none;
     background-color: #3c3c3c;
     text-decoration: none;
     color: white;
@@ -356,11 +385,18 @@ main header .notifications-count {
     bottom: 60%;
     font-size: 1em;
     left: 35%;
+    
 }
 
 .fas.fa-bell .notification-icon-i:hover,
 .fas.fa-bell .notification-icon-i:active {
     color: #A4A2A2;
+}
+
+main header .notificationIcon i {
+    position: relative;
+    left: 6px;
+    top: 5px;
 }
 
 #clear-button {
@@ -385,30 +421,41 @@ main header .notifications-count {
 
 div.messageAndGoBack-container {
     width: 376px;
-    position: relative;
+    height: 30px;
+    position: absolute;
     max-height: 30px;
     text-align: center;
-    padding: 0.25em 0em;
+    padding: 0;
     z-index: 2;
     margin: 0 auto;
+    margin-bottom: 30px;
     background: #1c1c1c;
     display: block;
+    top: 65px;
+
+    
 }
 
 a.goBack-container {
     display: inline-block;
     position: relative;
-    right: 3.2em;
+    /* right: 3.2em; */
     color: white;
     /* background-color: #AC2626; */
-    border-radius: 1em;
+    /* border-radius: 1em; */
     /* padding: 0.2em 0.4em; */
     text-align: center;
     max-width: 100%;
-    height: 100%;
+    height: 30px;
+    width: 60px;
     margin: 0 auto;
     text-decoration: none;
-    /* float: left; */
+    float: left;
+    
+}
+
+a.goBack-container:hover {
+    background-color: #4c4c4c;
 }
 
 a.goBack-container i {
@@ -416,9 +463,21 @@ a.goBack-container i {
     color: #a3a3a3;
 }
 
-a.goBack-container p {
+a.goBack-container img {
+    position: relative;
     display: inline-block;
+    height: 20px;
+    top: 1px;
+    right: 2px;
+}
+
+a.goBack-container p {
+    position: relative;
+    display: inline-block;
+    right: 6px;
+    top: 2px;
     margin: 0;
+    line-height: 25px;
 }
 
 #back-icon {
@@ -429,14 +488,22 @@ a.goBack-container p {
 
 p.optionMessage {
     display: inline-block;
+    position: relative;
     margin: 0 auto;
-    text-align: center;
-    max-width: 240px;
-    vertical-align: text-bottom;
+    right: 30px;
+    /* text-align: center; */
+    /* align-content: center; */
+    /* align-items: center; */
+    /* max-width: 240px; */
+    /* vertical-align: text-bottom; */
+    height: 30px;
+    top: 2px;
+    line-height: 25px;
+    /* background-color: red; */
 }
 
 .support-squares-container {
-    margin: 0em auto;
+    margin: 0 auto;
     /*margin on top/bott. was 10px */
     text-align: center;
     max-height: 90%;
@@ -451,7 +518,7 @@ p.optionMessage {
     padding: 10px;
     /* margin-left: 12px; */
     display: inline-block;
-    margin: 10px 3px;
+    margin: 5px 5px;
 }
 
 .square-icon {
@@ -484,20 +551,31 @@ section.page-content {
     /* overflow-y: auto;
     max-height: 560px; */
     position: relative;
-    max-height: 88%;
+    max-height: 450px; /* 88% */
     /* 83.4%; */
     overflow-y: auto;
-    top: 30px;
+     /*top: 30px;comment out*/
     z-index: 1;
     /* 92px  or ~15%*/
     margin: 0 auto;
     width: 100%;
+    top: 35px;
+}
+
+footer {
+    position: absolute;
+    display: block;
+    bottom: 2%;
+    text-align: center;
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .staff-portal-embed {
     margin: auto;
     width: 100%;
-    height: 555px;
+    height: 450px; /*Was 555px before shrinking to add space for footer */
 }
 
 .blur-effect {
@@ -527,7 +605,7 @@ section.page-content {
 
 .header-frame {
     position: relative;
-    display: block;
+    display: flex;
     width: 376px;
     z-index: 3;
 }
@@ -559,8 +637,8 @@ section.notifications-section {
     height: 500px;
     background-color: rgba(60, 60, 60, 0.95);
     z-index: 4;
-    left: 25%;
-    /* top: 16%; */
+    left: 27%;
+    top: 100%;
     border: 2px solid #a5a5a5;
     border-radius: 0.25em;
 }
@@ -867,8 +945,9 @@ form.helpDeskTicket-form fieldset p button[type="reset"] {
 #location,
 #phone-extension,
 #building-number {
-    width: 160px;
+    width: 168px;
     color: black;
+    margin-left: 3px;
 }
 
 #summary {
@@ -880,10 +959,10 @@ form p.fieldMargin {
 }
 
 .wiFi-magic {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    bottom: 0%;
 }
 
 .wiFi-magic i {
@@ -1053,4 +1132,8 @@ form p.fieldMargin {
 ::-webkit-scrollbar-thumb:window-inactive,
 ::-webkit-scrollbar-thumb {
     background: black;
+}
+
+.flex {
+    display: flex;
 }

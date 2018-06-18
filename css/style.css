@@ -47,6 +47,7 @@ html {
     color: white;
     background-color: #1c1c1c;
     /* border-bottom: 1px solid black; */
+    height: 25px;
     z-index: 2;
 }
 
@@ -318,9 +319,10 @@ header a>img#reagentLogo {
     display: inline-block;
     /* margin-bottom: 8px; */
     max-height: 45px;
-    top: 70%;
+    top: 20%;
+    right: 15px;
     position: absolute;
-    transform: translateY(-72%);
+    /* transform: translateY(-72%); */
 }
 
 header a img,
@@ -393,6 +395,9 @@ div.messageAndGoBack-container {
     margin: 0 auto;
     background: #1c1c1c;
     display: block;
+    top: 65px;
+
+    
 }
 
 a.goBack-container {
@@ -401,7 +406,7 @@ a.goBack-container {
     right: 3.2em;
     color: white;
     /* background-color: #AC2626; */
-    border-radius: 1em;
+    /* border-radius: 1em; */
     /* padding: 0.2em 0.4em; */
     text-align: center;
     max-width: 100%;
@@ -411,10 +416,16 @@ a.goBack-container {
     /* float: left; */
 }
 
+a.goBack-container:hover {
+    background-color: #4c4c4c;
+}
+
 a.goBack-container i {
     display: inline;
     color: #a3a3a3;
 }
+
+
 
 a.goBack-container p {
     display: inline-block;
@@ -436,7 +447,7 @@ p.optionMessage {
 }
 
 .support-squares-container {
-    margin: 0em auto;
+    margin: 0 auto;
     /*margin on top/bott. was 10px */
     text-align: center;
     max-height: 90%;
@@ -451,7 +462,7 @@ p.optionMessage {
     padding: 10px;
     /* margin-left: 12px; */
     display: inline-block;
-    margin: 10px 3px;
+    margin: 6px 5px;
 }
 
 .square-icon {
@@ -527,7 +538,7 @@ section.page-content {
 
 .header-frame {
     position: relative;
-    display: block;
+    display: flex;
     width: 376px;
     z-index: 3;
 }
@@ -1053,4 +1064,8 @@ form p.fieldMargin {
 ::-webkit-scrollbar-thumb:window-inactive,
 ::-webkit-scrollbar-thumb {
     background: black;
+}
+
+.flex {
+    display: flex;
 }
