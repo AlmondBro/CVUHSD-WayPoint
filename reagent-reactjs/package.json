@@ -1,37 +1,39 @@
 {
-  "name": "reagent-reactjs",
-  "description": "The CVUHSD reagent is a web app where teachers can quickly access functions such as submitting a helpdesk ticket, calling the helpdesk, accessing the troubleshootign tutorials, or viewing announcements.",
-  "version": "0.1.0",
-  "private": true,
-  "main": "./src/electron-starter.js",
-  "dependencies": {
-    "prop-types": "^15.6.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "electron": "electron ."
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "electron": "^2.0.2",
-    "eslint-plugin-react": "^7.7.0",
-    "serve": "^6.5.3"
-  },
-  "presets": [
-    "env"
-  ],
-  "keywords": [],
-  "author": "Juan David Lopez Londono and Kevin Erkelenz",
-  "homepage": "."
+    "name": "reagent-reactjs",
+    "description": "The CVUHSD reagent is a web app where teachers can quickly access functions such as submitting a helpdesk ticket, calling the helpdesk, accessing the troubleshootign tutorials, or viewing announcements.",
+    "version": "0.1.0",
+    "private": true,
+    "main": "./src/electron-starter.js",
+    "dependencies": {
+        "prop-types": "^15.6.1",
+        "react": "^16.2.0",
+        "react-dom": "^16.2.0",
+        "react-router": "^4.2.0",
+        "react-router-dom": "^4.2.2",
+        "react-scripts": "1.1.1"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test --env=jsdom",
+        "eject": "react-scripts eject",
+        "electron": "electron .",
+        "dev": "nf start -p 3000"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-polyfill": "^6.26.0",
+        "babel-preset-env": "^1.6.1",
+        "babel-preset-react": "^6.24.1",
+        "electron": "^2.0.2",
+        "eslint-plugin-react": "^7.7.0",
+        "foreman": "^3.0.0",
+        "serve": "^6.5.3"
+    },
+    "presets": [
+        "env"
+    ],
+    "keywords": [],
+    "author": "Juan David Lopez Londono and Kevin Erkelenz",
+    "homepage": "./"
 }
