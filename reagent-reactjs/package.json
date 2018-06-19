@@ -6,6 +6,7 @@
     "main": "./src/electron-starter.js",
     "dependencies": {
         "electron": "^2.0.2",
+        "os": "^0.1.1",
         "prop-types": "^15.6.1",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
