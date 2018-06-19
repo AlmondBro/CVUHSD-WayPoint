@@ -65,7 +65,6 @@ html {
     height: 25px;
 }
 
-
 #page-title {
     font-weight: normal;
     font-size: 1em;
@@ -361,7 +360,6 @@ header .notificationIcon {
     left: 322px;
     width: 40px;
     height: 40px;
-    
 }
 
 header .notificationIcon:hover {
@@ -385,7 +383,6 @@ main header .notifications-count {
     bottom: 60%;
     font-size: 1em;
     left: 35%;
-    
 }
 
 .fas.fa-bell .notification-icon-i:hover,
@@ -432,8 +429,6 @@ div.messageAndGoBack-container {
     background: #1c1c1c;
     display: block;
     top: 65px;
-
-    
 }
 
 a.goBack-container {
@@ -451,7 +446,6 @@ a.goBack-container {
     margin: 0 auto;
     text-decoration: none;
     float: left;
-    
 }
 
 a.goBack-container:hover {
@@ -551,10 +545,11 @@ section.page-content {
     /* overflow-y: auto;
     max-height: 560px; */
     position: relative;
-    max-height: 450px; /* 88% */
+    max-height: 450px;
+    /* 88% */
     /* 83.4%; */
     overflow-y: auto;
-     /*top: 30px;comment out*/
+    /*top: 30px;comment out*/
     z-index: 1;
     /* 92px  or ~15%*/
     margin: 0 auto;
@@ -575,7 +570,8 @@ footer {
 .staff-portal-embed {
     margin: auto;
     width: 100%;
-    height: 450px; /*Was 555px before shrinking to add space for footer */
+    height: 450px;
+    /*Was 555px before shrinking to add space for footer */
 }
 
 .blur-effect {
@@ -772,6 +768,10 @@ i.fa-times {
 }
 
 span.currentUserName {
+    font-weight: bold;
+}
+
+.OS-platform span {
     font-weight: bold;
 }
 
