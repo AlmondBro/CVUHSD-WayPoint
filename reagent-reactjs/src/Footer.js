@@ -8,9 +8,12 @@ const ipcRenderer  = electron.ipcRenderer;
 
 const completeUserName = remote.require('fullname');
 
+var yolo = this;
+
 completeUserName().then(name => {
     console.log("Name:\t" + name);
     getUserName(name);
+    yolo = name;
 	//=> 'Sindre Sorhus'
 });
 
@@ -18,11 +21,11 @@ const getUserName = (userName) => {
     return userName;
 }
 
-const fullNameOfUser = getUserName();
+var fullNameOfUser = getUserName();
 console.log("fullNameOfUser:\t" + fullNameOfUser);
 
-let networkInterfacesModule = os.networkInterfaces()["Local Area Connection"][1].address;
-console.log("networkInterfacesModule:\t" + networkInterfacesModule); 
+let IP_Address = os.networkInterfaces()["Local Area Connection"][1].address || os.networkInterfaces()["Wi-Fi"][1].address;
+console.log("IP_Address:\t" + IP_Address); 
 //let IP_Address = require("os").networkInterfaces["Local Area Connection"][1].address
 //console.log("IP Address:\t" + IP_Address);
 console.log("Networkdfdfdfddf Interface Obj:\t" + JSON.stringify(os.networkInterfaces()) );
@@ -44,8 +47,8 @@ const determineWindowsVersion = (releaseNumber) => {
 const footer = (props) => {
     return (
         <footer>
-            <p>Welcome <span className="currentUserName">{fullNameOfUser || "UserName"}</span></p>
-            <p className="IP-message">Your IP Addresss:&#9;<span>{networkInterfacesModule || "Your IP Address"}</span></p>
+            <p>Welcome <span className="currentUserName">{IP_Address || "UserName"}</span></p>
+            <p className="IP-message">Your IP Addresss:&#9;<span>{IP_Address || "Your IP Address"}</span></p>
             <p className="OS-platform">Operating System:&#9;<span>{determineWindowsVersion(os.release()) || "OS Platform"}</span></p>
             <p className="cv-way">Powered by: The CV-Way</p>
         </footer>
