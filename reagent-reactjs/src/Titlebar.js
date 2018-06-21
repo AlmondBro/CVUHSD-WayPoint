@@ -21,7 +21,7 @@ const titlebar = () => {
                 <div id="wp-icon-container">
                     <img id="wp-icon" src="img/wp-icon-grey.png" title="Waypoint Version 0.1" alt="WayPoint Icon" />
                 </div>
-                <h2 id="page-title">Home</h2>
+                <div id="page-title-container"><h2 id="page-title">Home</h2></div>
             </div>
         </div>);
 };
