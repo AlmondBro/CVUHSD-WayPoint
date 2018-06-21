@@ -47,9 +47,10 @@ const determineWindowsVersion = (releaseNumber) => {
 const footer = (props) => {
     return (
         <footer>
-            <div className="USER-container"><p>User: <span className="currentUserName">{fullNameOfUser || "UserName"}</span></p></div>
+            {/* <div className="USER-container"><p>User:  <span className="currentUserName">{fullNameOfUser || "UserName"}</span></p></div> */}
             <div className="IP-container"><p className="IP-message">IP Addresss:&#9;<span>{IP_Address || "Your IP Address"}</span></p></div>
             <div className="OS-container"><p className="OS-platform">System:&#9;<span>{determineWindowsVersion(os.release()) || "OS Platform"}</span></p></div>
+            <div className="USER-container"><p>User:  <span className="currentUserName">{fullNameOfUser || "UserName"}</span></p></div>
             <p className="cv-way">Powered by: The CV-Way</p>
         </footer>
     );
