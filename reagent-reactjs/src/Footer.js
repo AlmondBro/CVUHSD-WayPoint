@@ -24,7 +24,7 @@ const getUserName = (userName) => {
 var fullNameOfUser = getUserName();
 console.log("fullNameOfUser:\t" + fullNameOfUser);
 
-let IP_Address = os.networkInterfaces()["Local Area Connection"][1].address || os.networkInterfaces()["Wi-Fi"][1].address;
+let IP_Address = os.networkInterfaces()["Ethernet"][1].address || os.networkInterfaces()["Wi-Fi"][1].address;
 console.log("IP_Address:\t" + IP_Address); 
 //let IP_Address = require("os").networkInterfaces["Local Area Connection"][1].address
 //console.log("IP Address:\t" + IP_Address);
@@ -47,9 +47,9 @@ const determineWindowsVersion = (releaseNumber) => {
 const footer = (props) => {
     return (
         <footer>
-            <div className="USER-container"><p>Welcome <span className="currentUserName">{fullNameOfUser || "UserName"}</span></p></div>
-            <div className="IP-container"><p className="IP-message">Your IP Addresss:&#9;<span>{IP_Address || "Your IP Address"}</span></p></div>
-            <div className="OS-container"><p className="OS-platform">Operating System:&#9;<span>{determineWindowsVersion(os.release()) || "OS Platform"}</span></p></div>
+            <div className="USER-container"><p>User: <span className="currentUserName">{fullNameOfUser || "UserName"}</span></p></div>
+            <div className="IP-container"><p className="IP-message">IP Addresss:&#9;<span>{IP_Address || "Your IP Address"}</span></p></div>
+            <div className="OS-container"><p className="OS-platform">System:&#9;<span>{determineWindowsVersion(os.release()) || "OS Platform"}</span></p></div>
             <p className="cv-way">Powered by: The CV-Way</p>
         </footer>
     );
