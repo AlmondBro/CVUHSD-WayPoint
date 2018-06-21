@@ -59,6 +59,14 @@ html {
     height: 25px;
 }
 
+#page-title-container {
+    display: block;
+    position: relative;
+    top: 1px;
+    right: 8px;
+    /* line-height: 0px; */
+}
+
 #title {
     position: relative;
     width: 100%;

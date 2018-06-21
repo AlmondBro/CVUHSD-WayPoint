@@ -21,7 +21,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Titlebar/>
+         <Titlebar/>
           <main>
             <Header/>
           {/* <Home/>*/}   {/* This is is the component you change when 

@@ -10,7 +10,7 @@ class HelpDesk extends Component {
 
     render() {
         return (
-        <div class="support-squares-container">
+        <div className="support-squares-container">
             <SupportSquare pageLink="tel:+13102633200p7398" 
                         icon="fas fa-phone-square" 
                         title="Helpdesk Hotline"

@@ -8,9 +8,12 @@ const ipcRenderer  = electron.ipcRenderer;
 
 const completeUserName = remote.require('fullname');
 
+var yolo = this;
+
 completeUserName().then(name => {
     console.log("Name:\t" + name);
     getUserName(name);
+    yolo = name;
 	//=> 'Sindre Sorhus'
 });
 
@@ -18,13 +21,14 @@ const getUserName = (userName) => {
     return userName;
 }
 
-const fullNameOfUser = getUserName();
+var fullNameOfUser = getUserName();
 console.log("fullNameOfUser:\t" + fullNameOfUser);
 
-let IP_Address = os.networkInterfaces()["Ethernet"][1].address;
-console.log("IP Address:\t" + IP_Address); 
-console.log("IP Address:\t" + IP_Address);
-console.log("Network Interface Obj:\t" + JSON.stringify(os.networkInterfaces()) );
+let IP_Address = os.networkInterfaces()["Local Area Connection"][1].address || os.networkInterfaces()["Wi-Fi"][1].address;
+console.log("IP_Address:\t" + IP_Address); 
+//let IP_Address = require("os").networkInterfaces["Local Area Connection"][1].address
+//console.log("IP Address:\t" + IP_Address);
+console.log("Networkdfdfdfddf Interface Obj:\t" + JSON.stringify(os.networkInterfaces()) );
 
 const determineWindowsVersion = (releaseNumber) => {
     let windowsVersion;
