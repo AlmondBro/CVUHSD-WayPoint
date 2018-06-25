@@ -13,7 +13,7 @@ let mainWindow;
 
 function createWindow() {
     // Create the browser window.
-    mainWindow = new BrowserWindow({width: 376, height: 700, frame: false, fullscreen: false, resizable: false});
+    mainWindow = new BrowserWindow({width: 376, height: 700, frame: false, fullscreen: false, resizable: false, nodeIntegration: true});
 
     // and load the index.html of the app.
     mainWindow.loadURL('http://localhost:3000');
