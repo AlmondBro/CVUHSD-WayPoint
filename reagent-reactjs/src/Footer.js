@@ -7,6 +7,7 @@ const fs = electron.remote.require('fs');
 const ipcRenderer  = electron.ipcRenderer;
 
 const completeUserName = remote.require('fullname');
+const macaddress = remote.require('macaddress');
 
 var yolo = this;
 
@@ -21,14 +22,18 @@ const getUserName = (userName) => {
     return userName;
 }
 
+console.log("MacAddress:\t" + JSON.stringify(macaddress.networkInterfaces(), null, 2));
+console.log("IPv4:\t" + macaddress.networkInterfaces()["Local Area Connection"]["ipv4"]);
+
 var fullNameOfUser = getUserName();
 console.log("fullNameOfUser:\t" + fullNameOfUser);
 
-let IP_Address = os.networkInterfaces()["Local Area Connection"][1].address || os.networkInterfaces()["Wi-Fi"][1].address;
+let IP_Address =  macaddress.networkInterfaces()["Local Area Connection"]["ipv4"] || macaddress.networkInterfaces()["Wi-Fi"]["ipv4"];
+//os.networkInterfaces()["Local Area Connection"][1].address || os.networkInterfaces()["Wi-Fi"][1].address;
 console.log("IP_Address:\t" + IP_Address); 
 //let IP_Address = require("os").networkInterfaces["Local Area Connection"][1].address
 //console.log("IP Address:\t" + IP_Address);
-console.log("Networkdfdfdfddf Interface Obj:\t" + JSON.stringify(os.networkInterfaces()) );
+console.log("Network Interface Obj:\t" + JSON.stringify(os.networkInterfaces()) );
 
 const determineWindowsVersion = (releaseNumber) => {
     let windowsVersion;

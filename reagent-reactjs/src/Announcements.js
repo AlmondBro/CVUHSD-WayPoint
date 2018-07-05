@@ -3,7 +3,9 @@ import electronFetch from "electron-fetch";
 import { twitterHeader, options } from "./environment-variables.js";
 const fetchTimeline = require('fetch-timeline');
 //import { http } from "https";
-var http = require("https");
+//var http = require("https");
+var $ = require("jquery");
+var Twitter = require('twitter');
 
 class Annoucements extends Component {
     constructor() {
@@ -14,10 +16,25 @@ class Annoucements extends Component {
     } //end constructor() method
 
     FetchAPI() {
-       /*fetch("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=cvuhsdnews&count=10&exclude_replies", twitterHeader).then(results => {
+        /*  var client = new Twitter({
+            consumer_key: 'qJerGzOGCdesoxK58myYJKk5R',
+            consumer_secret: 'xC0uP0g8EN0qD9r4WDytDKfTX4zEL7UscsBHbdHn4fKpdx0CV9',
+            access_token_key: '1009812887542480897-Xo6SIpvFc6CuWvTJIwERNTZVIvT2nb',
+            access_token_secret: 'RQ0ZdeHHxgeD8J3Php18n78rxDK8PN1oMZslwAnJKGowP'
+          });
+
+          var params = {screen_name: 'cvuhsdnews'};
+            client.get('statuses/user_timeline', params, function(error, tweets, response) {
+                console.log("Twitter NPM");
+                if (!error) {
+                    console.log(tweets);
+                }
+            });*/
+            
+       fetch("https://cryptic-headland-94862.herokuapp.com/https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=cvuhsdnews&count=10&exclude_replies", twitterHeader).then(results => {
             return results.json();
         }).then(data => {
-            let annoucementTweets = data.results.map( (tweets)   => {
+            let annoucementTweets = data.results.map( (tweets) => {
                 console.log("Tweets:\t" + tweets)
                 return tweets.toString();
             })
@@ -27,10 +44,10 @@ class Annoucements extends Component {
                 // This is where you run code if the server returns any errors
              }));
             console.log("State:" + annoucementTweets );
-        }); */
+        }); 
 
         /*
-        electronFetch("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=cvuhsdnews&count=10&exclude_replies", {
+        electronFetch("https://cryptic-headland-94862.herokuapp.com/https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=cvuhsdnews&count=10&exclude_replies", {
             method: "GET",
             withCredentials: true,
             credentials: "include",
@@ -53,8 +70,8 @@ class Annoucements extends Component {
             password: undefined // When running on Electron behind an authenticated HTTP proxy, password to use to authenticate
         })
             .then(res => res.text())
-            .then(body => console.log(body));  */
-
+            .then(body => console.log(body)); 
+        */
         /*
         var data = null;
          var xhr = new XMLHttpRequest();
@@ -66,13 +83,12 @@ class Annoucements extends Component {
         }
         });
 
-        xhr.open("GET", "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=cvuhsdnews&count=10&exclude_replies=");
+        xhr.open("GET", "https://cryptic-headland-94862.herokuapp.com/https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=cvuhsdnews&count=10&exclude_replies");
         xhr.setRequestHeader("Authorization", "OAuth oauth_consumer_key=\\\"qJerGzOGCdesoxK58myYJKk5R\\\",oauth_token=\\\"1009812887542480897-Xo6SIpvFc6CuWvTJIwERNTZVIvT2nb\\\",oauth_signature_method=\\\"HMAC-SHA1\\\",oauth_timestamp=\\\"1529937082\\\",oauth_nonce=\\\"W1e5hvBg9rc\\\",oauth_version=\\\"1.0\\\",oauth_signature=\\\"n62S2b6kiM9S9st3SIehBIXfHV8%3D\\\"");
         xhr.setRequestHeader("Cache-Control", "no-cache");
         xhr.setRequestHeader("Postman-Token", "3fd18140-39cc-46c0-b92e-d7989ef69983");
 
-        xhr.send(data); */
-        /*
+        xhr.send(data); 
         var options = options; 
         var req = http.request(options, function (res) {
             var chunks = [];
@@ -88,7 +104,7 @@ class Annoucements extends Component {
           });
           
           req.end(); */
-
+          /*
           const params = {
             screenName: 'cvuhsdnews',
             count: 200
@@ -98,18 +114,18 @@ class Annoucements extends Component {
             credentials: {
               consumerKey: "qJerGzOGCdesoxK58myYJKk5R",
               consumerSecret: "xC0uP0g8EN0qD9r4WDytDKfTX4zEL7UscsBHbdHn4fKpdx0CV9",
-              accessToken: " 1009812887542480897-Xo6SIpvFc6CuWvTJIwERNTZVIvT2nb",
+              accessToken: "1009812887542480897-Xo6SIpvFc6CuWvTJIwERNTZVIvT2nb",
               accessTokenSecret: "RQ0ZdeHHxgeD8J3Php18n78rxDK8PN1oMZslwAnJKGowP"
             },
             limit: 3200,
             limitDays: 7
           }
           
-          const stream = fetchTimeline(params, opts) // => Readable Stream
+          const stream = fetchTimeline(params, opts); // => Readable Stream
           
           stream.on('data', (tweet, index) => {
             console.log(`#${++index} ${tweet.text}`)
-          })
+          }); */
     } 
 
     componentDidMount() {
