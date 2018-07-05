@@ -6,14 +6,23 @@ const BrowserWindow = electron.BrowserWindow;
 
 const path = require('path');
 const url = require('url');
-
+const cmd=require('node-cmd');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
+require('devtron').install();
+
 function createWindow() {
     // Create the browser window.
-    mainWindow = new BrowserWindow({width: 376, height: 700, frame: false, fullscreen: false, resizable: false, nodeIntegration: true});
+    mainWindow = new BrowserWindow({
+        width: 376, 
+        height: 700, 
+        frame: false, fullscreen: false, 
+        resizable: false, 
+        nodeIntegration: true,
+        icon: "../public/img/wp-icon-grey.png"
+    });
 
     // and load the index.html of the app.
     mainWindow.loadURL('http://localhost:3000');
