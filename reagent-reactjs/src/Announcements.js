@@ -4,8 +4,10 @@ import { twitterHeader, options } from "./environment-variables.js";
 const fetchTimeline = require('fetch-timeline');
 //import { http } from "https";
 //var http = require("https");
+
 var $ = require("jquery");
 var Twitter = require('twitter');
+var exec = require('child_process').exec;
 
 class Annoucements extends Component {
     constructor() {
@@ -14,6 +16,51 @@ class Annoucements extends Component {
             announcements: []
         };
     } //end constructor() method
+
+   /* runCommands() {
+        console.log("Wi-Fi Magic click");
+
+
+
+        cmd.get(
+            'netsh winsock reset',
+            function(err, data, stderr){
+                console.log('netsh winsock reset', data);
+            }
+        ); 
+
+        cmd.get(
+            'netsh int ip reset',
+            function(err, data, stderr){
+                console.log('netsh int ip reset', data);
+            }
+        ); 
+
+        cmd.get(
+            'ipconfig /release',
+            function(err, data, stderr){
+                console.log('ipconfig /release', data);
+            }
+        ); 
+
+        cmd.get(
+            'ipconfig /renew',
+            function(err, data, stderr){
+                console.log('ipconfig /renew', data);
+            }
+        ); 
+
+        cmd.get(
+            'ipconfig /flushdns',
+            function(err, data, stderr){
+                console.log('ipconfig /flushdns', data);
+            }
+        ); 
+    } */
+
+    componentDidMount() {
+        //this.runCommands();
+    }  
 
     FetchAPI() {
         /*  var client = new Twitter({
@@ -128,9 +175,10 @@ class Annoucements extends Component {
           }); */
     } 
 
+    /*
     componentDidMount() {
         this.FetchAPI();
-    }
+    } */
 
         render() {
             return  ( 

@@ -28,7 +28,6 @@ window.onload = function() {
         fileUpload_inputField.value =  fileUpload_valueArray[fileUpload_valueArray.length - 1];
     }
 
-    
     function minimizeAndClose() { 
         const remote = window.require('electron').remote;
         document.getElementById("button-minimize").addEventListener("click", function (e) {
@@ -46,27 +45,6 @@ window.onload = function() {
         if (document.readyState == "complete") {
             minimizeAndClose(); 
         }
-    }
-
-    minimizeAndClose();
-
-    if (document.body.contains(document.getElementById("wiFi-magicButton") ) ) {
-        console.log("Wi-Fi Magic exists");
-
-        document.getElementById("wiFi-magicButton").addEventListener("click",  function() {
-            const electron = window.require("electron");
-            const remote = window.require("electron").remote;
-            const cmd = require('node-cmd');    
-    
-            console.log("Wi-Fi Magic click");
-    
-            cmd.get(
-                'netsh winsock reset',
-                function(err, data, stderr){
-                    console.log('netsh winsock reset', data);
-                }
-            ); 
-        });
     }
 
     function SimpleBarCode() {

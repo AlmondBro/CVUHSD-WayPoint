@@ -15,7 +15,8 @@ class AutoFixTools extends Component {
                                     icon="fas fa-wifi" 
                                     title="Wi-Fi Magic"
                                     imgSrc="./img/icon-wifi.png" 
-                                    id="wiFi-magicButton" />
+                                    id="wiFi-magicButton" 
+                                    onClick=""/>
 
                     <SupportSquare pageLink="#" 
                             icon="fas fa-desktop" 

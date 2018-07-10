@@ -18,7 +18,8 @@ function createWindow() {
         height: 700, 
         frame: false, fullscreen: false, 
         resizable: false, 
-        nodeIntegration: true,
+        nodeIntegration: false,
+        webviewTag: false,
         icon: path.join(__dirname, '../public/img/wp-icon-grey.png')
     });
 
