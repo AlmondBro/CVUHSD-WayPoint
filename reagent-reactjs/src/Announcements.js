@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import electronFetch from "electron-fetch";
 import { twitterHeader, options } from "./environment-variables.js";
+import corsAnywhere  from "./server.js"; 
 const fetchTimeline = require('fetch-timeline');
 //import { http } from "https";
 //var http = require("https");
@@ -17,53 +18,8 @@ class Annoucements extends Component {
         };
     } //end constructor() method
 
-   /* runCommands() {
-        console.log("Wi-Fi Magic click");
-
-
-
-        cmd.get(
-            'netsh winsock reset',
-            function(err, data, stderr){
-                console.log('netsh winsock reset', data);
-            }
-        ); 
-
-        cmd.get(
-            'netsh int ip reset',
-            function(err, data, stderr){
-                console.log('netsh int ip reset', data);
-            }
-        ); 
-
-        cmd.get(
-            'ipconfig /release',
-            function(err, data, stderr){
-                console.log('ipconfig /release', data);
-            }
-        ); 
-
-        cmd.get(
-            'ipconfig /renew',
-            function(err, data, stderr){
-                console.log('ipconfig /renew', data);
-            }
-        ); 
-
-        cmd.get(
-            'ipconfig /flushdns',
-            function(err, data, stderr){
-                console.log('ipconfig /flushdns', data);
-            }
-        ); 
-    } */
-
-    componentDidMount() {
-        //this.runCommands();
-    }  
-
     FetchAPI() {
-        /*  var client = new Twitter({
+        /*var client = new Twitter({
             consumer_key: 'qJerGzOGCdesoxK58myYJKk5R',
             consumer_secret: 'xC0uP0g8EN0qD9r4WDytDKfTX4zEL7UscsBHbdHn4fKpdx0CV9',
             access_token_key: '1009812887542480897-Xo6SIpvFc6CuWvTJIwERNTZVIvT2nb',
@@ -76,11 +32,12 @@ class Annoucements extends Component {
                 if (!error) {
                     console.log(tweets);
                 }
-            });*/
-            
-       fetch("https://cryptic-headland-94862.herokuapp.com/https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=cvuhsdnews&count=10&exclude_replies", twitterHeader).then(results => {
+            }); */
+        
+       fetch("http://localhost:4000/https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=cvuhsdnews&count=10&exclude_replies", twitterHeader).then(results => {
             return results.json();
         }).then(data => {
+            console.log("Data:\t:" + JSON.stringify(data));
             let annoucementTweets = data.results.map( (tweets) => {
                 console.log("Tweets:\t" + tweets)
                 return tweets.toString();
@@ -175,12 +132,12 @@ class Annoucements extends Component {
           }); */
     } 
 
-    /*
     componentDidMount() {
+        corsAnywhere();
         this.FetchAPI();
-    } */
+    }  
 
-        render() {
+    render() {
             return  ( 
                 <section className="announcements-list">
                     <img src="img/gallery-icon.png" className="img-responsive" alt="Gallery icon" />
@@ -196,6 +153,8 @@ class Annoucements extends Component {
         }
 } //end Annoucements class
 
+export default Annoucements;
+
 // const annoucements = (props) => {
 //     //Future array to hold the announcements titles and text. Could be populated via an API call to twitter.
 //     var infoArray = [];
@@ -208,4 +167,3 @@ class Annoucements extends Component {
 //     return generateAnnouncements();
 // };
 
-export default Annoucements;
