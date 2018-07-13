@@ -9,6 +9,7 @@ import SubmitTicket from "./SubmitTicket.js";
 // Import Pages
 import Home from "./Home.js";
 import WiFiMagic from "./WiFiMagic.js";
+import ProjectorMagic from "./ProjectorMagic.js";
 import QuickFixTutorials from "./QuickFixTutorials.js";
 import HelpDesk from "./HelpDesk.js";
 import AutoFixTools from "./AutoFixTools.js";
@@ -35,6 +36,7 @@ class App extends Component {
                 <Route path="/quickFix-tutorials" component={QuickFixTutorials} />
                 <Route path="/call-helpdesk" component={HelpDesk} />
                 <Route path="/wiFiMagic" component={WiFiMagic} /> 
+                <Route path="/ProjectorMagic" component={ProjectorMagic} />
                 <Route path="/staffPortal" component={StaffPortal} /> 
                 <Route path="/announcements" component={Announcements} /> 
               </Switch>  

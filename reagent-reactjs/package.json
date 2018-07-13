@@ -15,7 +15,10 @@
         "fullname": "^3.3.0",
         "jquery": "^3.3.1",
         "macaddress": "^0.2.9",
+        "mocha": "^5.2.0",
         "node-cmd": "^3.0.0",
+        "oauth": "^0.9.15",
+        "oauth-1.0a": "^2.2.4",
         "os": "^0.1.1",
         "prop-types": "^15.6.2",
         "react": "^16.2.0",
@@ -24,6 +27,7 @@
         "react-router": "^4.2.0",
         "react-router-dom": "^4.2.2",
         "react-scripts": "1.1.1",
+        "request": "^2.87.0",
         "twitter": "^1.7.1",
         "username": "^3.0.0"
     },

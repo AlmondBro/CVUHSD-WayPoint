@@ -10,6 +10,15 @@ var $ = require("jquery");
 var Twitter = require('twitter');
 var exec = require('child_process').exec;
 
+var mocha = require('mocha');
+var describe = mocha.describe;
+var it = mocha.it;
+//var assert = require('chai').assert;
+
+var request = require('request');
+var crypto = require('crypto');
+var OAuth = require('oauth-1.0a');
+
 class Annoucements extends Component {
     constructor() {
         super();
@@ -34,7 +43,35 @@ class Annoucements extends Component {
                 }
             }); */
         
-       fetch("http://localhost:4000/https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=cvuhsdnews&count=10&exclude_replies", twitterHeader).then(results => {
+    const oauth = OAuth({
+        consumer: { key: 'yQpPcDCyb7cDctARjpIFG1fyK', secret: '4soLOc6J9MFW1fuW1GHCIwwMAwAgxwwOMkt8nthpuaRcQZHAPY'},
+        signature_method: 'HMAC-SHA1',
+        hash_function(base_string, key) {
+            return crypto.createHmac('sha1', key).update(base_string).digest('base64');
+        }
+        });
+
+        const request_data = {
+            url: 'http://localhost:4000/https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=cvuhsdnews&count=10&exclude_replies',
+            method: 'GET'
+          };
+
+        const token = {
+            key: '1009812887542480897-Xo6SIpvFc6CuWvTJIwERNTZVIvT2nb',
+            secret: 'RQ0ZdeHHxgeD8J3Php18n78rxDK8PN1oMZslwAnJKGowP'
+          };
+        
+          var request = require('request');
+        request({
+            url: request_data.url,
+            method: request_data.method,
+            form: request_data.data,
+            headers: oauth.toHeader(oauth.authorize(request_data, token))
+        }, function(error, response, body) {
+            console.log(response.body);
+        });
+
+       /*fetch("http://localhost:4000/https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=cvuhsdnews&count=10&exclude_replies", oauth.toHeader(oauth_data)).then(results => {
             return results.json();
         }).then(data => {
             console.log("Data:\t:" + JSON.stringify(data));
@@ -48,7 +85,7 @@ class Annoucements extends Component {
                 // This is where you run code if the server returns any errors
              }));
             console.log("State:" + annoucementTweets );
-        }); 
+        }); */
 
         /*
         electronFetch("https://cryptic-headland-94862.herokuapp.com/https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=cvuhsdnews&count=10&exclude_replies", {
@@ -132,9 +169,37 @@ class Annoucements extends Component {
           }); */
     } 
 
+    openAuth() {
+      /*  describe('OAuth1.0',function(){
+            var OAuth = require('oauth');
+           
+            it('tests trends Twitter API v1.1',function(done){
+              var oauth = new OAuth.OAuth(
+                'https://api.twitter.com/oauth/request_token',
+                'https://api.twitter.com/oauth/access_token',
+                'yQpPcDCyb7cDctARjpIFG1fyK',
+                '4soLOc6J9MFW1fuW1GHCIwwMAwAgxwwOMkt8nthpuaRcQZHAPY',
+                '1.0A',
+                null,
+                'HMAC-SHA1'
+              );
+              oauth.get(
+                'https://api.twitter.com/1.1/trends/place.json?id=23424977',
+                '1009812887542480897-Xo6SIpvFc6CuWvTJIwERNTZVIvT2nb', //test user token
+                'RQ0ZdeHHxgeD8J3Php18n78rxDK8PN1oMZslwAnJKGowP', //test user secret            
+                function (e, data, res){
+                  if (e) console.error(e);        
+                  console.log(require('util').inspect(data));
+                  done();      
+                });    
+            });
+          });*/
+    }
+
     componentDidMount() {
         corsAnywhere();
         this.FetchAPI();
+        //this.openAuth();
     }  
 
     render() {

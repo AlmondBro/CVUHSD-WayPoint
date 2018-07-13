@@ -18,7 +18,7 @@ class AutoFixTools extends Component {
                                     id="wiFi-magicButton" 
                                     onClick=""/>
 
-                    <SupportSquare pageLink="#" 
+                    <SupportSquare pageLink="/ProjectorMagic" 
                             icon="fas fa-desktop" 
                             title="Projector Magic"
                             imgSrc="./img/icon-projector.png" />

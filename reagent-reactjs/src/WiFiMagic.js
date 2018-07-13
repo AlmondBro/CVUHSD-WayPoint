@@ -2,7 +2,6 @@ import React, {Component} from "react";
 const electron = window.require("electron");
 const remote = electron.remote;
 const cmd = remote.require('node-cmd');   
-
 export default class WiFiMagic extends Component {
     constructor(props) {
         super(props);
