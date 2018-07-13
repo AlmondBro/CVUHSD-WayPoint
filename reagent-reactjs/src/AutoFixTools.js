@@ -9,14 +9,16 @@ class AutoFixTools extends Component {
     render() {
         console.log("Props:\t\n"+this.props);
         return( <p>AutoFix Tools:</p>,
-                <div class="support-squares-container">
+                <div className="support-squares-container">
                     {/* {<Route path={this.props.match.url+"/wiFiMagic"} component={WiFiMagic} />} */}
                     <SupportSquare pageLink="/wiFiMagic" 
                                     icon="fas fa-wifi" 
                                     title="Wi-Fi Magic"
-                                    imgSrc="./img/icon-wifi.png" />
+                                    imgSrc="./img/icon-wifi.png" 
+                                    id="wiFi-magicButton" 
+                                    onClick=""/>
 
-                    <SupportSquare pageLink="#" 
+                    <SupportSquare pageLink="/ProjectorMagic" 
                             icon="fas fa-desktop" 
                             title="Projector Magic"
                             imgSrc="./img/icon-projector.png" />

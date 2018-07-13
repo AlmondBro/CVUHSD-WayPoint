@@ -5,30 +5,50 @@
     "private": true,
     "main": "./src/electron-starter.js",
     "dependencies": {
+        "axios": "^0.18.0",
+        "cors": "^2.8.4",
+        "cors-anywhere": "^0.4.1",
         "electron": "^2.0.2",
+        "electron-fetch": "^1.1.0",
+        "express": "^4.16.3",
+        "fetch-timeline": "^1.1.4",
         "fullname": "^3.3.0",
+        "jquery": "^3.3.1",
+        "macaddress": "^0.2.9",
+        "mocha": "^5.2.0",
+        "node-cmd": "^3.0.0",
+        "oauth": "^0.9.15",
+        "oauth-1.0a": "^2.2.4",
         "os": "^0.1.1",
-        "prop-types": "^15.6.1",
+        "prop-types": "^15.6.2",
         "react": "^16.2.0",
+        "react-axios": "^2.0.0",
         "react-dom": "^16.2.0",
         "react-router": "^4.2.0",
         "react-router-dom": "^4.2.2",
         "react-scripts": "1.1.1",
+        "request": "^2.87.0",
+        "twitter": "^1.7.1",
         "username": "^3.0.0"
     },
     "scripts": {
-        "start": "react-scripts start",
+        "start": "set BROWSER=nul && react-scripts start",
+        "server": "node src/server.js",
         "build": "react-scripts build",
         "test": "react-scripts test --env=jsdom",
         "eject": "react-scripts eject",
         "electron": "electron .",
-        "dev": "nf start -p 3000"
+        "dev": "nf start -p 3000",
+        "real": "concurrently \"npm run server\" \"npm run dev\""
     },
     "devDependencies": {
         "babel-cli": "^6.26.0",
         "babel-polyfill": "^6.26.0",
         "babel-preset-env": "^1.6.1",
         "babel-preset-react": "^6.24.1",
+        "concurrently": "^3.6.0",
+        "devtron": "^1.4.0",
+        "electron-react-devtools": "^0.5.3",
         "eslint-plugin-react": "^7.7.0",
         "foreman": "^3.0.0",
         "serve": "^6.5.3"
@@ -38,5 +58,6 @@
     ],
     "keywords": [],
     "author": "Juan David Lopez Londono and Kevin Erkelenz",
-    "homepage": "./"
+    "homepage": "./",
+    "proxy": "http://localhost:4000"
 }

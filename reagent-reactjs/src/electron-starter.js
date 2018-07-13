@@ -6,14 +6,22 @@ const BrowserWindow = electron.BrowserWindow;
 
 const path = require('path');
 const url = require('url');
-
+const cmd = require('node-cmd');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
 function createWindow() {
     // Create the browser window.
-    mainWindow = new BrowserWindow({width: 376, height: 700, frame: false, fullscreen: false, resizable: false});
+    mainWindow = new BrowserWindow({
+        width: 376, 
+        height: 700, 
+        frame: false, fullscreen: false, 
+        resizable: false, 
+        nodeIntegration: false,
+        webviewTag: false,
+        icon: path.join(__dirname, '../public/img/wp-icon-grey.png')
+    });
 
     // and load the index.html of the app.
     mainWindow.loadURL('http://localhost:3000');
@@ -27,7 +35,9 @@ function createWindow() {
         // in an array if your app supports multi windows, this is the time
         // when you should delete the corresponding element.
         mainWindow = null;
-    })
+    });
+
+    require('devtron').install();
 }
 
 // This method will be called when Electron has finished
@@ -54,8 +64,8 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-window.eval = global.eval = function () {
-    throw new Error(`Sorry, this app does not support window.eval().`)
-  }
+/* window.eval = global.eval = function () {
+   throw new Error(`Sorry, this app does not support window.eval().`)
+  } */
 
   
