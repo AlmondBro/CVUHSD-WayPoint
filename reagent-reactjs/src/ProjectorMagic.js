@@ -5,10 +5,14 @@ class ProjectorMagic extends Component {
     constructor(props) {
         super(props);
         this.projectorMagicIcon = "./img/icon-projector.png";
-        }  
-      }
+        this.state = {
+            message: ""
+        };
+    }  
 
-      extendDisplay() {
+    extendDisplay() {
+        console.log("Extend display");
+
         const electron = window.require("electron");
         const remote = electron.remote;
         const cmd = remote.require('node-cmd'); 
@@ -18,12 +22,14 @@ class ProjectorMagic extends Component {
         cmd.get(
             displaySwitchExePath,
             function(err, data, stderr){
-                console.log('Clone:\t', data);
+                console.log('Extend:\t', data);
             }
         );
     } 
 
-      cloneDisplay() {
+    cloneDisplay() {
+        console.log("Clone display");
+
         const electron = window.require("electron");
         const remote = electron.remote;
         const cmd = remote.require('node-cmd'); 
@@ -40,22 +46,22 @@ class ProjectorMagic extends Component {
 
     componentDidMount() {
         console.log("Projector Magic component");
-        document.getElementById("button-extend").addEventListener("click", extendDisplay);
-        document.getElementById("button-clone").addEventListener("click", cloneDisplay);
+        document.getElementById("button-extend").addEventListener("click", this.extendDisplay);
+        document.getElementById("button-clone").addEventListener("click", this.cloneDisplay);
     }
 
     render() {
         return (
             <section className="wiFi-magic">
                 {/* <img src={this.projectorMagicIcon} className="img-responsive wiggle" id="wifiMagic-fixingIcon" /> */}
-                <button id="button-extend">Extend</button>
-                <button id="button-clone">Clone</button>
+                <button className="redToDarkRedgradient waypoint-Button" id="button-extend">Extend</button>
+                <button className="redToDarkRedgradient waypoint-Button" id="button-clone">Clone</button>
                 <p>Attempting repairs...</p>
                 <p>{this.state.message}</p>
             </section>
-            );
+        );
     }
-
 }
+
 
 export default ProjectorMagic;

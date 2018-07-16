@@ -404,6 +404,18 @@ main header .notificationIcon i {
     top: 5px;
 }
 
+.waypoint-Button {
+    position: relative;
+    display: inline-block;
+    margin: 0 1%;
+    border: 0;
+    padding: 0.5em;
+    color: white;
+    border-radius: 0.25em;
+    height: 2em;
+    text-align: center;
+}
+
 #clear-button {
     position: relative;
     display: inline-block;
@@ -418,6 +430,7 @@ main header .notificationIcon i {
     text-align: center;
 }
 
+.waypoint-Button:hover,
 #clear-button:hover,
 #clear-button:active {
     -webkit-filter: grayscale(30%);
@@ -440,7 +453,6 @@ div.messageAndGoBack-container {
 }
 
 a.goBack-container {
-    display: inline-block;
     position: relative;
     /* right: 3.2em; */
     color: white;
