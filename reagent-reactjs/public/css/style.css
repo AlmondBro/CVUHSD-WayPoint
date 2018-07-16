@@ -799,24 +799,25 @@ span.currentUserName {
     font-weight: bold;
 }
 
+
 /* .currentUserName {
     
 } */
+
 
 /* .currentUserName span {
     display: inline-block;
 } */
 
- .USER-container { 
-    /* align-items: center; */
-    /* display: block; */
+.USER-container {
     position: absolute;
     margin: 0 auto;
     background-color: #2b2b2b;
     top: 12px;
-    /* right: 20px; */
+    left: 50%;
     height: 33px;
-    width: 250px;
+    width: 309px;
+    transform: translateX(-50%);
 }
 
 .OS-platform span {
@@ -846,7 +847,6 @@ p.IP-message {
     transform: translate(-50%, -50%);
     display: inline; */
     display: inline-block;
-    
 }
 
 .IP-container {
@@ -856,7 +856,7 @@ p.IP-message {
     background-color: #2B2B2B;
     width: 150px;
     height: 75px;
-    vertical-align: middle; 
+    vertical-align: middle;
 }
 
 .IP-container p {
@@ -865,12 +865,11 @@ p.IP-message {
 }
 
 p.IP-message span {
-    
     /* position: absolute;
 top: 90%;
 left: 50%;
 transform: translate(-50%, -50%); */
-font-weight: bold;
+    font-weight: bold;
 }
 
 p.cv-way {
