@@ -73,6 +73,14 @@ html {
     height: 25px;
 }
 
+#page-title-container {
+    display: block;
+    position: relative;
+    top: 1px;
+    right: 8px;
+    /* line-height: 0px; */
+}
+
 #page-title {
     font-weight: normal;
     font-size: 1em;
@@ -791,31 +799,85 @@ span.currentUserName {
     font-weight: bold;
 }
 
+/* .currentUserName {
+    
+} */
+
+/* .currentUserName span {
+    display: inline-block;
+} */
+
+ .USER-container { 
+    /* align-items: center; */
+    /* display: block; */
+    position: absolute;
+    margin: 0 auto;
+    background-color: #2b2b2b;
+    top: 12px;
+    /* right: 20px; */
+    height: 33px;
+    width: 250px;
+}
+
 .OS-platform span {
     font-weight: bold;
+    display: block;
+}
+
+.OS-container {
+    display: inline-block;
+    position: relative;
+    bottom: 20px;
+    left: 80px;
+    background-color: #2B2B2B;
+    width: 150px;
+    height: 75px;
+}
+
+.OS-container p {
+    position: relative;
+    top: 10px;
 }
 
 p.IP-message {
     /* position: absolute;
-top: 90%;
-left: 50%;
-transform: translate(-50%, -50%);
-display: inline; */
-    margin: 5% auto;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline; */
+    display: inline-block;
+    
+}
+
+.IP-container {
+    position: relative;
+    top: 55px;
+    right: 78px;
+    background-color: #2B2B2B;
+    width: 150px;
+    height: 75px;
+    vertical-align: middle; 
+}
+
+.IP-container p {
+    position: relative;
+    top: 10px;
 }
 
 p.IP-message span {
-    display: inline;
-    font-weight: bold;
+    
     /* position: absolute;
 top: 90%;
 left: 50%;
 transform: translate(-50%, -50%); */
+font-weight: bold;
 }
 
 p.cv-way {
     position: relative;
-    display: inline-block;
+    /* top: 0px; */
+    bottom: 10px;
+    /* display: block; */
     text-align: center;
     color: gray;
     font-size: 11px;
