@@ -187,6 +187,7 @@ html {
     display: block;
     margin: 0 auto;
     top: 1px;
+    /* right: 1px; */
 }
 
 #button-feedback p {
@@ -802,13 +803,16 @@ span.currentUserName {
  .USER-container { 
     /* align-items: center; */
     /* display: block; */
-    position: absolute;
+    /* position: absolute; */
+    position: relative;
     margin: 0 auto;
     background-color: #2b2b2b;
-    top: 12px;
+    /* top: 46px; */
+    top: 46px;
     /* right: 20px; */
     height: 33px;
-    width: 250px;
+    width: 310px;
+    line-height: 31px;
 }
 
 .OS-platform span {
@@ -819,16 +823,19 @@ span.currentUserName {
 .OS-container {
     display: inline-block;
     position: relative;
-    bottom: 20px;
+    /* bottom: 19px; */
+    top: 1px;
     left: 80px;
     background-color: #2B2B2B;
     width: 150px;
-    height: 75px;
+    height: 55px;
+    line-height: 20px;
 }
 
 .OS-container p {
     position: relative;
-    top: 10px;
+    /* top: 10px; */
+    bottom: 3px;
 }
 
 p.IP-message {
@@ -843,17 +850,17 @@ p.IP-message {
 
 .IP-container {
     position: relative;
-    top: 55px;
-    right: 78px;
+    top: 56px;
+    /* right: 78px; */
     background-color: #2B2B2B;
     width: 150px;
-    height: 75px;
-    vertical-align: middle; 
+    height: 55px;
+    line-height: 20px;
 }
 
 .IP-container p {
     position: relative;
-    top: 10px;
+    bottom: 3px;
 }
 
 p.IP-message span {
@@ -1215,7 +1222,7 @@ form p.fieldMargin {
     display: flex;
 }
 
-.compass-rotate {
+.needle-rotate {
     -webkit-animation: rotation 3s infinite linear;
     animation-direction: alternate;
     animation-timing-function: ease-in-out;
@@ -1227,17 +1234,25 @@ form p.fieldMargin {
     height: 120px;
     margin: 0 auto;
     z-index: 10;
-    bottom: 70px;
+    /* bottom: 70px; */
+    top: 50px;
 }
 
 #compass-body {
-    display: inline-block;
+    display: block;
     position: relative;
     width: 175px;
     z-index: 5;
     margin: 0 auto;
-    padding-bottom: 20px;
-    top: 100px;
+    /* padding-bottom: 20px; */
+    /* top: 100px; */
+    bottom: 97px;
+}
+
+#compass-message {
+    position: relative;
+    display: block;
+    bottom: 100px;
 }
 
 @-webkit-keyframes rotation {
@@ -1245,6 +1260,6 @@ form p.fieldMargin {
             -webkit-transform: rotate(0deg);
     }
     to {
-            -webkit-transform: rotate(959deg);
+            -webkit-transform: rotate(1080deg);
     }
 }

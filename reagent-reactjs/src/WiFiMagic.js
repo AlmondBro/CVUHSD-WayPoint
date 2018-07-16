@@ -7,9 +7,9 @@ const wifiMagic = () => {
 
     return(
         <section class="wiFi-magic">
+            <img src={compassNeedle} className="needle-rotate" id="compass-needle" />
             <img src={compassBody} className="" id="compass-body" />
-            <img src={compassNeedle} className="compass-rotate" id="compass-needle" />
-            <p>Finding the CV-Way...</p>
+            <p id="compass-message">Finding the CV-Way...</p>
         </section>
         );
 };

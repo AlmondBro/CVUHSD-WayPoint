@@ -13,7 +13,7 @@ class AutoFixTools extends Component {
                     {/* {<Route path={this.props.match.url+"/wiFiMagic"} component={WiFiMagic} />} */}
                     <SupportSquare pageLink="/wiFiMagic" 
                                     icon="fas fa-wifi" 
-                                    title="Wi-Fi Magic"
+                                    title="WiFi Magic"
                                     imgSrc="./img/icon-wifi.png" />
 
                     <SupportSquare pageLink="#" 
