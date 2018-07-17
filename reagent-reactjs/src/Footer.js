@@ -26,8 +26,7 @@ class Footer extends Component {
         completeUserName().then(name => {
             console.log("Complete userName:\t" + name);
             this.setState({
-                userName: name,
-                
+                userName: name
             });
             //=> 'Sindre Sorhus'
         });

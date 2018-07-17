@@ -19,7 +19,8 @@ class WiFiMagic extends Component {
         cmd.get(
             'netsh winsock reset',
             (err, data, stderr) => {
-                console.log('netsh winsock reset', data);
+                console.log('netsh winsock reset:\t', data);
+                console.log('netsh winsock reset error:\t', err);
                 this.setState({
                     message: "Resetting winsock..."
                 }); 
@@ -30,7 +31,8 @@ class WiFiMagic extends Component {
             cmd.get(
                 'netsh int ip reset',
                 (err, data, stderr) => {
-                    console.log('netsh int ip reset', data);
+                    console.log('netsh int ip reset:\t', data);
+                    console.log('netsh int ip reset err:\t', err);
                     this.setState({
                         message: "Resetting Netsh..."
                     }); 
@@ -42,7 +44,8 @@ class WiFiMagic extends Component {
             cmd.get(
                 'ipconfig /release',
                 (err, data, stderr) => {
-                    console.log('ipconfig /release', data);
+                    console.log('ipconfig /release:\t', data);
+                    console.log('ipconfig /release err:\t', err);
                     this.setState({
                         message: "Releasing ipconfig..."
                     }); 
@@ -54,7 +57,8 @@ class WiFiMagic extends Component {
             cmd.get(
                 'ipconfig /renew',
                 (err, data, stderr) => {
-                    console.log('ipconfig /renew', data);
+                    console.log('ipconfig /renew:\t', data);
+                    console.log('ipconfig /renew err:\t', err);
                     this.setState({
                         message: "Renewing ipconfig..."
                     }); 
@@ -66,7 +70,8 @@ class WiFiMagic extends Component {
             cmd.get(
                 'ipconfig /flushdns',
                 (err, data, stderr) => {
-                    console.log('ipconfig /flushdns', data);
+                    console.log('ipconfig /flushdns:\t', data);
+                    console.log('ipconfig /flushdns err:\t', err);
                     this.setState({
                         message: "Flushing DNS..."
                     }); 
