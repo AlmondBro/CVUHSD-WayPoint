@@ -31,6 +31,7 @@
         "twitter": "^1.7.1",
         "username": "^3.0.0"
     },
+
     "scripts": {
         "start": "set BROWSER=nul && react-scripts start",
         "server": "node src/server.js",

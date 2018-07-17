@@ -2,15 +2,17 @@ import React, {Component} from "react";
 const electron = window.require("electron");
 const remote = electron.remote;
 const cmd = remote.require('node-cmd');   
-export default class WiFiMagic extends Component {
+
+class WiFiMagic extends Component {
     constructor(props) {
         super(props);
         this.wifiIconSrc = "./img/icon-wifi.png";
+        this.compassNeedle = "./img/compass-needle.svg";
+        this.compassBody = "./img/compass-body.svg";
         this.state = {
             message: ""
         };
-        //this.state = {date: new Date()};
-      }
+    }
 
     fixWiFi() {
         cmd.get(
@@ -57,15 +59,16 @@ export default class WiFiMagic extends Component {
     }  
 
     render() {
-        return(
-            <section className="wiFi-magic">
-                <img src={this.wifiIconSrc} className="img-responsive wiggle" id="wifiMagic-fixingIcon" />
-                <p>Attempting repairs...</p>
-                <p>{this.state.message}</p>
+        return (
+            <section class="wiFi-magic">
+                <img src={this.compassNeedle} className="needle-rotate" id="compass-needle" />
+                <img src={this.compassBody} className="" id="compass-body" />
+                <p id="compass-message">Finding the CV-Way...</p>
             </section>
-            );
+        );
     }
     
 }
 
+export default WiFiMagic;
 

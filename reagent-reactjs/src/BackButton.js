@@ -17,7 +17,7 @@ class BackButton extends Component {
                     <img src="img/icon-back.png" id="back-icon" title="Go Back One Page" />
                     <p>Back</p>
                 </a>
-                <p className="optionMessage">Please select an option:</p>
+                {/* <p className="optionMessage">Please select an option:</p> */}
             </div>
         );
     }
