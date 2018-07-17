@@ -28,8 +28,7 @@
         "react-router-dom": "^4.2.2",
         "react-scripts": "1.1.1",
         "request": "^2.87.0",
-        "twitter": "^1.7.1",
-        "username": "^3.0.0"
+        "twitter": "^1.7.1"
     },
     "scripts": {
         "start": "set BROWSER=nul && react-scripts start",

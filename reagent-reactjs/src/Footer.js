@@ -4,10 +4,9 @@ const electron = window.require("electron");
 const remote = window.require("electron").remote;
 const os = remote.require("os");
 
-const completeUserName = remote.require('fullname');
-let macaddress = remote.require('macaddress');
-
-const username = remote.require('username');
+const completeUserName = remote.require("fullname");
+const macaddress = remote.require("macaddress");
+const username = remote.require("username");
 
 class Footer extends Component {
     constructor(props) {
@@ -17,9 +16,9 @@ class Footer extends Component {
             ipAddress: this.IP_Address
         };
         
-        this.IP_Address = os.networkInterfaces()["Ethernet"][1].address || os.networkInterfaces()["Wi-Fi"][1].address;
+       // this.IP_Address = os.networkInterfaces()["Ethernet"][1].address || os.networkInterfaces()["Wi-Fi"][1].address;
+        this.IP_Address = macaddress.networkInterfaces()["Local Area Connection"]["ipv4"] || macaddress.networkInterfaces()["Wi-Fi"]["ipv4"] || os.networkInterfaces()["Local Area Connection"][1].address || os.networkInterfaces()["Wi-Fi"][1].address || os.networkInterfaces()["Local Area Connection"][1].address || os.networkInterfaces()["Wi-Fi"][1].address;
         console.log("IP_Address:\t" + this.IP_Address); 
-        // this.IP_Address = macaddress.networkInterfaces()["Local Area Connection"]["ipv4"] || macaddress.networkInterfaces()["Wi-Fi"]["ipv4"] || os.networkInterfaces()["Local Area Connection"][1].address || os.networkInterfaces()["Wi-Fi"][1].address || os.networkInterfaces()["Local Area Connection"][1].address || os.networkInterfaces()["Wi-Fi"][1].address;
     }
 
     componentDidMount = () => { 
@@ -29,20 +28,13 @@ class Footer extends Component {
 
         completeUserName().then(name => {
             console.log("Complete userName:\t" + name);
-            this.setState({
-                userName: name
-            });
-            //=> 'Sindre Sorhus'
+            if (name != null || undefined || "") {
+                this.setState({
+                    userName: name
+                });
+            }
         }); 
-
-        username().then(username => {
-            console.log(username);
-            this.setState({
-                userName: username
-            });
-        });
-
-    }
+    } //end componentDidMount() 
 
     determineWindowsVersion = (releaseNumber) => {
         let windowsVersion;
@@ -51,12 +43,12 @@ class Footer extends Component {
             windowsVersion = "Windows 7"
         }
     
-        else  if (releaseNumberInt >= 8 ) {
+        else if (releaseNumberInt >= 8 ) {
             windowsVersion = "Windows 10"
         }
     
         return windowsVersion;
-    }
+    }  //end determineWindowsVersion() 
     
     render() {
         return (
@@ -67,7 +59,7 @@ class Footer extends Component {
                 <p className="cv-way">Powered by: The CV-Way</p>
             </footer>
         );
-    }
-}
+    } //end render()
+} //end class
 
 export default Footer;
