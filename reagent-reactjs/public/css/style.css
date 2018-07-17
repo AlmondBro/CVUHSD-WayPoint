@@ -170,7 +170,7 @@ html {
 }
 
 #button-feedback {
-    margin-right: 22px;
+    margin-right: 30px;
 }
 
 #button-close:hover {
@@ -182,7 +182,12 @@ html {
 }
 
 #button-feedback img {
-    width: 22px;
+    width: 20px;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    top: 1px;
+    /* right: 1px; */
 }
 
 #button-feedback p {
@@ -496,8 +501,8 @@ a.goBack-container img {
 a.goBack-container p {
     position: relative;
     display: inline-block;
-    right: 6px;
-    top: 2px;
+    right: 7px;
+    top: 3px;
     margin: 0;
     line-height: 25px;
 }
@@ -828,16 +833,19 @@ span.currentUserName {
 .OS-container {
     display: inline-block;
     position: relative;
-    bottom: 20px;
+    /* bottom: 19px; */
+    top: 1px;
     left: 80px;
     background-color: #2B2B2B;
     width: 150px;
-    height: 75px;
+    height: 55px;
+    line-height: 20px;
 }
 
 .OS-container p {
     position: relative;
-    top: 10px;
+    /* top: 10px; */
+    bottom: 3px;
 }
 
 p.IP-message {
@@ -851,17 +859,17 @@ p.IP-message {
 
 .IP-container {
     position: relative;
-    top: 55px;
+    top: 56px;
     right: 78px;
     background-color: #2B2B2B;
     width: 150px;
-    height: 75px;
-    vertical-align: middle;
+    height: 55px;
+    line-height: 20px;
 }
 
 .IP-container p {
     position: relative;
-    top: 10px;
+    bottom: 3px;
 }
 
 p.IP-message span {
@@ -874,7 +882,7 @@ transform: translate(-50%, -50%); */
 
 p.cv-way {
     position: relative;
-    /* top: 0px; */
+    top: 10px;
     bottom: 10px;
     /* display: block; */
     text-align: center;
@@ -1053,12 +1061,15 @@ form p.fieldMargin {
 }
 
 .wiFi-magic p {
+    margin: 0 auto;
+    padding: 25px;
+    display: block;
     font-size: 1em;
     font-weight: 100;
 }
 
 .wiggle {
-    animation: shake 1.5s cubic-bezier(.36, .07, .19, .97) infinite;
+    animation: shake 3s cubic-bezier(.36, .07, .19, .97) infinite;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     perspective: 1000px;
@@ -1217,4 +1228,46 @@ form p.fieldMargin {
 
 .flex {
     display: flex;
+}
+
+.needle-rotate {
+    -webkit-animation: rotation 3s infinite linear;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+}
+
+#compass-needle {
+    display: block;
+    position: relative;
+    height: 120px;
+    margin: 0 auto;
+    z-index: 10;
+    /* bottom: 70px; */
+    top: 50px;
+}
+
+#compass-body {
+    display: block;
+    position: relative;
+    width: 175px;
+    z-index: 5;
+    margin: 0 auto;
+    /* padding-bottom: 20px; */
+    /* top: 100px; */
+    bottom: 97px;
+}
+
+#compass-message {
+    position: relative;
+    display: block;
+    bottom: 100px;
+}
+
+@-webkit-keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(1080deg);
+    }
 }
