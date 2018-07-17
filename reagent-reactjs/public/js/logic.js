@@ -28,8 +28,9 @@ window.onload = function() {
         fileUpload_inputField.value =  fileUpload_valueArray[fileUpload_valueArray.length - 1];
     }
 
-    function minimizeAndClose() { 
+    (function minimizeAndClose() { 
         const remote = window.require('electron').remote;
+        
         document.getElementById("button-minimize").addEventListener("click", function (e) {
             const window = remote.getCurrentWindow();
             window.minimize(); 
@@ -39,7 +40,7 @@ window.onload = function() {
             const window = remote.getCurrentWindow();
             window.close();
         }); 
-    }
+    })();
     
     document.onreadystatechange = function () {
         if (document.readyState == "complete") {

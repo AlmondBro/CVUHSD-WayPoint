@@ -6,11 +6,11 @@ class ProjectorMagic extends Component {
         super(props);
         this.projectorMagicIcon = "./img/icon-projector.png";
         this.state = {
-            message: ""
+            message: "Click a button to clone or extend display."
         };
     }  
 
-    extendDisplay() {
+    extendDisplay = () => {
         console.log("Extend display");
 
         const electron = window.require("electron");
@@ -21,13 +21,14 @@ class ProjectorMagic extends Component {
         let displaySwitchExePath = "%windir%\\System32\\DisplaySwitch.exe /extend";
         cmd.get(
             displaySwitchExePath,
-            function(err, data, stderr){
-                console.log('Extend:\t', data);
+            (err, data, stderr) => {
+                console.log('Extended display:\t', data);
+                this.setState({ message: "Extended display" });
             }
         );
     } 
 
-    cloneDisplay() {
+    cloneDisplay = () => {
         console.log("Clone display");
 
         const electron = window.require("electron");
@@ -38,8 +39,9 @@ class ProjectorMagic extends Component {
         let displaySwitchExePath = "%windir%\\System32\\DisplaySwitch.exe /clone";
         cmd.get(
             displaySwitchExePath,
-            function(err, data, stderr){
+            (err, data, stderr) => {
                 console.log('Clone:\t', data);
+                this.setState({ message: "Cloned display" });
             }
         );
     }
@@ -56,7 +58,6 @@ class ProjectorMagic extends Component {
                 {/* <img src={this.projectorMagicIcon} className="img-responsive wiggle" id="wifiMagic-fixingIcon" /> */}
                 <button className="redToDarkRedgradient waypoint-Button" id="button-extend">Extend</button>
                 <button className="redToDarkRedgradient waypoint-Button" id="button-clone">Clone</button>
-                <p>Attempting repairs...</p>
                 <p>{this.state.message}</p>
             </section>
         );

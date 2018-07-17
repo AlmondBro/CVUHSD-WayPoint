@@ -11,9 +11,10 @@ class Footer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userName: os.userInfo().username
+            userName: os.userInfo().username,
+            ipAddress: this.IP_Address
         };
-        
+        //ipAddress: macaddress.networkInterfaces()["Local Area Connection"]["ipv4"] || macaddress.networkInterfaces()["Wi-Fi"]["ipv4"] || os.networkInterfaces()["Local Area Connection"][1].address || os.networkInterfaces()["Wi-Fi"][1].address || os.networkInterfaces()["Local Area Connection"][1].address || os.networkInterfaces()["Wi-Fi"][1].address
         this.IP_Address = macaddress.networkInterfaces()["Local Area Connection"]["ipv4"] || macaddress.networkInterfaces()["Wi-Fi"]["ipv4"] || os.networkInterfaces()["Local Area Connection"][1].address || os.networkInterfaces()["Wi-Fi"][1].address || os.networkInterfaces()["Local Area Connection"][1].address || os.networkInterfaces()["Wi-Fi"][1].address;
     }
 
@@ -25,7 +26,8 @@ class Footer extends Component {
         completeUserName().then(name => {
             console.log("Complete userName:\t" + name);
             this.setState({
-                userName: name
+                userName: name,
+                
             });
             //=> 'Sindre Sorhus'
         });
@@ -49,7 +51,7 @@ class Footer extends Component {
         return (
             <footer>
                 <div className="USER-container"><p>User: <span className="currentUserName">{ this.state.userName || "Your Username" }</span></p></div>
-                <div className="IP-container"><p className="IP-message">IP Addresss:&#9;<span>{this.IP_Address || "Your IP Address"}</span></p></div>
+                <div className="IP-container"><p className="IP-message">IP Address:&#9;<span>{this.IP_Address || "Your IP Address"}</span></p></div>
                 <div className="OS-container"><p className="OS-platform">System:&#9;<span>{this.determineWindowsVersion(os.release()) || "OS Platform"}</span></p></div>
                 <p className="cv-way">Powered by: The CV-Way</p>
             </footer>
