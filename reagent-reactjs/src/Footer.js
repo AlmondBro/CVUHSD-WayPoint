@@ -7,6 +7,10 @@ const os = remote.require("os");
 const completeUserName = remote.require('fullname');
 let macaddress = remote.require('macaddress');
 
+const username = remote.require('username');
+
+
+
 class Footer extends Component {
     constructor(props) {
         super(props);
@@ -14,7 +18,9 @@ class Footer extends Component {
             userName: os.userInfo().username
         };
         
-        this.IP_Address = macaddress.networkInterfaces()["Local Area Connection"]["ipv4"] || macaddress.networkInterfaces()["Wi-Fi"]["ipv4"] || os.networkInterfaces()["Local Area Connection"][1].address || os.networkInterfaces()["Wi-Fi"][1].address || os.networkInterfaces()["Local Area Connection"][1].address || os.networkInterfaces()["Wi-Fi"][1].address;
+        this.IP_Address = os.networkInterfaces()["Ethernet"][1].address || os.networkInterfaces()["Wi-Fi"][1].address;
+        console.log("IP_Address:\t" + this.IP_Address); 
+        // this.IP_Address = macaddress.networkInterfaces()["Local Area Connection"]["ipv4"] || macaddress.networkInterfaces()["Wi-Fi"]["ipv4"] || os.networkInterfaces()["Local Area Connection"][1].address || os.networkInterfaces()["Wi-Fi"][1].address || os.networkInterfaces()["Local Area Connection"][1].address || os.networkInterfaces()["Wi-Fi"][1].address;
     }
 
     componentDidMount = () => { 
@@ -28,7 +34,15 @@ class Footer extends Component {
                 userName: name
             });
             //=> 'Sindre Sorhus'
+        }); 
+
+        username().then(username => {
+            console.log(username);
+            this.setState({
+                userName: username
+            });
         });
+
     }
 
     determineWindowsVersion = (releaseNumber) => {
