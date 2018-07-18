@@ -1,6 +1,5 @@
 
 import React, { Component } from "react";
-
 class ProjectorMagic extends Component {
     constructor(props) {
         super(props);
@@ -16,7 +15,6 @@ class ProjectorMagic extends Component {
         const electron = window.require("electron");
         const remote = electron.remote;
         const cmd = remote.require('node-cmd'); 
-        const exec = remote.require('child_process').execFile;
 
         let displaySwitchExePath = "%windir%\\System32\\DisplaySwitch.exe /extend";
         cmd.get(
@@ -34,7 +32,6 @@ class ProjectorMagic extends Component {
         const electron = window.require("electron");
         const remote = electron.remote;
         const cmd = remote.require('node-cmd'); 
-        const exec = remote.require('child_process').execFile;
 
         let displaySwitchExePath = "%windir%\\System32\\DisplaySwitch.exe /clone";
         cmd.get(

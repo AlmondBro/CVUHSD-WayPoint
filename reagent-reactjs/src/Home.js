@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import SupportSquare from "./SupportSquare.js";
-import Footer from "./Footer.js";
 
 class Home extends Component {
     render() {

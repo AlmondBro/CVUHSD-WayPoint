@@ -8,7 +8,7 @@ class Header extends Component {
             <header className="header-frame redToDarkRedgradient">
                 <input type="checkbox" className="checkbox-hack" id="notification-icon-checkbox" />
                 <section className="redToDarkRedgradient">
-                    <a href="#"><img src="https://portal.centinela.k12.ca.us/images/CV-600x600.png" className="img-responsive" id="reagentLogo" alt="Centinela Valley Union High School District Logo" /></a>
+                    <a><img src="https://portal.centinela.k12.ca.us/images/CV-600x600.png" className="img-responsive" id="reagentLogo" alt="Centinela Valley Union High School District Logo" /></a>
                     <h1>
                         <img src="img/wp-logo.svg" className="headerLogo" alt="Waypoint" />
                     </h1>

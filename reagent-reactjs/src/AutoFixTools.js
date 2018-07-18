@@ -1,8 +1,6 @@
 import React, {Component} from "react";
-import {Route, BrowserRouter} from "react-router-dom";
 
 import SupportSquare from "./SupportSquare.js";
-import WiFiMagic from "./WiFiMagic.js";
 
 class AutoFixTools extends Component {
     //Could use a for-loop (that iterates through an object of containing key-value pairs of the props) to make a general component? An idea for next time.
@@ -15,8 +13,7 @@ class AutoFixTools extends Component {
                                     icon="fas fa-wifi" 
                                     title="Wi-Fi Magic"
                                     imgSrc="./img/icon-wifi.png" 
-                                    id="wiFi-magicButton" 
-                                    onClick=""/>
+                                    id="wiFi-magicButton" />
 
                     <SupportSquare pageLink="/ProjectorMagic" 
                             icon="fas fa-desktop" 

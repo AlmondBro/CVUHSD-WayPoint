@@ -88,8 +88,8 @@ class WiFiMagic extends Component {
     render() {
         return (
             <section class="wiFi-magic">
-                <img src={this.compassNeedle} className="needle-rotate" id="compass-needle" />
-                <img src={this.compassBody} className="" id="compass-body" />
+                <img src={this.compassNeedle} className="needle-rotate" id="Compass Needle" alt="Compass Needle" />
+                <img src={this.compassBody} className="" id="compass-body" alt="Compass Body" />
                 <p id="compass-message">{ this.state.message }</p>
             </section>
         );

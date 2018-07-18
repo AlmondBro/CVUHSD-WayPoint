@@ -1,15 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 
 //Import required external components
 import SupportSquare from "./SupportSquare.js";
 
-class HelpDesk extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
+const helpDesk = (props) => {
+    return (
         <div className="support-squares-container">
             <SupportSquare pageLink="tel:+13102633200p7398" 
                         icon="fas fa-phone-square" 
@@ -39,7 +34,8 @@ class HelpDesk extends Component {
 
             </div>
         );
-    }
 }
 
-export default HelpDesk;
+  
+
+export default helpDesk;

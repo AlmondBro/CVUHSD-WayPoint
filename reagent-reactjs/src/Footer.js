@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 
 const electron = window.require("electron");
-const remote = window.require("electron").remote;
+const remote = electron.remote;
 const os = remote.require("os");
 
 const completeUserName = remote.require("fullname");
 const macaddress = remote.require("macaddress");
-const username = remote.require("username");
 
 class Footer extends Component {
     constructor(props) {
@@ -38,7 +37,7 @@ class Footer extends Component {
 
     determineWindowsVersion = (releaseNumber) => {
         let windowsVersion;
-        let releaseNumberInt = parseInt(releaseNumber);
+        let releaseNumberInt = parseInt(releaseNumber, 10);
         if (releaseNumberInt >= 6 && releaseNumberInt <= 8 ) {
             windowsVersion = "Windows 7"
         }

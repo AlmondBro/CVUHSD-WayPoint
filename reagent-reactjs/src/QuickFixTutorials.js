@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 //Import required external components
 import SupportSquare from "./SupportSquare.js";
