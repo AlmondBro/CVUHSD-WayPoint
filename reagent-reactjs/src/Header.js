@@ -14,8 +14,10 @@ class Header extends Component {
                     </h1>
 
                     <label className="notificationIcon clickable" id="notification-icon" htmlFor="notification-icon-checkbox">
-                        <span className="notifications-count">1</span>
-                        <i className="fas fa-bell notification-icon-i"></i>
+                        {/* <span className="notifications-count">1</span> */}
+                        <div id="button-menu">
+                            <img src="img/icon-hamburger.png" title="Open Notification Menu" />
+                        </div>
                     </label>
                 </section>
 
