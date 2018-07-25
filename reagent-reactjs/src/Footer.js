@@ -15,8 +15,8 @@ class Footer extends Component {
             ipAddress: this.IP_Address
         };
         
-       // this.IP_Address = os.networkInterfaces()["Ethernet"][1].address || os.networkInterfaces()["Wi-Fi"][1].address;
-        this.IP_Address = macaddress.networkInterfaces()["Local Area Connection"]["ipv4"] || macaddress.networkInterfaces()["Wi-Fi"]["ipv4"] || os.networkInterfaces()["Local Area Connection"][1].address || os.networkInterfaces()["Wi-Fi"][1].address || os.networkInterfaces()["Local Area Connection"][1].address || os.networkInterfaces()["Wi-Fi"][1].address;
+       this.IP_Address = os.networkInterfaces()["Ethernet"][1].address || os.networkInterfaces()["Wi-Fi"][1].address;
+        // this.IP_Address = macaddress.networkInterfaces()["Local Area Connection"]["ipv4"] || macaddress.networkInterfaces()["Wi-Fi"]["ipv4"] || os.networkInterfaces()["Local Area Connection"][1].address || os.networkInterfaces()["Wi-Fi"][1].address || os.networkInterfaces()["Local Area Connection"][1].address || os.networkInterfaces()["Wi-Fi"][1].address;
         console.log("IP_Address:\t" + this.IP_Address); 
     }
 
