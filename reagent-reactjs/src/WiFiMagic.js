@@ -10,6 +10,7 @@ class WiFiMagic extends Component {
         this.wifiIconSrc = "./img/icon-wifi.png";
         this.compassNeedle = "./img/compass-needle.svg";
         this.compassBody = "./img/compass-body.svg";
+        this.fixWiFi = this.fixWiFi.bind(this);
         this.state = {
             message: "Finding the CV-Way...",
             clicks: 0
@@ -19,12 +20,12 @@ class WiFiMagic extends Component {
     incrementClick() {
        return this.state.click++;
     }
-
+//https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=cvuhsdnews&count=10&exclude_replies
     fixWiFi() {
         if (this.state.clicks === 0 ) {
-            this.setState( (prevState) => { return { clicks: prevState.clicks++ }; } );
+            this.setState( { clicks: this.state.clicks+1 } );
             console.log("First click");
-           /* cmd.get(
+            cmd.get(
                 'netsh winsock reset',
                 (err, data, stderr) => {
                     console.log('netsh winsock reset:\t', data);
@@ -89,7 +90,7 @@ class WiFiMagic extends Component {
                         return;
                     }
                 ); 
-            }, 8000); */
+            }, 8000); 
         } //end if-statment
 
         else if (this.state.clicks > 0 )  {
@@ -97,7 +98,7 @@ class WiFiMagic extends Component {
             return;
         }
 
-
+        console.log("After fixWiFi():\t" + this.state.clicks);
         return;
         
        
@@ -110,7 +111,7 @@ class WiFiMagic extends Component {
     componentDidMount() {
         console.log("Before fixWiFi():\t" + this.state.clicks);
         this.fixWiFi();
-        console.log("After fixWiFi():\t" + this.state.clicks);
+        //console.log("After fixWiFi():\t" + this.state.clicks);
     }  
 
     render() {

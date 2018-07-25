@@ -13,24 +13,23 @@ class Footer extends Component {
         super(props);
         this.state = {
             userName: os.userInfo().username,
-            ipAddress: this.IP_Address
+            ipAddress: this.getIPAddress()
         };
-        
-       this.IP_Address = this.getIPAddress();
-       console.log("IP_Address:\t" + this.IP_Address); 
     }
 
     getIPAddress = () => {
         let IP_Address; 
-        if ( undefsafe(macaddress, '"Local Area Connection"."ipv4"') !== undefined) {
+        if ( undefsafe(macaddress.networkInterfaces(), "Local Area Connection.ipv4") !== "undefined" ) {
           //  IP_Address = macaddress.networkInterfaces()["Local Area Connection"]["ipv4"];
-          IP_Address = undefsafe(macaddress, '"Local Area Connection"."ipv4"');
+          IP_Address = undefsafe(macaddress.networkInterfaces(), "Local Area Connection.ipv4");
+          console.log("IPV4 ethernet:\t" + IP_Address);
+          console.log("IPV4 ethernet Typeof:\t"+ typeof IP_Address);
         }
 
-        else if ( undefsafe(macaddress, '"Wi-Fi"."ipv4"') !== "undefined") {
-            IP_Address =  macaddress.networkInterfaces()["Wi-Fi"]["ipv4"]; 
+        else if ( undefsafe(macaddress, "Wi-Fi.ipv4") !== "undefined") {
+            IP_Address =  undefsafe(macaddress, "Wi-Fi.ipv4"); 
             console.log("IPV4 wifi:\t" + IP_Address);
-            console.log("Typeof:\t"+ typeof IP_Address);
+            console.log("IPV4 wifTypeof:\t"+ typeof IP_Address);
         }
 /*
         else {
