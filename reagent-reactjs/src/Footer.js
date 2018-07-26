@@ -20,30 +20,30 @@ class Footer extends Component {
     getIPAddress = () => {
         let IP_Address; 
 
-        if ( undefsafe(macaddress.networkInterfaces(), "ethernet.ipv4") !== "undefined" ) {
+        if ( undefsafe(macaddress.networkInterfaces(), "Ethernet.ipv4") !== undefined ) {
             //  IP_Address = macaddress.networkInterfaces()["Local Area Connection"]["ipv4"];
-            IP_Address = undefsafe(macaddress.networkInterfaces(), "ethernet.ipv4");
+            IP_Address = undefsafe(macaddress.networkInterfaces(), "Ethernet.ipv4");
             console.log("IPV4 ethernet:\t" + IP_Address);
             console.log("IPV4 ethernet Typeof:\t"+ typeof IP_Address);
         }
 
-        else if ( undefsafe(macaddress.networkInterfaces(), "Local Area Connection.ipv4") !== "undefined" ) {
+        else if ( undefsafe(macaddress.networkInterfaces(), "Local Area Connection.ipv4") !== undefined ) {
           //  IP_Address = macaddress.networkInterfaces()["Local Area Connection"]["ipv4"];
           IP_Address = undefsafe(macaddress.networkInterfaces(), "Local Area Connection.ipv4");
           console.log("IPV4 local area connection:\t" + IP_Address);
           console.log("IPV4  local area connection Typeof:\t"+ typeof IP_Address);
         }
 
-        else if ( undefsafe(macaddress, "Wi-Fi.ipv4") !== "undefined") {
+        else if ( undefsafe(macaddress, "Wi-Fi.ipv4") !== undefined) {
             IP_Address =  undefsafe(macaddress, "Wi-Fi.ipv4"); 
             console.log("IPV4 wifi:\t" + IP_Address);
             console.log("IPV4 wifTypeof:\t"+ typeof IP_Address);
         }
-/*
+        
         else {
             IP_Address = "127.0.0.1";
-        } */
-
+        } 
+        console.log("Returning IP address:\t" + IP_Address);
         return IP_Address;
     }
 
