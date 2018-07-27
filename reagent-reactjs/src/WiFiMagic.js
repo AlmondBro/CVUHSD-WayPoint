@@ -2,9 +2,7 @@ import React, {Component} from "react";
 
 const electron = window.require("electron");
 const remote = electron.remote;
-const cmd = remote.require('node-cmd');   
 const nrc = remote.require('node-run-cmd');
-//nrc.run('mkdir foo');
 
 class WiFiMagic extends Component {
     constructor(props) {
@@ -19,16 +17,16 @@ class WiFiMagic extends Component {
         };
     }
 
-    incrementClick() {
+   /* incrementClick() {
        return this.state.click++;
-    }
+    } */
 //https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=cvuhsdnews&count=10&exclude_replies
     fixWiFi() {
         if (this.state.clicks === 0 ) {
             this.setState( { clicks: this.state.clicks+1 } );
             console.log("First click");
 
-            commandConsoleOutput = (data) => {
+            var commandConsoleOutput = (data) => {
                 console.log("Data:\t" + data);
             };
         
@@ -37,11 +35,22 @@ class WiFiMagic extends Component {
             nrc.run('ipconfig /release', { onData: commandConsoleOutput });
             nrc.run('ipconfig /renew', { onData: commandConsoleOutput });
             nrc.run('ipconfig /flushdns', { onData: commandConsoleOutput });
+
+            async function init(){
+                console.log(1);
+                await sleep(1000);
+                console.log(2);
+             }
+
+             function sleep(ms){
+                 return new Promise(resolve=>{
+                     setTimeout(resolve,ms)
+                 })
+             }
     }
         console.log("After fixWiFi():\t" + this.state.clicks);
         return;
         
-       
     } //endFixWiFi method
 
    /* spinNeedle() {
