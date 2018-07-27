@@ -3,6 +3,8 @@ import React, {Component} from "react";
 const electron = window.require("electron");
 const remote = electron.remote;
 const cmd = remote.require('node-cmd');   
+const nrc = remote.require('node-run-cmd');
+//nrc.run('mkdir foo');
 
 class WiFiMagic extends Component {
     constructor(props) {
@@ -25,88 +27,26 @@ class WiFiMagic extends Component {
         if (this.state.clicks === 0 ) {
             this.setState( { clicks: this.state.clicks+1 } );
             console.log("First click");
-            cmd.get(
-                'netsh winsock reset',
-                (err, data, stderr) => {
-                    console.log('netsh winsock reset:\t', data);
-                    console.log('netsh winsock reset error:\t', err);
-                    this.setState({
-                        message: "Resetting winsock..."
-                    }); 
-                }
-            ); 
-    
-            setInterval( () => {
-                cmd.get(
-                    'netsh int ip reset',
-                    (err, data, stderr) => {
-                        console.log('netsh int ip reset:\t', data);
-                        console.log('netsh int ip reset err:\t', err);
-                        this.setState({
-                            message: "Resetting Netsh..."
-                        }); 
-                        return;
-                    }
-                ); 
-            }, 2000);
-           
-            setInterval( () => {
-                cmd.get(
-                    'ipconfig /release',
-                    (err, data, stderr) => {
-                        console.log('ipconfig /release:\t', data);
-                        console.log('ipconfig /release err:\t', err);
-                        this.setState({
-                            message: "Releasing ipconfig..."
-                        }); 
-                        return;
-                    }
-                ); 
-            }, 4000);
-    
-            setInterval(() => {
-                cmd.get(
-                    'ipconfig /renew',
-                    (err, data, stderr) => {
-                        console.log('ipconfig /renew:\t', data);
-                        console.log('ipconfig /renew err:\t', err);
-                        this.setState({
-                            message: "Renewing ipconfig..."
-                        }); 
-                        return;
-                    }
-                ); 
-            }, 6000);
-           
-            setInterval(() => {
-                cmd.get(
-                    'ipconfig /flushdns',
-                    (err, data, stderr) => {
-                        console.log('ipconfig /flushdns:\t', data);
-                        console.log('ipconfig /flushdns err:\t', err);
-                        this.setState({
-                            message: "Flushing DNS..."
-                        }); 
-                        return;
-                    }
-                ); 
-            }, 8000); 
-        } //end if-statment
 
-        else if (this.state.clicks > 0 )  {
-            console.log("More than one")
-            return;
-        }
-
+            commandConsoleOutput = (data) => {
+                console.log("Data:\t" + data);
+            };
+        
+            nrc.run('netsh winsock reset', { onData: commandConsoleOutput });
+            nrc.run('netsh int ip reset', { onData: commandConsoleOutput });
+            nrc.run('ipconfig /release', { onData: commandConsoleOutput });
+            nrc.run('ipconfig /renew', { onData: commandConsoleOutput });
+            nrc.run('ipconfig /flushdns', { onData: commandConsoleOutput });
+    }
         console.log("After fixWiFi():\t" + this.state.clicks);
         return;
         
        
     } //endFixWiFi method
 
-    spinNeedle() {
+   /* spinNeedle() {
         //document.getElementById("compass-needle").addEventListener("click", )
-    }
+    } */
 
     componentDidMount() {
         console.log("Before fixWiFi():\t" + this.state.clicks);
