@@ -1053,6 +1053,13 @@ form p.fieldMargin {
     margin: 0px 25px;
 }
 
+.projector-magic {
+    text-align: center; 
+    margin: 0 auto;
+    display: block;
+    bottom: 0%;
+}
+
 .wiFi-magic {
     /* text-align: center; */
     margin: 0 auto;
