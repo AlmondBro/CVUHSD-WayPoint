@@ -51,7 +51,7 @@ class ProjectorMagic extends Component {
 
     render() {
         return (
-            <section className="wiFi-magic">
+            <section className="projector-magic">
                 {/* <img src={this.projectorMagicIcon} className="img-responsive wiggle" id="wifiMagic-fixingIcon" /> */}
                 <button className="redToDarkRedgradient waypoint-Button" id="button-extend">Extend</button>
                 <button className="redToDarkRedgradient waypoint-Button" id="button-clone">Clone</button>
