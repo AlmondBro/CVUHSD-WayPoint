@@ -1250,6 +1250,7 @@ form p.fieldMargin {
     z-index: 10;
     /* bottom: 70px; */
     top: 50px;
+    cursor: pointer;
 }
 
 #compass-body {
@@ -1267,6 +1268,7 @@ form p.fieldMargin {
     position: relative;
     display: block;
     bottom: 100px;
+    white-space: pre;
 }
 
 @-webkit-keyframes rotation {
