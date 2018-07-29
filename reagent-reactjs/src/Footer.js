@@ -17,6 +17,8 @@ class Footer extends Component {
         };
     }
 
+    //Hello
+
     getIPAddress = () => {
         let IP_Address; 
 
@@ -26,6 +28,15 @@ class Footer extends Component {
             console.log("IPV4 ethernet:\t" + IP_Address);
             console.log("IPV4 ethernet Typeof:\t"+ typeof IP_Address);
         }
+
+        
+        
+        else if ( undefsafe(macaddress.networkInterfaces(), "VirtualBox Host-Only Network.ipv4") !== undefined ) {
+            //  IP_Address = macaddress.networkInterfaces()["Local Area Connection"]["ipv4"];
+            IP_Address = undefsafe(macaddress.networkInterfaces(), "VirtualBox Host-Only Network.ipv4");
+            console.log("Virtual Box host only network:\t" + IP_Address);
+            console.log("Virtual Box host only network Typeof:\t"+ typeof IP_Address);
+        }//dsds
 
         else if ( undefsafe(macaddress.networkInterfaces(), "Local Area Connection.ipv4") !== undefined ) {
           //  IP_Address = macaddress.networkInterfaces()["Local Area Connection"]["ipv4"];
