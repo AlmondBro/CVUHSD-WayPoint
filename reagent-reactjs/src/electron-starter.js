@@ -6,6 +6,7 @@ const BrowserWindow = electron.BrowserWindow;
 
 const path = require('path');
 const url = require('url');
+const isDev = require('electron-is-dev'); 
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -20,15 +21,22 @@ function createWindow() {
         fullscreen: false, 
         resizable: false, 
         nodeIntegration: false,
+        webSecurity: false,
         webviewTag: false,
         icon: path.join(__dirname, '../public/img/wp-icon-grey.png')
     });
 
-    // and load the index.html of the app.
-    mainWindow.loadURL('http://localhost:3000');
+    const startUrl = process.env.ELECTRON_START_URL || url.format({
+        pathname: path.join(__dirname, '/../build/index.html'),
+        protocol: 'file:',
+        slashes: true
+    });
 
+    // and load the index.html of the app.
+    //mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
+    mainWindow.loadURL(startUrl);
     // Open the DevTools.
-    //mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {
@@ -38,7 +46,7 @@ function createWindow() {
         mainWindow = null;
     });
 
-    require('devtron').install();
+    //require('devtron').install();
 }
 
 // This method will be called when Electron has finished
@@ -63,10 +71,17 @@ app.on('activate', function () {
     }
 });
 
+/*
+electron.webFrame.registerURLSchemeAsPrivileged('file');
+electron.webFrame.registerURLSchemeAsSecure('file');
+electron.webFrame.registerURLSchemeAsBypassingCSP('file');
+
+app.on('ready', () => {
+    electron.protocol.registerServiceWorkerSchemes(['file:']);
+});
+*/
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 /* window.eval = global.eval = function () {
    throw new Error(`Sorry, this app does not support window.eval().`)
   } */
-
-  

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Route, BrowserRouter, Switch} from "react-router-dom";
+import {Route, BrowserRouter, Switch, HashRouter} from "react-router-dom";
 
 // Import General Page Components
 import Titlebar from "./Titlebar.js";
@@ -20,7 +20,7 @@ import Footer from "./Footer.js";
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <HashRouter>
         <div>
          <Titlebar/>
           <main>
@@ -28,6 +28,7 @@ class App extends Component {
           {/* <Home/>*/}   {/* This is is the component you change when 
                         the page changes, since all components have a 
                         container, a main element, and a header. */}
+                         <Footer />
             <section className="page-content">
               <Switch>
                 <Route exact path="/" component={Home} />
@@ -45,7 +46,7 @@ class App extends Component {
             <div className="blur-effect"></div>
           </main>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }

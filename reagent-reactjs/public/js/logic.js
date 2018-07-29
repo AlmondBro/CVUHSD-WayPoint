@@ -7,8 +7,8 @@ window.eval = function () {
 } 
 
 window.onload = function() {
-    console.log("Logic.js loaded");
-    require('electron-react-devtools').install();
+    //console.log("Logic.js loaded");
+   // require('electron-react-devtools').install();
     var file_input = document.getElementById("file-input");
     var fileUpload_inputField = document.getElementById("uploadFile-path");
     if (file_input != null) {
