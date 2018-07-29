@@ -17,54 +17,50 @@ class Footer extends Component {
         };
     }
 
-    //Hello
-
     getIPAddress = () => {
         let IP_Address; 
 
         if ( undefsafe(macaddress.networkInterfaces(), "Ethernet.ipv4") !== undefined ) {
             //  IP_Address = macaddress.networkInterfaces()["Local Area Connection"]["ipv4"];
             IP_Address = undefsafe(macaddress.networkInterfaces(), "Ethernet.ipv4");
-            console.log("IPV4 ethernet:\t" + IP_Address);
-            console.log("IPV4 ethernet Typeof:\t"+ typeof IP_Address);
+         //   console.log("IPV4 ethernet:\t" + IP_Address);
+           // console.log("IPV4 ethernet Typeof:\t"+ typeof IP_Address);
         }
 
-        
-        
         else if ( undefsafe(macaddress.networkInterfaces(), "VirtualBox Host-Only Network.ipv4") !== undefined ) {
             //  IP_Address = macaddress.networkInterfaces()["Local Area Connection"]["ipv4"];
             IP_Address = undefsafe(macaddress.networkInterfaces(), "VirtualBox Host-Only Network.ipv4");
-            console.log("Virtual Box host only network:\t" + IP_Address);
-            console.log("Virtual Box host only network Typeof:\t"+ typeof IP_Address);
-        }//dsds
+            //console.log("Virtual Box host only network:\t" + IP_Address);
+           // console.log("Virtual Box host only network Typeof:\t"+ typeof IP_Address);
+        }
 
         else if ( undefsafe(macaddress.networkInterfaces(), "Local Area Connection.ipv4") !== undefined ) {
           //  IP_Address = macaddress.networkInterfaces()["Local Area Connection"]["ipv4"];
           IP_Address = undefsafe(macaddress.networkInterfaces(), "Local Area Connection.ipv4");
-          console.log("IPV4 local area connection:\t" + IP_Address);
-          console.log("IPV4  local area connection Typeof:\t"+ typeof IP_Address);
+        //  console.log("IPV4 local area connection:\t" + IP_Address);
+         // console.log("IPV4  local area connection Typeof:\t"+ typeof IP_Address);
         }
 
         else if ( undefsafe(macaddress, "Wi-Fi.ipv4") !== undefined) {
             IP_Address =  undefsafe(macaddress, "Wi-Fi.ipv4"); 
-            console.log("IPV4 wifi:\t" + IP_Address);
-            console.log("IPV4 wifTypeof:\t"+ typeof IP_Address);
+           // console.log("IPV4 wifi:\t" + IP_Address);
+            //console.log("IPV4 wifTypeof:\t"+ typeof IP_Address);
         }
         
         else {
             IP_Address = "127.0.0.1";
         } 
-        console.log("Returning IP address:\t" + IP_Address);
+        //console.log("Returning IP address:\t" + IP_Address);
         return IP_Address;
     }
 
     componentDidMount = () => { 
-        console.log("OS Network Interface Obj:\t" + JSON.stringify(os.networkInterfaces()) );
-        console.log("MacAddress:\t" + JSON.stringify(macaddress.networkInterfaces(), null, 2));
-        console.log("OS username:\t" + os.userInfo().username);
+      //  console.log("OS Network Interface Obj:\t" + JSON.stringify(os.networkInterfaces()) );
+       // console.log("MacAddress:\t" + JSON.stringify(macaddress.networkInterfaces(), null, 2));
+      //  console.log("OS username:\t" + os.userInfo().username);
 
         completeUserName().then(name => {
-            console.log("Complete userName:\t" + name);
+           // console.log("Complete userName:\t" + name);
             if (name != null || undefined || "") {
                 this.setState({
                     userName: name
