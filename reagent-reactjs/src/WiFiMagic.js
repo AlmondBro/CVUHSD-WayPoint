@@ -1,8 +1,18 @@
 import React, {Component} from "react";
+import Checkmark from "./Checkmark.js";
 
 const electron = window.require("electron");
 const remote = electron.remote;
 const nrc = remote.require("node-run-cmd");
+
+// checkmark = () => {
+//     return (
+//     <div id="checkmark-container">
+//         <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+//         <circle class="checkmarkcircle" cx="26" cy="26" r="25" fill="none"/>
+//         <path class="checkmarkcheck" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+//     </div>);
+// }
 
 class WiFiMagic extends Component {
     constructor(props) {
@@ -17,7 +27,7 @@ class WiFiMagic extends Component {
 
       //  this.runWiFiFix = this.runWiFiFix.bind(this);
         this.state = {
-            message: ["Click on the compass to initiate wi-fi fixes."],
+            message: "Click on the compass.",
             clicks: 0
         };
     }
@@ -28,19 +38,32 @@ class WiFiMagic extends Component {
     //  https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=cvuhsdnews&count=10&exclude_replies
     //  fixWiFi = () =>
     //  fixWiFi()
-    checkmark = () => {
-        return(
-        <div id="checkmark-container">
-            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-            <circle class="checkmarkcircle" cx="26" cy="26" r="25" fill="none"/>
-            <path class="checkmarkcheck" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
-        </div>);
-    }
 
     fixWiFi = () => {
         if (this.state.clicks === 0 ) {
             this.setState( { clicks: this.state.clicks+1 } );
+
             console.log("First click");
+
+            let compassNeedleElement = document.getElementById("compass-needle");
+            let textFX = document.getElementsByClassName("loading-message");
+            let compassMessage = document.getElementsByClassName("compass-message");
+
+            let checkmark = document.getElementsByClassName("checkmark");
+
+            function showCheckmark() {
+                for (var i=0; i < checkmark.length; i++) {
+                    checkmark[i].style.display = "inline-block";
+                }
+            }
+
+            function loadTextFX() {
+                for (var i=0; i < compassMessage.length; i++) {
+                    compassMessage[i].classList.add("message-loading");
+                }
+            }
+
+            compassNeedleElement.className += "needle-rotate";
 
             const sleep = (milliseconds) => {
                 return new Promise(resolve=>{
@@ -58,34 +81,43 @@ class WiFiMagic extends Component {
             const runWiFiFix = async () => {
                 console.log("runWiFiFix():\t");
 
-                nrc.run('ls', { onData: commandConsoleOutput });
-
+              //  nrc.run('ls', { onData: commandConsoleOutput });
+  
                 nrc.run("netsh winsock reset", { onData: commandConsoleOutput });
-                await sleep(2000);
                 this.setState({
-                    message: "Reset Windows socket\n" + this.checkmark()
+                    message: "Reset Windows socket\n" 
                 });
-
-                nrc.run('netsh int ip reset', { onData: commandConsoleOutput });
+                loadTextFX();
+                showCheckmark();
                 await sleep(2000);
+                
+                nrc.run('netsh int ip reset', { onData: commandConsoleOutput });
+                loadTextFX();
+                showCheckmark();
                 this.setState({
                     message: this.state.message + "Reset IP\n"
                 });
+                await sleep(2000);
 
                 nrc.run('ipconfig /release', { onData: commandConsoleOutput });
-                await sleep(2000);
+                loadTextFX();
+                showCheckmark();
                 this.setState({
                     message: this.state.message + "Released IP\n"
                 });
+                await sleep(2000);
 
                 nrc.run('ipconfig /renew', { onData: commandConsoleOutput });
-                await sleep(2000);
+                loadTextFX();
+                showCheckmark();
                 this.setState({
                     message: this.state.message + "Renewed IP\n"
                 });
+                await sleep(2000);
 
                 nrc.run('ipconfig /flushdns', { onData: commandConsoleOutput });
-                await sleep(2000);
+                loadTextFX();
+                showCheckmark();
                 this.setState({
                     message: this.state.message + "Flushed DNS\n"
                 });
@@ -103,9 +135,9 @@ class WiFiMagic extends Component {
             nrc.run('ipconfig /flushdns', { onData: commandConsoleOutput }); */
     } //fixWiFi()
 
-   /* else {
+   else {
         console.log("More than one click  -- not executing.");
-    } */
+    } 
         console.log("After fixWiFi():\t" + this.state.clicks);
         return;
         
@@ -113,22 +145,26 @@ class WiFiMagic extends Component {
 
    spinNeedle = () => {
         console.log("spinNeedle():\t\n");
-
-        let compassNeedleElement = document.getElementById("compass-needle");
-        compassNeedleElement.className += "needle-rotate";
-
         this.fixWiFi();
     } //
 
+    //edfdjbj 
     componentDidMount = () => {
     }  
 
     render = () => {
-        return (
+        return ( //fsdfs
             <section className="wiFi-magic">
-                <img src={ this.compassNeedle } onClick={ this.spinNeedle } className="" id="compass-needle" alt="Compass Needle" />
-                <img src={ this.compassBody } className="" id="compass-body" alt="Compass Body" />
-                <p id="compass-message">{ this.state.message }</p>
+                <div id="wholeCompass">
+                    <img src={ this.compassNeedle } onClick={ this.spinNeedle } className="" id="compass-needle" alt="Compass Needle" />
+                    <img src={ this.compassBody } className="" id="compass-body" alt="Compass Body" />
+                </div>
+                <div class="wifiMagic-messages">
+                { this.state.message.split("\n").map((message, key) => { 
+                        return (    <Checkmark key={key} message={message} >{ message }</Checkmark> );
+                    }) }
+                </div> 
+              
             </section>
         );
     } //end render()
