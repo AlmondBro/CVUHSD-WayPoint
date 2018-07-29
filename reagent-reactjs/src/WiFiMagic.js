@@ -30,23 +30,31 @@ class WiFiMagic extends Component {
                 console.log("Data:\t" + data);
             };
         
-            nrc.run('netsh winsock reset', { onData: commandConsoleOutput });
+         /* nrc.run('netsh winsock reset', { onData: commandConsoleOutput });
             nrc.run('netsh int ip reset', { onData: commandConsoleOutput });
             nrc.run('ipconfig /release', { onData: commandConsoleOutput });
             nrc.run('ipconfig /renew', { onData: commandConsoleOutput });
-            nrc.run('ipconfig /flushdns', { onData: commandConsoleOutput });
+            nrc.run('ipconfig /flushdns', { onData: commandConsoleOutput }); */
 
-            async function init(){
-                console.log(1);
-                await sleep(1000);
-                console.log(2);
+            const sleep = (milliseconds) => {
+                return new Promise(resolve=>{
+                    setTimeout(resolve,milliseconds);
+                });
+            } //end sleep()
+
+            async function runWiFiFix(){
+                nrc.run('netsh winsock reset', { onData: commandConsoleOutput });
+                await sleep(2000);
+                nrc.run('netsh int ip reset', { onData: commandConsoleOutput });
+                await sleep(2000);
+                nrc.run('ipconfig /release', { onData: commandConsoleOutput });
+                await sleep(2000);
+                nrc.run('ipconfig /renew', { onData: commandConsoleOutput });
+                await sleep(2000);
+                nrc.run('ipconfig /flushdns', { onData: commandConsoleOutput });
              }
 
-             function sleep(ms){
-                 return new Promise(resolve=>{
-                     setTimeout(resolve,ms)
-                 })
-             }
+             runWiFiFix();
     }
         console.log("After fixWiFi():\t" + this.state.clicks);
         return;
