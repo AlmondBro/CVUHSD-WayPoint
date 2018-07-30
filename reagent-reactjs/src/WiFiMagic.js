@@ -158,9 +158,9 @@ class WiFiMagic extends Component {
                     <img src={ this.compassNeedle } onClick={ this.spinNeedle } className="" id="compass-needle" alt="Compass Needle" />
                     <img src={ this.compassBody } className="" id="compass-body" alt="Compass Body" />
                 </div>
-                <div class="wifiMagic-messages">
+                <div className="wifiMagic-messages">
                 { this.state.message.split("\n").map((message, key) => { 
-                        return (    <Checkmark key={key} message={message} >{ message }</Checkmark> );
+                        return (    <Checkmark key={key.toString()} message={message} >{ message }</Checkmark> );
                     }) }
                 </div> 
               
