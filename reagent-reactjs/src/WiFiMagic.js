@@ -1,10 +1,6 @@
 import React, {Component} from "react";
 import Checkmark from "./Checkmark.js";
 
-const electron = window.require("electron");
-const remote = electron.remote;
-const nrc = remote.require("node-run-cmd");
-
 // checkmark = () => {
 //     return (
 //     <div id="checkmark-container">
@@ -40,6 +36,10 @@ class WiFiMagic extends Component {
     //  fixWiFi()
 
     fixWiFi = () => {
+        const electron = window.require("electron");
+        const remote = electron.remote;
+        const nrc = remote.require("node-run-cmd");
+        
         if (this.state.clicks === 0 ) {
             this.setState( { clicks: this.state.clicks+1 } );
 
