@@ -9,39 +9,34 @@ class ProjectorMagic extends Component {
         };
     }  
 
-    extendDisplay = () => {
-        console.log("Extend display");
+    displaySwitchExePath = "%windir%\\System32\\DisplaySwitch.exe";
 
+    commandConsoleOutput = (data) => {
+        console.log("Data:\t" + data);
+    };
+
+    extendDisplay = () => {
         const electron = window.require("electron");
         const remote = electron.remote;
-        const cmd = remote.require('node-cmd'); 
+        const nrc = remote.require("node-run-cmd");
 
-        let displaySwitchExePath = "%windir%\\System32\\DisplaySwitch.exe /extend";
-        cmd.get(
-            displaySwitchExePath,
-            (err, data, stderr) => {
-                console.log('Extended display:\t', data);
-                this.setState({ message: "Extended display" });
-            }
-        );
-    } 
+        console.log("Extend display");
+        console.log("Path:\t" + this.displaySwitchExePath);
+        nrc.run(  "ls", { onData: this.commandConsoleOutput });
+        nrc.run(  "%windir%\\System32\\DisplaySwitch.exe \\extend", { onData: this.commandConsoleOutput });
+        this.setState({ message: "Extended display" });
+    } //end extendDisplay() method 
 
     cloneDisplay = () => {
-        console.log("Clone display");
-
         const electron = window.require("electron");
         const remote = electron.remote;
-        const cmd = remote.require('node-cmd'); 
+        const nrc = remote.require("node-run-cmd");
 
-        let displaySwitchExePath = "%windir%\\System32\\DisplaySwitch.exe /clone";
-        cmd.get(
-            displaySwitchExePath,
-            (err, data, stderr) => {
-                console.log('Clone:\t', data);
-                this.setState({ message: "Cloned display" });
-            }
-        );
-    }
+        console.log("Clone display");
+
+        nrc.run(  "%windir%\\System32\\DisplaySwitch.exe \\clone", { onData: this.commandConsoleOutput });
+        this.setState({ message: "Cloned display" });
+    } //end cloneDisplay() method 
 
     componentDidMount() {
         console.log("Projector Magic component");
