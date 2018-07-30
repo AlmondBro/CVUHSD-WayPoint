@@ -46,7 +46,7 @@ class WiFiMagic extends Component {
             console.log("First click");
 
             let compassNeedleElement = document.getElementById("compass-needle");
-            let textFX = document.getElementsByClassName("loading-message");
+            //let textFX = document.getElementsByClassName("loading-message");
             let compassMessage = document.getElementsByClassName("compass-message");
 
             let checkmark = document.getElementsByClassName("checkmark");
@@ -146,14 +146,13 @@ class WiFiMagic extends Component {
    spinNeedle = () => {
         console.log("spinNeedle():\t\n");
         this.fixWiFi();
-    } //
-
-    //edfdjbj 
+    } 
+ 
     componentDidMount = () => {
     }  
 
     render = () => {
-        return ( //fsdfs
+        return ( 
             <section className="wiFi-magic">
                 <div id="wholeCompass">
                     <img src={ this.compassNeedle } onClick={ this.spinNeedle } className="" id="compass-needle" alt="Compass Needle" />
