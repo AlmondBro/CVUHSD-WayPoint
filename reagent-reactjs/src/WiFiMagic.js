@@ -1,15 +1,6 @@
 import React, {Component} from "react";
 import Checkmark from "./Checkmark.js";
 
-// checkmark = () => {
-//     return (
-//     <div id="checkmark-container">
-//         <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-//         <circle class="checkmarkcircle" cx="26" cy="26" r="25" fill="none"/>
-//         <path class="checkmarkcheck" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
-//     </div>);
-// }
-
 class WiFiMagic extends Component {
     constructor(props) {
         super(props);
@@ -171,4 +162,14 @@ class WiFiMagic extends Component {
 } //end WiFiMagic class
 
 export default WiFiMagic;
+
+/*
+checkmark = () => {
+    return (
+    <div id="checkmark-container">
+        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+        <circle class="checkmarkcircle" cx="26" cy="26" r="25" fill="none"/>
+        <path class="checkmarkcheck" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+    </div>);
+} */
 
