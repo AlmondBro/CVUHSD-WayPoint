@@ -5,7 +5,7 @@ import SupportSquare from "./SupportSquare.js";
 
 const quickFixTutorials = (props) => {
     return(
-        <div class="support-squares-container">
+        <div className="support-squares-container">
             <SupportSquare pageLink="#" 
                         icon="fab fa-chrome" 
                         title="Chrome OS"

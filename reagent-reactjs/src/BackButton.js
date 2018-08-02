@@ -1,11 +1,14 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 
 class BackButton extends Component {
     //Example from https://stackoverflow.com/questions/30915173/react-router-go-back-a-page-how-do-you-configure-history
     static contextTypes = {
-        router: () => true, // replace with PropTypes.object if you use them
+       // Before proptypes:
+       // router: () => true, // replace with PropTypes.object if you use them
         //https://stackoverflow.com/questions/42672842/how-to-get-history-on-react-router-v4
-     }
+        router: PropTypes.object
+    }
     
     render() {
         console.log("History:\t" + JSON.stringify(this.context.router.history));
