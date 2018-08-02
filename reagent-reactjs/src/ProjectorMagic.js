@@ -5,7 +5,6 @@ class ProjectorMagic extends Component {
     constructor(props) {
         super(props);
         this.projectorMagicIcon = "./img/icon-projector.png";
-        //this.displaySwitchExePath = process.env["WINDIR"] + "\\System32\\DisplaySwitch.exe";
         this.state = {
             message: "Click a button to clone or extend display."
         };
@@ -27,8 +26,7 @@ class ProjectorMagic extends Component {
         const electron = window.require("electron");
         const remote = electron.remote;
         const nrc = remote.require("node-run-cmd");
-        const process = remote.require("process");
-        
+
         console.log("Extend display");
         nrc.run( this.displaySwitchExePath() + " /extend", { onData: this.commandConsoleOutput });
         this.setState({ message: "Extended display" });
@@ -38,7 +36,6 @@ class ProjectorMagic extends Component {
         const electron = window.require("electron");
         const remote = electron.remote;
         const nrc = remote.require("node-run-cmd");
-        const process = remote.require("process");
 
         console.log("Clone display");
         nrc.run(  this.displaySwitchExePath() + " /clone", { onData: this.commandConsoleOutput });
@@ -62,6 +59,5 @@ class ProjectorMagic extends Component {
         );
     }
 }
-
 
 export default ProjectorMagic;
