@@ -7,16 +7,28 @@ class BackButton extends Component {
      }
     
     render() {
-        return(
-            <div className="messageAndGoBack-container">
-                <a className="goBack-container" onClick={this.context.router.history.goBack}>
-                    <img src="img/icon-back.png" id="back-icon" title="Go Back One Page" alt="Go Back Button" />
-                    <p>Back</p>
-                </a>
-                {/* <p className="optionMessage">Please select an option:</p> */}
-            </div>
-        );
-    }
-}
+        console.log("History:\t" + JSON.stringify(this.context.router.history));
+        
+        if (this.context.router.history.location.pathname == "/") {
+            // return (
+            //     <div className="messageAndGoBack-container">
+            //         <p className="optionMessage">Please select an option:</p>
+            //     </div>);
+            return null;
+        }
+
+        else {
+            return(
+                <div className="messageAndGoBack-container">
+                    <a className="goBack-container" onClick={this.context.router.history.goBack}>
+                        <img src="img/icon-back.png" id="back-icon" title="Go Back One Page" alt="Go Back Button" />
+                        <p>Back</p>
+                    </a>
+                    {/* <p className="optionMessage">Please select an option:</p> */}
+                </div>
+            );
+        }//end else
+    } //end render() method
+} //end BackButton class
 
 export default BackButton;
