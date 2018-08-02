@@ -987,6 +987,12 @@ input#summary {
     font-size: 1em;
 }
 
+input#client-name {
+    display: block;
+    color: black;
+    font-size: 1em;
+}
+
 textarea#detailed-description,
 textarea#detailed-description::-webkit-input-placeholder,
 textarea#detailed-description::-moz-placeholder,

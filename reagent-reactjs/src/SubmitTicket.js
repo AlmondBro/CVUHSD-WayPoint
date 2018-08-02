@@ -1,22 +1,46 @@
 import React from "react";
-
+import Email from "./Email.js";
+import jsxToString from 'jsx-to-string';
 const submitTicket = (props) => {
+
     const sendEmail = () => {
         const electron = window.require("electron");
         //const {session} = window.require('electron')
        // const ses = session.defaultSession;
         const remote = electron.remote;
-        const sendmail = remote.require('sendmail')();
+        const sendmail = remote.require('sendmail')({silent: true});
+        //const jsxToString = remote.require("jsx-to-string");
+      
+
+       // window.onload = () => {
+            const title = document.getElementById("summary");
+            const description = document.getElementById("detailed-description");
+            //const clientName = document.getElementById("client-name").value;
+            const email = document.getElementById("client-email");
+            const category = document.getElementById("category");
+            const location = document.getElementById("location");
+            const phoneExtension = document.getElementById("phone-extension");
+            const officeNumber = document.getElementById("building-number");
+        //} //end window.onload
+
+        var HTMLmessage = jsxToString(<Email title={title} 
+                                             description={description}
+                                             email={email}
+                                             category={category}
+                                             location={location}
+                                             phoneExtension={phoneExtension}
+                                             officeNumber={officeNumber} />
+                                    );
 
         console.log("Sent."); 
-    
+     
         sendmail({
-            from: 'no-reply@yourdomain.com',
-            to: 'juandavidlopez95@yahoo.com',
-            subject: 'test sendmail',
-            html: 'Mail of test sendmail ',
+            from: "hi",
+            to: "juandavidlopez95@yahoo.com",
+            subject: "title.value",
+            html: HTMLmessage,
           }, function(err, reply) {
-            console.log("Sent!")
+            console.log("Sent email!")
             console.log(err && err.stack);
             console.dir(reply);
             /*
@@ -28,8 +52,7 @@ const submitTicket = (props) => {
                     callback({});
             }); */
         }); 
-    } //end sendEmail()
-
+    } //end sendMail() method
 
     return (
         <form className="helpDeskTicket-form" action="https://helpdesk.centinela.k12.ca.us/portal/new_ticket" method="POST" encType="multipart/form-data">
@@ -44,6 +67,14 @@ const submitTicket = (props) => {
                 <p>
                     <label htmlFor="detailed-description">Detailed Description:</label>
                     <textarea id="detailed-description" name="detailed-description" placeholder="Type the technical issue you are facing here..." cols="5" rows="3"></textarea>
+                </p>
+                {/* <p>
+                    <label htmlFor="summary">Your name:</label>
+                    <input type="text" name="client-name" id="client-name" placeholder="Your full name..." />
+                </p> */}
+                <p>
+                    <label htmlFor="client-email">Centinela E-mail:</label>
+                    <input type="email" name="client-email" id="client-email" placeholder="Your Centinela e-mail..." />
                 </p>
                 <p className="inline fieldMargin">
                     <label htmlFor="category" className="block">Category:</label>
@@ -84,7 +115,7 @@ const submitTicket = (props) => {
                     <input type="text" placeholder="Optional file path..." name="uploadFile-path" id="uploadFile-path" />
                 </p>
                 <p>
-                    <button type="submit" className="redToDarkRedgradient clickable" onClick={sendEmail()}>Submit</button>
+                    <button type="submit" className="redToDarkRedgradient clickable" onSubmit={sendEmail()}>Submit</button>
                     <button type="reset" className="redToDarkRedgradient clickable">Reset</button>
                 </p>
             </fieldset>
