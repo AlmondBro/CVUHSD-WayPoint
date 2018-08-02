@@ -1,13 +1,14 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
 import PropTypes from "prop-types";
 
 const SupportSquare = (props) => {
     return(
         <section className="support-square" id={props.id}>
-                <a href={props.pageLink}>
+                <NavLink to={props.pageLink || props.phone}  >
                     <img src={props.imgSrc} className="square-icon" alt="Square-Icon" />
                     <h3>{props.title}</h3>
-                </a>
+                </NavLink>
             </section>);
 };
 
