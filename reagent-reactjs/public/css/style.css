@@ -1061,6 +1061,10 @@ form.helpDeskTicket-form fieldset p button[type="reset"] {
     color: black;
 }
 
+#client-email {
+    color: black;
+}
+
 form p.fieldMargin {
     margin: 0px 25px;
 }
