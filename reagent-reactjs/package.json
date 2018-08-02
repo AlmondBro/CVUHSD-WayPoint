@@ -24,6 +24,7 @@
         "react-router-dom": "^4.2.2",
         "react-scripts": "1.1.1",
         "request": "^2.87.0",
+        "sendmail": "^1.4.1",
         "twitter": "^1.7.1",
         "undefsafe": "^2.0.2"
     },

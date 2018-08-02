@@ -1,5 +1,36 @@
 import React from "react";
+
 const submitTicket = (props) => {
+    const sendEmail = () => {
+        const electron = window.require("electron");
+        //const {session} = window.require('electron')
+       // const ses = session.defaultSession;
+        const remote = electron.remote;
+        const sendmail = remote.require('sendmail')();
+
+        console.log("Sent."); 
+    
+        sendmail({
+            from: 'no-reply@yourdomain.com',
+            to: 'juandavidlopez95@yahoo.com',
+            subject: 'test sendmail',
+            html: 'Mail of test sendmail ',
+          }, function(err, reply) {
+            console.log("Sent!")
+            console.log(err && err.stack);
+            console.dir(reply);
+            /*
+            const urlToBlock = 'https://helpdesk.centinela.k12.ca.us/portal/end_users/login'
+            ses.webRequest.onBeforeRequest((details, callback) => {
+                    if (details.url === urlToBlock) // cancel the request
+                        callback({ cancel: true });
+                        else // let the request happen
+                    callback({});
+            }); */
+        }); 
+    } //end sendEmail()
+
+
     return (
         <form className="helpDeskTicket-form" action="https://helpdesk.centinela.k12.ca.us/portal/new_ticket" method="POST" encType="multipart/form-data">
             <fieldset>
@@ -50,10 +81,10 @@ const submitTicket = (props) => {
                     <input type="file" name="attachment" id="file-input" value="" />
 
                     <label htmlFor="uploadFile-path">File name:</label>
-                    <input type="text" placeholder="Optional file path..." readOnly="readonly" name="uploadFile-path" id="uploadFile-path" />
+                    <input type="text" placeholder="Optional file path..." name="uploadFile-path" id="uploadFile-path" />
                 </p>
                 <p>
-                    <button type="submit" className="redToDarkRedgradient clickable">Submit</button>
+                    <button type="submit" className="redToDarkRedgradient clickable" onClick={sendEmail()}>Submit</button>
                     <button type="reset" className="redToDarkRedgradient clickable">Reset</button>
                 </p>
             </fieldset>
