@@ -11,6 +11,10 @@ DisplaySwitch.exe
 build
 /build
 
+#Ignore Electron Build folder, since you can generate this at any time
+/dist
+dist
+
 #Ignore NPM & yarn lock files
 package-lock.json
 yarn.lock
