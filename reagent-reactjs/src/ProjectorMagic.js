@@ -1,15 +1,23 @@
 
 import React, { Component } from "react";
+
 class ProjectorMagic extends Component {
     constructor(props) {
         super(props);
         this.projectorMagicIcon = "./img/icon-projector.png";
+        //this.displaySwitchExePath = process.env["WINDIR"] + "\\System32\\DisplaySwitch.exe";
         this.state = {
             message: "Click a button to clone or extend display."
         };
     }  
 
-    displaySwitchExePath = "%windir%\\System32\\DisplaySwitch.exe";
+    displaySwitchExePath = () => {
+        const electron = window.require("electron");
+        const remote = electron.remote;
+        const process = remote.require("process");
+
+        return (process.env["WINDIR"] + "\\System32\\DisplaySwitch.exe");
+    } 
 
     commandConsoleOutput = (data) => {
         console.log("Data:\t" + data);
@@ -19,11 +27,10 @@ class ProjectorMagic extends Component {
         const electron = window.require("electron");
         const remote = electron.remote;
         const nrc = remote.require("node-run-cmd");
-
+        const process = remote.require("process");
+        
         console.log("Extend display");
-        console.log("Path:\t" + this.displaySwitchExePath);
-        nrc.run(  "ls", { onData: this.commandConsoleOutput });
-        nrc.run(  "%windir%\\System32\\DisplaySwitch.exe \\extend", { onData: this.commandConsoleOutput });
+        nrc.run( this.displaySwitchExePath() + " /extend", { onData: this.commandConsoleOutput });
         this.setState({ message: "Extended display" });
     } //end extendDisplay() method 
 
@@ -31,20 +38,20 @@ class ProjectorMagic extends Component {
         const electron = window.require("electron");
         const remote = electron.remote;
         const nrc = remote.require("node-run-cmd");
+        const process = remote.require("process");
 
         console.log("Clone display");
-
-        nrc.run(  "%windir%\\System32\\DisplaySwitch.exe \\clone", { onData: this.commandConsoleOutput });
+        nrc.run(  this.displaySwitchExePath() + " /clone", { onData: this.commandConsoleOutput });
         this.setState({ message: "Cloned display" });
     } //end cloneDisplay() method 
 
-    componentDidMount() {
+    componentDidMount = () => {
         console.log("Projector Magic component");
         document.getElementById("button-extend").addEventListener("click", this.extendDisplay);
         document.getElementById("button-clone").addEventListener("click", this.cloneDisplay);
-    }
+    } //end co
 
-    render() {
+    render = () => {
         return (
             <section className="projector-magic">
                 {/* <img src={this.projectorMagicIcon} className="img-responsive wiggle" id="wifiMagic-fixingIcon" /> */}
