@@ -1,23 +1,21 @@
 import React, { Component } from "react";
 
-const electron = window.require("electron");
-const remote = electron.remote;
-const os = remote.require("os");
-
-const completeUserName = remote.require("fullname");
-const macaddress = remote.require("macaddress");
-const undefsafe = remote.require("undefsafe");
-
 class Footer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userName: os.userInfo().username,
+            userName: "Your username",
             ipAddress: this.getIPAddress()
         };
     }
 
     getIPAddress = () => {
+        const electron = window.require("electron");
+        const remote = electron.remote;
+
+        const macaddress = remote.require("macaddress");
+        const undefsafe = remote.require("undefsafe");
+
         let IP_Address; 
 
         if ( undefsafe(macaddress.networkInterfaces(), "Ethernet.ipv4") !== undefined ) {
@@ -55,13 +53,17 @@ class Footer extends Component {
     }
 
     componentDidMount = () => { 
+        const electron = window.require("electron");
+        const remote = electron.remote;
+
+        const completeUserName = remote.require("fullname");
       //  console.log("OS Network Interface Obj:\t" + JSON.stringify(os.networkInterfaces()) );
        // console.log("MacAddress:\t" + JSON.stringify(macaddress.networkInterfaces(), null, 2));
       //  console.log("OS username:\t" + os.userInfo().username);
 
         completeUserName().then(name => {
            // console.log("Complete userName:\t" + name);
-            if (name != null || undefined || "") {
+            if (name != null || undefined || "undefined" || "") {
                 this.setState({
                     userName: name
                 });
@@ -95,6 +97,9 @@ class Footer extends Component {
     }  //end determineWindowsVersion() 
     
     render() {
+        const electron = window.require("electron");
+        const remote = electron.remote;
+        const os = remote.require("os");
         return (
             <footer>
                 <div className="USER-container"><p>User: <span className="currentUserName">{ this.state.userName || "Your Username" }</span></p></div>

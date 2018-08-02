@@ -50,7 +50,7 @@ const submitTicket = (props) => {
                     <input type="file" name="attachment" id="file-input" value="" />
 
                     <label htmlFor="uploadFile-path">File name:</label>
-                    <input type="text" placeholder="Optional file path..." readonly="readonly" name="uploadFile-path" id="uploadFile-path" />
+                    <input type="text" placeholder="Optional file path..." readOnly="readonly" name="uploadFile-path" id="uploadFile-path" />
                 </p>
                 <p>
                     <button type="submit" className="redToDarkRedgradient clickable">Submit</button>

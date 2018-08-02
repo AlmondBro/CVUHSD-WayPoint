@@ -4,11 +4,12 @@ class BackButton extends Component {
     //Example from https://stackoverflow.com/questions/30915173/react-router-go-back-a-page-how-do-you-configure-history
     static contextTypes = {
         router: () => true, // replace with PropTypes.object if you use them
+        //https://stackoverflow.com/questions/42672842/how-to-get-history-on-react-router-v4
      }
     
     render() {
         console.log("History:\t" + JSON.stringify(this.context.router.history));
-        
+
         if (this.context.router.history.location.pathname == "/") {
             // return (
             //     <div className="messageAndGoBack-container">
