@@ -15,18 +15,41 @@ const submitTicket = (props) => {
        // const ses = session.defaultSession;
         const remote = electron.remote;
         const sendmail = remote.require('sendmail')({silent: true});
-        //const jsxToString = remote.require("jsx-to-string");
+        //const jsxToString = remote.require("jsx-to-string");endm
       
-
+        var file_input = document.getElementById("file-input");
+        var fileUpload_inputField = document.getElementById("uploadFile-path");
+        
+        const formGetPathCode = () => {
+            file_input.onchange = function() {
+                console.log("onchange");
+                getFilePath(file_input, fileUpload_inputField);
+    
+                this.value=null; 
+                return false; 
+            };
+        }
+    
+        const getFilePath = (file_input, fileUpload_inputField) => {
+            console.log("getFilePath");
+            var fileUpload_valueArray = file_input.value.split('\\');
+            console.log("fileUpload_valueArray:\t", fileUpload_valueArray);
+            fileUpload_inputField.value =  fileUpload_valueArray[fileUpload_valueArray.length - 1];
+        }
+       
+        if (file_input != null) {
+            formGetPathCode();
+        }   
+    
        // window.onload = () => {
-            const title = document.getElementById("summary");
-            const description = document.getElementById("detailed-description");
-            //const clientName = document.getElementById("client-name").value;
-            const email = document.getElementById("client-email");
-            const category = document.getElementById("category");
-            const location = document.getElementById("location");
-            const phoneExtension = document.getElementById("phone-extension");
-            const officeNumber = document.getElementById("building-number");
+        const title = document.getElementById("summary");
+        const description = document.getElementById("detailed-description");
+        //const clientName = document.getElementById("client-name").value;
+        const email = document.getElementById("client-email");
+        const category = document.getElementById("category");
+        const location = document.getElementById("location");
+        const phoneExtension = document.getElementById("phone-extension");
+        const officeNumber = document.getElementById("building-number");
         //} //end window.onload
 
        var HTMLmessage =/* jsxToString(<Email title={title} 
@@ -37,29 +60,27 @@ const submitTicket = (props) => {
                                              phoneExtension={phoneExtension}
                                              officeNumber={officeNumber} />
                                     ); */
-                                    jsxToString(<Email  />);
+                                    jsxToString(<Email />).toString();
 
         console.log("Sent."); 
-        console.log("HTMLMessage:\t" + jsxToString(<Email  />));
+        console.log("HTMLMessage:\t" + HTMLmessage);
      
        sendmail({
             from: email.value,
             to: "juandavidlopez95@yahoo.com",
             subject: title.value,
             html: HTMLmessage,
+            attachments: [  {   // file on disk as an attachment
+                                filename: 'text3.txt',
+                                path: '/path/to/file.txt' // stream this file
+                            }
+                        ]
           }, function(err, reply) {
             console.log("Sent email!")
             console.log(err && err.stack);
             console.dir(reply);
-            /*
-            const urlToBlock = 'https://helpdesk.centinela.k12.ca.us/portal/end_users/login'
-            ses.webRequest.onBeforeRequest((details, callback) => {
-                    if (details.url === urlToBlock) // cancel the request
-                        callback({ cancel: true });
-                        else // let the request happen
-                    callback({});
-            });  */
        }); 
+
     } //end sendMail() method
 
    /* const preventSubmit = (e) => {
