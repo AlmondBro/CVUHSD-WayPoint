@@ -13,6 +13,7 @@ const submitTicket = (props) => {
     const officeNumber = document.getElementById("building-number");
 
     window.onload = () => {
+
         (function fileAttachment() {
             var file_input = document.getElementById("file-input");
             var fileUpload_inputField = document.getElementById("uploadFile-path");
@@ -24,14 +25,33 @@ const submitTicket = (props) => {
                 fileUpload_inputField.value =  fileUpload_valueArray[fileUpload_valueArray.length - 1];
             }
 
+            document.addEventListener('dragover', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+              });
+
             const formGetPathCode = () => {
-                file_input.onchange = function() {
+                file_input.addEventListener("change", (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    console.log("onchange");
+                    getFilePath(file_input, fileUpload_inputField);
+                    console.log("transfer:\t" + e.dataTransfer);
+                   /* for (let f of e.dataTransfer.files) {
+                        console.log('File(s) you dragged here: ', f.path)
+                      } */
+
+                   // this.value = null; 
+                    //return false; 
+                });
+                /*file_input.onchange = function() {
                     console.log("onchange");
                     getFilePath(file_input, fileUpload_inputField);
         
-                    this.value=null; 
+                    this.value = null; 
                     return false; 
-                };
+                }; */
             }
         
             if (file_input != null) {
