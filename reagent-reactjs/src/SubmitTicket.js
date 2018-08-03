@@ -3,6 +3,42 @@ import Email from "./Email.js";
 import jsxToString from 'jsx-to-string';
 const submitTicket = (props) => {
 
+    window.onload = () => {
+        const title = document.getElementById("summary");
+        const description = document.getElementById("detailed-description");
+        //const clientName = document.getElementById("client-name").value;
+        const email = document.getElementById("client-email");
+        const category = document.getElementById("category");
+        const location = document.getElementById("location");
+        const phoneExtension = document.getElementById("phone-extension");
+        const officeNumber = document.getElementById("building-number");
+
+        var file_input = document.getElementById("file-input");
+        var fileUpload_inputField = document.getElementById("uploadFile-path");
+        
+        const getFilePath = (file_input, fileUpload_inputField) => {
+            console.log("getFilePath");
+            var fileUpload_valueArray = file_input.value.split('\\');
+            console.log("fileUpload_valueArray:\t", fileUpload_valueArray);
+            fileUpload_inputField.value =  fileUpload_valueArray[fileUpload_valueArray.length - 1];
+        }
+
+        const formGetPathCode = () => {
+            file_input.onchange = function() {
+                console.log("onchange");
+                getFilePath(file_input, fileUpload_inputField);
+    
+                this.value=null; 
+                return false; 
+            };
+        }
+    
+        if (file_input != null) {
+            formGetPathCode();
+        }   
+    
+    } //end window.onload
+
     const sendEmail = (e) => {
         ((e) => {
             e.preventDefault();
@@ -17,41 +53,6 @@ const submitTicket = (props) => {
         const sendmail = remote.require('sendmail')({silent: true});
         //const jsxToString = remote.require("jsx-to-string");endm
       
-        var file_input = document.getElementById("file-input");
-        var fileUpload_inputField = document.getElementById("uploadFile-path");
-        
-        const formGetPathCode = () => {
-            file_input.onchange = function() {
-                console.log("onchange");
-                getFilePath(file_input, fileUpload_inputField);
-    
-                this.value=null; 
-                return false; 
-            };
-        }
-    
-        const getFilePath = (file_input, fileUpload_inputField) => {
-            console.log("getFilePath");
-            var fileUpload_valueArray = file_input.value.split('\\');
-            console.log("fileUpload_valueArray:\t", fileUpload_valueArray);
-            fileUpload_inputField.value =  fileUpload_valueArray[fileUpload_valueArray.length - 1];
-        }
-       
-        if (file_input != null) {
-            formGetPathCode();
-        }   
-    
-       // window.onload = () => {
-        const title = document.getElementById("summary");
-        const description = document.getElementById("detailed-description");
-        //const clientName = document.getElementById("client-name").value;
-        const email = document.getElementById("client-email");
-        const category = document.getElementById("category");
-        const location = document.getElementById("location");
-        const phoneExtension = document.getElementById("phone-extension");
-        const officeNumber = document.getElementById("building-number");
-        //} //end window.onload
-
        var HTMLmessage =/* jsxToString(<Email title={title} 
                                              description={description}
                                              email={email}
@@ -64,7 +65,7 @@ const submitTicket = (props) => {
 
         console.log("Sent."); 
         console.log("HTMLMessage:\t" + HTMLmessage);
-     
+     /*
        sendmail({
             from: email.value,
             to: "juandavidlopez95@yahoo.com",
@@ -79,7 +80,7 @@ const submitTicket = (props) => {
             console.log("Sent email!")
             console.log(err && err.stack);
             console.dir(reply);
-       }); 
+       });  */
 
     } //end sendMail() method
 
