@@ -9,7 +9,7 @@ window.eval = function () {
 window.onload = function() {
     console.log("Logic.js loaded");
     require('electron-react-devtools').install();
-
+    
     (function minimizeAndClose() { 
         const remote = window.require('electron').remote;
         
@@ -22,7 +22,7 @@ window.onload = function() {
             const window = remote.getCurrentWindow();
             window.close();
         }); 
-    })();
+    })(); 
     
     document.onreadystatechange = function () {
         if (document.readyState == "complete") {

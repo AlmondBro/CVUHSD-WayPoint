@@ -3,40 +3,41 @@ import Email from "./Email.js";
 import jsxToString from 'jsx-to-string';
 const submitTicket = (props) => {
 
+    const title = document.getElementById("summary");
+    const description = document.getElementById("detailed-description");
+    //const clientName = document.getElementById("client-name").value;
+    const email = document.getElementById("client-email");
+    const category = document.getElementById("category");
+    const location = document.getElementById("location");
+    const phoneExtension = document.getElementById("phone-extension");
+    const officeNumber = document.getElementById("building-number");
+
     window.onload = () => {
-        const title = document.getElementById("summary");
-        const description = document.getElementById("detailed-description");
-        //const clientName = document.getElementById("client-name").value;
-        const email = document.getElementById("client-email");
-        const category = document.getElementById("category");
-        const location = document.getElementById("location");
-        const phoneExtension = document.getElementById("phone-extension");
-        const officeNumber = document.getElementById("building-number");
+        (function fileAttachment() {
+            var file_input = document.getElementById("file-input");
+            var fileUpload_inputField = document.getElementById("uploadFile-path");
+            
+            const getFilePath = (file_input, fileUpload_inputField) => {
+                console.log("getFilePath");
+                var fileUpload_valueArray = file_input.value.split('\\');
+                console.log("fileUpload_valueArray:\t", fileUpload_valueArray);
+                fileUpload_inputField.value =  fileUpload_valueArray[fileUpload_valueArray.length - 1];
+            }
 
-        var file_input = document.getElementById("file-input");
-        var fileUpload_inputField = document.getElementById("uploadFile-path");
+            const formGetPathCode = () => {
+                file_input.onchange = function() {
+                    console.log("onchange");
+                    getFilePath(file_input, fileUpload_inputField);
         
-        const getFilePath = (file_input, fileUpload_inputField) => {
-            console.log("getFilePath");
-            var fileUpload_valueArray = file_input.value.split('\\');
-            console.log("fileUpload_valueArray:\t", fileUpload_valueArray);
-            fileUpload_inputField.value =  fileUpload_valueArray[fileUpload_valueArray.length - 1];
-        }
-
-        const formGetPathCode = () => {
-            file_input.onchange = function() {
-                console.log("onchange");
-                getFilePath(file_input, fileUpload_inputField);
-    
-                this.value=null; 
-                return false; 
-            };
-        }
-    
-        if (file_input != null) {
-            formGetPathCode();
-        }   
-    
+                    this.value=null; 
+                    return false; 
+                };
+            }
+        
+            if (file_input != null) {
+                formGetPathCode();
+            }   
+        })();
     } //end window.onload
 
     const sendEmail = (e) => {
@@ -148,7 +149,7 @@ const submitTicket = (props) => {
                     <input type="file" name="attachment" id="file-input" value="" />
 
                     <label htmlFor="uploadFile-path">File name:</label>
-                    <input type="text" placeholder="Optional file path..." name="uploadFile-path" id="uploadFile-path" />
+                    <input type="text" placeholder="Optional file path..." readOnly name="uploadFile-path" id="uploadFile-path" />
                 </p>
                 <p>
                     <button type="submit" className="redToDarkRedgradient clickable" onClick={sendEmail} >Submit</button>
