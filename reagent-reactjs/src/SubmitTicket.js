@@ -3,23 +3,34 @@ import Email from "./Email.js";
 import jsxToString from 'jsx-to-string';
 const submitTicket = (props) => {
 
-    const title = document.getElementById("summary");
-    const description = document.getElementById("detailed-description");
+    var title;
+    var description;
     //const clientName = document.getElementById("client-name").value;
-    const email = document.getElementById("client-email");
-    const category = document.getElementById("category");
-    const location = document.getElementById("location");
-    const phoneExtension = document.getElementById("phone-extension");
-    const officeNumber = document.getElementById("building-number");
+    var email;
+    var category;
+    var location;
+    var phoneExtension;
+    var officeNumber;
+
+    var fileAttachmentPath = "";
 
     window.onload = () => {
+
+        title = document.getElementById("summary");
+        description = document.getElementById("detailed-description");
+        // clientName = document.getElementById("client-name").value;
+        email = document.getElementById("client-email");
+        category = document.getElementById("category");
+        location = document.getElementById("location");
+        phoneExtension = document.getElementById("phone-extension");
+        officeNumber = document.getElementById("building-number");
 
         (function fileAttachment() {
             var file_input = document.getElementById("file-input");
             var fileUpload_inputField = document.getElementById("uploadFile-path");
             
             const getFilePath = (file_input, fileUpload_inputField) => {
-                console.log("getFilePath");
+                console.log("getFilePath()");
                 var fileUpload_valueArray = file_input.value.split('\\');
                 console.log("fileUpload_valueArray:\t", fileUpload_valueArray);
                 fileUpload_inputField.value =  fileUpload_valueArray[fileUpload_valueArray.length - 1];
@@ -38,6 +49,11 @@ const submitTicket = (props) => {
                     console.log("onchange");
                     getFilePath(file_input, fileUpload_inputField);
                     console.log("transfer:\t" + e.dataTransfer);
+                    console.log("path:\t" + file_input.files[0].path);
+                    //document.getElementById("uploadFile-path").value = file_input.files[0].path;
+
+                    fileAttachmentPath = file_input.files[0].path;
+                    console.log("FileattachmentPath:\t" + fileAttachmentPath );
                    /* for (let f of e.dataTransfer.files) {
                         console.log('File(s) you dragged here: ', f.path)
                       } */
@@ -45,20 +61,13 @@ const submitTicket = (props) => {
                    // this.value = null; 
                     //return false; 
                 });
-                /*file_input.onchange = function() {
-                    console.log("onchange");
-                    getFilePath(file_input, fileUpload_inputField);
-        
-                    this.value = null; 
-                    return false; 
-                }; */
-            }
+            } //end formGetPathCode()
         
             if (file_input != null) {
                 formGetPathCode();
             }   
         })();
-    } //end window.onload
+   } //end window.onload
 
     const sendEmail = (e) => {
         ((e) => {
@@ -86,7 +95,7 @@ const submitTicket = (props) => {
 
         console.log("Sent."); 
         console.log("HTMLMessage:\t" + HTMLmessage);
-     /*
+     
        sendmail({
             from: email.value,
             to: "juandavidlopez95@yahoo.com",
@@ -94,14 +103,14 @@ const submitTicket = (props) => {
             html: HTMLmessage,
             attachments: [  {   // file on disk as an attachment
                                 filename: 'text3.txt',
-                                path: '/path/to/file.txt' // stream this file
+                                path: fileAttachmentPath // stream this file
                             }
                         ]
           }, function(err, reply) {
             console.log("Sent email!")
             console.log(err && err.stack);
             console.dir(reply);
-       });  */
+       });  
 
     } //end sendMail() method
 
