@@ -3,7 +3,13 @@ import Email from "./Email.js";
 import jsxToString from 'jsx-to-string';
 const submitTicket = (props) => {
 
-    const sendEmail = () => {
+    const sendEmail = (e) => {
+        ((e) => {
+            e.preventDefault();
+            console.log("preventSubmit");
+             //return false;
+        })(e); 
+
         const electron = window.require("electron");
         //const {session} = window.require('electron')
        // const ses = session.defaultSession;
@@ -23,21 +29,23 @@ const submitTicket = (props) => {
             const officeNumber = document.getElementById("building-number");
         //} //end window.onload
 
-        var HTMLmessage = jsxToString(<Email title={title} 
+       var HTMLmessage =/* jsxToString(<Email title={title} 
                                              description={description}
                                              email={email}
                                              category={category}
                                              location={location}
                                              phoneExtension={phoneExtension}
                                              officeNumber={officeNumber} />
-                                    );
+                                    ); */
+                                    jsxToString(<Email  />);
 
         console.log("Sent."); 
+        console.log("HTMLMessage:\t" + jsxToString(<Email  />));
      
-        sendmail({
-            from: "hi",
+       sendmail({
+            from: email.value,
             to: "juandavidlopez95@yahoo.com",
-            subject: "title.value",
+            subject: title.value,
             html: HTMLmessage,
           }, function(err, reply) {
             console.log("Sent email!")
@@ -50,9 +58,15 @@ const submitTicket = (props) => {
                         callback({ cancel: true });
                         else // let the request happen
                     callback({});
-            }); */
-        }); 
+            });  */
+       }); 
     } //end sendMail() method
+
+   /* const preventSubmit = (e) => {
+        e.preventDefault();
+        console.log("preventSubmit");
+         //return false;
+    } */
 
     return (
         <form className="helpDeskTicket-form" action="https://helpdesk.centinela.k12.ca.us/portal/new_ticket" method="POST" encType="multipart/form-data">
@@ -115,7 +129,7 @@ const submitTicket = (props) => {
                     <input type="text" placeholder="Optional file path..." name="uploadFile-path" id="uploadFile-path" />
                 </p>
                 <p>
-                    <button type="submit" className="redToDarkRedgradient clickable" onSubmit={sendEmail()}>Submit</button>
+                    <button type="submit" className="redToDarkRedgradient clickable" onClick={sendEmail} >Submit</button>
                     <button type="reset" className="redToDarkRedgradient clickable">Reset</button>
                 </p>
             </fieldset>
