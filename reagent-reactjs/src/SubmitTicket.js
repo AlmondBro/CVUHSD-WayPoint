@@ -1,8 +1,8 @@
 import React from "react";
 import Email from "./Email.js";
 import jsxToString from 'jsx-to-string';
-const submitTicket = (props) => {
 
+const submitTicket = (props) => {
     var title;
     var description;
     //const clientName = document.getElementById("client-name").value;
@@ -12,10 +12,10 @@ const submitTicket = (props) => {
     var phoneExtension;
     var officeNumber;
 
-    var fileAttachmentPath = "";
+    var fileAttachmentPath;
+    var fileAttachmentName;
 
     window.onload = () => {
-
         title = document.getElementById("summary");
         description = document.getElementById("detailed-description");
         // clientName = document.getElementById("client-name").value;
@@ -24,50 +24,53 @@ const submitTicket = (props) => {
         location = document.getElementById("location");
         phoneExtension = document.getElementById("phone-extension");
         officeNumber = document.getElementById("building-number");
+    } //end window.onload
 
-        (function fileAttachment() {
-            var file_input = document.getElementById("file-input");
-            var fileUpload_inputField = document.getElementById("uploadFile-path");
-            
-            const getFilePath = (file_input, fileUpload_inputField) => {
-                console.log("getFilePath()");
-                var fileUpload_valueArray = file_input.value.split('\\');
-                console.log("fileUpload_valueArray:\t", fileUpload_valueArray);
-                fileUpload_inputField.value =  fileUpload_valueArray[fileUpload_valueArray.length - 1];
-            }
+    (function fileAttachment() {
+        var file_input = document.getElementById("file-input");
+        var fileUpload_inputField = document.getElementById("uploadFile-path");
+        
+        const getFilePath = (file_input, fileUpload_inputField) => {
+            console.log("getFilePath()");
+            var fileUpload_valueArray = file_input.value.split('\\');
+            console.log("fileUpload_valueArray:\t", fileUpload_valueArray);
+            fileUpload_inputField.value =  fileUpload_valueArray[fileUpload_valueArray.length - 1];
+            fileAttachmentName = fileUpload_valueArray[fileUpload_valueArray.length - 1];
+            console.log("fileAttachmentName:\t" + fileAttachmentName);
+        }
 
-            document.addEventListener('dragover', function (e) {
+        document.addEventListener('dragover', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            });
+
+        const formGetPathCode = () => {
+            file_input.addEventListener("change", (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-              });
 
-            const formGetPathCode = () => {
-                file_input.addEventListener("change", (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
+                console.log("onchange");
+                getFilePath(file_input, fileUpload_inputField);
+                console.log("transfer:\t" + e.dataTransfer);
+                console.log("path:\t" + file_input.files[0].path);
+                //document.getElementById("uploadFile-path").value = file_input.files[0].path;
 
-                    console.log("onchange");
-                    getFilePath(file_input, fileUpload_inputField);
-                    console.log("transfer:\t" + e.dataTransfer);
-                    console.log("path:\t" + file_input.files[0].path);
-                    //document.getElementById("uploadFile-path").value = file_input.files[0].path;
+                fileAttachmentPath = file_input.files[0].path;
+                console.log("FileattachmentPath:\t" + fileAttachmentPath );
+                /* for (let f of e.dataTransfer.files) {
+                    console.log('File(s) you dragged here: ', f.path)
+                    } */
 
-                    fileAttachmentPath = file_input.files[0].path;
-                    console.log("FileattachmentPath:\t" + fileAttachmentPath );
-                   /* for (let f of e.dataTransfer.files) {
-                        console.log('File(s) you dragged here: ', f.path)
-                      } */
-
-                   // this.value = null; 
-                    //return false; 
-                });
-            } //end formGetPathCode()
-        
-            if (file_input != null) {
-                formGetPathCode();
-            }   
-        })();
-   } //end window.onload
+                // this.value = null; 
+                //return false; 
+            });
+        } //end formGetPathCode()
+    
+        if (file_input != null) {
+            formGetPathCode();
+        }   
+    })();
+ 
 
     const sendEmail = (e) => {
         ((e) => {
@@ -76,49 +79,57 @@ const submitTicket = (props) => {
              //return false;
         })(e); 
 
-        const electron = window.require("electron");
-        //const {session} = window.require('electron')
-       // const ses = session.defaultSession;
-        const remote = electron.remote;
-        const sendmail = remote.require('sendmail')({silent: true});
-        //const jsxToString = remote.require("jsx-to-string");endm
-      
-       var HTMLmessage =/* jsxToString(<Email title={title} 
-                                             description={description}
-                                             email={email}
-                                             category={category}
-                                             location={location}
-                                             phoneExtension={phoneExtension}
-                                             officeNumber={officeNumber} />
-                                    ); */
-                                    jsxToString(<Email />).toString();
+        if (title.value === null || title.value  == undefined || 
+            description.value === null || description.value == undefined ||
+            email.value === null || email.value == undefined || 
+            category.value === null ||  category.value  == undefined || 
+            location.value === null || location.value == undefined || 
+            phoneExtension.value === null || phoneExtension.value  == undefined || 
+            officeNumber.value === null || officeNumber.value == undefined  ) {
+                console.log("Undefined/null fields!");
+                return;
+        } else {
+            const electron = window.require("electron");
+            //const {session} = window.require('electron')
+           // const ses = session.defaultSession;
+            const remote = electron.remote;
+            const sendmail = remote.require('sendmail')({silent: true});
+            //const jsxToString = remote.require("jsx-to-string");endm
+          
+           var HTMLmessage =/* jsxToString(<Email title={title} 
+                                                 description={description}
+                                                 email={email}
+                                                 category={category}
+                                                 location={location}
+                                                 phoneExtension={phoneExtension}
+                                                 officeNumber={officeNumber} />
+                                        ); */
+                                        jsxToString(<Email />).toString();
+    
+            console.log("Sent."); 
+            console.log("HTMLMessage:\t" + HTMLmessage);
+         
+           sendmail({
+                from: email.value,
+                to: "juandavidlopez95@yahoo.com",
+                subject: title.value,
+                html: HTMLmessage,
+                attachments: [  {   // file on disk as an attachment
+                                    filename: fileAttachmentName,
+                                    path: fileAttachmentPath // stream this file
+                                }
+                            ]
+              }, function(err, reply) {
+                console.log("Sent email!")
+                console.log(err && err.stack);
+                console.dir(reply);
+           });  
+        }
 
-        console.log("Sent."); 
-        console.log("HTMLMessage:\t" + HTMLmessage);
-     
-       sendmail({
-            from: email.value,
-            to: "juandavidlopez95@yahoo.com",
-            subject: title.value,
-            html: HTMLmessage,
-            attachments: [  {   // file on disk as an attachment
-                                filename: 'text3.txt',
-                                path: fileAttachmentPath // stream this file
-                            }
-                        ]
-          }, function(err, reply) {
-            console.log("Sent email!")
-            console.log(err && err.stack);
-            console.dir(reply);
-       });  
+        
 
     } //end sendMail() method
 
-   /* const preventSubmit = (e) => {
-        e.preventDefault();
-        console.log("preventSubmit");
-         //return false;
-    } */
 
     return (
         <form className="helpDeskTicket-form" action="https://helpdesk.centinela.k12.ca.us/portal/new_ticket" method="POST" encType="multipart/form-data">
