@@ -17,10 +17,14 @@ import StaffPortal from "./StaffPortal.js";
 import Announcements from "./Announcements.js";
 import Footer from "./Footer.js";
 
+const electron = window.require("electron");
+const remote = electron.remote;
+const isDev = remote.require('electron-is-dev'); 
+
 class App extends Component {
   render() {
     return (
-      <HashRouter>
+     <BrowserRouter>
         <div>
          <Titlebar/>
           <main>
@@ -46,7 +50,7 @@ class App extends Component {
             <div className="blur-effect"></div>
           </main>
         </div>
-      </HashRouter>
+        </BrowserRouter>
     );
   }
 }
