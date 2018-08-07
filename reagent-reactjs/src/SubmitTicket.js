@@ -79,13 +79,13 @@ const submitTicket = (props) => {
              //return false;
         })(e); 
 
-        if (title.value === null || title.value  == undefined || 
-            description.value === null || description.value == undefined ||
-            email.value === null || email.value == undefined || 
-            category.value === null ||  category.value  == undefined || 
-            location.value === null || location.value == undefined || 
-            phoneExtension.value === null || phoneExtension.value  == undefined || 
-            officeNumber.value === null || officeNumber.value == undefined  ) {
+        if (title.value === null || title.value  === undefined || 
+            description.value === null || description.value === undefined ||
+            email.value === null || email.value === undefined || 
+            category.value === null ||  category.value  === undefined || 
+            location.value === null || location.value === undefined || 
+            phoneExtension.value === null || phoneExtension.value  === undefined || 
+            officeNumber.value === null || officeNumber.value === undefined  ) {
                 console.log("Undefined/null fields!");
                 return;
         } else {
@@ -124,12 +124,8 @@ const submitTicket = (props) => {
                 console.log(err && err.stack);
                 console.dir(reply);
            });  
-        }
-
-        
-
+        } //end else-statement
     } //end sendMail() method
-
 
     return (
         <form className="helpDeskTicket-form" action="https://helpdesk.centinela.k12.ca.us/portal/new_ticket" method="POST" encType="multipart/form-data">
@@ -197,7 +193,7 @@ const submitTicket = (props) => {
                 </p>
             </fieldset>
     </form>
-    );
-};
+    ); //end return statement
+}; //end submitTicket class
 
 export default submitTicket;
