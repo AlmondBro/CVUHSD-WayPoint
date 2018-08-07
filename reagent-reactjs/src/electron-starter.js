@@ -81,13 +81,30 @@ app.on('ready', () => {
     electron.protocol.registerServiceWorkerSchemes(['file:']);
 });
 
-/*
+//Prevent the creation of WebViews with insecure options
+app.on('web-contents-created', (event, contents) => {
+    contents.on('will-attach-webview', (event, webPreferences, params) => {
+      // Strip away preload scripts if unused or verify their location is legitimate
+      delete webPreferences.preload
+      delete webPreferences.preloadURL
+  
+      // Disable Node.js integration
+      webPreferences.nodeIntegration = false;
+  
+      // Verify URL being loaded
+      if (!params.src.startsWith('https://yourapp.com/')) {
+        event.preventDefault();
+      } //end if-statement
+    }); //end contents.on()
+  });//end app.on
+
+/* //Register the file protocol as supported
 electron.webFrame.registerURLSchemeAsPrivileged('file');
 electron.webFrame.registerURLSchemeAsSecure('file');
 electron.webFrame.registerURLSchemeAsBypassingCSP('file');
-
-
 */
+
+
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 /* window.eval = global.eval = function () {
