@@ -1,34 +1,49 @@
 /*window.eval = global.eval = function () {
     throw new Error(`Sorry, this app does not support window.eval().`)
   } */
+
+
   
-window.eval = function () {
-    throw new Error(`Sorry, this app does not support window.eval().`)
+window.eval = () => {
+    throw new Error(`Sorry, this app does not support window.eval() for secuirt purposes.`);
 } 
 
-window.onload = function() {
+window.onload = () => {
     console.log("Logic.js loaded");
-    require('electron-react-devtools').install();
+
+    //Guess the electron and remote modules are not needed!
+    //const electron = window.require("electron");
+    //const remote = electron.remote;
+    const isDev = require('electron-is-dev'); 
     
+    if (isDev) {
+        require('electron-react-devtools').install();
+        console.log("electron-react-devtools installed");
+    }
+
     (function minimizeAndClose() { 
-        const remote = window.require('electron').remote;
-        
-        document.getElementById("button-minimize").addEventListener("click", function (e) {
+        document.getElementById("button-minimize").addEventListener("click", function (e){
+            const electron = require("electron");
+            const remote = electron.remote;
+
             const window = remote.getCurrentWindow();
             window.minimize(); 
         });
 
         document.getElementById("button-close").addEventListener("click", function (e) {
+            const electron = require("electron");
+            const remote = electron.remote;
             const window = remote.getCurrentWindow();
+
             window.close();
         }); 
     })(); 
     
-    document.onreadystatechange = function () {
+    document.onreadystatechange = () => {
         if (document.readyState == "complete") {
             minimizeAndClose(); 
-        }
-    }
+        } //end if-statement
+    } //end onreadystatechange()
 
     //If browser is Firefox, add custom scroll styling to firefox since it does not support styling via CSS.
    if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {

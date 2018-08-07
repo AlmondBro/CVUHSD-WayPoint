@@ -22,6 +22,10 @@ const remote = electron.remote;
 const isDev = remote.require('electron-is-dev'); 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
 
     let openingContainer;

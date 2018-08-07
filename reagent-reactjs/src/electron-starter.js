@@ -1,4 +1,5 @@
 const electron = require('electron');
+const remote = electron.remote;
 // Module to control application life.
 const app = electron.app;
 // Module to create native browser window.
@@ -12,7 +13,7 @@ const isDev = require('electron-is-dev');
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
-function createWindow() {
+const createWindow = () => {
     // Create the browser window.
     mainWindow = new BrowserWindow({
         width: 376, 
@@ -23,18 +24,25 @@ function createWindow() {
         nodeIntegration: false,
         webSecurity: false,
         webviewTag: false,
-        icon: path.join(__dirname, '../public/img/wp-icon-grey.png')
+        icon: path.join(__dirname, "../public/img/wp-icon-grey.png")
     });
 
     const startUrl = process.env.ELECTRON_START_URL || url.format({
-        pathname: path.join(__dirname, '/../build/index.html'),
-        protocol: 'file:',
+        pathname: path.join(__dirname, "/../build/index.html"),
+        protocol: "file:",
         slashes: true
     });
 
     // and load the index.html of the app.
     //mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
     mainWindow.loadURL(startUrl);
+
+    if (isDev) {
+        //require('electron-react-devtools').install(); // can only be installed through renderer process
+        console.log("Devtron installed");
+        require("devtron").install();
+      }
+
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
 
@@ -45,9 +53,7 @@ function createWindow() {
         // when you should delete the corresponding element.
         mainWindow = null;
     });
-
-    //require('devtron').install();
-}
+} //end createWindow()
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -71,14 +77,16 @@ app.on('activate', function () {
     }
 });
 
+app.on('ready', () => {
+    electron.protocol.registerServiceWorkerSchemes(['file:']);
+});
+
 /*
 electron.webFrame.registerURLSchemeAsPrivileged('file');
 electron.webFrame.registerURLSchemeAsSecure('file');
 electron.webFrame.registerURLSchemeAsBypassingCSP('file');
 
-app.on('ready', () => {
-    electron.protocol.registerServiceWorkerSchemes(['file:']);
-});
+
 */
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
