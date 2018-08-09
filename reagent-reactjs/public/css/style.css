@@ -16,8 +16,11 @@ html {
     min-height: 100%;
 }
 
-*:focus {
-    outline-color: transparent;
+*, *:focus, button:focus {
+    outline: 0px solid, transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
+    -webkit-tap-highlight-color: transparent; 
+    -webkit-user-modify: read-write-plaintext-only;
 }
 
 .clickable {

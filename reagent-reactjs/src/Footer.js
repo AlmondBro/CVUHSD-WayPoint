@@ -100,8 +100,8 @@ class Footer extends Component {
     determineWindowsVersion = (releaseNumber) => {
         let windowsVersion;
         let releaseNumberInt = parseInt(releaseNumber, 10);
-        console.log(releaseNumber);
-        console.log(releaseNumberInt);
+        //console.log(releaseNumber);
+       // console.log(releaseNumberInt);
 
         if (releaseNumber === 6) {
             windowsVersion = "Windows 8"

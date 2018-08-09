@@ -9,7 +9,7 @@ window.eval = () => {
 } 
 
 window.addEventListener("load", () => {
-    console.log("Logic.js loaded");
+    console.log("Window loaded -- Logic.js");
 
     //Guess the electron and remote modules are not needed!
     //const electron = window.require("electron");
