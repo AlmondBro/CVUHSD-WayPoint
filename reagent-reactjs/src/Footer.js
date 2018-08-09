@@ -4,9 +4,21 @@ class Footer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userName: process.env["%USERNAME%"],
+            userName: this.getUsername(),
             ipAddress: this.getIPAddress()
         };
+    }
+
+    stringIsEmptyOrBlank = (string) => {
+        //falsy values: null,undefined,0,000,"",false
+        if (!string || (string.trim()).length === 0) {
+            console.log(string + " is empty, blank, null or undefined");
+            return true;
+        }
+        else {
+            console.log(string + " is not empty, blank, null or undefined");
+            return false;
+        }
     }
 
     getUsername = () => {
@@ -15,23 +27,24 @@ class Footer extends Component {
         const completeUserName = remote.require("fullname");
 
       completeUserName().then(name => {
-            // String.prototype.trim = function () {
-            //     return this.replace(/^\s*/, "").replace(/\s*$/, "");
-            // }
-           // console.log("Complete userName:\t" + name);
-          /*  if (name || name != null || name != undefined || name != "undefined" || name != " " || name.length !== 0 ||  name.trim().length != 0 || name !== "    ") {
+          console.log("completeIserName():\t" + name);
+          if ( !this.stringIsEmptyOrBlank(name)) {
                 console.log("Username:\t" + name);
                 console.log("Username type:\t" + typeof(name) );
                 console.log("Username length:\t" + name.length);
-                if ( name.trim().length != 0 ) {
-                    this.setState({
-                        userName: "hi"
-                    });
-                }
-                
-            } */
+                this.setState({
+                    userName: name
+                });
+            } //end if-statement 
+            else {
+                const os = remote.require("os");
+                console.log("Complete username is empty!");
+                this.setState({
+                    userName: os.userInfo().username
+                });
+            } //end else-statement
         });  //end completeUserName() 
-    }
+    } //end completeUserName()
 
     getIPAddress = () => {
         console.log("Process env:\t" + JSON.stringify(process.env));
@@ -71,7 +84,7 @@ class Footer extends Component {
         }
         
         else {
-            IP_Address = "127.0.0.1";
+            IP_Address = "IP Address Underdetermined";
         } 
         //console.log("Returning IP address:\t" + IP_Address);
         return IP_Address;
@@ -120,7 +133,7 @@ class Footer extends Component {
                 <div className="OS-container"><p className="OS-platform">System:&#9;<span>{this.determineWindowsVersion(os.release()) || "OS Platform"}</span></p></div>
                 <p className="cv-way">Powered by: The CV-Way</p>
             </footer>
-        );
+        ); //end return
     } //end render()
 } //end class
 
