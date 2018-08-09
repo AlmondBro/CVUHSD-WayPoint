@@ -98,6 +98,7 @@ app.on('web-contents-created', (event, contents) => {
     }); //end contents.on()
   });//end app.on
 
+
 /* //Register the file protocol as supported
 electron.webFrame.registerURLSchemeAsPrivileged('file');
 electron.webFrame.registerURLSchemeAsSecure('file');
