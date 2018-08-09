@@ -85,14 +85,14 @@ app.on('ready', () => {
 app.on('web-contents-created', (event, contents) => {
     contents.on('will-attach-webview', (event, webPreferences, params) => {
       // Strip away preload scripts if unused or verify their location is legitimate
-      delete webPreferences.preload
-      delete webPreferences.preloadURL
+      delete webPreferences.preload;
+      delete webPreferences.preloadURL;
   
       // Disable Node.js integration
       webPreferences.nodeIntegration = false;
   
       // Verify URL being loaded
-      if (!params.src.startsWith('https://yourapp.com/')) {
+      if (!params.src.startsWith('https://portal.centinela.k12.ca.us/staff.html')) {
         event.preventDefault();
       } //end if-statement
     }); //end contents.on()
