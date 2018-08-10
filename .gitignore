@@ -7,6 +7,9 @@ DisplaySwitch.exe
 .vscode/
 /.vscode
 
+#ignore certificate
+ssl-cvuhsd.cer
+
 #Ignore React Build folder, since you can generate this at any time
 build
 /build
