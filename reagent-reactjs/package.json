@@ -76,6 +76,9 @@
         "files": [
             "build/**/*",
             "src/*"
-        ]
+        ],
+        "win": {
+            "icon": "build/img/wp-icon-grey-256x256.ico"
+        }
     }
 }
