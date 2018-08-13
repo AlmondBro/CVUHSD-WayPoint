@@ -1,6 +1,6 @@
 import React from "react";
 
-const titlebar = () => {
+const titlebar = (props) => {
         return ( 
         <div id="titlebar">
             <div className="titleBarButtons-container">
@@ -21,7 +21,7 @@ const titlebar = () => {
                 <div id="wp-icon-container">
                     <img id="wp-icon" src="img/wp-icon-grey.png" title="Waypoint Version 0.1" alt="WayPoint Icon" />
                 </div>
-                <div id="page-title-container"><h2 id="page-title">Home</h2></div>
+                <div id="page-title-container"><h2 id="page-title">{props.pageTitle}</h2></div>
             </div>
         </div>);
 };

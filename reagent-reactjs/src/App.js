@@ -20,9 +20,15 @@ import Footer from "./Footer.js";
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = { pageTitle: "Home"};
+    //this.updatePageTitle= this.updatePageTitle.bind(this);
   }
 
-  render() {
+  updatePageTitle = (newPageTitle) => {
+    this.setState({pageTitle: newPageTitle }); 
+  }
+
+  render = () => {
     const isDev = window.require("electron").remote.require('electron-is-dev'); 
   
     let openingContainer;
@@ -35,17 +41,16 @@ class App extends Component {
       return (
         <BrowserRouter>
           <div>
-          <Titlebar/>
+          <Titlebar pageTitle={this.state.pageTitle}  updatePageTitle={this.updatePageTitle} />
             <main>
               <Header/>
             {/* <Home/>*/}   {/* This is is the component you change when 
                           the page changes, since all components have a 
                           container, a main element, and a header. */}
-                          <Footer />
               <section className="page-content">
                 <Switch>
                   <Route exact path="/" component={Home} />
-                  <Route path="/autoFix-tools" component={AutoFixTools} />
+                  <Route path="/autoFix-tools" test="hi" render={() => <AutoFixTools test="yolo" updateTitle={this.updatePageTitle} />} />
                   <Route path="/submit-ticket" component={SubmitTicket} />
                   <Route path="/quickFix-tutorials" component={QuickFixTutorials} />
                   <Route path="/call-helpdesk" component={HelpDesk} />
