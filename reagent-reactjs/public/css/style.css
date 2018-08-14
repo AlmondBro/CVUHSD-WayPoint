@@ -1,10 +1,3 @@
-@font-face {
-    font-family: "FuturaLight";
-    src: url("../fonts/Futura_Light.ttf");
-    font-weight: normal;
-    font-style: normal;
-}
-
 * {
     box-sizing: border-box;
 }
@@ -15,12 +8,16 @@ body {
     background-image: url("https://media.cntraveler.com/photos/56549cc6659c4b4874865502/master/pass/mu-cang-chai-vietnam-cr-getty.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    font-family: "FuturaLight", "Liberation Sans", Trebuchet MS, Arial, sans-serif;
+    font-family: "Liberation Sans", Trebuchet MS, Arial, sans-serif;
 }
 
 body,
 html {
     min-height: 100%;
+}
+
+*, *:focus, button:focus {
+    outline: 0px solid transparent;
 }
 
 .clickable {
@@ -383,6 +380,7 @@ header .notificationIcon {
     height: 60px;
 }
 
+
 /* header .notificationIcon:hover {
     background-color: darkred;
 } */
@@ -474,7 +472,7 @@ a.goBack-container {
     /* padding: 0.2em 0.4em; */
     text-align: center;
     max-width: 100%;
-    height: 30px; 
+    height: 30px;
     width: 60px;
     margin: 0 auto;
     text-decoration: none;
@@ -578,7 +576,8 @@ section.page-content {
     /* overflow-y: auto;
     max-height: 560px; */
     position: relative;
-    max-height: 430px; /*450px*/
+    max-height: 430px;
+    /*450px*/
     /* 88% */
     /* 83.4%; */
     overflow-y: auto;
@@ -981,6 +980,12 @@ input#summary {
     font-size: 1em;
 }
 
+input#client-name {
+    display: block;
+    color: black;
+    font-size: 1em;
+}
+
 textarea#detailed-description,
 textarea#detailed-description::-webkit-input-placeholder,
 textarea#detailed-description::-moz-placeholder,
@@ -1049,12 +1054,16 @@ form.helpDeskTicket-form fieldset p button[type="reset"] {
     color: black;
 }
 
+#client-email {
+    color: black;
+}
+
 form p.fieldMargin {
     margin: 0px 25px;
 }
 
 .projector-magic {
-    text-align: center; 
+    text-align: center;
     margin: 0 auto;
     display: block;
     bottom: 0%;
@@ -1270,7 +1279,6 @@ form p.fieldMargin {
     /* bottom: 70px; */
     /* top: 60px; */
     cursor: pointer;
-
     left: 167px;
     bottom: 27px;
 }
@@ -1342,7 +1350,6 @@ form p.fieldMargin {
     }
 }
 
-
 @-webkit-keyframes rotation {
     from {
         -webkit-transform: rotate(0deg);
@@ -1352,9 +1359,15 @@ form p.fieldMargin {
     }
 }
 
+
 /**/
+
+
 /** Checkmark Animation **/
+
+
 /**/
+
 
 /* #tasks {
     width: 100%;
@@ -1363,7 +1376,6 @@ form p.fieldMargin {
 #task1 {
     position: relative;
     left: 95px;
-
 }
 
 .checkmark-container {
@@ -1375,18 +1387,19 @@ form p.fieldMargin {
 }
 
 .checkmarkcircle {
-  stroke-dasharray: 166;
-  stroke-dashoffset: 166;
-  stroke-width: 2;
-  stroke-miterlimit: 10;
-  stroke: #7ac142;
-  fill: none;
-  animation: stroke 1s cubic-bezier(0.650, 0.000, 0.450, 1.000) forwards;
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #7ac142;
+    fill: none;
+    animation: stroke 1s cubic-bezier(0.650, 0.000, 0.450, 1.000) forwards;
 }
 
 .checkmark {
     position: relative;
-    bottom: 20px; /*56px*/
+    bottom: 20px;
+    /*56px*/
     width: 22px;
     height: 22px;
     border-radius: 50%;
@@ -1401,30 +1414,30 @@ form p.fieldMargin {
 }
 
 .checkmarkcheck {
-  transform-origin: 50% 50%;
-  stroke-dasharray: 48;
-  stroke-dashoffset: 48;
-  animation: stroke 1.1s cubic-bezier(0.650, 0.000, 0.450, 1.000) .8s forwards;
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 1.1s cubic-bezier(0.650, 0.000, 0.450, 1.000) .8s forwards;
 }
 
 @keyframes stroke {
-  100% {
-    stroke-dashoffset: 0;
-  }
+    100% {
+        stroke-dashoffset: 0;
+    }
 }
 
 @keyframes scale {
-  0%, 100% {
-    transform: none;
-  }
-  50% {
-    transform: scale3d(1.1, 1.1, 1);
-  }
+    0%,
+    100% {
+        transform: none;
+    }
+    50% {
+        transform: scale3d(1.1, 1.1, 1);
+    }
 }
 
 @keyframes fill {
-  100% {
-    box-shadow: inset 0px 0px 0px 30px #7ac142;
-  }
+    100% {
+        box-shadow: inset 0px 0px 0px 30px #7ac142;
+    }
 }
-

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Route, BrowserRouter, Switch} from "react-router-dom";
+import {Route, BrowserRouter, Switch, HashRouter} from "react-router-dom";
 
 // Import General Page Components
 import Titlebar from "./Titlebar.js";
@@ -18,11 +18,23 @@ import Announcements from "./Announcements.js";
 import Footer from "./Footer.js";
 
 class App extends Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <div>
-         <Titlebar/>
+  constructor(props) {
+    super(props);
+    this.state = { pageTitle: "Home"};
+    //this.updatePageTitle= this.updatePageTitle.bind(this);
+  }
+
+  updatePageTitle = (newPageTitle) => {
+    this.setState({pageTitle: newPageTitle }); 
+  }
+
+  render = () => {
+    const isDev = window.require("electron").remote.require('electron-is-dev'); 
+
+    const appHTML = () => {
+      return (
+      <div>
+        <Titlebar pageTitle={this.state.pageTitle}  updatePageTitle={this.updatePageTitle} />
           <main>
             <Header/>
           {/* <Home/>*/}   {/* This is is the component you change when 
@@ -31,7 +43,7 @@ class App extends Component {
             <section className="page-content">
               <Switch>
                 <Route exact path="/" component={Home} />
-                <Route path="/autoFix-tools" component={AutoFixTools} />
+                <Route path="/autoFix-tools" render={() => <AutoFixTools test="yolo" updateTitle={this.updatePageTitle} />} />
                 <Route path="/submit-ticket" component={SubmitTicket} />
                 <Route path="/quickFix-tutorials" component={QuickFixTutorials} />
                 <Route path="/call-helpdesk" component={HelpDesk} />
@@ -45,9 +57,25 @@ class App extends Component {
             <div className="blur-effect"></div>
           </main>
         </div>
-      </BrowserRouter>
-    );
-  }
-}
+        );
+    } //end appHTML
+
+    if (isDev) {
+      return (
+        <BrowserRouter>
+            {appHTML()}
+        </BrowserRouter>
+      ); //end return statement
+    } //end if-statement
+
+    else {
+      return (
+        <HashRouter>
+            {appHTML()}
+        </HashRouter>
+      ); //end return statement
+    } //end else-statement
+  } //end render() process
+} //end App class
 
 export default App;
