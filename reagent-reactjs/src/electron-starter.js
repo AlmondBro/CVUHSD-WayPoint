@@ -27,13 +27,14 @@ const createWindow = () => {
         icon: path.join(__dirname, "../public/img/wp-icon-grey.png")
     });
 
-    const startUrl = process.env.ELECTRON_START_URL || url.format({
+    const startUrl = isDev ? (process.env.ELECTRON_START_URL || "http://localhost:3000") : url.format({
         pathname: path.join(__dirname, "/../build/index.html"),
         protocol: "file:",
         slashes: true
     });
 
     console.log(JSON.stringify(process.env));
+    console.log("process.env.ELECTRON_START_URL:\t" + process.env.ELECTRON_START_URL);
     // and load the index.html of the app.
     //mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
     mainWindow.loadURL(startUrl);
