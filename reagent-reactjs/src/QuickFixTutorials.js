@@ -3,7 +3,20 @@ import React from "react";
 //Import required external components
 import SupportSquare from "./SupportSquare.js";
 
-const quickFixTutorials = (props) => {
+//Import 3rd-party libraries 
+import lifecycle from "react-pure-lifecycle";
+
+var pageTitle = "QuickFix Tutorials";
+
+const componentDidMount = (props) => {
+    props.updateTitle(pageTitle);
+}
+
+const methods = {
+    componentDidMount
+}
+
+const QuickFixTutorials = (props) => {
     return(
         <div className="support-squares-container">
             <SupportSquare pageLink="#" 
@@ -30,4 +43,4 @@ const quickFixTutorials = (props) => {
     );
 };
 
-export default quickFixTutorials;
+export default lifecycle(methods)(QuickFixTutorials);

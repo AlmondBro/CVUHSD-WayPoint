@@ -42,15 +42,15 @@ class App extends Component {
                         container, a main element, and a header. */}
             <section className="page-content">
               <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/autoFix-tools" render={() => <AutoFixTools test="yolo" updateTitle={this.updatePageTitle} />} />
-                <Route path="/submit-ticket" component={SubmitTicket} />
-                <Route path="/quickFix-tutorials" component={QuickFixTutorials} />
-                <Route path="/call-helpdesk" component={HelpDesk} />
-                <Route path="/wiFiMagic" component={WiFiMagic} /> 
-                <Route path="/ProjectorMagic" component={ProjectorMagic} />
-                <Route path="/staffPortal" component={StaffPortal} /> 
-                <Route path="/announcements" component={Announcements} /> 
+                <Route exact path="/" render={ (props) => <Home updateTitle={this.updatePageTitle}  /> } />
+                <Route path="/autoFix-tools" render={ props => <AutoFixTools updateTitle={this.updatePageTitle} /> } />
+                <Route path="/submit-ticket" render={ props => <SubmitTicket updateTitle={this.updatePageTitle} /> } />
+                <Route path="/quickFix-tutorials" render={ props => <QuickFixTutorials updateTitle={this.updatePageTitle} /> } />
+                <Route path="/call-helpdesk" render={ props => <HelpDesk updateTitle={this.updatePageTitle} /> } />
+                <Route path="/wiFiMagic" render={props => <WiFiMagic updateTitle={this.updatePageTitle} /> } /> 
+                <Route path="/ProjectorMagic"  render={props => <ProjectorMagic updateTitle={this.updatePageTitle} /> } />
+                <Route path="/staffPortal" render={ props => <StaffPortal updateTitle={this.updatePageTitle} />} /> 
+                <Route path="/announcements" render={ props => <Announcements updateTitle={this.updatePageTitle} />} /> 
               </Switch>  
             </section>
             <Footer />
@@ -75,7 +75,9 @@ class App extends Component {
         </HashRouter>
       ); //end return statement
     } //end else-statement
+
   } //end render() process
+  
 } //end App class
 
 export default App;

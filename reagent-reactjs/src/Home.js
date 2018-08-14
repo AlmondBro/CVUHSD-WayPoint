@@ -2,7 +2,16 @@ import React, { Component } from "react";
 import SupportSquare from "./SupportSquare.js";
 
 class Home extends Component {
-    render() {
+    constructor(props) {
+        super(props);
+        this.pageTitle = "Home";
+    } //end constructor
+
+    componentDidMount = () => {
+        this.props.updateTitle(this.pageTitle); 
+    }
+
+    render = () => {
         return (
             <div className="support-squares-container">
                 <SupportSquare pageLink="/autoFix-tools" 

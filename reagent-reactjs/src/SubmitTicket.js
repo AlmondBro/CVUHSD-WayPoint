@@ -1,8 +1,25 @@
 import React from "react";
-import Email from "./Email.js";
-import jsxToString from 'jsx-to-string';
 
-const submitTicket = (props) => {
+//Import external components
+import Email from "./Email.js";
+
+//Import 3rd-party libraries
+import jsxToString from "jsx-to-string";
+import lifecycle from "react-pure-lifecycle";
+
+var pageTitle = "Message HelpDesk Support";
+
+ // Create your lifecycle methods for 'react-pure-lifecycle'
+const componentDidMount = (props) => {
+    props.updateTitle(pageTitle);
+}
+
+// make the lifecycle methods properties on a standard object
+const methods = {
+    componentDidMount
+};
+
+const SubmitTicket = (props) => {
     var title;
     var description;
     //const clientName = document.getElementById("client-name").value;
@@ -42,7 +59,7 @@ const submitTicket = (props) => {
         document.addEventListener('dragover', function (e) {
             e.preventDefault();
             e.stopPropagation();
-            });
+        });
 
         const formGetPathCode = () => {
             file_input.addEventListener("change", (e) => {
@@ -196,4 +213,5 @@ const submitTicket = (props) => {
     ); //end return statement
 }; //end submitTicket class
 
-export default submitTicket;
+//Decorate exported component with lifecycle methods
+export default lifecycle(methods)(SubmitTicket);

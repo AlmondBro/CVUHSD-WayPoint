@@ -14,10 +14,12 @@ class BackButton extends Component {
         console.log("History:\t" + JSON.stringify(this.context.router.history));
 
         if (this.context.router.history.location.pathname == "/") {
-            // return (
-            //     <div className="messageAndGoBack-container">
-            //         <p className="optionMessage">Please select an option:</p>
-            //     </div>);
+            /* return (
+                 <div className="messageAndGoBack-container">
+                     <p className="optionMessage">Please select an option:</p>
+                 </div>
+            );
+            */
             return null;
         }
 
@@ -30,7 +32,7 @@ class BackButton extends Component {
                     </a>
                     {/* <p className="optionMessage">Please select an option:</p> */}
                 </div>
-            );
+            ); //end return();
         }//end else
     } //end render() method
 } //end BackButton class
