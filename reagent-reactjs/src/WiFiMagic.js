@@ -4,6 +4,7 @@ import Checkmark from "./Checkmark.js";
 class WiFiMagic extends Component {
     constructor(props) {
         super(props);
+        this.pageTitle= "Wi-Fi Magic";
         this.wifiIconSrc = "./img/icon-wifi.png";
         this.compassNeedle = "./img/compass-needle.svg";
         this.compassBody = "./img/compass-body.svg";
@@ -16,8 +17,8 @@ class WiFiMagic extends Component {
         this.state = {
             message: "Click on the compass.",
             clicks: 0
-        };
-    }
+        }; //end state
+    } //end constructor
 
    /* incrementClick() {
        return this.state.click++;
@@ -140,6 +141,7 @@ class WiFiMagic extends Component {
     } 
  
     componentDidMount = () => {
+        this.props.updateTitle(this.pageTitle);
     }  
 
     render = () => {

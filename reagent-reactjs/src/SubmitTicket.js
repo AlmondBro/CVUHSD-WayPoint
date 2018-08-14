@@ -1,9 +1,13 @@
 import React from "react";
-import Email from "./Email.js";
-import jsxToString from 'jsx-to-string';
-import lifecycle from 'react-pure-lifecycle';
 
-var pageTitle = "Get HelpDesk Support";
+//Import external components
+import Email from "./Email.js";
+
+//Import 3rd-party libraries
+import jsxToString from "jsx-to-string";
+import lifecycle from "react-pure-lifecycle";
+
+var pageTitle = "Message HelpDesk Support";
 
  // Create your lifecycle methods for 'react-pure-lifecycle'
 const componentDidMount = (props) => {
@@ -15,7 +19,7 @@ const methods = {
     componentDidMount
 };
 
-const submitTicket = (props) => {
+const SubmitTicket = (props) => {
     var title;
     var description;
     //const clientName = document.getElementById("client-name").value;
@@ -210,4 +214,4 @@ const submitTicket = (props) => {
 }; //end submitTicket class
 
 //Decorate exported component with lifecycle methods
-export default lifecycle(methods)(submitTicket);
+export default lifecycle(methods)(SubmitTicket);

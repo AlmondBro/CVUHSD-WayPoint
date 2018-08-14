@@ -4,6 +4,7 @@ import React, { Component } from "react";
 class ProjectorMagic extends Component {
     constructor(props) {
         super(props);
+        this.pageTitle = "Projector Magic";
         this.projectorMagicIcon = "./img/icon-projector.png";
         this.state = {
             message: "Click a button to clone or extend display."
@@ -43,7 +44,7 @@ class ProjectorMagic extends Component {
     } //end cloneDisplay() method 
 
     componentDidMount = () => {
-        console.log("Projector Magic component");
+        this.props.updateTitle(this.pageTitle);
         document.getElementById("button-extend").addEventListener("click", this.extendDisplay);
         document.getElementById("button-clone").addEventListener("click", this.cloneDisplay);
     } //end co
