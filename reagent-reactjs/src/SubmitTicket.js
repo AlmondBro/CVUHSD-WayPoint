@@ -1,9 +1,21 @@
 import React from "react";
 import Email from "./Email.js";
 import jsxToString from 'jsx-to-string';
+import lifecycle from 'react-pure-lifecycle';
+
+var pageTitle = "Get HelpDesk Support";
+
+ // Create your lifecycle methods for 'react-pure-lifecycle'
+const componentDidMount = (props) => {
+    props.updateTitle(pageTitle);
+}
+
+// make the lifecycle methods properties on a standard object
+const methods = {
+    componentDidMount
+};
 
 const submitTicket = (props) => {
-    var pageTitle = "Get HelpDesk Support";
     var title;
     var description;
     //const clientName = document.getElementById("client-name").value;
@@ -25,8 +37,6 @@ const submitTicket = (props) => {
         location = document.getElementById("location");
         phoneExtension = document.getElementById("phone-extension");
         officeNumber = document.getElementById("building-number");
-
-        props.updateTitle(pageTitle);
     } //end window.onload
 
     (function fileAttachment() {
@@ -199,4 +209,5 @@ const submitTicket = (props) => {
     ); //end return statement
 }; //end submitTicket class
 
-export default submitTicket;
+//Decorate exported component with lifecycle methods
+export default lifecycle(methods)(submitTicket);
