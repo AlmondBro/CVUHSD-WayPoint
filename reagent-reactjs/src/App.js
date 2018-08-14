@@ -42,8 +42,8 @@ class App extends Component {
                         container, a main element, and a header. */}
             <section className="page-content">
               <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/autoFix-tools" render={() => <AutoFixTools test="yolo" updateTitle={this.updatePageTitle} />} />
+                <Route exact path="/" render={ (props) => <Home updateTitle={this.updatePageTitle}  /> } />
+                <Route path="/autoFix-tools" render={ (props) => <AutoFixTools updateTitle={this.updatePageTitle} /> } />
                 <Route path="/submit-ticket" component={SubmitTicket} />
                 <Route path="/quickFix-tutorials" component={QuickFixTutorials} />
                 <Route path="/call-helpdesk" component={HelpDesk} />

@@ -11,7 +11,6 @@ class AutoFixTools extends Component {
 
     //Could use a for-loop (that iterates through an object of containing key-value pairs of the props) to make a general component? An idea for next time.
     componentDidMount = () => {
-        console.log("Autofix props:\t" + this.props.test);
         this.props.updateTitle(this.pageTitle); 
     }
 
