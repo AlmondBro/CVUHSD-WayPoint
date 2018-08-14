@@ -30,76 +30,49 @@ class App extends Component {
 
   render = () => {
     const isDev = window.require("electron").remote.require('electron-is-dev'); 
-  
-    let openingContainer;
-    let closingContainer;
+
+    const appHTML = () => {
+      return (
+      <div>
+        <Titlebar pageTitle={this.state.pageTitle}  updatePageTitle={this.updatePageTitle} />
+          <main>
+            <Header/>
+          {/* <Home/>*/}   {/* This is is the component you change when 
+                        the page changes, since all components have a 
+                        container, a main element, and a header. */}
+            <section className="page-content">
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/autoFix-tools" render={() => <AutoFixTools test="yolo" updateTitle={this.updatePageTitle} />} />
+                <Route path="/submit-ticket" component={SubmitTicket} />
+                <Route path="/quickFix-tutorials" component={QuickFixTutorials} />
+                <Route path="/call-helpdesk" component={HelpDesk} />
+                <Route path="/wiFiMagic" component={WiFiMagic} /> 
+                <Route path="/ProjectorMagic" component={ProjectorMagic} />
+                <Route path="/staffPortal" component={StaffPortal} /> 
+                <Route path="/announcements" component={Announcements} /> 
+              </Switch>  
+            </section>
+            <Footer />
+            <div className="blur-effect"></div>
+          </main>
+        </div>
+        );
+    } //end appHTML
 
     if (isDev) {
-      openingContainer =  <BrowserRouter>;
-      closingContainer =  </BrowserRouter>;
-
       return (
         <BrowserRouter>
-          <div>
-          <Titlebar pageTitle={this.state.pageTitle}  updatePageTitle={this.updatePageTitle} />
-            <main>
-              <Header/>
-            {/* <Home/>*/}   {/* This is is the component you change when 
-                          the page changes, since all components have a 
-                          container, a main element, and a header. */}
-              <section className="page-content">
-                <Switch>
-                  <Route exact path="/" component={Home} />
-                  <Route path="/autoFix-tools" test="hi" render={() => <AutoFixTools test="yolo" updateTitle={this.updatePageTitle} />} />
-                  <Route path="/submit-ticket" component={SubmitTicket} />
-                  <Route path="/quickFix-tutorials" component={QuickFixTutorials} />
-                  <Route path="/call-helpdesk" component={HelpDesk} />
-                  <Route path="/wiFiMagic" component={WiFiMagic} /> 
-                  <Route path="/ProjectorMagic" component={ProjectorMagic} />
-                  <Route path="/staffPortal" component={StaffPortal} /> 
-                  <Route path="/announcements" component={Announcements} /> 
-                </Switch>  
-              </section>
-              <Footer />
-              <div className="blur-effect"></div>
-            </main>
-          </div>
-          </BrowserRouter>
+            {appHTML()}
+        </BrowserRouter>
       ); //end return statement
     } //end if-statement
 
     else {
-      openingContainer =  <HashRouter>;
-      closingContainer =  </HashRouter>;
-
       return (
         <HashRouter>
-          <div>
-          <Titlebar/>
-            <main>
-              <Header/>
-            {/* <Home/>*/}   {/* This is is the component you change when 
-                          the page changes, since all components have a 
-                          container, a main element, and a header. */}
-                          <Footer />
-              <section className="page-content">
-                <Switch>
-                  <Route exact path="/" component={Home} />
-                  <Route path="/autoFix-tools" component={AutoFixTools} />
-                  <Route path="/submit-ticket" component={SubmitTicket} />
-                  <Route path="/quickFix-tutorials" component={QuickFixTutorials} />
-                  <Route path="/call-helpdesk" component={HelpDesk} />
-                  <Route path="/wiFiMagic" component={WiFiMagic} /> 
-                  <Route path="/ProjectorMagic" component={ProjectorMagic} />
-                  <Route path="/staffPortal" component={StaffPortal} /> 
-                  <Route path="/announcements" component={Announcements} /> 
-                </Switch>  
-              </section>
-              <Footer />
-              <div className="blur-effect"></div>
-            </main>
-          </div>
-          </HashRouter>
+            {appHTML()}
+        </HashRouter>
       ); //end return statement
     } //end else-statement
   } //end render() process
