@@ -46,7 +46,8 @@
         "build-pack": "npm run build && npm run pack",
         "build-dist": "npm run build && npm run dist",
         "electron-pack": "build --em.main=build/electron.js",
-        "preelectron-pack": "npm build"
+        "preelectron-pack": "npm build",
+        "devTest": "concurrently \"npm run start\" \"wait-on http://localhost:3000/ && node src/electron-wait-react .\""
     },
     "devDependencies": {
         "babel-cli": "^6.26.0",
@@ -59,7 +60,6 @@
         "electron-builder": "^20.26.0",
         "electron-react-devtools": "^0.5.3",
         "eslint-plugin-react": "^7.7.0",
-        "foreman": "^3.0.0",
         "serve": "^6.5.3",
         "wait-on": "^2.1.0"
     },
@@ -69,7 +69,6 @@
     "keywords": [],
     "author": "Juan David Lopez Londono and Kevin Erkelenz",
     "homepage": "./",
-    "proxy": "http://localhost:4000",
     "build": {
         "extends": null,
         "productName": "Centinela WayPoint",
