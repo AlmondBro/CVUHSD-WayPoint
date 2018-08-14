@@ -3,6 +3,7 @@ import Email from "./Email.js";
 import jsxToString from 'jsx-to-string';
 
 const submitTicket = (props) => {
+    var pageTitle = "Get HelpDesk Support";
     var title;
     var description;
     //const clientName = document.getElementById("client-name").value;
@@ -24,6 +25,8 @@ const submitTicket = (props) => {
         location = document.getElementById("location");
         phoneExtension = document.getElementById("phone-extension");
         officeNumber = document.getElementById("building-number");
+
+        props.updateTitle(pageTitle);
     } //end window.onload
 
     (function fileAttachment() {
@@ -42,7 +45,7 @@ const submitTicket = (props) => {
         document.addEventListener('dragover', function (e) {
             e.preventDefault();
             e.stopPropagation();
-            });
+        });
 
         const formGetPathCode = () => {
             file_input.addEventListener("change", (e) => {

@@ -44,7 +44,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" render={ (props) => <Home updateTitle={this.updatePageTitle}  /> } />
                 <Route path="/autoFix-tools" render={ (props) => <AutoFixTools updateTitle={this.updatePageTitle} /> } />
-                <Route path="/submit-ticket" component={SubmitTicket} />
+                <Route path="/submit-ticket" render={ (props) => <SubmitTicket updateTitle={this.updatePageTitle} /> } />
                 <Route path="/quickFix-tutorials" component={QuickFixTutorials} />
                 <Route path="/call-helpdesk" component={HelpDesk} />
                 <Route path="/wiFiMagic" component={WiFiMagic} /> 
