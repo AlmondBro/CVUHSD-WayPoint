@@ -13,7 +13,7 @@ const { nativeImage } = require("electron");
 
 /*Keep a global reference of the electron window object, if you don't, the window will
  be closed automatically when the JavaScript object is garbage collected. */
-let mainWindow;
+let mainWindow = null;
 let tray = null;
 
 const createWindow = () => {
@@ -179,23 +179,11 @@ app.on('web-contents-created', (event, contents) => {
   
       // Disable Node.js integration
       webPreferences.nodeIntegration = false;
-  
+
       // Verify URL being loaded
-      if (!params.src.startsWith("https://portal.centinela.k12.ca.us/staff.html")) {
+     if (!params.src.startsWith("https://portal.centinela.k12.ca.us/staff.html")) {
         event.preventDefault();
-       
-      } //end if-statement
-      /* else {
-        const protocol = url.parse(event.url).protocol;
-        if (protocol === "http:" || protocol === "https:") {
-            console.log("shell protocol");
-            const {shell} = window.require("electron");
-            shell.openExternal(event.url)
-             //Load in a new electron window
-          //let win = new BrowserWindow({width: 800, height: 600})
-          //win.loadURL(e.url); 
-        } //end if-statement        
-      } //end else-statement */
+      }  //end if-statement
     }); //end contents.on()
   });//end app.on
 

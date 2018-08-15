@@ -5,19 +5,10 @@ import lifecycle from "react-pure-lifecycle";
 
 var pagetitle = "Staff Portal";
 
-const componentDidMount = (props) => {
-    props.updateTitle(pagetitle);
-}
-
-const methods = {
-    componentDidMount
-};
-
-window.onload = function() {
+const openLinksInBrowser = () => {
     if (document.body.contains( document.getElementById("portal-webview") )) {
         
         document.getElementById("portal-webview").addEventListener("new-window", (e) => {
-
             const {BrowserWindow} = window.require('electron').remote;
             const protocol = require("url").parse(e.url).protocol;
             if (protocol === "http:" || protocol === "https:") {
@@ -28,10 +19,30 @@ window.onload = function() {
               //win.loadURL(e.url); */
             } //end if-statement
           }); //end addEventListener()
-        
-    } //end if-statement
 
-} //end window.onload
+          
+      document.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        return false;
+      }, false); //end addEventListener()
+    
+      document.addEventListener("drop", (event) => {
+        event.preventDefault();
+        return false;
+      }, false); //end addEventListener()
+
+    } //end if-statement
+} //end openLinksInBrowser
+
+const componentDidMount = (props) => {
+    props.updateTitle(pagetitle);
+    openLinksInBrowser();
+} 
+
+const methods = {
+    openLinksInBrowser,
+    componentDidMount
+};
 
 const StaffPortal = () => {
     return (
