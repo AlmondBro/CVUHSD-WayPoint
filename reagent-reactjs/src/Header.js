@@ -1,6 +1,6 @@
 import React from "react";
 
-//Import 3rd-party libraries
+//Import required external components
 import NotificationsPanel from "./NotificationsPanel.js";
 import BackButton from "./BackButton.js";
 
