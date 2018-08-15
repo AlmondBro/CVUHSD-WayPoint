@@ -62,7 +62,7 @@
         "env"
     ],
     "keywords": [],
-    "author": "Centinela Valley Union High School District",
+    "author": "CVUHSD",
     "homepage": "./",
     "build": {
         "extends": null,

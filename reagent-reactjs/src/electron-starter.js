@@ -9,11 +9,12 @@ const path = require("path");
 const url = require("url");
 const isDev = require("electron-is-dev"); 
 
-const {nativeImage} = require("electron");
+const { nativeImage } = require("electron");
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
+/*Keep a global reference of the electron window object, if you don't, the window will
+ be closed automatically when the JavaScript object is garbage collected. */
 let mainWindow;
+let tray = null;
 
 const createWindow = () => {
     // Create the browser window.
@@ -60,8 +61,8 @@ const createWindow = () => {
     * https://blog.avocode.com/4-must-know-tips-for-building-cross-platform-electron-apps-f3ae9c2bffff
     */
     mainWindow.on('ready-to-show', function() { 
-    mainWindow.show(); 
-    mainWindow.focus(); 
+        mainWindow.show(); 
+        mainWindow.focus(); 
     });  
 
     // Emitted when the window is closed.
@@ -71,6 +72,26 @@ const createWindow = () => {
         // when you should delete the corresponding element.
         mainWindow = null;
     });
+
+    //Always show the tray icon
+    mainWindow.on("show", () => {
+        tray.setHighlightMode("always");
+    });
+
+    //Override minimize and close window functions to tray
+    mainWindow.on("minimize",function(event){
+        event.preventDefault();
+        mainWindow.hide();
+    });
+    
+    mainWindow.on("close", function (event) {
+        if(!app.isQuiting){
+            event.preventDefault();
+            mainWindow.hide();
+        }
+    
+        return false;
+    });
 } //end createWindow()
 
 const setTrayIcon = () => {
@@ -79,22 +100,34 @@ const setTrayIcon = () => {
     //let tray = null;
     const iconPath = path.join(__dirname, "../public/img/wp-icon-grey-16x16.ico");
     
-    let tray = new Tray(nativeImage.createFromPath(iconPath));
+    tray = new Tray(nativeImage.createFromPath(iconPath));
 
     const contextMenu = Menu.buildFromTemplate([
-        { label: 'Show App', click:  function() {
+        {   label: "Show WayPoint", 
+            click:  function() {
                 mainWindow.show();
-            } 
+            } //end click()
         },
-        { label: 'Quit', click:  function() {
+        { label: "Quit", 
+          click:  function() {
                 app.isQuitting = true;
-                app.quit();
-            } 
+                 /* On OS X it is common for applications and their menu bar
+                    to stay active until the user quits explicitly with Cmd + Q */
+               /* if (process.platform !== "darwin") {
+                    app.quit();
+                } */
+                tray = null;
+                mainWindow = null;
+                
+                //app.quit();
+            } //end click()
         }
     ]); //contextMenu declaration
 
     tray.setToolTip('This is my application.')
     tray.setContextMenu(contextMenu);
+
+    console.log("Set Tray Icon");
 }; //end setTrayIcon()
 
 // This method will be called when Electron has finished
@@ -115,8 +148,8 @@ app.on("ready", async () => {
 
 // Quit when all windows are closed.
 app.on("window-all-closed", () => {
-    // On OS X it is common for applications and their menu bar
-    // to stay active until the user quits explicitly with Cmd + Q
+    /* On OS X it is common for applications and their menu bar
+    to stay active until the user quits explicitly with Cmd + Q */
     if (process.platform !== "darwin") {
         app.quit();
     }
@@ -162,11 +195,10 @@ app.on('web-contents-created', (event, contents) => {
   /* Open the app when a user logins. Takes a settings object as an argument. 
     Docs: https://electronjs.org/docs/api/app#appsetloginitemsettingssettings-macos-windows
 */
-  app.setLoginItemSettings({
+app.setLoginItemSettings({
     "openAtLogin": true,
     "openAsHidden": false
-  });
-
+});
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
