@@ -73,8 +73,8 @@ const createWindow = () => {
         mainWindow = null;
     });
 
-    //Always show the tray icon
-    mainWindow.on("show", () => {
+    //Always show the tray icon when the mainWindow is hidden
+    mainWindow.on("hide", () => {
         tray.setHighlightMode("always");
     });
 
@@ -85,7 +85,7 @@ const createWindow = () => {
     });
     
     mainWindow.on("close", function (event) {
-        if(!app.isQuiting){
+        if(!app.isQuitting){
             event.preventDefault();
             mainWindow.hide();
         }
@@ -98,7 +98,8 @@ const setTrayIcon = () => {
     const {Menu, Tray, app, nativeImage} = require('electron');
 
     //let tray = null;
-    const iconPath = path.join(__dirname, "../public/img/wp-icon-grey-16x16.ico");
+    //or use extraresources field in electron-builder package.json to bundle the icon
+    const iconPath = isDev ? path.join(__dirname, "../public/img/wp-icon-grey-16x16.ico") : path.join(__dirname, "../build/img/wp-icon-grey-16x16.ico");
     
     tray = new Tray(nativeImage.createFromPath(iconPath));
 
@@ -116,18 +117,24 @@ const setTrayIcon = () => {
                /* if (process.platform !== "darwin") {
                     app.quit();
                 } */
+                if ( !tray.isDestroyed() ) {
+                    tray.destroy();
+                }
                 tray = null;
                 mainWindow = null;
                 
-                //app.quit();
+                app.quit();
             } //end click()
         }
     ]); //contextMenu declaration
 
-    tray.setToolTip('This is my application.')
+    tray.setToolTip("CVUHSD WayPoint");
     tray.setContextMenu(contextMenu);
-
     console.log("Set Tray Icon");
+
+    tray.on("click", () => {
+        mainWindow.show();
+    });
 }; //end setTrayIcon()
 
 // This method will be called when Electron has finished
