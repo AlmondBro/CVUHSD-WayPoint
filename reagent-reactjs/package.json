@@ -92,7 +92,8 @@
             "allowToChangeInstallationDirectory": true,
             "installerIcon": "build/img/wp-icon-grey-256x256.ico",
             "runAfterFinish": true,
-            "menuCategory": true
+            "menuCategory": true,
+            "createDesktopShortcut": true
         }
     }
 }

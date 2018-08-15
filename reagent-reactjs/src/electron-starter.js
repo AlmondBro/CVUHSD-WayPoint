@@ -1,4 +1,4 @@
-const electron = require('electron');
+const electron = require("electron");
 const remote = electron.remote;
 // Module to control application life.
 const app = electron.app;
@@ -9,12 +9,15 @@ const path = require("path");
 const url = require("url");
 const isDev = require("electron-is-dev"); 
 
+const {nativeImage} = require("electron");
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
 const createWindow = () => {
     // Create the browser window.
+    //Show:false key-value pair is to delay loading until all resources have been loaded.
     mainWindow = new BrowserWindow({
         width: 376, 
         height: 700, 
@@ -24,7 +27,9 @@ const createWindow = () => {
         webPreferences: {
             nodeIntegration: true,
         },
-        icon: path.join(__dirname, "../public/img/wp-icon-grey.png")
+        show: false,
+        backgroundColor: "black",
+        icon: nativeImage.createFromPath(path.join(__dirname, "../public/img/wp-icon-grey.png"))
     });
 
     const startUrl = isDev ? (process.env.ELECTRON_START_URL || "http://localhost:3000") : url.format({
@@ -48,6 +53,17 @@ const createWindow = () => {
         mainWindow.webContents.openDevTools();
       } //end isDev
 
+    /*
+    when everything is loaded, show the window and focus it so it pops up for the 
+    user. You can do this with the “ready-to-show” event on your `BrowserWindow`, 
+    which is recommended, or the ‘did-finish-load’ event on your webContents.
+    * https://blog.avocode.com/4-must-know-tips-for-building-cross-platform-electron-apps-f3ae9c2bffff
+    */
+    mainWindow.on('ready-to-show', function() { 
+    mainWindow.show(); 
+    mainWindow.focus(); 
+    });  
+
     // Emitted when the window is closed.
     mainWindow.on("closed", () => {
         // Dereference the window object, usually you would store windows
@@ -57,10 +73,45 @@ const createWindow = () => {
     });
 } //end createWindow()
 
+const setTrayIcon = () => {
+    const {Menu, Tray, app, nativeImage} = require('electron');
+
+    //let tray = null;
+    const iconPath = path.join(__dirname, "../public/img/wp-icon-grey-16x16.ico");
+    
+    let tray = new Tray(nativeImage.createFromPath(iconPath));
+
+    const contextMenu = Menu.buildFromTemplate([
+        { label: 'Show App', click:  function() {
+                mainWindow.show();
+            } 
+        },
+        { label: 'Quit', click:  function() {
+                app.isQuitting = true;
+                app.quit();
+            } 
+        }
+    ]); //contextMenu declaration
+
+    tray.setToolTip('This is my application.')
+    tray.setContextMenu(contextMenu);
+}; //end setTrayIcon()
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on("ready", createWindow);
+// Trying out using async/wait here -- may need to remove
+app.on("ready", async () => {
+    await createWindow();
+    await electron.protocol.registerServiceWorkerSchemes(["file:"]);
+    /* //Register the file protocol as supported
+        electron.webFrame.registerURLSchemeAsPrivileged('file');
+        electron.webFrame.registerURLSchemeAsSecure('file');
+        electron.webFrame.registerURLSchemeAsBypassingCSP('file');
+    */
+   await setTrayIcon();
+});
+
 
 // Quit when all windows are closed.
 app.on("window-all-closed", () => {
@@ -77,10 +128,6 @@ app.on("activate", () => {
     if (mainWindow === null) {
         createWindow();
     }
-});
-
-app.on("ready", () => {
-    electron.protocol.registerServiceWorkerSchemes(["file:"]);
 });
 
 //Prevent the creation of WebViews with insecure options
@@ -113,17 +160,12 @@ app.on('web-contents-created', (event, contents) => {
   });//end app.on
 
   /* Open the app when a user logins. Takes a settings object as an argument. 
-    Docs: https://electronjs.org/docs/api/app#appsetloginitemsettingssettings-macos-windows*/
+    Docs: https://electronjs.org/docs/api/app#appsetloginitemsettingssettings-macos-windows
+*/
   app.setLoginItemSettings({
     "openAtLogin": true,
     "openAsHidden": false
   });
-
-/* //Register the file protocol as supported
-electron.webFrame.registerURLSchemeAsPrivileged('file');
-electron.webFrame.registerURLSchemeAsSecure('file');
-electron.webFrame.registerURLSchemeAsBypassingCSP('file');
-*/
 
 
 // In this file you can include the rest of your app's specific main process
