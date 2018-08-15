@@ -15,7 +15,9 @@ const methods = {
 
 window.onload = function() {
     if (document.body.contains( document.getElementById("portal-webview") )) {
+        
         document.getElementById("portal-webview").addEventListener("new-window", (e) => {
+
             const {BrowserWindow} = window.require('electron').remote;
             const protocol = require("url").parse(e.url).protocol;
             if (protocol === "http:" || protocol === "https:") {
@@ -26,6 +28,7 @@ window.onload = function() {
               //win.loadURL(e.url); */
             } //end if-statement
           }); //end addEventListener()
+        
     } //end if-statement
 
 } //end window.onload

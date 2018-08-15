@@ -95,20 +95,29 @@ app.on('web-contents-created', (event, contents) => {
   
       // Verify URL being loaded
       if (!params.src.startsWith("https://portal.centinela.k12.ca.us/staff.html")) {
-        //event.preventDefault();
-        const protocol = require("url").parse(e.url).protocol;
+        event.preventDefault();
+       
+      } //end if-statement
+      /* else {
+        const protocol = url.parse(event.url).protocol;
         if (protocol === "http:" || protocol === "https:") {
             console.log("shell protocol");
             const {shell} = window.require("electron");
-            shell.openExternal(e.url)
-            /* //Load in a new electron window
+            shell.openExternal(event.url)
+             //Load in a new electron window
           //let win = new BrowserWindow({width: 800, height: 600})
-          //win.loadURL(e.url); */
-        } //end if-statement
-      } //end if-statement
+          //win.loadURL(e.url); 
+        } //end if-statement        
+      } //end else-statement */
     }); //end contents.on()
   });//end app.on
 
+  /* Open the app when a user logins. Takes a settings object as an argument. 
+    Docs: https://electronjs.org/docs/api/app#appsetloginitemsettingssettings-macos-windows*/
+  app.setLoginItemSettings({
+    "openAtLogin": true,
+    "openAsHidden": false
+  });
 
 /* //Register the file protocol as supported
 electron.webFrame.registerURLSchemeAsPrivileged('file');

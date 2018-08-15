@@ -1,7 +1,7 @@
 {
-    "name": "reagent-reactjs",
-    "description": "The CVUHSD reagent is a web app where teachers can quickly access functions such as submitting a helpdesk ticket, calling the helpdesk, accessing the troubleshootign tutorials, or viewing announcements.",
-    "version": "0.1.0",
+    "name": "centinela-waypoint",
+    "description": "CVUHSD WayPoint is a desktop application where teachers can quickly access functions such as submitting a helpdesk ticket, calling the helpdesk, accessing the troubleshootign tutorials, or viewing announcements.",
+    "version": "0.5.0",
     "private": true,
     "main": "src/electron-starter.js",
     "dependencies": {
@@ -62,11 +62,11 @@
         "env"
     ],
     "keywords": [],
-    "author": "Juan David Lopez Londono and Kevin Erkelenz",
+    "author": "Centinela Valley Union High School District",
     "homepage": "./",
     "build": {
         "extends": null,
-        "productName": "Centinela WayPoint",
+        "productName": "WayPoint",
         "appId": "com.waypoint",
         "copyright": "Copyright © year `${author}`",
         "files": [
@@ -76,20 +76,23 @@
         "win": {
             "target": [
                 {
-                    "target": "nsis",
-                    "arch": [
-                        "x64",
-                        "ia32"
-                    ]
+                  "target": "nsis",
+                  "arch": [
+                    "x64",
+                    "ia32"
+                  ]
                 }
-            ],
-            "nsis": {
-                "oneClick": false,
-                "perMachine": false
-            },
+              ],
             "icon": "build/img/wp-icon-grey-256x256.ico",
-            "publisherName": "Centinela Valley Union High School District",
-            "msi": true
+            "publisherName": "Centinela Valley Union High School District"
+        },
+        "nsis": {
+            "oneClick": false,
+            "perMachine": true,
+            "allowToChangeInstallationDirectory": true,
+            "installerIcon": "build/img/wp-icon-grey-256x256.ico",
+            "runAfterFinish": true,
+            "menuCategory": true
         }
     }
 }
