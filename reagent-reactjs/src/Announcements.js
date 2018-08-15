@@ -15,7 +15,7 @@ class Annoucements extends Component {
         };
     } //end constructor() method
 
-    FetchAPI() {
+    FetchAPI = () => {
         /*var client = new Twitter({
             consumer_key: 'qJerGzOGCdesoxK58myYJKk5R',
             consumer_secret: 'xC0uP0g8EN0qD9r4WDytDKfTX4zEL7UscsBHbdHn4fKpdx0CV9',
@@ -76,7 +76,7 @@ class Annoucements extends Component {
         }); */
     } 
 
-    openAuth() {
+    openAuth = () => {
       /*  describe('OAuth1.0',function(){
             var OAuth = require('oauth');
            
@@ -103,13 +103,13 @@ class Annoucements extends Component {
           });*/
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         corsAnywhere();
         this.FetchAPI();
         //this.openAuth();
     }  
 
-    render() {
+    render = () => {
             return  ( 
                 <section className="announcements-list">
                     <img src="img/gallery-icon.png" className="img-responsive" alt="Gallery icon" />

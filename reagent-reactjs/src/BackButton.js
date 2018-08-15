@@ -10,7 +10,7 @@ class BackButton extends Component {
         router: PropTypes.object
     }
     
-    render() {
+    render = () => {
         console.log("History:\t" + JSON.stringify(this.context.router.history));
 
         if (this.context.router.history.location.pathname == "/") {

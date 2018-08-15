@@ -56,7 +56,6 @@
         "electron-builder": "^20.26.0",
         "electron-react-devtools": "^0.5.3",
         "eslint-plugin-react": "^7.7.0",
-        "serve": "^6.5.3",
         "wait-on": "^2.1.0"
     },
     "presets": [
@@ -69,14 +68,28 @@
         "extends": null,
         "productName": "Centinela WayPoint",
         "appId": "com.waypoint",
+        "copyright": "Copyright © year `${author}`",
         "files": [
             "build/**/*",
             "src/*"
         ],
         "win": {
+            "target": [
+                {
+                    "target": "nsis",
+                    "arch": [
+                        "x64",
+                        "ia32"
+                    ]
+                }
+            ],
+            "nsis": {
+                "oneClick": false,
+                "perMachine": false
+            },
             "icon": "build/img/wp-icon-grey-256x256.ico",
-            "additionalCertificateFile": "ssl-cvuhsd.cer",
-            "publisherName": "Centinela Valley Union High School District"
+            "publisherName": "Centinela Valley Union High School District",
+            "msi": true
         }
     }
 }

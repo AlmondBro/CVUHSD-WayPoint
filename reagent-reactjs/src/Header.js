@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
+
+//Import 3rd-party libraries
 import NotificationsPanel from "./NotificationsPanel.js";
 import BackButton from "./BackButton.js";
 
-class Header extends Component {
-    render() {
+const Header = () => {
         return( 
             <header className="header-frame redToDarkRedgradient">
                 <input type="checkbox" className="checkbox-hack" id="notification-icon-checkbox" />
@@ -25,7 +26,6 @@ class Header extends Component {
                 <BackButton />
         </header>
         );
-    }
 }
 
 export default Header;
