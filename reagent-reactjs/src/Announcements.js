@@ -8,13 +8,15 @@ var crypto = require('crypto');
 var OAuth = require('oauth-1.0a');
 
 class Annoucements extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this.pageTitle = "Announcements";
         this.state = {
             announcements: []
         };
     } //end constructor() method
 
+    
     FetchAPI = () => {
         /*var client = new Twitter({
             consumer_key: 'qJerGzOGCdesoxK58myYJKk5R',
@@ -104,6 +106,7 @@ class Annoucements extends Component {
     }
 
     componentDidMount = () => {
+        this.props.updateTitle(this.pageTitle);
         corsAnywhere();
         this.FetchAPI();
         //this.openAuth();
