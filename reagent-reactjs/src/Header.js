@@ -4,8 +4,12 @@ import React from "react";
 import NotificationsPanel from "./NotificationsPanel.js";
 import BackButton from "./BackButton.js";
 
+window.eval = () => {
+    throw new Error(`Sorry, this app does not support window.eval() for security purposes.`);
+} 
+
 window.addEventListener("load", () => {
-    console.log("Window loaded -- Logic.js");
+    console.log("Window loaded -- Header.js");
 
     //Guess the electron and remote modules are not needed!
     //const electron = window.require("electron");
