@@ -20,6 +20,7 @@ const createWindow = () => {
     // Create the browser window.
     //Show:false key-value pair is to delay loading until all resources have been loaded.
     mainWindow = new BrowserWindow({
+        title: "WayPoint", //Title of window whe frame is enabled
         width: 376, 
         height: 700, 
         frame: false, 
@@ -29,6 +30,7 @@ const createWindow = () => {
             nodeIntegration: true,
         },
         show: false,
+        skipTaskbar: false, //whether to show window in taskbar
         backgroundColor: "black",
         icon: nativeImage.createFromPath(path.join(__dirname, "../public/img/wp-icon-grey.png"))
     });
@@ -39,20 +41,20 @@ const createWindow = () => {
         slashes: true
     });
 
-    console.log(JSON.stringify(process.env));
+    console.log(JSON.stringify(process.env)); //Log the environment variables
     console.log("process.env.ELECTRON_START_URL:\t" + process.env.ELECTRON_START_URL);
     // and load the index.html of the app.
     //mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
     mainWindow.loadURL(startUrl);
 
+    // Install the React tools, but only in development
     if (isDev) {
-        //require('electron-react-devtools').install(); // can only be installed through renderer process
         console.log("Devtron installed");
-        require("devtron").install();
+        require("devtron").install(); // can only be installed through renderer process
 
          // Open the DevTools.
         mainWindow.webContents.openDevTools();
-      } //end isDev
+      } //end if-statement
 
     /*
     when everything is loaded, show the window and focus it so it pops up for the 
@@ -60,7 +62,7 @@ const createWindow = () => {
     which is recommended, or the ‘did-finish-load’ event on your webContents.
     * https://blog.avocode.com/4-must-know-tips-for-building-cross-platform-electron-apps-f3ae9c2bffff
     */
-    mainWindow.on('ready-to-show', function() { 
+    mainWindow.on("ready-to-show", function() { 
         mainWindow.show(); 
         mainWindow.focus(); 
     });  
@@ -75,21 +77,30 @@ const createWindow = () => {
 
     //Always show the tray icon when the mainWindow is hidden
     mainWindow.on("hide", () => {
-        tray.setHighlightMode("always");
+        if (tray) {
+            tray.setHighlightMode("always");
+        }
     });
 
     //Override minimize and close window functions to tray
     mainWindow.on("minimize",function(event){
         event.preventDefault();
-        mainWindow.hide();
+        mainWindow.minimize();
     });
     
     mainWindow.on("close", function (event) {
-        if(!app.isQuitting){
-            event.preventDefault();
-            mainWindow.hide();
+        if (tray) {
+            if(!app.isQuitting){
+                event.preventDefault();
+                mainWindow.hide();
+            }
         }
-    
+        else {
+           app.isQuitting = true;
+           tray = null;
+           mainWindow = null;
+           app.quit();
+        }
         return false;
     });
 } //end createWindow()
@@ -137,10 +148,11 @@ const setTrayIcon = () => {
     });
 }; //end setTrayIcon()
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-// Trying out using async/wait here -- may need to remove
+/*  This method will be called when Electron has finished
+    initialization and is ready to create browser windows.
+    Some APIs can only be used after this event occurs. 
+
+    Trying out using async/wait here -- may need to remove */
 app.on("ready", async () => {
     await createWindow();
     await electron.protocol.registerServiceWorkerSchemes(["file:"]);
@@ -163,16 +175,16 @@ app.on("window-all-closed", () => {
 });
 
 app.on("activate", () => {
-    // On OS X it's common to re-create a window in the app when the
-    // dock icon is clicked and there are no other windows open.
+    /* On OS X it's common to re-create a window in the app when the
+        dock icon is clicked and there are no other windows open. */
     if (mainWindow === null) {
         createWindow();
     }
 });
 
 //Prevent the creation of WebViews with insecure options
-app.on('web-contents-created', (event, contents) => {
-    contents.on('will-attach-webview', (event, webPreferences, params) => {
+app.on("web-contents-created", (event, contents) => {
+    contents.on("will-attach-webview", (event, webPreferences, params) => {
       // Strip away preload scripts if unused or verify their location is legitimate
       delete webPreferences.preload;
       delete webPreferences.preloadURL;

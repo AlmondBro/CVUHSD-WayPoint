@@ -10,13 +10,15 @@ window.addEventListener("load", () => {
     //Guess the electron and remote modules are not needed!
     //const electron = window.require("electron");
     //const remote = electron.remote;
-    const isDev = require('electron-is-dev'); 
+    const isDev = require("electron-is-dev"); 
     
+    //Install React dev tools in Electron, but only in development
     if (isDev) {
-        require('electron-react-devtools').install();
+        require("electron-react-devtools").install();
         console.log("Renderer process - electron-react-devtools ready to be installed");
     }
 
+    //Minimize and close the electron window when you click on the "-" or "x" HTML element
     const minimizeAndClose = (() => { 
         document.getElementById("button-minimize").addEventListener("click", function (e){
             console.log("Button minimize");
@@ -24,7 +26,7 @@ window.addEventListener("load", () => {
             const remote = electron.remote;
 
             const browserWindow = remote.getCurrentWindow();
-            browserWindow.hide(); 
+            browserWindow.minimize(); 
         });
 
         document.getElementById("button-close").addEventListener("click", (e) => {
@@ -33,14 +35,15 @@ window.addEventListener("load", () => {
             const browserWindow = remote.getCurrentWindow();
 
             browserWindow.close();
-        }); 
+        });
     })(); 
 
+    /* //Doesn't work for some reason -- need to make minimizeAndClose() self-executing
     document.onreadystatechange = () => {
         if (document.readyState == "complete") {
             minimizeAndClose(); 
         } //end if-statement
-    } //end onreadystatechange()
+    } //end onreadystatechange() */
 
 }); //end window.onload
    
