@@ -14,13 +14,14 @@ window.addEventListener("load", () => {
     //Guess the electron and remote modules are not needed!
     //const electron = window.require("electron");
     //const remote = electron.remote;
+    /* //Need to comment out for now since it is not minifying 
     const isDev = require("electron-is-dev"); 
     
     //Install React dev tools in Electron, but only in development
     if (isDev) {
         require("electron-react-devtools").install();
         console.log("Renderer process - electron-react-devtools ready to be installed");
-    }
+    } */
 
     //Minimize and close the electron window when you click on the "-" or "x" HTML element
     const minimizeAndClose = (() => { 

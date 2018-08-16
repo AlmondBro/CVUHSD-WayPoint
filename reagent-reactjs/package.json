@@ -76,13 +76,13 @@
         "win": {
             "target": [
                 {
-                  "target": "nsis",
-                  "arch": [
-                    "x64",
-                    "ia32"
-                  ]
+                    "target": "nsis",
+                    "arch": [
+                        "x64",
+                        "ia32"
+                    ]
                 }
-              ],
+            ],
             "icon": "build/img/wp-icon-grey-256x256.ico",
             "publisherName": "Centinela Valley Union High School District"
         },
