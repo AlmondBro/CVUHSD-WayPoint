@@ -638,6 +638,7 @@ footer {
     position: relative;
     display: flex;
     width: 376px;
+    height: 65px;
     z-index: 3;
 }
 
