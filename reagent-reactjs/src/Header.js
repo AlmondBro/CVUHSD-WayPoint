@@ -5,7 +5,8 @@ import NotificationsPanel from "./NotificationsPanel.js";
 import BackButton from "./BackButton.js";
 
 window.eval = () => {
-    throw new Error(`Sorry, this app does not support window.eval() for security purposes.`);
+    console.error(`Sorry, this app does not support window.eval() for security purposes.`);
+    return -1;
 } 
 
 window.addEventListener("load", () => {

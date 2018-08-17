@@ -10,15 +10,20 @@ const Select = (props) => {
             onChange={props.controlFunc}
             className={props.className}
         >
-            <option value="">{props.placeholder}</option>
-                {props.options.map(choice => {
-                    return (
-                        <option
-                            key={choice}
-                            value={choice}>{choice}
-                        </option>
-                    );
-                })}
+            <option value="">
+                {
+                    props.options.map(choice => {
+                            return (
+                                <option
+                                    key={choice}
+                                    value={choice}>{choice}
+                                </option>
+                            );
+                        }
+                    )
+                }
+            </option>
+             
       </select>
     ]
     );
