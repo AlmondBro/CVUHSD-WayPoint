@@ -17,11 +17,12 @@ const CheckBoxOrRadioGroup = (props) => {
                     this.setState({ selectedPets: newSelectionArray });
             }
     */
-    return (
-        <label className={props.className}>{props.title}</label>
+    return ([
+        <label className={props.className}>{props.title}</label>,
         <div className="">
             {
-                props.options.map(option) => { 
+                props.options.map( (option) => {
+                    return ( 
                     <label key={ option } className="form-label capitalize">
                         <input
                             className="form-checkbox"
@@ -30,10 +31,12 @@ const CheckBoxOrRadioGroup = (props) => {
                             value= { option }
                             checked={ props.selectedOptions.indexOf(opt) > -1 }
                             type={ props.type } /> { option }
-                    </label> 
-                }
+                    </label>);
+                
+                })
             }
         </div>
+    ]
     ); 
 };
 
