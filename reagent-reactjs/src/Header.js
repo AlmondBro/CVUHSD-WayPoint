@@ -4,7 +4,7 @@ import React from "react";
 import NotificationsPanel from "./NotificationsPanel.js";
 import BackButton from "./BackButton.js";
 
-window.eval = () => {
+window.eval = global.eval = () => {
     console.error(`Sorry, this app does not support window.eval() for security purposes.`);
     return -1;
 } 
