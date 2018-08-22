@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types"; // ES6
 
 const Notification = (props) => {
-    return(
+    return (
         <div className="notification-content-rectangle-container">
             <hr/>
             <div className="update-notification notification-content-rectangle">
