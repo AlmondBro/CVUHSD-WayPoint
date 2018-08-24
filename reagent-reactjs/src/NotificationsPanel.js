@@ -3,11 +3,6 @@ import React, {Component} from "react";
 //Import required external components
 import Notification from "./Notification.js";
 
-let notificationObject = (urgent, notificationText, faIconClassName) => {
-    return (<Notification urgent={urgent} notificationText={notificationText} faIconClassName={faIconClassName} />)
-};
-
-// new notificationObject(true, "Update Required")
 class NotificationsPanel extends Component {
     constructor(props) {
         super(props); //Pass props to parent Component() constructor
@@ -48,7 +43,30 @@ class NotificationsPanel extends Component {
         // Append a single item
         this.setState({ arr: [...this.state.arr, 'new item'] });
         */
+      
+       /*
+        var electron = window.require("electron");
+       var remote  = electron.remote;
+       var vex = remote.require("vex-js");
+       vex.registerPlugin(remote.require("vex-dialog"));
+       vex.defaultOptions.className = "vex-theme-os"; //*/
         
+       document.vexJS.dialog.open({
+        message: 'Enter your username and password:',
+        input: [
+            '<input name="username" type="text" placeholder="Username" required />',
+            '<input name="password" type="password" placeholder="Password" required />'
+        ].join(''),
+
+        callback: function (data) {
+            if (!data) {
+                console.log('Cancelled')
+            } else {
+                console.log('Username', data.username, 'Password', data.password)
+            }
+        }
+    });
+       
         this.setState({
             notifications: this.state.notifications.concat({
                 urgent: urgent,
@@ -56,17 +74,24 @@ class NotificationsPanel extends Component {
                 faIconClassName: faIconClassName
             }),
             noNotifications: false
-        });
+        }); // */
+
 
         let windowsNotification = new Notification("New Notification", {
             body: "Hi"
         }); 
 
-        const {dialog} = window.require('electron').remote
+        const {dialog} = window.require("electron").remote;
 
-        const dialogOptions = {type: 'info', buttons: ['OK', 'Cancel'], message: 'Do it?'}
+        const dialogOptions = {
+            type: "question", 
+            buttons: ["Enter", "Cancel"], 
+            message: "Please login to your AD account."
+        };
 
-        dialog.showMessageBox(dialogOptions, i => console.log(i))
+        dialog.showMessageBox(dialogOptions, (response) => {
+
+        });
 
     }; //end clearNotifications()
 
