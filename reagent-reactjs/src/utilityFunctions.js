@@ -31,4 +31,10 @@ const openLinksInBrowser = (elementID) => {
     } //end if-statement
 }; //end openLinksInBrowser
 
-export  { openLinksInBrowser };
+var canUseDOM = !!(
+    typeof window !== 'undefined' &&
+    window.document &&
+    window.document.createElement
+  );
+
+export  { openLinksInBrowser, canUseDOM };
