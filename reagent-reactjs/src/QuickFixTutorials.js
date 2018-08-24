@@ -10,11 +10,11 @@ var pageTitle = "QuickFix Tutorials";
 
 const componentDidMount = (props) => {
     props.updateTitle(pageTitle);
-}
+};
 
 const methods = {
     componentDidMount
-}
+};
 
 const QuickFixTutorials = (props) => {
     return(
