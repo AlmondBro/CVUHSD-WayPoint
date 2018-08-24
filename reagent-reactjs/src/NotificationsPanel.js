@@ -10,14 +10,45 @@ let notificationObject = (urgent, notificationText, faIconClassName) => {
 // new notificationObject(true, "Update Required")
 class NotificationsPanel extends Component {
     constructor(props) {
-        super(props);
+        super(props); //Pass props to parent Component() constructor
         this.state = {
-            notifications: [{urgent: true, notificationText: "Update required"}],
+            notifications: [
+                                {   
+                                    urgent: true, 
+                                    notificationText: "Update required" 
+                                },
+                                {   urgent: false, 
+                                    notificationText: "No HelpDesk Requests",
+                                    faIconClassName: "fa fa-check greenCheck"  
+                                },
+                                {   urgent: false, 
+                                    notificationText: "10 files",
+                                    faIconClassName: "fas fa-archive archive"  
+                                },
+                                {   urgent: false, 
+                                    notificationText: "Coffee Taken",
+                                    faIconClassName: "fas fa-coffee coffee"  
+                                }
+                           ],
             noNotifications: false
         };
-    }
+    } //end contructor()
 
     addNotification = (urgent, notificationText, faIconClassName) => {
+        /* 
+            Other way to add to array in state, using ES6 spread operator:
+            this.setState(previousState => ({
+            myArray: [...previousState.myArray, 'new value']
+            }));
+
+               // Append an array
+        const newArr = [1,2,3,4]
+        this.setState({ arr: [...this.state.arr, ...newArr] });
+
+        // Append a single item
+        this.setState({ arr: [...this.state.arr, 'new item'] });
+        */
+        
         this.setState({
             notifications: this.state.notifications.concat({
                 urgent: urgent,
@@ -27,10 +58,16 @@ class NotificationsPanel extends Component {
             noNotifications: false
         });
 
-        new Notification("New Notification", {
-            body: notificationText
+        let windowsNotification = new Notification("New Notification", {
+            body: "Hi"
         }); 
-        
+
+        const {dialog} = window.require('electron').remote
+
+        const dialogOptions = {type: 'info', buttons: ['OK', 'Cancel'], message: 'Do it?'}
+
+        dialog.showMessageBox(dialogOptions, i => console.log(i))
+
     }; //end clearNotifications()
 
     clearNotifications = () => {
