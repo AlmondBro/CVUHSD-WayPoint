@@ -17,22 +17,25 @@ class NotificationsPanel extends Component {
         };
     }
 
-    renderNotifications = () => {
-        console.log("render Notifications");
-        console.log(JSON.stringify(this.state.notifications));
-        for(let i = 0; i < this.state.notifications; i++) {
-            console.log("note:\t" + this.state.notifications[i]);
-            //return this.state.notifications[i];
-            return  ( <Notification urgent={this.state.notifications[i].urgent} 
-                                    notificationText={this.state.notifications[i].notificationText} 
-                                    faIconClassName={this.state.notifications[i].faIconClassName} 
-                        />);
-        } //end for-loop
-    }; //end renderNotifications
+    addNotification = (urgent, notificationText, faIconClassName) => {
+        this.setState({
+            notifications: this.state.notifications.concat({
+                urgent: urgent,
+                notificationText: notificationText,
+                faIconClassName: faIconClassName
+            }),
+            noNotifications: false
+        });
+
+        new Notification("New Notification", {
+            body: notificationText
+        }); 
+        
+    }; //end clearNotifications()
 
     clearNotifications = () => {
         this.setState({
-            notifications: [""],
+            notifications: [],
             noNotifications: true
         });
     }; //end clearNotifications()
@@ -41,9 +44,23 @@ class NotificationsPanel extends Component {
         return (
             <section className="notifications-section">
                 <h4 className="inline">Notifications</h4>
-                <button className="inline redToDarkRedgradient clickable" id="clear-button" onClick={ this.clearNotifications } >Clear</button>
+
+                { this.state.noNotifications ? <button className="inline redToDarkRedgradient clickable" 
+                                                       id="add-button" 
+                                                       onClick={ () => this.addNotification(false, "hello") }>Add</button> : 
+                                                <button className="inline redToDarkRedgradient clickable" 
+                                                        id="clear-button" 
+                                                        onClick={ this.clearNotifications } >Clear</button> 
+                }
                 <div className="notifications-content">
-                    {!this.state.noNotifications ? this.state.notifications.map( (notification) => <Notification urgent={notification.urgent} notificationText={notification.notificationText} faIconClassName={notification.faIconClassName} /> ) : <p>No notifications 😀</p> }
+                    {
+                        !this.state.noNotifications ? 
+                        this.state.notifications.map( (notification, i) => <Notification key={i} 
+                                                                            urgent={notification.urgent} 
+                                                                            notificationText={notification.notificationText} 
+                                                                            faIconClassName={notification.faIconClassName} /> 
+                                                    ) : <p>No notifications 😀</p> 
+                    }
                 </div>
                 <div className="blur-effect" id="notifications-blur-effect"></div>
             </section>

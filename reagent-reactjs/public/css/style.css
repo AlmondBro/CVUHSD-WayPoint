@@ -430,6 +430,7 @@ main header .notificationIcon i {
     text-align: center;
 }
 
+#add-button,
 #clear-button {
     position: relative;
     display: inline-block;
