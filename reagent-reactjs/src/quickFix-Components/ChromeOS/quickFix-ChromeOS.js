@@ -3,12 +3,12 @@ import React from "react";
 //Import 3rd-party libraries
 import lifecycle from "react-pure-lifecycle";
 
-var pagetitle = "Staff Portal";
+var pagetitle = "QuickFix | Chrome OS";
 
 const openLinksInBrowser = () => {
-    if (document.body.contains( document.getElementById("portal-webview") )) {
+    if (document.body.contains( document.getElementById("portalTutorials-webview") )) {
         
-        document.getElementById("portal-webview").addEventListener("new-window", (e) => {
+        document.getElementById("portalTutorials-webview").addEventListener("new-window", (e) => {
             const protocol = require("url").parse(e.url).protocol;
             if (protocol === "http:" || protocol === "https:") {
                 const {shell} = window.require("electron");
@@ -44,12 +44,15 @@ const componentDidMount = (props) => {
 const methods = {
     componentDidMount,
     openLinksInBrowser
+
 };
 
-const StaffPortal = () => {
+
+const QuickFixChromeOS = () => {
     return (
-        <webview src="https://portal.centinela.k12.ca.us/staff.html" className="staff-portal-embed" id="portal-webview"></webview>
+        <webview src="https://portal.centinela.k12.ca.us/troubleshooting.html" className="staff-portal-embed" id="portalTutorials-webview"></webview>
     );
-};
+}; //end quickFixChromeOS()
 
-export default lifecycle(methods)(StaffPortal);
+
+export default lifecycle(methods)(QuickFixChromeOS);

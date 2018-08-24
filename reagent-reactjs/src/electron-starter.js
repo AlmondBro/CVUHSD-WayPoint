@@ -193,9 +193,13 @@ app.on("web-contents-created", (event, contents) => {
       webPreferences.nodeIntegration = false;
 
       // Verify URL being loaded
-     if (!params.src.startsWith("https://portal.centinela.k12.ca.us/staff.html")) {
+   /* if ( !params.src.startsWith("https://portal.centinela.k12.ca.us/staff.html") ) {
         event.preventDefault();
       }  //end if-statement
+
+    else if ( !params.src.startsWith("https://portal.centinela.k12.ca.us/troubleshooting.html") ) {
+        event.preventDefault();
+      }  //end if-statement  */
     }); //end contents.on()
   });//end app.on
 
