@@ -18,8 +18,7 @@ const Notification = (props) => {
 Notification.propTypes = {
     urgent: PropTypes.bool, 
     faIconClassName: PropTypes.string,
-    notificationText: PropTypes.string.isRequired,
-    controlFunc: PropTypes.func.isRequired,
+    notificationText: PropTypes.string.isRequired
 };
 
 
