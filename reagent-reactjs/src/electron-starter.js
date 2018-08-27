@@ -32,7 +32,7 @@ const createWindow = () => {
         show: false,
         skipTaskbar: false, //whether to show window in taskbar
         backgroundColor: "black",
-        icon: nativeImage.createFromPath(path.join(__dirname, "../public/img/wp-icon-grey.png"))
+        icon: nativeImage.createFromPath(path.join(__dirname, "../public/img/wp-icon-grey.ico"))
     });
 
     const startUrl = isDev ? (process.env.ELECTRON_START_URL || "http://localhost:3000") : url.format({
@@ -148,11 +148,21 @@ const setTrayIcon = () => {
     });
 }; //end setTrayIcon()
 
+/* Set app user model ID and setAsDefaultProtocol for windows notifications to run 
+    Issue: https://github.com/electron/electron/issues/10864    
+*/
+//app.setAppUserModelId(`${./../package.json build.appId}` || "com.waypoint");
+var ws = require('windows-shortcuts');
+ws.create("%APPDATA%/Microsoft/Windows/Start Menu/Programs/Electron.lnk", process.execPath);
+app.setAppUserModelId("centinela.waypoint.xxx");
+app.setAsDefaultProtocolClient("xxx");
+
 /*  This method will be called when Electron has finished
     initialization and is ready to create browser windows.
     Some APIs can only be used after this event occurs. 
 
     Trying out using async/wait here -- may need to remove */
+
 app.on("ready", async () => {
     await createWindow();
     await electron.protocol.registerServiceWorkerSchemes(["file:"]);

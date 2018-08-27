@@ -3,6 +3,9 @@ import React, {Component} from "react";
 //Import required external components
 import Notification from "./Notification.js";
 
+//Import utility function(s)
+import { popNotification } from "./utilityFunctions.js";
+
 class NotificationsPanel extends Component {
     constructor(props) {
         super(props); //Pass props to parent Component() constructor
@@ -29,7 +32,16 @@ class NotificationsPanel extends Component {
         };
     } //end contructor()
 
+    componentDidMount = () => {
+        //let Notification = window.require("electron").remote.Notification;
+
+        let myNotification = new window.Notification( "Hi", {
+            body: "Authenticated"
+            });
+    }
+
     addNotification = (urgent, notificationText, faIconClassName) => {
+        console.log("Testing Notifications");
         /* 
             Other way to add to array in state, using ES6 spread operator:
             this.setState(previousState => ({
@@ -58,11 +70,58 @@ class NotificationsPanel extends Component {
             '<input name="password" type="password" placeholder="Password" required />'
         ].join(''),
 
-        callback: function (data) {
+        callback: (data) => {
             if (!data) {
                 console.log('Cancelled')
             } else {
                 console.log('Username', data.username, 'Password', data.password)
+                var electron = window.require("electron");
+                var remote  = electron.remote;
+
+                var ActiveDirectory = remote.require('activedirectory');
+                var config = {  url: 'ldap://centinela.k12.ca.us',
+                                baseDN: "dc=centinela.k12.ca,dc=us",
+                                username: data.username + "@centinela.k12.ca.us",
+                                password: data.password }
+
+                var ad = new ActiveDirectory(config);
+
+                ad.authenticate(data.username + "@centinela.k12.ca.us", data.password, (err, auth) => {
+                    if (err) {
+                      console.log("Authentication ERROR: " +JSON.stringify(err));
+                      return;
+                    }
+                    
+                    if (auth) {
+                      console.log('Authenticated!');
+
+                      popNotification("Authenticated!", "Correct username and password");
+                      
+                      let myNotification = new window.Notification('Authenticated', {
+                        body: 'Authenticated'
+                        });
+
+                        myNotification.addEventListener("click", () => {
+                            console.log('Notification clicked')
+                          }); 
+
+                        //myNotification();
+                    }
+                    else {
+                      console.log('Authentication failed!');
+                    }
+                  });
+
+                  var groupName = 'CV_IT';
+                  ad.isUserMemberOf(data.username + "@centinela.k12.ca.us", groupName, function(err, isMember) {
+                    if (err) {
+                      console.log('isUserMemberOf ERROR: ' +JSON.stringify(err));
+                      return;
+                    }
+                   
+                    console.log(data.username + ' isMemberOf ' + groupName + ': ' + isMember);
+                  });
+
             }
         }
     });
@@ -76,11 +135,7 @@ class NotificationsPanel extends Component {
             noNotifications: false
         }); // */
 
-
-        let windowsNotification = new Notification("New Notification", {
-            body: "Hi"
-        }); 
-
+        /* // Dialog Electron module
         const {dialog} = window.require("electron").remote;
 
         const dialogOptions = {
@@ -92,6 +147,7 @@ class NotificationsPanel extends Component {
         dialog.showMessageBox(dialogOptions, (response) => {
 
         });
+        */
 
     }; //end clearNotifications()
 
