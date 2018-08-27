@@ -6,7 +6,7 @@ import Titlebar from "./Titlebar.js";
 import Header from "./Header.js";
 import SubmitTicket from "./SubmitTicket.js";
 
-// Import Pages
+// Import pages or external components
 import Home from "./Home.js";
 import WiFiMagic from "./WiFiMagic.js";
 import ProjectorMagic from "./ProjectorMagic.js";
@@ -16,6 +16,7 @@ import AutoFixTools from "./AutoFixTools.js";
 import StaffPortal from "./StaffPortal.js";
 import Announcements from "./Announcements.js";
 import Footer from "./Footer.js";
+import QuickFixChromeOS from "./quickFix-Components/ChromeOS/quickFix-ChromeOS.js"
 
 class App extends Component {
   constructor(props) {
@@ -50,7 +51,8 @@ class App extends Component {
                 <Route path="/wiFiMagic" render={props => <WiFiMagic updateTitle={this.updatePageTitle} /> } /> 
                 <Route path="/ProjectorMagic"  render={props => <ProjectorMagic updateTitle={this.updatePageTitle} /> } />
                 <Route path="/staffPortal" render={ props => <StaffPortal updateTitle={this.updatePageTitle} />} /> 
-                <Route path="/announcements" render={ props => <Announcements updateTitle={this.updatePageTitle} />} /> 
+                <Route path="/announcements" render={ props => <Announcements updateTitle={this.updatePageTitle} />} />
+                <Route path="/quickFix-ChromeOS" render={ props => <QuickFixChromeOS updateTitle={this.updatePageTitle} />} />  
               </Switch>  
             </section>
             <Footer />

@@ -10,16 +10,16 @@ var pageTitle = "QuickFix Tutorials";
 
 const componentDidMount = (props) => {
     props.updateTitle(pageTitle);
-}
+};
 
 const methods = {
     componentDidMount
-}
+};
 
 const QuickFixTutorials = (props) => {
     return(
         <div className="support-squares-container">
-            <SupportSquare pageLink="#" 
+            <SupportSquare pageLink="/quickFix-ChromeOS" 
                         icon="fab fa-chrome" 
                         title="Chrome OS"
                         imgSrc="./img/icon-chrome.png" />

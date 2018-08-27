@@ -28,7 +28,9 @@
         "request": "^2.87.0",
         "sendmail": "^1.4.1",
         "twitter": "^1.7.1",
-        "undefsafe": "^2.0.2"
+        "undefsafe": "^2.0.2",
+        "vex-dialog": "^1.1.0",
+        "vex-js": "^4.1.0"
     },
     "scripts": {
         "start": "set BROWSER=nul && react-scripts start",
