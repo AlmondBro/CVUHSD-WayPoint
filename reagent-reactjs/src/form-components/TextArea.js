@@ -2,24 +2,42 @@ import React from "react";
 import PropTypes from "prop-types"; // ES6
 
 const TextArea = (props) => {
-    return (
-        [   <label className="form-label">{props.title}</label>,
-            <textarea
-                className="form-input"
-                style={props.resize ? null : {resize: "none"}}
-                name={props.name}
-                rows={props.rows}
-                value={props.content}
-                onChange={props.controlFunc}
-                placeholder={props.placeholder}
-            />
-        ]
-    );
+    if (props.label === true) {
+        return (
+            [   <label className={labelClassName}>{props.title}</label>,
+                <textarea
+                    className={ inputClassName }
+                    style={props.resize ? null : {resize: "none"}}
+                    name={props.name}
+                    rows={props.rows}
+                    value={props.content}
+                    onChange={props.controlFunc}
+                    placeholder={props.placeholder}
+                />
+            ]
+        ); //return statement
+    } //if-statement
+
+    else {
+        return (
+                <textarea
+                    className="form-input"
+                    style={props.resize ? null : {resize: "none"}}
+                    name={props.name}
+                    rows={props.rows}
+                    value={props.content}
+                    onChange={props.controlFunc}
+                    placeholder={props.placeholder}
+                />
+        ); //return statement
+    }
+  
 }; //TextArea() declaration
 
 TextArea.prototypes = {
     for: PropTypes.string,
-    className: PropTypes.string, 
+    labelClassName: PropTypes.string, 
+    inputClassName: PropTypes.string,
     labelTitle: PropTypes.string.isRequired,
     inputType: PropTypes.oneOf(["text", "number", "file"]).isRequired,
     name: PropTypes.string.isRequired,

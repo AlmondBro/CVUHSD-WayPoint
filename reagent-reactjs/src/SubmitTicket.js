@@ -1,7 +1,16 @@
 import React from "react";
 
-//Import external components
+//Import external components - ES6 JavaScript
 import Email from "./Email.js";
+
+//Import form components
+import SingleInput from "./form-components/SingleInput.js";
+import Select from "./form-components/SingleInput.js";
+import CheckBoxOrRadioGroup from "./form-components/CheckBoxOrRadioGroup.js";
+import Select from "./form-components/Select.js";
+import FormButton from "./form-components/FormButton.js";
+
+
 
 //Import 3rd-party libraries
 import jsxToString from "jsx-to-string";
@@ -55,7 +64,7 @@ const SubmitTicket = (props) => {
             fileAttachmentName = fileUpload_valueArray[fileUpload_valueArray.length - 1];
             console.log("fileAttachmentName:\t" + fileAttachmentName);
         }
-
+        //Do not allow dragging over
         document.addEventListener('dragover', function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -151,8 +160,9 @@ const SubmitTicket = (props) => {
                     <h3>Submit Helpdesk Ticket</h3>
                 </legend>
                 <p>
-                    <label htmlFor="summary">Summary/Title:</label>
-                    <input type="text" name="summary" id="summary" placeholder="Title or summary of the technical issue..." />
+                    {/* <label htmlFor="summary">Summary/Title:</label>
+                    <input type="text" name="summary" id="summary" placeholder="Title or summary of the technical issue..." /> */}
+                    <SingleInput type="text" labelTitle="Summary/Title" id="summary" placeholder="Title or summary of the technical issue..." label="true" />
                 </p>
                 <p>
                     <label htmlFor="detailed-description">Detailed Description:</label>
