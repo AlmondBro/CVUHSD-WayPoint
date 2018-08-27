@@ -607,7 +607,7 @@ footer {
 .staff-portal-embed {
     margin: auto;
     width: 100%;
-    height: 450px;
+    height: 574px; /*Was 450px with footer visible */
     /*Was 555px before shrinking to add space for footer */
 }
 
