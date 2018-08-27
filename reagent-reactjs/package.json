@@ -5,6 +5,7 @@
     "private": true,
     "main": "src/electron-starter.js",
     "dependencies": {
+        "activedirectory": "^0.7.2",
         "cors": "^2.8.4",
         "cors-anywhere": "^0.4.1",
         "electron-is-dev": "^0.3.0",
@@ -14,6 +15,7 @@
         "jquery": "^3.3.1",
         "jsx-to-string": "^1.4.0",
         "macaddress": "^0.2.9",
+        "node-notifier": "^5.2.1",
         "node-run-cmd": "^1.0.1",
         "oauth": "^0.9.15",
         "oauth-1.0a": "^2.2.4",
@@ -30,7 +32,8 @@
         "twitter": "^1.7.1",
         "undefsafe": "^2.0.2",
         "vex-dialog": "^1.1.0",
-        "vex-js": "^4.1.0"
+        "vex-js": "^4.1.0",
+        "windows-shortcuts": "^0.1.6"
     },
     "scripts": {
         "start": "set BROWSER=nul && react-scripts start",
@@ -69,7 +72,7 @@
     "build": {
         "extends": null,
         "productName": "WayPoint",
-        "appId": "com.waypoint",
+        "appId": "centinela.waypoint.xxx",
         "copyright": "Copyright © year `${author}`",
         "files": [
             "build/**/*",
