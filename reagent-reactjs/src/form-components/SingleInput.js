@@ -30,8 +30,8 @@ SingleInput.propTypes = {
     placeholder: PropTypes.string,
     controlFunc: PropTypes.func.isRequired,
     value: PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
+      PropTypes.string,
+      PropTypes.number,
     ])
   };
 

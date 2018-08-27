@@ -45,12 +45,12 @@ CheckBoxOrRadioGroup.propTypes = {
     labelClassName: PropTypes.string,
     inputClassName: PropTypes.string,
     labelTitle: PropTypes.string.isRequired,
-    type: React.PropTypes.oneOf(["checkbox", "radio"]).isRequired,
-    name: React.PropTypes.string.isRequired,
-    options: React.PropTypes.array.isRequired,
-    selectedOption: React.PropTypes.string,
-    controlFunc: React.PropTypes.func.isRequired,
-    placeholder: React.PropTypes.string
+    type: PropTypes.oneOf(["checkbox", "radio"]).isRequired,
+    name: PropTypes.string.isRequired,
+    options: PropTypes.array.isRequired,
+    selectedOption: PropTypes.string,
+    controlFunc: PropTypes.func.isRequired,
+    placeholder: PropTypes.string
   };
 
 export default CheckBoxOrRadioGroup;

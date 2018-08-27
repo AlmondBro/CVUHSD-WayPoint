@@ -3,7 +3,7 @@ import PropTypes from "prop-types"; // ES6
 
 const FormButton = (props) => {
     return(
-        <button type="submit" className="redToDarkRedgradient clickable" onClick={controlFunc}>
+        <button type="submit" className="redToDarkRedgradient clickable" onClick={props.controlFunc}>
             {props.buttonTitle}
         </button>
     );

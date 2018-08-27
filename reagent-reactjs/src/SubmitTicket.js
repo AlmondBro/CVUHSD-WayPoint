@@ -7,7 +7,6 @@ import Email from "./Email.js";
 import SingleInput from "./form-components/SingleInput.js";
 import Select from "./form-components/SingleInput.js";
 import CheckBoxOrRadioGroup from "./form-components/CheckBoxOrRadioGroup.js";
-import Select from "./form-components/Select.js";
 import FormButton from "./form-components/FormButton.js";
 
 
