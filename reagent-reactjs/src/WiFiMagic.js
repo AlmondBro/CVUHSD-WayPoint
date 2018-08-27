@@ -148,8 +148,8 @@ class WiFiMagic extends Component {
     render = () => {
         return ( 
             <section className="wiFi-magic">
-                <div id="wholeCompass">
-                    <img src={ this.compassNeedle } onClick={ this.spinNeedle } className="" id="compass-needle" alt="Compass Needle" />
+                <div id="wholeCompass" onClick={ this.spinNeedle } >
+                    <img src={ this.compassNeedle } className="" id="compass-needle" alt="Compass Needle" />
                     <img src={ this.compassBody } className="" id="compass-body" alt="Compass Body" />
                 </div>
                 <div className="wifiMagic-messages">
