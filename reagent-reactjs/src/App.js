@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import {Route, BrowserRouter, Switch, HashRouter} from "react-router-dom";
 
 // Import General Page Components
+import Home from "./Home.js";
+import Footer from "./Footer.js";
+import SubmitTicket from "./SubmitTicket.js";
 import Titlebar from "./Titlebar.js";
 import Header from "./Header.js";
-import SubmitTicket from "./SubmitTicket.js";
 
 // Import pages or external components
-import Home from "./Home.js";
 import WiFiMagic from "./WiFiMagic.js";
 import ProjectorMagic from "./ProjectorMagic.js";
 import QuickFixTutorials from "./QuickFixTutorials.js";
@@ -15,19 +16,29 @@ import HelpDesk from "./HelpDesk.js";
 import AutoFixTools from "./AutoFixTools.js";
 import StaffPortal from "./StaffPortal.js";
 import Announcements from "./Announcements.js";
-import Footer from "./Footer.js";
-import QuickFixChromeOS from "./quickFix-Components/ChromeOS/quickFix-ChromeOS.js"
+import QuickFixChromeOS from "./quickFix-Components/ChromeOS/quickFix-ChromeOS.js";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { pageTitle: "Home"};
+    this.state = { 
+      pageTitle: "Home",
+      renderFooter: true
+    };
     //this.updatePageTitle= this.updatePageTitle.bind(this);
-  }
+  } //end constructor()
 
   updatePageTitle = (newPageTitle) => {
-    this.setState({pageTitle: newPageTitle }); 
-  }
+    this.setState( {pageTitle: newPageTitle } ); 
+  }; //end updatePageTitle()
+
+  renderFooterFunction = (renderFooterBool) => {
+    this.setState( {renderFooter: renderFooterBool} );
+  }; //end renderFooterFunction()
+
+  componentDidMount = () => {
+    this.setState( {renderFooter: true} );
+  }; //end componentDidMount()
 
   render = () => {
     const isDev = window.require("electron").remote.require('electron-is-dev'); 
@@ -43,19 +54,19 @@ class App extends Component {
                         container, a main element, and a header. */}
             <section className="page-content">
               <Switch>
-                <Route exact path="/" render={ (props) => <Home updateTitle={this.updatePageTitle}  /> } />
-                <Route path="/autoFix-tools" render={ props => <AutoFixTools updateTitle={this.updatePageTitle} /> } />
-                <Route path="/submit-ticket" render={ props => <SubmitTicket updateTitle={this.updatePageTitle} /> } />
-                <Route path="/quickFix-tutorials" render={ props => <QuickFixTutorials updateTitle={this.updatePageTitle} /> } />
-                <Route path="/call-helpdesk" render={ props => <HelpDesk updateTitle={this.updatePageTitle} /> } />
-                <Route path="/wiFiMagic" render={props => <WiFiMagic updateTitle={this.updatePageTitle} /> } /> 
-                <Route path="/ProjectorMagic"  render={props => <ProjectorMagic updateTitle={this.updatePageTitle} /> } />
-                <Route path="/staffPortal" render={ props => <StaffPortal updateTitle={this.updatePageTitle} />} /> 
-                <Route path="/announcements" render={ props => <Announcements updateTitle={this.updatePageTitle} />} />
-                <Route path="/quickFix-ChromeOS" render={ props => <QuickFixChromeOS updateTitle={this.updatePageTitle} />} />  
+                <Route exact path="/" render={ (props) => <Home updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction}  /> } />
+                <Route path="/autoFix-tools" render={ props => <AutoFixTools updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> } />
+                <Route path="/submit-ticket" render={ props => <SubmitTicket updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> } />
+                <Route path="/quickFix-tutorials" render={ props => <QuickFixTutorials updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> } />
+                <Route path="/call-helpdesk" render={ props => <HelpDesk updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> }  />
+                <Route path="/wiFiMagic" render={props => <WiFiMagic updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> } /> 
+                <Route path="/ProjectorMagic"  render={props => <ProjectorMagic updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> }  />
+                <Route path="/staffPortal" render={ props => <StaffPortal updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} />} /> 
+                <Route path="/announcements" render={ props => <Announcements updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} />} />
+                <Route path="/quickFix-ChromeOS" render={ props => <QuickFixChromeOS updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} />} />  
               </Switch>  
             </section>
-            <Footer />
+            <Footer renderFooterBool={this.state.renderFooter} />
             <div className="blur-effect"></div>
           </main>
         </div>

@@ -10,6 +10,7 @@ var pageTitle = "QuickFix Tutorials";
 
 const componentDidMount = (props) => {
     props.updateTitle(pageTitle);
+    props.renderFooter(false);
 };
 
 const methods = {

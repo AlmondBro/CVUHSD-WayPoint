@@ -1,7 +1,7 @@
 import React from "react";
 
-const titlebar = (props) => {
-        return ( 
+const Titlebar = (props) => {
+    return ( 
         <div id="titlebar">
             <div className="titleBarButtons-container">
                 <div className="titleBar-button" id="button-feedback" title="Provide Feedback">
@@ -23,7 +23,8 @@ const titlebar = (props) => {
                 </div>
                 <div id="page-title-container"><h2 id="page-title">{props.pageTitle}</h2></div>
             </div>
-        </div>);
-};
+        </div>
+    ); //end return
+}; //end titlebar()
 
-export default titlebar;
+export default Titlebar;

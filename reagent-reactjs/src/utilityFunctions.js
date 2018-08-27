@@ -62,10 +62,24 @@ const utilityFunctions = () => {
         notifier.notify(notifierOptions, callback);
     } //notification()
     
+    stringIsEmptyOrBlank = (string) => {
+        //falsy values: null,undefined,0,000,"",false
+        if (!string || (string.trim()).length === 0) {
+            console.log(string + " is empty, blank, null or undefined");
+            return true;
+        } //end if-statement
+        else {
+            console.log(string + " is not empty, blank, null or undefined");
+            return false;
+        } //end else-statement
+    } //end stringIsEmptyOrBlank()
+
+
     const functionsObject  = {
         openLinksInBrowser: openLinksInBrowser,
         canUseDOM: canUseDOM,
-        popNotification: popNotification
+        popNotification: popNotification,
+        stringIsEmptyOrBlank: stringIsEmptyOrBlank
     };
 
     return functionsObject;
@@ -75,5 +89,6 @@ const utilityFunctions = () => {
 let openLinksInBrowser = utilityFunctions().openLinksInBrowser;
 let canUseDOM = utilityFunctions().canUseDOM;
 let popNotification = utilityFunctions().popNotification;
+let stringIsEmptyOrBlank = utilityFunctions().stringIsEmptyOrBlank;
 
-export  { openLinksInBrowser, canUseDOM, popNotification };
+export  { openLinksInBrowser, canUseDOM, popNotification, stringIsEmptyOrBlank };

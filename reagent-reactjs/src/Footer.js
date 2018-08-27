@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 
+//Import utilities
+import { stringIsEmptyOrBlank } from "./utilityFunctions.js";
+
 class Footer extends Component {
     constructor(props) {
         super(props);
@@ -7,20 +10,8 @@ class Footer extends Component {
             userName: this.getUsername(),
             ipAddress: this.getIPAddress()
         };
-    }
-
-    stringIsEmptyOrBlank = (string) => {
-        //falsy values: null,undefined,0,000,"",false
-        if (!string || (string.trim()).length === 0) {
-            console.log(string + " is empty, blank, null or undefined");
-            return true;
-        }
-        else {
-            console.log(string + " is not empty, blank, null or undefined");
-            return false;
-        }
-    }
-
+    } //end constructor()
+    
     getUsername = () => {
         const electron = window.require("electron");
         const remote = electron.remote;
@@ -28,7 +19,7 @@ class Footer extends Component {
 
       completeUserName().then(name => {
           console.log("completeIserName():\t" + name);
-          if ( !this.stringIsEmptyOrBlank(name)) {
+          if ( !stringIsEmptyOrBlank(name)) {
                 console.log("Username:\t" + name);
                 console.log("Username type:\t" + typeof(name) );
                 console.log("Username length:\t" + name.length);
@@ -94,7 +85,6 @@ class Footer extends Component {
     /*console.log("OS Network Interface Obj:\t" + JSON.stringify(os.networkInterfaces()) );
         console.log("MacAddress:\t" + JSON.stringify(macaddress.networkInterfaces(), null, 2));
         console.log("OS username:\t" + os.userInfo().username); */
-       
     } //end componentDidMount() 
 
     determineWindowsVersion = (releaseNumber) => {
@@ -127,13 +117,15 @@ class Footer extends Component {
         const remote = electron.remote;
         const os = remote.require("os");
         return (
-            <footer>
-                <div className="USER-container"><p>User: <span className="currentUserName">{ this.state.userName }</span></p></div>
-                <div className="IP-container"><p className="IP-message">IP Address:&#9;<span>{ this.state.ipAddress }</span></p></div>
-                <div className="OS-container"><p className="OS-platform">System:&#9;<span>{this.determineWindowsVersion(os.release()) || "OS Platform"}</span></p></div>
-                <p className="cv-way">Powered by: The CV-Way</p>
-            </footer>
-        ); //end return
+                this.props.renderFooterBool ? (
+                    <footer>
+                        <div className="USER-container"><p>User: <span className="currentUserName">{ this.state.userName }</span></p></div>
+                        <div className="IP-container"><p className="IP-message">IP Address:&#9;<span>{ this.state.ipAddress }</span></p></div>
+                        <div className="OS-container"><p className="OS-platform">System:&#9;<span>{this.determineWindowsVersion(os.release()) || "OS Platform"}</span></p></div>
+                        <p className="cv-way">Powered by: The CV-Way</p>
+                    </footer>
+                 ) : null
+            ); //end return
     } //end render()
 } //end class
 

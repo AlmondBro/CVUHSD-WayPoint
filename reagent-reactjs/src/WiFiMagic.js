@@ -142,6 +142,7 @@ class WiFiMagic extends Component {
  
     componentDidMount = () => {
         this.props.updateTitle(this.pageTitle);
+        this.props.renderFooter(true);
     }  
 
     render = () => {

@@ -107,6 +107,7 @@ class Annoucements extends Component {
 
     componentDidMount = () => {
         this.props.updateTitle(this.pageTitle);
+        this.props.renderFooter(false);
         corsAnywhere();
         this.FetchAPI();
         //this.openAuth();

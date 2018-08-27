@@ -535,7 +535,7 @@ p.optionMessage {
     margin: 0 auto;
     /*margin on top/bott. was 10px */
     text-align: center;
-    max-height: 90%;
+    max-height: 100%; /*Was 90% with footer visible footer */
     overflow-y: auto;
 }
 
@@ -581,7 +581,7 @@ section.page-content {
     /* overflow-y: auto;
     max-height: 560px; */
     position: relative;
-    max-height: 430px;
+    max-height: 700px; /* Was 430px before with Footer always visible */
     /*450px*/
     /* 88% */
     /* 83.4%; */
