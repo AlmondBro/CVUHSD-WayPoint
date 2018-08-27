@@ -9,8 +9,6 @@ import Select from "./form-components/SingleInput.js";
 import CheckBoxOrRadioGroup from "./form-components/CheckBoxOrRadioGroup.js";
 import FormButton from "./form-components/FormButton.js";
 
-
-
 //Import 3rd-party libraries
 import jsxToString from "jsx-to-string";
 import lifecycle from "react-pure-lifecycle";
@@ -20,6 +18,7 @@ var pageTitle = "Message HelpDesk Support";
  // Create your lifecycle methods for 'react-pure-lifecycle'
 const componentDidMount = (props) => {
     props.updateTitle(pageTitle);
+    props.renderFooter(false);
 }
 
 // make the lifecycle methods properties on a standard object

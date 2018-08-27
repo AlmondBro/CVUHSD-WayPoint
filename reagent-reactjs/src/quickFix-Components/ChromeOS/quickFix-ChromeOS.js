@@ -10,6 +10,7 @@ var pagetitle = "QuickFix | Chrome OS";
 
 const componentDidMount = (props) => {
     props.updateTitle(pagetitle);
+    props.renderFooter(false);
     openLinksInBrowser("portalTutorials-webview");
 } 
 

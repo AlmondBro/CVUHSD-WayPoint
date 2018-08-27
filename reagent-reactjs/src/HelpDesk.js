@@ -10,6 +10,7 @@ var pagetitle = "Call Helpdesk";
 
 const componentDidMount = (props) => {
     props.updateTitle(pagetitle);
+    props.renderFooter(false);
 }
 
 const methods = {

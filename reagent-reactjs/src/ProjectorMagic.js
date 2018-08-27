@@ -45,6 +45,7 @@ class ProjectorMagic extends Component {
 
     componentDidMount = () => {
         this.props.updateTitle(this.pageTitle);
+        this.props.renderFooter(false);
         document.getElementById("button-extend").addEventListener("click", this.extendDisplay);
         document.getElementById("button-clone").addEventListener("click", this.cloneDisplay);
     } //end co

@@ -10,6 +10,7 @@ var pageTitle = "AutoFix Tools";
 
 const componentDidMount = (props) => {
         props.updateTitle(pageTitle); 
+        props.renderFooter(false);
 };
 
 const methods = {

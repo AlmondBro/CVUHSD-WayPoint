@@ -5,11 +5,12 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.pageTitle = "Home";
-    } //end constructor
+    } //end constructor()
 
     componentDidMount = () => {
         this.props.updateTitle(this.pageTitle); 
-    }
+        this.props.renderFooter(true);
+    } //end componentDidMount()
 
     render = () => {
         return (
@@ -38,8 +39,8 @@ class Home extends Component {
                     imgSrc="./img/icon-announce2.png" 
                     title="Announcements" />
             </div>
-        );
-    }
-}
+        ); //end return statement
+    } //end render()
+} //end Home class
 
 export default Home;

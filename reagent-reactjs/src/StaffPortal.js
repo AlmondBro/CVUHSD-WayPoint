@@ -11,6 +11,7 @@ var pagetitle = "Staff Portal";
 const componentDidMount = (props) => {
     props.updateTitle(pagetitle);
     openLinksInBrowser("portal-webview");
+    props.renderFooter(false);
 } 
 
 const methods = {
