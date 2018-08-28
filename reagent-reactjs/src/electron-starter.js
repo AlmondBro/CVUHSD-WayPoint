@@ -146,6 +146,28 @@ const setTrayIcon = () => {
     });
 }; //end setTrayIcon()
 
+//Prevent user from launching two different instances of the app.
+const preventMoreThanOneInstance = () => {
+    const shouldQuit = app.makeSingleInstance( (commandLine, workingDirectory) => {
+        // Someone tried to run a second instance, we should focus our window.
+        if (mainWindow) {
+          if ( mainWindow.isMinimized() ) { 
+              mainWindow.restore();
+              mainWindow.show(); 
+              mainWindow.focus(); 
+            } // end inner if-statement
+          mainWindow.focus();
+        } //end outer if statement
+      }); //shouldQuit initialization
+    
+      if (shouldQuit) {
+        app.quit();
+        return;
+      }
+}; //preventMoreThanOneInstance()
+
+preventMoreThanOneInstance();
+
 /* Set app user model ID and setAsDefaultProtocol for windows notifications to run 
     Issue: https://github.com/electron/electron/issues/10864    
 */
