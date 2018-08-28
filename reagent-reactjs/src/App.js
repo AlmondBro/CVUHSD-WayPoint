@@ -36,13 +36,26 @@ class App extends Component {
     this.setState( {renderFooter: renderFooterBool} );
   }; //end renderFooterFunction()
 
+  runDevTools = () => {
+    const isDev = window.require("electron").remote.require("electron-is-dev"); 
+
+    if (isDev) {
+      window.require("devtron").install(); // can only be installed through renderer process
+      console.log("Devtron installed");
+
+      window.require("electron-react-devtools").install();
+      console.log("Renderer process - electron-react-devtools ready to be installed");
+    }
+  }; //end runDevTools()
+
   componentDidMount = () => {
+    this.runDevTools();
     this.setState( {renderFooter: true} );
   }; //end componentDidMount()
 
   render = () => {
-    const isDev = window.require("electron").remote.require('electron-is-dev'); 
-
+    const isDev = window.require("electron").remote.require("electron-is-dev"); 
+    
     const appHTML = () => {
       return (
       <div>

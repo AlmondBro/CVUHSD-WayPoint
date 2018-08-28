@@ -49,10 +49,7 @@ const createWindow = () => {
 
     // Install the React tools, but only in development
     let prodDebug = true;
-    if (prodDebug) {
-        console.log("Devtron installed");
-        //require("devtron").install(); // can only be installed through renderer process
-
+    if (isDev || prodDebug) {
          // Open the DevTools.
         mainWindow.webContents.openDevTools();
     } //end if-statement
