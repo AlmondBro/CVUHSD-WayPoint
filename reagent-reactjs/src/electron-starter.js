@@ -48,7 +48,7 @@ const createWindow = () => {
     mainWindow.loadURL(startUrl);
 
     // Install the React tools, but only in development
-    let prodDebug = true;
+    let prodDebug = false;
     if (isDev || prodDebug) {
          // Open the DevTools.
         mainWindow.webContents.openDevTools();
