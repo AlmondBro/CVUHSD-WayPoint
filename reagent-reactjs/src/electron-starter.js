@@ -16,7 +16,7 @@ const { nativeImage } = require("electron");
 let mainWindow = null;
 let tray = null;
 
-let prodDebug = true;
+var prodDebug = true;
 
 const createWindow = () => {
     // Create the browser window.
@@ -50,7 +50,7 @@ const createWindow = () => {
     mainWindow.loadURL(startUrl);
 
     // Install the React tools, but only in development
-    if (isDev && prodDebug) {
+    if (prodDebug) {
         console.log("Devtron installed");
         require("devtron").install(); // can only be installed through renderer process
 
