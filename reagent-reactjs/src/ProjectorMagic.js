@@ -11,12 +11,37 @@ class ProjectorMagic extends Component {
         };
     } //end constructor  
 
+    convertSlashes = (string) => {
+        let newString = "";
+        for (let i = 0; i < string.length; i++ ) {
+            if (string.substring(i, i+1) === "\\") {
+                newString += "\\";
+
+            } //end if-statement
+            else {
+                console.log("Substring:\t" + string.substring(i, i+1));
+                newString += string.substring(i, i+1);
+            }
+        } //end for-loop
+        console.log("newstring:\t" + newString);
+        return newString;
+    };
+ 
     displaySwitchExePath = () => {
         const electron = window.require("electron");
         const remote = electron.remote;
         const process = remote.require("process");
+        
+        console.log("process.env:\t" + JSON.stringify(process.env));
+        console.log("process.env[windir]:\t" + JSON.stringify(process.env["WINDIR"]));
 
-        return (process.env["WINDIR"] + "\\System32\\DisplaySwitch.exe");
+        let driveRoot = (process.env["WINDIR"] || process.env["SystemRoot"] || "C:\\Windows" );
+        console.log("DriveRoot:\t" + driveRoot);
+        
+        let displaySwitchExePath = this.convertSlashes(driveRoot) + "\\System32\\DisplaySwitch.exe";
+
+        console.log("DisplaySwitchExe:\t" + displaySwitchExePath);
+        return displaySwitchExePath;
     }; //end displaySwitchExePath()
 
     commandConsoleOutput = (data) => {
