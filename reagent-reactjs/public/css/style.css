@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    -webkit-user-drag: none;
+    /* -webkit-user-drag: none; */
 }
 
 
@@ -584,9 +584,8 @@ the checkbox is hacked. */
 
 .noDrag {
     -webkit-app-region: no-drag;
+    -webkit-user-drag: none;
 }
-
-
 
 section.page-content {
     /* overflow-y: auto;

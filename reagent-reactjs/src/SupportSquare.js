@@ -4,19 +4,19 @@ import PropTypes from "prop-types";
 
 const SupportSquare = (props) => {
    return props.pageLink ? (
-            <Link to={props.pageLink}>
+            <Link to={props.pageLink} className="noHighlight noDrag">
                 <section className="support-square" id={props.id}>
                         
-                            <img src={props.imgSrc} className="square-icon" alt="Square-Icon" />
-                            <h3>{props.title}</h3>
+                            <img src={props.imgSrc} className="square-icon noHighlight noDrag" alt="Square-Icon" />
+                            <h3 className="noHighlight noDrag">{props.title}</h3>
                     
                 </section>  
             </Link> ):
             (
                 <section className="support-square" id={props.id}>
-                    <a href={props.phone}>
-                        <img src={props.imgSrc} className="square-icon" alt="Square-Icon" />
-                        <h3>{props.title}</h3>
+                    <a className="noHighlight noDrag" href={props.phone}>
+                        <img src={props.imgSrc} className="square-icon noHighlight noDrag" alt="Square-Icon" />
+                        <h3 className="noHighlight noDrag">{props.title}</h3>
                     </a>
                 </section>
             );

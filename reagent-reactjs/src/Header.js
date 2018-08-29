@@ -55,18 +55,18 @@ window.addEventListener("load", () => {
    
 const Header = () => {
         return( 
-            <header className="header-frame redToDarkRedgradient">
+            <header className="header-frame redToDarkRedgradient noHighlight noDrag">
                 <input type="checkbox" className="checkbox-hack" id="notification-icon-checkbox" />
                 <section className="redToDarkRedgradient">
                     <a><img src="https://portal.centinela.k12.ca.us/images/CV-600x600.png" className="img-responsive" id="reagentLogo" alt="CVUHSD Logo" /></a>
                     <h1>
-                        <img src="img/wp-logo.svg" className="headerLogo" alt="Waypoint" />
+                        <img src="img/wp-logo.svg" className="headerLogo noDrag" alt="Waypoint" />
                     </h1>
 
-                    <label className="notificationIcon clickable" id="notification-icon" htmlFor="notification-icon-checkbox">
+                    <label className="notificationIcon clickable noHighlight noDrag" id="notification-icon" htmlFor="notification-icon-checkbox">
                         {/* <span className="notifications-count">1</span> */}
-                        <div id="button-menu">
-                            <img src="img/icon-hamburger.png" title="Open Notification Menu" alt="Hamburger Menu" />
+                        <div id="button-menu" className="noHighlight noDrag">
+                            <img src="img/icon-hamburger.png" title="Open Notification Menu" alt="Hamburger Menu" className="noHighlight noDrag" />
                         </div>
                     </label>
                 </section>
