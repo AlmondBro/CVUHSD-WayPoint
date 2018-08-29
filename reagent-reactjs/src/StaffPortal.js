@@ -20,6 +20,10 @@ const methods = {
 };
 
 const StaffPortal = () => {
+    if (document.body.contains(document.querySelector("div.blur-effect") ) ) {
+        document.querySelector("div.blur-effect").style.maxWidth = "100%";
+    }
+
     return (
         <webview src="https://portal.centinela.k12.ca.us/staff.html" className="staff-portal-embed" id="portal-webview"></webview>
     );

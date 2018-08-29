@@ -2,7 +2,7 @@ import React from "react";
 
 const Titlebar = (props) => {
     return ( 
-        <div id="titlebar">
+        <div id="titlebar" className="noHighlight noDrag">
             <div className="titleBarButtons-container">
                 <div className="titleBar-button" id="button-feedback" title="Provide Feedback">
                     <img src="img/icon-feedback.png" alt="feedback" />

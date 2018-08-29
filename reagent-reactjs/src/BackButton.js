@@ -15,7 +15,7 @@ class BackButton extends Component {
 
         return (this.context.router.history.location.pathname == "/") ? null : 
                 (
-                    <div className="messageAndGoBack-container">
+                    <div className="messageAndGoBack-container noHighlight noDrag">
                         <a className="goBack-container" onClick={this.context.router.history.goBack}>
                             <img src="img/icon-back.png" id="back-icon" title="Go Back One Page" alt="Go Back Button" />
                             <p>Back</p>
