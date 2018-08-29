@@ -935,9 +935,10 @@ p input.block {
 }
 
 main form.helpDeskTicket-form {
+    position: relative;
     overflow-y: auto;
-    margin: 8px;
-    margin-top: 0;
+    margin: 0px 8px;
+    top: -17px;
 }
 
 main form.helpDeskTicket-form p {

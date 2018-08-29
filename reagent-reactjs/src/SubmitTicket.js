@@ -5,6 +5,7 @@ import Email from "./Email.js";
 
 //Import form components
 import SingleInput from "./form-components/SingleInput.js";
+import TextArea from "./form-components/TextArea.js";
 import Select from "./form-components/SingleInput.js";
 import CheckBoxOrRadioGroup from "./form-components/CheckBoxOrRadioGroup.js";
 import FormButton from "./form-components/FormButton.js";
@@ -143,7 +144,7 @@ const SubmitTicket = (props) => {
                                     path: fileAttachmentPath // stream this file
                                 }
                             ]
-              }, function(err, reply) {
+              }, (err, reply) => {
                 console.log("Sent email!")
                 console.log(err && err.stack);
                 console.dir(reply);
@@ -160,9 +161,10 @@ const SubmitTicket = (props) => {
                 <p>
                     {/* <label htmlFor="summary">Summary/Title:</label>
                     <input type="text" name="summary" id="summary" placeholder="Title or summary of the technical issue..." /> */}
-                    <SingleInput label={true} labelTitle="Summary/Title" inputType="text"  id="summary" placeholder="Title or summary of the technical issue..." />
+                    <SingleInput label={true} labelTitle="Summary/Title" inputType="text" id="summary" placeholder="Title or summary of the technical issue..."  cols="5" rows="3" />
                 </p>
                 <p>
+                    <TextArea label={true} labelTitle="Detailed Description" id="detailed-description" placeholder="Type the technical issue you are facing here..." />
                     <label htmlFor="detailed-description">Detailed Description:</label>
                     <textarea id="detailed-description" name="detailed-description" placeholder="Type the technical issue you are facing here..." cols="5" rows="3"></textarea>
                 </p>

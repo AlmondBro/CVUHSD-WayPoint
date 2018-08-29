@@ -75,7 +75,7 @@ class Footer extends Component {
         }
         
         else {
-            IP_Address = "IP Address Underdetermined";
+            IP_Address = "IP Address Undetermined";
         } 
         //console.log("Returning IP address:\t" + IP_Address);
         return IP_Address;

@@ -4,8 +4,8 @@ import PropTypes from "prop-types"; // ES6
 const SingleInput = (props) => {
     if (props.label == true) {
         return ([
-            <label htmlFor={props.id} className={props.labelClassName} >{props.labelTitle}</label>,
-            <input type={props.inputType} className={props.inputClassName} name={props.name} id={props.id} placeholder={props.placeholder} value={props.value || ""}  />
+            <label htmlFor={props.id} className={props.labelClassName} id={props.labelID} >{props.labelTitle}</label>,
+            <input type={props.inputType} className={props.inputClassName} name={props.id} id={props.id} placeholder={props.placeholder} value={props.value || ""}  />
         ]
         );
     } //end if-statement
@@ -20,15 +20,16 @@ const SingleInput = (props) => {
 
 SingleInput.propTypes = { 
     label: PropTypes.bool,
-    labelClassName: PropTypes.string, 
-    inputClassName: PropTypes.string,
     labelTitle: PropTypes.string.isRequired,
-    inputType: PropTypes.oneOf(["text", "number", "file"]).isRequired,
+    labelClassName: PropTypes.string, 
+    labelID: PropTypes.string, 
+    inputClassName: PropTypes.string,
+    inputType: PropTypes.oneOf(["text", "number", "file", "email", "tel"]).isRequired,
     readOnly: PropTypes.func,
-    name: PropTypes.string.isRequired,
-    id: PropTypes.string,
+    name: PropTypes.string,
+    id: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
-    controlFunc: PropTypes.func.isRequired,
+    controlFunc: PropTypes.func,
     value: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,

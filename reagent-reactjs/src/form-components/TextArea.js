@@ -1,53 +1,52 @@
 import React from "react";
 import PropTypes from "prop-types"; // ES6
 
-const TextArea = (props) => {
-    if (props.label === true) {
-        return (
-            [   <label className={labelClassName}>{props.title}</label>,
-                <textarea
-                    className={ inputClassName }
-                    style={props.resize ? null : {resize: "none"}}
-                    name={props.name}
-                    rows={props.rows}
-                    value={props.content}
-                    onChange={props.controlFunc}
-                    placeholder={props.placeholder}
-                />
-            ]
-        ); //return statement
-    } //if-statement
 
-    else {
-        return (
-                <textarea
-                    className="form-input"
-                    style={props.resize ? null : {resize: "none"}}
-                    name={props.name}
+
+const TextArea = (props) => {
+    const TextAreaHTML = (props) => {
+        return ( <textarea
+                    className={props.inputClassName}
+                    style={ props.resize ? null : {resize: "vertical"} }
+                    id={props.id}
+                    name={props.id}
+                    cols={props.cols}
                     rows={props.rows}
                     value={props.content}
                     onChange={props.controlFunc}
                     placeholder={props.placeholder}
-                />
-        ); //return statement
-    }
-  
+                /> );
+    } //end TextAreaHTML()
+
+        return (props.label === true) ? 
+                (
+                    [   <label htmlFor={props.id} 
+                               className={props.labelClassName} 
+                               id={props.labelID}
+                        >
+                            {props.labelTitle}
+                        </label>,
+                        <TextAreaHTML />
+                    ]
+                ) : ( <TextAreaHTML props={props} />); //return statement
 }; //TextArea() declaration
 
 TextArea.prototypes = {
-    for: PropTypes.string,
-    labelClassName: PropTypes.string, 
-    inputClassName: PropTypes.string,
+    label: PropTypes.bool,
     labelTitle: PropTypes.string.isRequired,
-    inputType: PropTypes.oneOf(["text", "number", "file"]).isRequired,
-    name: PropTypes.string.isRequired,
+    labelClassName: PropTypes.string, 
+    labelID: PropTypes.string,
+    inputClassName: PropTypes.string,
     id: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
-    controlFunc: PropTypes.func.isRequired,
-    value: PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
+    controlFunc: PropTypes.func,
+    content: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
     ]),
-    rows: React.PropTypes.number.isRequired,
-    resize: React.PropTypes.bool
+    cols: PropTypes.number.isRequired,
+    rows: PropTypes.number.isRequired,
+    resize: PropTypes.bool
 };
+
+export default TextArea;
