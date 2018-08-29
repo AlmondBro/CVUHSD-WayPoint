@@ -120,7 +120,7 @@ class Footer extends Component {
         //If footer is rendered, shorten the height of the page content container.
         if (this.props.renderFooterBool) {
             if (document.body.contains(document.querySelector("section.page-content")) ) {
-                document.querySelector("section.page-content").style.maxHeight = "430px";
+                document.querySelector("section.page-content").style.maxHeight = "455px";
             } //end inner if-statement
         } //end outer if-statement
 
