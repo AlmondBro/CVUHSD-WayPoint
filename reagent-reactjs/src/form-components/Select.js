@@ -12,7 +12,7 @@ const SelectHTML = (props) => {
             onChange={props.props.controlFunc}
             className={props.props.selectClassName}
         >
-            <option value=""> {props.props.placeholder} </option>
+            {/* <option value=""> {props.props.placeholder} </option> */}
                 {
                     props.props.options.map(choice => {
                             return (
@@ -25,7 +25,7 @@ const SelectHTML = (props) => {
                         } //end interior arrow function
                     ) //end map()
                 }
-          </select>
+        </select>
     );
 }; //SelectHTML()
 
@@ -54,11 +54,11 @@ Select.propTypes = {
     labelID: PropTypes.string,
     for: PropTypes.string,
     id: PropTypes.string.isRequired,
-    placeholder: React.PropTypes.string,
     selectClassName: PropTypes.string,
     optionClassName: PropTypes.string,
     options: PropTypes.array.isRequired,
     selectedOption: PropTypes.string,
+    placeholder: PropTypes.string,
     controlFunc: PropTypes.func,
 };
 

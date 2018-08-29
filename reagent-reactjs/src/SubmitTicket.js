@@ -6,7 +6,7 @@ import Email from "./Email.js";
 //Import form components
 import SingleInput from "./form-components/SingleInput.js";
 import TextArea from "./form-components/TextArea.js";
-import Select from "./form-components/SingleInput.js";
+import Select from "./form-components/Select.js";
 import CheckBoxOrRadioGroup from "./form-components/CheckBoxOrRadioGroup.js";
 import FormButton from "./form-components/FormButton.js";
 
@@ -159,8 +159,6 @@ const SubmitTicket = (props) => {
                     <h3>Submit Helpdesk Ticket</h3>
                 </legend>
                 <p>
-                    {/* <label htmlFor="summary">Summary/Title:</label>
-                    <input type="text" name="summary" id="summary" placeholder="Title or summary of the technical issue..." /> */}
                     <SingleInput label={true} labelTitle="Summary/Title" inputType="text" id="summary" placeholder="Title or summary of the technical issue..." />
                 </p>
                 <p>
@@ -170,14 +168,13 @@ const SubmitTicket = (props) => {
                     <SingleInput label={true} labelTitle="Centinela E-mail" inputType="email" id="client-email" placeholder="Your Centinela e-mail..." />
                 </p>
                 <p className="inline fieldMargin">
-                    <label htmlFor="category" className="block">Category:</label>
-                    <select name="category" id="category">
-                            <option>Computer Issue</option>
-                            <option>Printer Issue</option>
-                            <option>Projector Issue</option>
-                            <option>Password Issue</option>
-                            <option>Other Type of Issue</option>
-                    </select>
+                    <Select 
+                        id="category" 
+                        label={true} 
+                        labelTitle="Location" 
+                        labelClassName="block" 
+                        options={["Computer Issue", "Printer Issue", "Projector Issue", "Password Issue", "Other Type of Issue"]} 
+                        placeholder="Problem Categories" />
                 </p>
                 <p className="inline fieldMargin">
                     <Select id="location" 
@@ -185,38 +182,34 @@ const SubmitTicket = (props) => {
                             labelTitle="Location" 
                             labelClassName="block" 
                             options={["Lawndale", "Leuzinger", "Hawthorne", "Lloyde", "District Office"]} 
-                            placeholder="hi" />
-
-                    <label htmlFor="location" className="block">Location:</label>
-                    <select name="location" id="location">
-                            <option>Lawndale</option>
-                            <option>Leuzinger</option>
-                            <option>Hawthorne</option>
-                            <option>Lloyde</option>
-                            <option>District Office</option>
-                    </select>
+                            placeholder="School Sites" />
                 </p>
                 <p className="inline fieldMargin">
-                    <label htmlFor="phone-extension" className="block">Phone Extension:</label>
-                    <input type="tel" name="phone-extension" id="phone-extension" placeholder="7811" />
+                    <SingleInput label={true} labelClassName="block" labelTitle="Phone Extension:" inputType="tel" id="phone-extension" placeholder="7811" />
                 </p>
                 <p className="inline fieldMargin">
-                    <label htmlFor="building-number" className="block">Office/Number #:</label>
-                    <input type="text" name="building-number" id="building-number" placeholder="A13" />
+                    <SingleInput label={true} labelClassName="block" labelTitle="Office/Number #" inputType="text" id="building-number" placeholder="A13" />
                 </p>
                 <p>
                     <label>Optional Attachment:</label>
+               
                     <label className="fileUpload-button redToDarkRedgradient clickable" htmlFor="file-input">
                             Upload File
                     </label>
+                    
                     <input type="file" name="attachment" id="file-input" value="" />
 
-                    <label htmlFor="uploadFile-path">File name:</label>
-                    <input type="text" placeholder="Optional file path..." readOnly name="uploadFile-path" id="uploadFile-path" />
+                     <SingleInput label={true} labelClassName="" labelTitle="File name:" inputType="text" id="uploadFile-path" placeholder="Optional file path..." />
+
+                   {/* 
+                        <label htmlFor="uploadFile-path">File name:</label>
+                        <input type="text" placeholder="Optional file path..." readOnly name="uploadFile-path" id="uploadFile-path" />
+                    */} 
+                   
                 </p>
                 <p>
-                    <button type="submit" className="redToDarkRedgradient clickable" onClick={sendEmail} >Submit</button>
-                    <button type="reset" className="redToDarkRedgradient clickable">Reset</button>
+                    <FormButton inputType="submit" className="redToDarkRedgradient clickable" buttonTitle="Submit" eventFunc={sendEmail}  />
+                    <FormButton inputType="reset" className="redToDarkRedgradient clickable" buttonTitle="Reset" />
                 </p>
             </fieldset>
     </form>

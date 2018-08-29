@@ -3,7 +3,7 @@ import PropTypes from "prop-types"; // ES6
 
 const FormButton = (props) => {
     return(
-        <button type="submit" className="redToDarkRedgradient clickable" onClick={props.controlFunc}>
+        <button type={props.inputType} className={props.className} onClick={props.eventFunc}>
             {props.buttonTitle}
         </button>
     );
@@ -13,7 +13,7 @@ FormButton.propTypes = {
     className: PropTypes.string, 
     inputType: PropTypes.oneOf(["submit", "reset"]).isRequired,
     id: PropTypes.string,
-    controlFunc: PropTypes.func.isRequired,
+    eventFunc: PropTypes.func,
 };
 
 export default FormButton;

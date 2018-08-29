@@ -16,7 +16,8 @@ const SingleInput = (props) => {
                 name={props.id} id={props.id} 
                 placeholder={props.placeholder} 
                 value={props.value || ""} 
-                key={12} />
+                readOnly={props.readOnly}
+                key={23} />
             ]) :  
             <input 
                 type={props.inputType} 
@@ -24,6 +25,7 @@ const SingleInput = (props) => {
                 name={props.id} id={props.id} 
                 placeholder={props.placeholder} 
                 value={props.value || ""} 
+                readOnly={props.readOnly}
                 key={12} 
             />
         ); //end return
