@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types"; // ES6
 //dfgdfg
 const SelectHTML = (props) => {
-    console.log("SelectHTML props:\t");
-    console.dir(props);
+    // console.log("SelectHTML props:\t");
+    // console.dir(props);
     return (
         <select
             id={props.props.id}
