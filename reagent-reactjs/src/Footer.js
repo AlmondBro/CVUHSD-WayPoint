@@ -75,7 +75,7 @@ class Footer extends Component {
         }
         
         else {
-            IP_Address = "IP Address Undetermined";
+            IP_Address = (navigator.onLine) ? "Cannot get IP" : "Internet down";
         } 
         //console.log("Returning IP address:\t" + IP_Address);
         return IP_Address;

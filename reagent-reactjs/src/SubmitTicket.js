@@ -161,20 +161,13 @@ const SubmitTicket = (props) => {
                 <p>
                     {/* <label htmlFor="summary">Summary/Title:</label>
                     <input type="text" name="summary" id="summary" placeholder="Title or summary of the technical issue..." /> */}
-                    <SingleInput label={true} labelTitle="Summary/Title" inputType="text" id="summary" placeholder="Title or summary of the technical issue..."  cols="5" rows="3" />
+                    <SingleInput label={true} labelTitle="Summary/Title" inputType="text" id="summary" placeholder="Title or summary of the technical issue..." />
                 </p>
                 <p>
-                    <TextArea label={true} labelTitle="Detailed Description" id="detailed-description" placeholder="Type the technical issue you are facing here..." />
-                    <label htmlFor="detailed-description">Detailed Description:</label>
-                    <textarea id="detailed-description" name="detailed-description" placeholder="Type the technical issue you are facing here..." cols="5" rows="3"></textarea>
+                    <TextArea label={true} labelTitle="Detailed Description" id="detailed-description" cols={5} rows={3}  placeholder="Type the technical issue you are facing here..." resize="vertical"/>
                 </p>
-                {/* <p>
-                    <label htmlFor="summary">Your name:</label>
-                    <input type="text" name="client-name" id="client-name" placeholder="Your full name..." />
-                </p> */}
                 <p>
-                    <label htmlFor="client-email">Centinela E-mail:</label>
-                    <input type="email" name="client-email" id="client-email" placeholder="Your Centinela e-mail..." />
+                    <SingleInput label={true} labelTitle="Centinela E-mail" inputType="email" id="client-email" placeholder="Your Centinela e-mail..." />
                 </p>
                 <p className="inline fieldMargin">
                     <label htmlFor="category" className="block">Category:</label>

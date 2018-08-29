@@ -4,8 +4,8 @@ import PropTypes from "prop-types"; // ES6
 const SingleInput = (props) => {
     if (props.label == true) {
         return ([
-            <label htmlFor={props.id} className={props.labelClassName} id={props.labelID} >{props.labelTitle}</label>,
-            <input type={props.inputType} className={props.inputClassName} name={props.id} id={props.id} placeholder={props.placeholder} value={props.value || ""}  />
+            <label htmlFor={props.id} className={props.labelClassName} id={props.labelID} key={11}>{props.labelTitle}</label>,
+            <input type={props.inputType} className={props.inputClassName} name={props.id} id={props.id} placeholder={props.placeholder} value={props.value || ""} key={12} />
         ]
         );
     } //end if-statement

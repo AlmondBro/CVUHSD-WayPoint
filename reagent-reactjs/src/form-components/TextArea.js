@@ -2,21 +2,24 @@ import React from "react";
 import PropTypes from "prop-types"; // ES6
 
 
-
 const TextArea = (props) => {
-    const TextAreaHTML = (props) => {
-        return ( <textarea
-                    className={props.inputClassName}
-                    style={ props.resize ? null : {resize: "vertical"} }
-                    id={props.id}
-                    name={props.id}
-                    cols={props.cols}
-                    rows={props.rows}
-                    value={props.content}
-                    onChange={props.controlFunc}
-                    placeholder={props.placeholder}
-                /> );
-    } //end TextAreaHTML()
+        var textAreaProps = props;
+
+        const TextAreaHTML = (props) => {
+            console.log("TextAreaHTML props:\t" + JSON.stringify(props));
+            console.log(props);
+            return (<textarea
+                        className={props.props.inputClassName}
+                        id={props.props.id}
+                        name={props.props.id}
+                        cols={props.props.cols}
+                        rows={props.props.rows}
+                        value={props.props.content}
+                        onChange={props.props.controlFunc}
+                        style={ props.props.resize ? null : {resize: "none"} }
+                        placeholder={props.props.placeholder}
+                     />);
+        } //end TextAreaHTML()
 
         return (props.label === true) ? 
                 (
@@ -26,9 +29,9 @@ const TextArea = (props) => {
                         >
                             {props.labelTitle}
                         </label>,
-                        <TextAreaHTML />
+                        <TextAreaHTML props={textAreaProps} />
                     ]
-                ) : ( <TextAreaHTML props={props} />); //return statement
+                ) : ( <TextAreaHTML />); //return statement
 }; //TextArea() declaration
 
 TextArea.prototypes = {
