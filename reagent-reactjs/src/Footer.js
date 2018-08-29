@@ -133,10 +133,10 @@ class Footer extends Component {
         return (
                 this.props.renderFooterBool ? (
                     <footer>
-                        <div className="USER-container"><p>User: <span className="currentUserName">{ this.state.userName }</span></p></div>
-                        <div className="IP-container"><p className="IP-message">IP Address:&#9;<span>{ this.state.ipAddress }</span></p></div>
-                        <div className="OS-container"><p className="OS-platform">System:&#9;<span>{this.determineWindowsVersion(os.release()) || "OS Platform"}</span></p></div>
-                        <p className="cv-way">Powered by: The CV-Way</p>
+                        <div className="USER-container noDrag"><p>User: <span className="currentUserName">{ this.state.userName }</span></p></div>
+                        <div className="IP-container noDrag"><p className="IP-message">IP Address:&#9;<span>{ this.state.ipAddress }</span></p></div>
+                        <div className="OS-container noDrag"><p className="OS-platform">System:&#9;<span>{this.determineWindowsVersion(os.release()) || "OS Platform"}</span></p></div>
+                        <p className="cv-way noDrag">Powered by: The CV-Way</p>
                     </footer>
                  ) : null
             ); //end return
