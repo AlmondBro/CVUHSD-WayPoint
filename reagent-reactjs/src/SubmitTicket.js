@@ -180,6 +180,13 @@ const SubmitTicket = (props) => {
                     </select>
                 </p>
                 <p className="inline fieldMargin">
+                    <Select id="location" 
+                            label={true} 
+                            labelTitle="Location" 
+                            labelClassName="block" 
+                            options={["Lawndale", "Leuzinger", "Hawthorne", "Lloyde", "District Office"]} 
+                            placeholder="hi" />
+
                     <label htmlFor="location" className="block">Location:</label>
                     <select name="location" id="location">
                             <option>Lawndale</option>

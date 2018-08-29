@@ -2,20 +2,31 @@ import React from "react";
 import PropTypes from "prop-types"; // ES6
 
 const SingleInput = (props) => {
-    if (props.label == true) {
-        return ([
-            <label htmlFor={props.id} className={props.labelClassName} id={props.labelID} key={11}>{props.labelTitle}</label>,
-            <input type={props.inputType} className={props.inputClassName} name={props.id} id={props.id} placeholder={props.placeholder} value={props.value || ""} key={12} />
-        ]
-        );
-    } //end if-statement
-
-    else {
-        return (
-            <input type={props.inputType} className={props.inputClassName} name={props.name} id={props.id} placeholder={props.placeholder} value={props.value || ""}  />
-        );
-    } //end else-statement
-   
+    return ( (props.label == true) ?
+         ([
+            <label 
+                htmlFor={props.id} 
+                className={props.labelClassName} 
+                id={props.labelID} 
+                key={11} 
+            >{props.labelTitle}</label>,
+            <input 
+                type={props.inputType} 
+                className={props.inputClassName} 
+                name={props.id} id={props.id} 
+                placeholder={props.placeholder} 
+                value={props.value || ""} 
+                key={12} />
+            ]) :  
+            <input 
+                type={props.inputType} 
+                className={props.inputClassName} 
+                name={props.id} id={props.id} 
+                placeholder={props.placeholder} 
+                value={props.value || ""} 
+                key={12} 
+            />
+        ); //end return
 }; //SingleInput() declaration
 
 SingleInput.propTypes = { 

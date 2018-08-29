@@ -1,37 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types"; // ES6
 
+const TextAreaHTML = (props) => {
+   // console.log("TextAreaHTML props:\t" + JSON.stringify(props));
+    //onsole.log(props);
+    return (<textarea
+                className={props.props.inputClassName}
+                id={props.props.id}
+                name={props.props.id}
+                cols={props.props.cols}
+                rows={props.props.rows}
+                value={props.props.content}
+                onChange={props.props.controlFunc}
+                style={ props.props.resize ? null : {resize: "none"} }
+                placeholder={props.props.placeholder}
+             />);
+} //end TextAreaHTML()
 
 const TextArea = (props) => {
-        var textAreaProps = props;
-
-        const TextAreaHTML = (props) => {
-            console.log("TextAreaHTML props:\t" + JSON.stringify(props));
-            console.log(props);
-            return (<textarea
-                        className={props.props.inputClassName}
-                        id={props.props.id}
-                        name={props.props.id}
-                        cols={props.props.cols}
-                        rows={props.props.rows}
-                        value={props.props.content}
-                        onChange={props.props.controlFunc}
-                        style={ props.props.resize ? null : {resize: "none"} }
-                        placeholder={props.props.placeholder}
-                     />);
-        } //end TextAreaHTML()
-
+        let textAreaProps = props;
         return (props.label === true) ? 
                 (
                     [   <label htmlFor={props.id} 
                                className={props.labelClassName} 
                                id={props.labelID}
+                               key={1}
                         >
                             {props.labelTitle}
                         </label>,
-                        <TextAreaHTML props={textAreaProps} />
+                        <TextAreaHTML key={2} props={textAreaProps} />
                     ]
-                ) : ( <TextAreaHTML />); //return statement
+                ) : ( <TextAreaHTML props={textAreaProps} />); //return statement
 }; //TextArea() declaration
 
 TextArea.prototypes = {
