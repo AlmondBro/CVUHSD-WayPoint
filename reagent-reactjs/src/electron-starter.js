@@ -172,7 +172,7 @@ preventMoreThanOneInstance();
     Issue: https://github.com/electron/electron/issues/10864    
 */
 //app.setAppUserModelId(`${./../package.json build.appId}` || "com.waypoint");
-var ws = require('windows-shortcuts');
+var ws = require("windows-shortcuts");
 ws.create("%APPDATA%/Microsoft/Windows/Start Menu/Programs/Electron.lnk", process.execPath);
 app.setAppUserModelId("centinela.waypoint.xxx");
 app.setAsDefaultProtocolClient("xxx");
