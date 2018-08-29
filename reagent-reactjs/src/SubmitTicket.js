@@ -160,7 +160,7 @@ const SubmitTicket = (props) => {
                 <p>
                     {/* <label htmlFor="summary">Summary/Title:</label>
                     <input type="text" name="summary" id="summary" placeholder="Title or summary of the technical issue..." /> */}
-                    <SingleInput type="text" labelTitle="Summary/Title" id="summary" placeholder="Title or summary of the technical issue..." label="true" />
+                    <SingleInput label={true} labelTitle="Summary/Title" inputType="text"  id="summary" placeholder="Title or summary of the technical issue..." />
                 </p>
                 <p>
                     <label htmlFor="detailed-description">Detailed Description:</label>
