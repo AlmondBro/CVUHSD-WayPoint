@@ -51,7 +51,7 @@ const SubmitTicket = (props) => {
         officeNumber = document.getElementById("building-number");
     } //end window.onload
 
-    (function fileAttachment() {
+    const fileAttachment = (() => {
         var file_input = document.getElementById("file-input");
         var fileUpload_inputField = document.getElementById("uploadFile-path");
         
@@ -64,7 +64,7 @@ const SubmitTicket = (props) => {
             console.log("fileAttachmentName:\t" + fileAttachmentName);
         }
         //Do not allow dragging over
-        document.addEventListener('dragover', function (e) {
+        document.addEventListener("dragover",  (e) => {
             e.preventDefault();
             e.stopPropagation();
         });
