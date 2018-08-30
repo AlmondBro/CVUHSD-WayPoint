@@ -15,7 +15,7 @@ import jsxToString from "jsx-to-string";
 
 class SubmitTicket extends Component {     
     //Class Properties
-    pageTitle = "Message HelpDesk Support";
+    pageTitle = "Submit HelpDesk Ticket";
 
     //Form elements
     title;
@@ -172,7 +172,7 @@ class SubmitTicket extends Component {
             <form className="helpDeskTicket-form" action="https://helpdesk.centinela.k12.ca.us/portal/new_ticket" method="POST" encType="multipart/form-data">
                 <fieldset>
                     <legend className="form-legend">
-                        <h3>Message IT HelpDesk</h3>
+                        <h3>{this.pageTitle}</h3>
                     </legend>
                     <p className="submitForm-inputContainer">
                         <SingleInput label={true} labelTitle="Summary/Title" inputType="text" id="summary" placeholder="Title or summary of the technical issue..."  value={ this.state.title } controlFunc={(e)=>{ this.setState({title: e.target.value}); }} />
@@ -190,7 +190,9 @@ class SubmitTicket extends Component {
                             labelTitle="Category" 
                             labelClassName="block" 
                             options={["Computer Issue", "Printer Issue", "Projector Issue", "Password Issue", "Other Type of Issue"]} 
-                            placeholder="Problem Categories" />
+                            placeholder="Problem Categories"
+                            selectedOption={ this.state.category }
+                            controlFunc={ (e) => { this.setState({ category: e.target.value })} }  />
                     </p>
                     <p className="inline fieldMargin">
                         <Select 
@@ -199,7 +201,9 @@ class SubmitTicket extends Component {
                                 labelTitle="Location" 
                                 labelClassName="block" 
                                 options={["Lawndale", "Leuzinger", "Hawthorne", "Lloyde", "District Office"]} 
-                                placeholder="School Sites" />
+                                placeholder="School Sites" 
+                                selectedOption={ this.state.location }
+                                controlFunc={ (e) => { this.setState({ location: e.target.value })} } />
                     </p>
                     <p className="inline fieldMargin">
                         <SingleInput label={true} labelClassName="block" labelTitle="Phone Extension:" inputType="tel" id="phone-extension" placeholder="7811" />

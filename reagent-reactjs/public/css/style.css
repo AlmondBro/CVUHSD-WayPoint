@@ -1282,7 +1282,7 @@ form p.fieldMargin {
     position: relative;
     margin: 0 auto;
     left: 10px;
-    margin-top: 10px;
+    margin-top: 55px;
 }
 
 #wholeCompass {
@@ -1312,6 +1312,7 @@ form p.fieldMargin {
     /* top: 100px; */
     /* bottom: 87px; */
     left: 61px;
+    cursor: pointer;
 }
 
 .compass-message {

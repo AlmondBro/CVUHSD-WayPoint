@@ -142,15 +142,15 @@ class WiFiMagic extends Component {
  
     componentDidMount = () => {
         this.props.updateTitle(this.pageTitle);
-        this.props.renderFooter(true);
+        this.props.renderFooter(false);
     }  
 
     render = () => {
         return ( 
             <section className="wiFi-magic">
-                <div id="wholeCompass" onClick={ this.spinNeedle } >
-                    <img src={ this.compassNeedle } className="" id="compass-needle" alt="Compass Needle" />
-                    <img src={ this.compassBody } className="" id="compass-body" alt="Compass Body" />
+                <div id="wholeCompass" >
+                    <img src={ this.compassNeedle } className="" id="compass-needle" alt="Compass Needle" onClick={ this.spinNeedle }  />
+                    <img src={ this.compassBody } className="" id="compass-body" alt="Compass Body"  onClick={ this.spinNeedle } />
                 </div>
                 <div className="wifiMagic-messages">
                 { this.state.message.split("\n").map((message, key) => { 
