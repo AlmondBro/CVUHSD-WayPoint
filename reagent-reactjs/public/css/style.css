@@ -550,6 +550,7 @@ p.optionMessage {
     display: inline-block;
     margin: 5px 5px;
     cursor: pointer;
+    line-height: 7px;
 }
 
 .square-icon {
@@ -1300,6 +1301,10 @@ form p.fieldMargin {
     cursor: pointer;
     left: 167px;
     bottom: 27px;
+}
+
+.helpdesk-ext {
+    font-size: 14px;
 }
 
 #compass-body {

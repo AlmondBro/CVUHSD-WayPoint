@@ -24,27 +24,32 @@ const HelpDesk = (props) => {
                         icon="fas fa-phone-square" 
                         title="Helpdesk Hotline"
                         id="helpdeskHotline-supportSquare"
-                        imgSrc="./img/icon-building2.png" />
+                        imgSrc="./img/icon-building2.png" 
+                        ext="7398"/>
 
             <SupportSquare phone="tel:+01-310-263-3100" 
                         icon="fas fa-building" 
                         title="Lawndale" 
-                        imgSrc="./img/icon-building2.png" />
+                        imgSrc="./img/icon-building2.png" 
+                        ext="3100"/>
 
             <SupportSquare phone="tel:+01-310-263-2346" 
                         icon="fas fa-building" 
                         title="Leuzinger" 
-                        imgSrc="./img/icon-building2.png" />
+                        imgSrc="./img/icon-building2.png"
+                        ext="2346" />
 
-            <SupportSquare phone="tel:+01-310263-3286" 
+            <SupportSquare phone="tel:+01-310-263-3286" 
                         icon="fas fa-building" 
                         title="Hawthorne" 
-                        imgSrc="./img/icon-building2.png" />
+                        imgSrc="./img/icon-building2.png" 
+                        ext="2346"/>
 
             <SupportSquare phone="tel:+01-310-263-3286" 
                 icon="fas fa-building" 
                 title="Lloyde" 
-                imgSrc="./img/icon-building2.png" />      
+                imgSrc="./img/icon-building2.png"
+                ext="2346" />      
 
             </div>
         );

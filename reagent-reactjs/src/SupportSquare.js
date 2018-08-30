@@ -9,6 +9,7 @@ const SupportSquare = (props) => {
                         
                             <img src={props.imgSrc} className="square-icon noHighlight noDrag" alt="Square-Icon" />
                             <h3 className="noHighlight noDrag">{props.title}</h3>
+                            <p class="helpdesk-ext"><span>ext.</span> {props.ext}</p>
                     
                 </section>  
             </Link> ):
@@ -17,6 +18,7 @@ const SupportSquare = (props) => {
                     <a className="noHighlight noDrag" href={props.phone}>
                         <img src={props.imgSrc} className="square-icon noHighlight noDrag" alt="Square-Icon" />
                         <h3 className="noHighlight noDrag">{props.title}</h3>
+                        <p class="helpdesk-ext"><span>ext.</span> {props.ext}</p>
                     </a>
                 </section>
             );
