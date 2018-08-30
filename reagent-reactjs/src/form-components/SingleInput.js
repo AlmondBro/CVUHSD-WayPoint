@@ -10,8 +10,10 @@ const InputHTML = (props) => {
             placeholder={props.props.placeholder} 
             value={props.props.value || ""} 
             readOnly={props.props.readOnly}
-            key={23} 
-            onChange={props.props.controlFunc} />);
+            onChange={props.props.controlFunc} 
+            value={props.props.value}
+            key={props.props.value} />
+        );
 } //end InputHTML()
 
 const SingleInput = (props) => {
@@ -23,7 +25,8 @@ const SingleInput = (props) => {
                 id={props.labelID} 
                 key={11} 
             >{props.labelTitle}</label>,
-         <InputHTML props={props} /> ]):  
+         <InputHTML props={props} /> 
+        ]):  
          <InputHTML props={props} /> 
         ); //end return
 }; //SingleInput() declaration

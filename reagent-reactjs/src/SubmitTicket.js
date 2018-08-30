@@ -175,7 +175,7 @@ class SubmitTicket extends Component {
                         <h3>Message IT HelpDesk</h3>
                     </legend>
                     <p className="submitForm-inputContainer">
-                        <SingleInput label={true} labelTitle="Summary/Title" inputType="text" id="summary" placeholder="Title or summary of the technical issue..." onChange={()=>{}} />
+                        <SingleInput label={true} labelTitle="Summary/Title" inputType="text" id="summary" placeholder="Title or summary of the technical issue..." value={this.state.title} controlFunc={(e)=>{ this.setState({title: e.target.value}); }} />
                     </p>
                     <p className="submitForm-inputContainer">
                         <TextArea label={true} labelTitle="Detailed Description" id="detailed-description" cols={5} rows={3}  placeholder="Type the technical issue you are facing here..." resize="vertical"/>
