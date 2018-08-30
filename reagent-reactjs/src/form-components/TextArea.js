@@ -12,7 +12,7 @@ const TextAreaHTML = (props) => {
                 rows={props.props.rows}
                 value={props.props.content}
                 onChange={props.props.controlFunc}
-                style={ props.props.resize ? null : {resize: "none"} }
+                style={ props.props.resize ? {resize: props.props.resize } : {resize: "none"} }
                 placeholder={props.props.placeholder}
              />);
 } //end TextAreaHTML()

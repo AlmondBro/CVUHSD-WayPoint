@@ -1005,16 +1005,16 @@ input#client-name {
     font-size: 1em;
 }
 
+p.submitForm-inputContainer {
+    /* color: black; */
+}
+
 textarea#detailed-description,
 textarea#detailed-description::-webkit-input-placeholder,
 textarea#detailed-description::-moz-placeholder,
 textarea#detailed-description:-moz-placeholder,
 textarea#detailed-description:-ms-input-placeholder {
     color: grey;
-}
-
-textarea {
-    resize: vertical;
 }
 
 .fileUpload-button,

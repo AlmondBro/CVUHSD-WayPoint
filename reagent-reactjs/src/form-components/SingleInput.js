@@ -1,6 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types"; // ES6
 
+const InputHTML = (props) => {
+    return(
+        <input 
+            type={props.props.inputType} 
+            className={props.props.inputClassName} 
+            name={props.props.id} id={props.props.id} 
+            placeholder={props.props.placeholder} 
+            value={props.props.value || ""} 
+            readOnly={props.props.readOnly}
+            key={23} 
+            onChange={props.props.controlFunc} />);
+} //end InputHTML()
+
 const SingleInput = (props) => {
     return ( (props.label == true) ?
          ([
@@ -10,25 +23,8 @@ const SingleInput = (props) => {
                 id={props.labelID} 
                 key={11} 
             >{props.labelTitle}</label>,
-            <input 
-                type={props.inputType} 
-                className={props.inputClassName} 
-                name={props.id} id={props.id} 
-                placeholder={props.placeholder} 
-                value={props.value || ""} 
-                readOnly={props.readOnly}
-                key={23} />
-            ]) :  
-            <input 
-                type={props.inputType} 
-                className={props.inputClassName} 
-                name={props.id} id={props.id} 
-                placeholder={props.placeholder} 
-                value={props.value || ""} 
-                readOnly={props.readOnly}
-                key={12} 
-                readOnly={props.readOnly || false}
-            />
+         <InputHTML props={props} /> ]):  
+         <InputHTML props={props} /> 
         ); //end return
 }; //SingleInput() declaration
 

@@ -86,6 +86,7 @@ const methods = {
 };
 
 const SubmitTicket = (props) => {
+    
     window.onload = () => {
         title = document.getElementById("summary");
         description = document.getElementById("detailed-description");
@@ -118,7 +119,7 @@ const SubmitTicket = (props) => {
             //const {session} = window.require('electron')
            // const ses = session.defaultSession;
             const remote = electron.remote;
-            const sendmail = remote.require('sendmail')({silent: true});
+            const sendmail = remote.require("sendmail")({silent: true});
             //const jsxToString = remote.require("jsx-to-string");endm
           
            var HTMLmessage =/* jsxToString(<Email title={title} 
@@ -129,7 +130,13 @@ const SubmitTicket = (props) => {
                                                  phoneExtension={phoneExtension}
                                                  officeNumber={officeNumber} />
                                         ); */
-                                        jsxToString(<Email />).toString();
+                                        jsxToString(<Email  title={title} 
+                                                            description={description}
+                                                            email={email}
+                                                            category={category}
+                                                            location={location}
+                                                            phoneExtension={phoneExtension}
+                                                            officeNumber={officeNumber} />).toString();
     
             console.log("Sent."); 
             console.log("HTMLMessage:\t" + HTMLmessage);
@@ -158,20 +165,20 @@ const SubmitTicket = (props) => {
                 <legend className="form-legend">
                     <h3>Message IT HelpDesk</h3>
                 </legend>
-                <p>
-                    <SingleInput label={true} labelTitle="Summary/Title" inputType="text" id="summary" placeholder="Title or summary of the technical issue..." />
+                <p className="submitForm-inputContainer">
+                    <SingleInput label={true} labelTitle="Summary/Title" inputType="text" id="summary" placeholder="Title or summary of the technical issue..." onChange={()=>{}} />
                 </p>
-                <p>
+                <p className="submitForm-inputContainer">
                     <TextArea label={true} labelTitle="Detailed Description" id="detailed-description" cols={5} rows={3}  placeholder="Type the technical issue you are facing here..." resize="vertical"/>
                 </p>
-                <p>
+                <p className="submitForm-inputContainer">
                     <SingleInput label={true} labelTitle="Centinela E-mail" inputType="email" id="client-email" placeholder="Your Centinela e-mail..." />
                 </p>
                 <p className="inline fieldMargin">
                     <Select 
                         id="category" 
                         label={true} 
-                        labelTitle="Location" 
+                        labelTitle="Category" 
                         labelClassName="block" 
                         options={["Computer Issue", "Printer Issue", "Projector Issue", "Password Issue", "Other Type of Issue"]} 
                         placeholder="Problem Categories" />
@@ -199,7 +206,7 @@ const SubmitTicket = (props) => {
                     
                     <input type="file" name="attachment" id="file-input" value="" />
 
-                    <SingleInput label={true} labelClassName="" labelTitle="File name:" inputType="text" id="uploadFile-path" placeholder="Optional file path..." readOnly={true} />
+                    <SingleInput label={true} labelClassName="" labelTitle="File name:" inputType="text" id="uploadFile-path" placeholder="File attachment name..." readOnly={true} />
 
                    {/* 
                         <label htmlFor="uploadFile-path">File name:</label>
