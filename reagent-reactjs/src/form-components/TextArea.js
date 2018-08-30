@@ -14,6 +14,7 @@ const TextAreaHTML = (props) => {
                 onChange={props.props.controlFunc}
                 style={ props.props.resize ? {resize: props.props.resize } : {resize: "none"} }
                 placeholder={props.props.placeholder}
+                key={props.props.value}
              />);
 } //end TextAreaHTML()
 
@@ -24,11 +25,11 @@ const TextArea = (props) => {
                     [   <label htmlFor={props.id} 
                                className={props.labelClassName} 
                                id={props.labelID}
-                               key={1}
+                               key={props.labelID}
                         >
                             {props.labelTitle}
                         </label>,
-                        <TextAreaHTML key={2} props={textAreaProps} />
+                        <TextAreaHTML props={textAreaProps} />
                     ]
                 ) : ( <TextAreaHTML props={textAreaProps} />); //return statement
 }; //TextArea() declaration
@@ -42,7 +43,7 @@ TextArea.prototypes = {
     id: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
     controlFunc: PropTypes.func,
-    content: PropTypes.oneOfType([
+    value: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
     ]),

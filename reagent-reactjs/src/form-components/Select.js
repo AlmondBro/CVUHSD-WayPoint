@@ -4,20 +4,21 @@ import PropTypes from "prop-types"; // ES6
 const SelectHTML = (props) => {
     // console.log("SelectHTML props:\t");
     // console.dir(props);
+    var selectHTMLProps = props.props; 
     return (
         <select
-            id={props.props.id}
-            name={props.props.id}
-            value={props.props.selectedOption}
-            onChange={props.props.controlFunc}
-            className={props.props.selectClassName}
+            id={selectHTMLProps.id}
+            name={selectHTMLProps.id}
+            value={props.selectedOption}
+            onChange={selectHTMLProps.controlFunc}
+            className={selectHTMLProps.selectClassName}
         >
-            {/* <option value=""> {props.props.placeholder} </option> */}
+            {/* <option value=""> {selectHTMLProps.placeholder} </option> */}
                 {
-                    props.props.options.map(choice => {
+                    selectHTMLProps.options.map(choice => {
                             return (
                                 <option
-                                    className={props.props.optionClassName}
+                                    className={selectHTMLProps.optionClassName}
                                     key={choice}
                                     value={choice}>{choice}
                                 </option>
@@ -30,21 +31,20 @@ const SelectHTML = (props) => {
 }; //SelectHTML()
 
 const Select = (props) => {
-    let selectProps = props;
-    return ( (props.label === true) ?  
-            (
-                [   <label htmlFor={props.for} 
-                           className={props.labelClassName} 
-                           key={1}
-                           id={props.labelID}
-                    >
-                        {props.labelTitle}
-                    </label>,
-                    <SelectHTML props={selectProps} />
-                ]
-            ) : (<SelectHTML props={selectProps} />)
-    ); //end return
+    var selectProps = props;
 
+    return ( (props.label === true) ?
+         ([
+            <label 
+                htmlFor={props.id} 
+                className={props.labelClassName} 
+                id={props.labelID} 
+                key={props.id} 
+            >{props.labelTitle}</label>,
+            <SelectHTML value={props.selectedOption} props={selectProps} />
+        ]):  
+            <SelectHTML value={props.selectedOption} props={selectProps} />
+        ); //end return
 }; //Select() declaration
 
 Select.propTypes = {  
@@ -58,7 +58,7 @@ Select.propTypes = {
     optionClassName: PropTypes.string,
     options: PropTypes.array.isRequired,
     selectedOption: PropTypes.string,
-    placeholder: PropTypes.string,
+    value: PropTypes.string,
     controlFunc: PropTypes.func,
 };
 

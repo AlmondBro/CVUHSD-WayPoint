@@ -17,7 +17,7 @@ const InputHTML = (props) => {
 } //end InputHTML()
 
 const SingleInput = (props) => {
-    return ( (props.label == true) ?
+    return ( (props.label === true) ?
          ([
             <label 
                 htmlFor={props.id} 
