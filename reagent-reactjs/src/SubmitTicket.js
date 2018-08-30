@@ -16,10 +16,10 @@ import jsxToString from "jsx-to-string";
 class SubmitTicket extends Component {     
     //Class Properties
     pageTitle = "Message HelpDesk Support";
-    
+
+    //Form elements
     title;
     description;
-    //const clientName = document.getElementById("client-name").value;
     email;
     category;
     location;
@@ -29,7 +29,6 @@ class SubmitTicket extends Component {
     fileAttachmentPath;
     fileAttachmentName;
 
-  
     constructor(props) {
         super(props);
         
