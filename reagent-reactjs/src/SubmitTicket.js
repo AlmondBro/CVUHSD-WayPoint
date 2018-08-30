@@ -14,9 +14,12 @@ import FormButton from "./form-components/FormButton.js";
 import jsxToString from "jsx-to-string";
 
 class SubmitTicket extends Component {     
+    //Class Properties
+    pageTitle = "Message HelpDesk Support";
+    
     title;
     description;
-//const clientName = document.getElementById("client-name").value;
+    //const clientName = document.getElementById("client-name").value;
     email;
     category;
     location;
@@ -26,10 +29,22 @@ class SubmitTicket extends Component {
     fileAttachmentPath;
     fileAttachmentName;
 
+  
     constructor(props) {
         super(props);
-        var pageTitle = "Message HelpDesk Support";
-    }
+        
+        this.state = {
+            title: "",
+            description: "",
+            email: "",
+            category: "",
+            location: "",
+            phoneExtension: "",
+            officeNumber: "",
+            fileAttachmentPath: "",
+            fileAttachmentName: ""
+        } //end state object {}
+    } //end constructor
 
     sendEmail = (e) => {
         ((e) => {
