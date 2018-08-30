@@ -27,6 +27,7 @@ const SingleInput = (props) => {
                 value={props.value || ""} 
                 readOnly={props.readOnly}
                 key={12} 
+                readOnly={props.readOnly || false}
             />
         ); //end return
 }; //SingleInput() declaration
@@ -38,7 +39,7 @@ SingleInput.propTypes = {
     labelID: PropTypes.string, 
     inputClassName: PropTypes.string,
     inputType: PropTypes.oneOf(["text", "number", "file", "email", "tel"]).isRequired,
-    readOnly: PropTypes.func,
+    readOnly: PropTypes.bool,
     name: PropTypes.string,
     id: PropTypes.string.isRequired,
     placeholder: PropTypes.string,

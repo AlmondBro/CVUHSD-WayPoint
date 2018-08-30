@@ -156,7 +156,7 @@ const SubmitTicket = (props) => {
         <form className="helpDeskTicket-form" action="https://helpdesk.centinela.k12.ca.us/portal/new_ticket" method="POST" encType="multipart/form-data">
             <fieldset>
                 <legend className="form-legend">
-                    <h3>Submit Helpdesk Ticket</h3>
+                    <h3>Message IT HelpDesk</h3>
                 </legend>
                 <p>
                     <SingleInput label={true} labelTitle="Summary/Title" inputType="text" id="summary" placeholder="Title or summary of the technical issue..." />
@@ -199,7 +199,7 @@ const SubmitTicket = (props) => {
                     
                     <input type="file" name="attachment" id="file-input" value="" />
 
-                    <SingleInput label={true} labelClassName="" labelTitle="File name:" inputType="text" id="uploadFile-path" placeholder="Optional file path..." />
+                    <SingleInput label={true} labelClassName="" labelTitle="File name:" inputType="text" id="uploadFile-path" placeholder="Optional file path..." readOnly={true} />
 
                    {/* 
                         <label htmlFor="uploadFile-path">File name:</label>
