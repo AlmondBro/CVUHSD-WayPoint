@@ -16,10 +16,68 @@ import lifecycle from "react-pure-lifecycle";
 
 var pageTitle = "Message HelpDesk Support";
 
- // Create your lifecycle methods for 'react-pure-lifecycle'
+let title;
+let description;
+//const clientName = document.getElementById("client-name").value;
+let email;
+let category;
+let location;
+let phoneExtension;
+let officeNumber;
+
+let fileAttachmentPath;
+let fileAttachmentName;
+
+const fileAttachment = () => {
+    let file_input = document.getElementById("file-input");
+    let fileUpload_inputField = document.getElementById("uploadFile-path");
+    
+    const getFilePath = (file_input, fileUpload_inputField) => {
+        console.log("getFilePath()");
+        let fileUpload_valueArray = file_input.value.split("\\");
+        console.log("fileUpload_valueArray:\t", fileUpload_valueArray);
+        fileUpload_inputField.value =  fileUpload_valueArray[fileUpload_valueArray.length - 1];
+        fileAttachmentName = fileUpload_valueArray[fileUpload_valueArray.length - 1];
+        console.log("fileAttachmentName:\t" + fileAttachmentName);
+    }
+    //Do not allow dragging over
+    document.addEventListener("dragover",  (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+    });
+
+    const formGetPathCode = () => {
+        file_input.addEventListener("change", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            console.log("onchange");
+            getFilePath(file_input, fileUpload_inputField);
+            console.log("transfer:\t" + e.dataTransfer);
+            console.log("path:\t" + file_input.files[0].path);
+            document.getElementById("uploadFile-path").value = fileAttachmentName ;
+
+            fileAttachmentPath = file_input.files[0].path;
+            console.log("FileattachmentPath:\t" + fileAttachmentPath );
+           /* for (let f of e.dataTransfer.files) {
+                console.log('File(s) you dragged here: ', f.path)
+            } //end for loop */
+
+            // this.value = null; 
+            //return false; 
+        });
+    } //end formGetPathCode()
+
+  if (file_input != null) {
+        formGetPathCode();
+    }   
+};
+
+ // Create your lifecycle methods for "react-pure-lifecycle"
 const componentDidMount = (props) => {
     props.updateTitle(pageTitle);
     props.renderFooter(false);
+    window.onload = fileAttachment();
 }
 
 // make the lifecycle methods properties on a standard object
@@ -28,18 +86,6 @@ const methods = {
 };
 
 const SubmitTicket = (props) => {
-    var title;
-    var description;
-    //const clientName = document.getElementById("client-name").value;
-    var email;
-    var category;
-    var location;
-    var phoneExtension;
-    var officeNumber;
-
-    var fileAttachmentPath;
-    var fileAttachmentName;
-
     window.onload = () => {
         title = document.getElementById("summary");
         description = document.getElementById("detailed-description");
@@ -50,52 +96,6 @@ const SubmitTicket = (props) => {
         phoneExtension = document.getElementById("phone-extension");
         officeNumber = document.getElementById("building-number");
     } //end window.onload
-
-    const fileAttachment = (() => {
-        var file_input = document.getElementById("file-input");
-        var fileUpload_inputField = document.getElementById("uploadFile-path");
-        
-        const getFilePath = (file_input, fileUpload_inputField) => {
-            console.log("getFilePath()");
-            var fileUpload_valueArray = file_input.value.split('\\');
-            console.log("fileUpload_valueArray:\t", fileUpload_valueArray);
-            fileUpload_inputField.value =  fileUpload_valueArray[fileUpload_valueArray.length - 1];
-            fileAttachmentName = fileUpload_valueArray[fileUpload_valueArray.length - 1];
-            console.log("fileAttachmentName:\t" + fileAttachmentName);
-        }
-        //Do not allow dragging over
-        document.addEventListener("dragover",  (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-        });
-
-        const formGetPathCode = () => {
-            file_input.addEventListener("change", (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-
-                console.log("onchange");
-                getFilePath(file_input, fileUpload_inputField);
-                console.log("transfer:\t" + e.dataTransfer);
-                console.log("path:\t" + file_input.files[0].path);
-                //document.getElementById("uploadFile-path").value = file_input.files[0].path;
-
-                fileAttachmentPath = file_input.files[0].path;
-                console.log("FileattachmentPath:\t" + fileAttachmentPath );
-                /* for (let f of e.dataTransfer.files) {
-                    console.log('File(s) you dragged here: ', f.path)
-                    } */
-
-                // this.value = null; 
-                //return false; 
-            });
-        } //end formGetPathCode()
-    
-        if (file_input != null) {
-            formGetPathCode();
-        }   
-    })();
- 
 
     const sendEmail = (e) => {
         ((e) => {
@@ -199,7 +199,7 @@ const SubmitTicket = (props) => {
                     
                     <input type="file" name="attachment" id="file-input" value="" />
 
-                     <SingleInput label={true} labelClassName="" labelTitle="File name:" inputType="text" id="uploadFile-path" placeholder="Optional file path..." />
+                    <SingleInput label={true} labelClassName="" labelTitle="File name:" inputType="text" id="uploadFile-path" placeholder="Optional file path..." />
 
                    {/* 
                         <label htmlFor="uploadFile-path">File name:</label>
