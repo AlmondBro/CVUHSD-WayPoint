@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactDOMServer from "react-dom/server";
 
 //Import external components - ES6 JavaScript
 import Email from "./Email.js";
@@ -71,40 +72,50 @@ class SubmitTicket extends Component {
             const remote = electron.remote;
             const sendmail = remote.require("sendmail")({silent: true});
             //const jsxToString = remote.require("jsx-to-string");endm
-          
-           var HTMLmessage =/* jsxToString(<Email title={title} 
-                                                 description={description}
-                                                 email={email}
-                                                 category={category}
-                                                 location={location}
-                                                 phoneExtension={phoneExtension}
-                                                 officeNumber={officeNumber} />
-                                        ); */
+            const emailJSX = ( <Email title={this.state.title} 
+                                    description={this.state.description}
+                                    email={this.state.email}
+                                    category={this.state.category}
+                                    location={this.state.location}
+                                    phoneExtension={this.state.phoneExtension}
+                                    officeNumber={this.state.officeNumber} />);
+           
+           const HTMLmessage =  ReactDOMServer.renderToStaticMarkup(emailJSX);
+
+         /*
                                         jsxToString(<Email  title={this.state.title} 
                                                             description={this.state.description}
                                                             email={this.state.email}
                                                             category={this.state.category}
                                                             location={this.state.location}
                                                             phoneExtension={this.state.phoneExtension}
-                                                            officeNumber={this.state.officeNumber} />).toString();
-    
-            console.log("Sent."); 
+                                                            officeNumber={this.state.officeNumber} />).toString(); */
             console.log("HTMLMessage:\t" + HTMLmessage);
-         
-           sendmail({
-                from: this.state.email,
-                to: "juandavidlopez95@yahoo.com",
-                subject: this.state.title,
-                html: "HTMLmessage",
+         /*
+
+         ,
                 attachments: [  {   // file on disk as an attachment
                                     filename: this.state.fileAttachmentName,
                                     path: this.state.fileAttachmentPath // stream this file
                                 }
                             ]
+
+         */
+           sendmail({
+                from: this.state.email,
+                to: "leggomyyeggo95@gmail.com",
+                subject: this.state.title,
+                html: HTMLmessage
               }, (err, reply) => {
-                console.log("Sent email!")
-                console.log(err && err.stack);
-                console.dir(reply);
+                if (err) {
+                    console.log(err && err.stack);
+                    console.dir(reply);
+                    return;
+                } else {
+                    console.log("Successfully email!");
+                    console.dir(reply);
+                    return;
+                } //end else-statement
            });  
         //} //end else-statement
     }; //end sendMail() method
