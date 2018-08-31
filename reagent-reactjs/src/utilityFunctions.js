@@ -63,7 +63,7 @@ const utilityFunctions = () => {
         notifier.notify(notifierOptions, callback);
     } //notification()
     
-    stringIsEmptyOrBlank = (string) => {
+    const stringIsEmptyOrBlank = (string) => {
         //falsy values: null,undefined,0,000,"",false
         if (!string || (string.trim()).length === 0) {
             console.log(string + " is empty, blank, null or undefined");
@@ -74,6 +74,18 @@ const utilityFunctions = () => {
             return false;
         } //end else-statement
     } //end stringIsEmptyOrBlank()
+
+    const isNullOrUndefinedOrEmptyString = (element) => {
+        if ( typeof(element) === "string" ) {
+            stringIsEmptyOrBlank(element)
+        } //end if-statement
+
+        else if  (typeof(element) == "undefined" ) {
+            return true;
+        } else {
+            return false;
+        }
+    };
 
     const requireNodeJSmodule = (moduleName) => {
         if (typeof(moduleName) !== "string") {
@@ -133,5 +145,6 @@ let popNotification = utilityFunctions().popNotification;
 let stringIsEmptyOrBlank = utilityFunctions().stringIsEmptyOrBlank;
 let requireNodeJSmodule = utilityFunctions().requireNodeJSmodule;
 let whyDidYouUpdate = utilityFunctions().whyDidYouUpdate;
+let isNullOrUndefinedOrEmptyString = utilityFunctions().isNullOrUndefinedOrEmptyString;
 
-export  { openLinksInBrowser, canUseDOM, popNotification, stringIsEmptyOrBlank, requireNodeJSmodule, whyDidYouUpdate };
+export  { openLinksInBrowser, canUseDOM, popNotification, stringIsEmptyOrBlank, requireNodeJSmodule, whyDidYouUpdate, isNullOrUndefinedOrEmptyString };

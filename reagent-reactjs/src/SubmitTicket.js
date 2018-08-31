@@ -14,7 +14,7 @@ import FormButton from "./form-components/FormButton.js";
 //Import 3rd-party libraries
 
 //Impoty utility functions
-import { requireNodeJSmodule, whyDidYouUpdate } from "./utilityFunctions.js";
+import { requireNodeJSmodule, whyDidYouUpdate, isNullOrUndefinedOrEmptyString } from "./utilityFunctions.js";
 
 class SubmitTicket extends Component {     
     // ---- Class Properties ----
@@ -55,16 +55,16 @@ class SubmitTicket extends Component {
              //return false;
         })(e); 
 
-       /* if (this.title.value === null || this.title.value  === undefined || 
-            this.description.value === null || this.description.value === undefined ||
-            this.email.value === null || this.email.value === undefined || 
-            this.category.value === null ||  this.category.value  === undefined || 
-            this.location.value === null || this.location.value === undefined || 
-            this.phoneExtension.value === null || this.phoneExtension.value  === undefined || 
-            this.officeNumber.value === null || this.officeNumber.value === undefined  ) {
+       if ( isNullOrUndefinedOrEmptyString(this.state.category) || 
+            isNullOrUndefinedOrEmptyString(this.state.description) ||
+            isNullOrUndefinedOrEmptyString(this.state.email) ||
+            isNullOrUndefinedOrEmptyString(this.state.location) ||
+            isNullOrUndefinedOrEmptyString(this.state.officeNumber) ||
+            isNullOrUndefinedOrEmptyString(this.state.phoneExtension) ||
+            isNullOrUndefinedOrEmptyString(this.state.title) ) {
                 console.log("Undefined/null fields!");
-                return;
-        } else { */
+        } 
+        else { 
             const electron = window.require("electron");
             //const {session} = window.require('electron')
            // const ses = session.defaultSession;
@@ -81,19 +81,8 @@ class SubmitTicket extends Component {
            
            const HTMLmessage =  ReactDOMServer.renderToStaticMarkup(emailJSX);
 
-         
-            console.log("HTMLMessage:\t" + HTMLmessage);
+           console.log("HTMLMessage:\t" + HTMLmessage);
 
-
-        /*
-                attachments: [  {   // file on disk as an attachment
-                                    filename: this.state.fileAttachmentName,
-                                    path: this.state.fileAttachmentPath // stream this file
-                                }
-                            ]
-                            */
-
-         
            sendmail({
                 from: this.state.email,
                 to: "leggomyyeggo95@gmail.com",
@@ -165,7 +154,7 @@ class SubmitTicket extends Component {
             formGetPathCode();
         } //end if-statement   
     }; //end fileAttachment() method
-//sd
+
     clearForm = () => {
         this.setState({
             title: "",
@@ -196,10 +185,10 @@ class SubmitTicket extends Component {
         } //end window.onload
         window.onload = this.fileAttachment();
 
-      const isDev = requireNodeJSmodule("electron-is-dev");
-      if (isDev) {
-        whyDidYouUpdate
-      } //end if-statement
+        const isDev = requireNodeJSmodule("electron-is-dev");
+        if (isDev) {
+            whyDidYouUpdate
+        } //end if-statement
 
     }; //end componentDidMount()
     
@@ -269,5 +258,4 @@ class SubmitTicket extends Component {
    
 } //end SubmitTicket class
 
-//Decorate exported component with lifecycle methods
 export default SubmitTicket;
