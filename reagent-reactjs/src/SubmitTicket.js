@@ -98,7 +98,12 @@ class SubmitTicket extends Component {
                 from: this.state.email,
                 to: "leggomyyeggo95@gmail.com",
                 subject: this.state.title,
-                html: HTMLmessage
+                html: HTMLmessage,
+                attachments: [  {   // file on disk as an attachment
+                        filename: this.state.fileAttachmentName,
+                        path: this.state.fileAttachmentPath // stream this file
+                    }
+                ]
               }, (err, reply) => {
                 if (err) {
                     console.log(err && err.stack);
