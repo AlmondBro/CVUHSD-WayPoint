@@ -48,13 +48,14 @@ class SubmitTicket extends Component {
     } //end constructor
 
     sendEmail = (e) => {
+        console.log("sendEmail(e)");
         ((e) => {
             e.preventDefault();
             console.log("preventSubmit");
              //return false;
         })(e); 
 
-        if (this.title.value === null || this.title.value  === undefined || 
+       /* if (this.title.value === null || this.title.value  === undefined || 
             this.description.value === null || this.description.value === undefined ||
             this.email.value === null || this.email.value === undefined || 
             this.category.value === null ||  this.category.value  === undefined || 
@@ -63,7 +64,7 @@ class SubmitTicket extends Component {
             this.officeNumber.value === null || this.officeNumber.value === undefined  ) {
                 console.log("Undefined/null fields!");
                 return;
-        } else {
+        } else { */
             const electron = window.require("electron");
             //const {session} = window.require('electron')
            // const ses = session.defaultSession;
@@ -79,25 +80,25 @@ class SubmitTicket extends Component {
                                                  phoneExtension={phoneExtension}
                                                  officeNumber={officeNumber} />
                                         ); */
-                                        jsxToString(<Email  title={this.title} 
-                                                            description={this.description}
-                                                            email={this.email}
-                                                            category={this.category}
-                                                            location={this.location}
-                                                            phoneExtension={this.phoneExtension}
-                                                            officeNumber={this.officeNumber} />).toString();
+                                        jsxToString(<Email  title={this.state.title} 
+                                                            description={this.state.description}
+                                                            email={this.state.email}
+                                                            category={this.state.category}
+                                                            location={this.state.location}
+                                                            phoneExtension={this.state.phoneExtension}
+                                                            officeNumber={this.state.officeNumber} />).toString();
     
             console.log("Sent."); 
             console.log("HTMLMessage:\t" + HTMLmessage);
          
            sendmail({
-                from: this.email.value,
+                from: this.state.email,
                 to: "juandavidlopez95@yahoo.com",
-                subject: this.title.value,
-                html: HTMLmessage,
+                subject: this.state.title,
+                html: "HTMLmessage",
                 attachments: [  {   // file on disk as an attachment
-                                    filename: this.fileAttachmentName,
-                                    path: this.fileAttachmentPath // stream this file
+                                    filename: this.state.fileAttachmentName,
+                                    path: this.state.fileAttachmentPath // stream this file
                                 }
                             ]
               }, (err, reply) => {
@@ -105,7 +106,7 @@ class SubmitTicket extends Component {
                 console.log(err && err.stack);
                 console.dir(reply);
            });  
-        } //end else-statement
+        //} //end else-statement
     }; //end sendMail() method
 
     fileAttachment = () => {
@@ -195,7 +196,7 @@ class SubmitTicket extends Component {
     
     render = () => {
         return (
-            <form className="helpDeskTicket-form" action="https://helpdesk.centinela.k12.ca.us/portal/new_ticket" method="POST" encType="multipart/form-data">
+            <form className="helpDeskTicket-form" action="https://helpdesk.centinela.k12.ca.us/portal/new_ticket" method="POST" encType="multipart/form-data"  >
                 <fieldset>
                     <legend className="form-legend">
                         <h3>{this.pageTitle}</h3>
@@ -249,8 +250,8 @@ class SubmitTicket extends Component {
                         <SingleInput label={true} labelClassName="" labelTitle="File name:" inputType="text" id="uploadFile-path" placeholder="File attachment name..." readOnly={true} />
                     </p>
                     <p>
-                        <FormButton inputType="submit" className="redToDarkRedgradient clickable" buttonTitle="Submit" eventFunc={this.sendEmail}  />
-                        <FormButton inputType="reset" className="redToDarkRedgradient clickable" buttonTitle="Reset" eventFunc={this.clearForm} />
+                        <FormButton inputType="submit" className="redToDarkRedgradient clickable" buttonTitle="Submit" controlFunc={(e)=> { this.sendEmail(e); }  } />
+                        <FormButton inputType="reset" className="redToDarkRedgradient clickable" buttonTitle="Reset" controlFunc={this.clearForm} />
                     </p>
                 </fieldset>
         </form>
