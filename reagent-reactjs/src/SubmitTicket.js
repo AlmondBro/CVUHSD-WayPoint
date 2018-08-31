@@ -199,10 +199,10 @@ class SubmitTicket extends Component {
                         <h3>{this.pageTitle}</h3>
                     </legend>
                     <p className="submitForm-inputContainer">
-                        <SingleInput label={true} labelTitle="Summary/Title" inputType="text" id="summary" placeholder="Title or summary of the technical issue..."  value={ this.state.title } controlFunc={(e)=>{ this.setState({title: e.target.value}); }} />
+                        <SingleInput label={true} labelTitle="Summary/Title" inputType="text" id="summary" placeholder="Title or summary of the technical issue..."  controlFunc={(e)=>{ this.setState({title: e.target.value}); }} />
                     </p>
                     <p className="submitForm-inputContainer">
-                        <TextArea label={true} labelTitle="Detailed Description" id="detailed-description" cols={5} rows={3}  placeholder="Type the technical issue you are facing here..." resize="vertical" value={ this.state.description } controlFunc={(e)=>{ this.setState({description: e.target.value}); }}/>
+                        <TextArea label={true} labelTitle="Detailed Description" id="detailed-description" cols={5} rows={3}  placeholder="Type the technical issue you are facing here..." resize="vertical" controlFunc={(e)=>{ this.setState({description: e.target.value}); }}/>
                     </p>
                     <p className="submitForm-inputContainer">
                         <SingleInput label={true} labelTitle="Centinela E-mail" inputType="email" id="client-email" placeholder="Your Centinela e-mail..."  controlFunc={(e)=>{ this.setState({email: e.target.value}); }} />
@@ -211,7 +211,7 @@ class SubmitTicket extends Component {
                         <Select 
                             label={true} 
                             id="category" 
-                            labelTitle="Category" 
+                            labelTitle="Category:" 
                             labelClassName="block" 
                             options={["Computer Issue", "Printer Issue", "Projector Issue", "Password Issue", "Other Type of Issue"]} 
                             placeholder="Problem Categories"
@@ -222,7 +222,7 @@ class SubmitTicket extends Component {
                         <Select 
                                 label={true}
                                 id="location" 
-                                labelTitle="Location" 
+                                labelTitle="Location:" 
                                 labelClassName="block" 
                                 options={["Lawndale", "Leuzinger", "Hawthorne", "Lloyde", "District Office"]} 
                                 placeholder="School Sites" 
@@ -233,7 +233,7 @@ class SubmitTicket extends Component {
                         <SingleInput label={true} labelClassName="block" labelTitle="Phone Extension:" inputType="tel" id="phone-extension" placeholder="7811" controlFunc={ (e) => { this.setState( {phoneExtension: e.target.value}); } } />
                     </p>
                     <p className="inline fieldMargin">
-                        <SingleInput label={true} labelClassName="block" labelTitle="Office/Number #" inputType="text" id="building-number" placeholder="A13" controlFunc={ (e) => { this.setState( {officeNumber: e.target.value}); } } />
+                        <SingleInput label={true} labelClassName="block" labelTitle="Office/Number #:" inputType="text" id="building-number" placeholder="A13" controlFunc={ (e) => { this.setState( {officeNumber: e.target.value}); } } />
                     </p>
                     <p>
                         <label>Optional Attachment:</label>
