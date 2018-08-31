@@ -13,8 +13,13 @@ import FormButton from "./form-components/FormButton.js";
 //Import 3rd-party libraries
 import jsxToString from "jsx-to-string";
 
+//Impoty utility functions
+import { requireNodeJSmodule } from "./utilityFunctions.js";
+
+const isDev = requireNodeJSmodule("electron-is-dev");
+
 class SubmitTicket extends Component {     
-    //Class Properties
+    // ---- Class Properties ----
     pageTitle = "Submit HelpDesk Ticket";
 
     //Form elements
@@ -31,7 +36,6 @@ class SubmitTicket extends Component {
 
     constructor(props) {
         super(props);
-        
         this.state = {
             title: "",
             description: "",
@@ -166,6 +170,7 @@ class SubmitTicket extends Component {
     }; //end clearForm() method
 
     componentDidMount = (props) => {
+        console.log("SubmitTicket component did mount");
         this.props.updateTitle(this.pageTitle);
         this.props.renderFooter(false);
         window.onload = () => {
@@ -179,7 +184,15 @@ class SubmitTicket extends Component {
             this.officeNumber = document.getElementById("building-number");
         } //end window.onload
         window.onload = this.fileAttachment();
-    } //end componentDidMount()
+
+        //dfd
+      if (isDev) {
+        console.log("whyDidYouUpdate");
+        const { whyDidYouUpdate } = requireNodeJSmodule("why-did-you-update");
+        whyDidYouUpdate(React);
+      } //end if-statement
+
+    }; //end componentDidMount()
     
     render = () => {
         return (
@@ -249,7 +262,7 @@ class SubmitTicket extends Component {
                 </fieldset>
         </form>
         ); //end return statement
-    } //end render()
+    }; //end render
    
 } //end SubmitTicket class
 

@@ -3,7 +3,6 @@ import PropTypes from "prop-types"; // ES6
 
 const TextAreaHTML = (props) => {
     let textAreaProps = props.props;
-    console.log(JSON.stringify() );
     return (<textarea
                 className={textAreaProps.inputClassName}
                 id={textAreaProps.id}

@@ -74,12 +74,18 @@ const utilityFunctions = () => {
         } //end else-statement
     } //end stringIsEmptyOrBlank()
 
+    const requireNodeJSmodule = (moduleName) => {
+        const electron = window.require("electron");
+        const remote = electron.remote;
+        remote.require(moduleName);
+    } //end requireNodeJSModule() 
 
     const functionsObject  = {
         openLinksInBrowser: openLinksInBrowser,
         canUseDOM: canUseDOM,
         popNotification: popNotification,
-        stringIsEmptyOrBlank: stringIsEmptyOrBlank
+        stringIsEmptyOrBlank: stringIsEmptyOrBlank,
+        requireNodeJSmodule: requireNodeJSmodule
     };
 
     return functionsObject;
@@ -90,5 +96,6 @@ let openLinksInBrowser = utilityFunctions().openLinksInBrowser;
 let canUseDOM = utilityFunctions().canUseDOM;
 let popNotification = utilityFunctions().popNotification;
 let stringIsEmptyOrBlank = utilityFunctions().stringIsEmptyOrBlank;
+let requireNodeJSmodule = utilityFunctions().requireNodeJSmodule;
 
-export  { openLinksInBrowser, canUseDOM, popNotification, stringIsEmptyOrBlank };
+export  { openLinksInBrowser, canUseDOM, popNotification, stringIsEmptyOrBlank, requireNodeJSmodule };
