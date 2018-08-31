@@ -9,7 +9,7 @@ const SelectHTML = (props) => {
         <select
             id={selectHTMLProps.id}
             name={selectHTMLProps.id}
-            value={props.selectedOption}
+            value={ (props.selectedOption === "") ? selectHTMLProps.options[0]: props.selectedOption }
             onChange={selectHTMLProps.controlFunc}
             className={selectHTMLProps.selectClassName}
         >

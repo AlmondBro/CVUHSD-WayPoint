@@ -36,8 +36,8 @@ class SubmitTicket extends Component {
             title: "",
             description: "",
             email: "",
-            category: "",
-            location: "",
+            category: "Computer Issue",
+            location: "Lawndale",
             phoneExtension: "",
             officeNumber: "",
             fileAttachmentPath: "",
@@ -149,7 +149,21 @@ class SubmitTicket extends Component {
       if (file_input != null) {
             formGetPathCode();
         } //end if-statement   
-    };
+    }; //end fileAttachment() method
+//sd
+    clearForm = () => {
+        this.setState({
+            title: "",
+            description: "",
+            email: "",
+            category: document.getElementById("category").value,
+            location: document.getElementById("location").value,
+            phoneExtension: "",
+            officeNumber: "",
+            fileAttachmentPath: "",
+            fileAttachmentName: ""
+        }); //end this.setState
+    }; //end clearForm() method
 
     componentDidMount = (props) => {
         this.props.updateTitle(this.pageTitle);
@@ -178,7 +192,7 @@ class SubmitTicket extends Component {
                         <SingleInput label={true} labelTitle="Summary/Title" inputType="text" id="summary" placeholder="Title or summary of the technical issue..."  value={ this.state.title } controlFunc={(e)=>{ this.setState({title: e.target.value}); }} />
                     </p>
                     <p className="submitForm-inputContainer">
-                        <TextArea label={true} labelTitle="Detailed Description" id="detailed-description" cols={5} rows={3}  placeholder="Type the technical issue you are facing here..." resize="vertical"/>
+                        <TextArea label={true} labelTitle="Detailed Description" id="detailed-description" cols={5} rows={3}  placeholder="Type the technical issue you are facing here..." resize="vertical" controlFunc={(e)=>{ this.setState({description: e.target.value}); }}/>
                     </p>
                     <p className="submitForm-inputContainer">
                         <SingleInput label={true} labelTitle="Centinela E-mail" inputType="email" id="client-email" placeholder="Your Centinela e-mail..."  controlFunc={(e)=>{ this.setState({email: e.target.value}); }} />
@@ -206,10 +220,10 @@ class SubmitTicket extends Component {
                                 controlFunc={ (e) => { this.setState({ location: e.target.value })} } />
                     </p>
                     <p className="inline fieldMargin">
-                        <SingleInput label={true} labelClassName="block" labelTitle="Phone Extension:" inputType="tel" id="phone-extension" placeholder="7811" />
+                        <SingleInput label={true} labelClassName="block" labelTitle="Phone Extension:" inputType="tel" id="phone-extension" placeholder="7811" controlFunc={ (e) => { this.setState( {phoneExtension: e.target.value}); } } />
                     </p>
                     <p className="inline fieldMargin">
-                        <SingleInput label={true} labelClassName="block" labelTitle="Office/Number #" inputType="text" id="building-number" placeholder="A13" />
+                        <SingleInput label={true} labelClassName="block" labelTitle="Office/Number #" inputType="text" id="building-number" placeholder="A13" controlFunc={ (e) => { this.setState( {officeNumber: e.target.value}); } } />
                     </p>
                     <p>
                         <label>Optional Attachment:</label>
@@ -230,7 +244,7 @@ class SubmitTicket extends Component {
                     </p>
                     <p>
                         <FormButton inputType="submit" className="redToDarkRedgradient clickable" buttonTitle="Submit" eventFunc={this.sendEmail}  />
-                        <FormButton inputType="reset" className="redToDarkRedgradient clickable" buttonTitle="Reset" />
+                        <FormButton inputType="reset" className="redToDarkRedgradient clickable" buttonTitle="Reset" eventFunc={this.clearForm} />
                     </p>
                 </fieldset>
         </form>

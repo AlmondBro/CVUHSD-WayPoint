@@ -19,15 +19,15 @@ import PropTypes from "prop-types"; // ES6
 
 const CheckBoxOrRadioGroup = (props) => {
     return ([
-        <label className={props.inputClassName}>{props.title}</label>,
+        <label className={props.labelClassName} id={props.labelID}>{props.title}</label>,
         <div className="">
             {
                 props.options.map( (option) => {
                     return ( 
-                    <label key={ option } className={props.labelClassName}>
+                    <label HTMLfor={option} key={ option } className={props.labelClassName} id={option}>
                         <input
-                            className="form-checkbox"
-                            name= { props.setName }
+                            className={props.inputClassName}
+                            name= { props.id }
                             onChange= {props.controlFunc}
                             value= { option }
                             checked={ props.selectedOptions.indexOf(option) > -1 }
@@ -42,15 +42,18 @@ const CheckBoxOrRadioGroup = (props) => {
 
 CheckBoxOrRadioGroup.propTypes = {  
     for: PropTypes.string,
-    labelClassName: PropTypes.string,
-    inputClassName: PropTypes.string,
     labelTitle: PropTypes.string.isRequired,
+    labelClassName: PropTypes.string,
+    labelID: PropTypes.id, 
+    inputClassName: PropTypes.string,
+    
     type: PropTypes.oneOf(["checkbox", "radio"]).isRequired,
     name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     options: PropTypes.array.isRequired,
     selectedOption: PropTypes.string,
     controlFunc: PropTypes.func.isRequired,
     placeholder: PropTypes.string
-  };
+};
 
 export default CheckBoxOrRadioGroup;
