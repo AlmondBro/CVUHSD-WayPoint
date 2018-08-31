@@ -1,3 +1,4 @@
+
 /* Utility Functions to import into your JavaScript files for reuse! */
 const utilityFunctions = () => {
     let openLinksInBrowser = (elementID) => {
@@ -78,25 +79,48 @@ const utilityFunctions = () => {
         if (typeof(moduleName) !== "string") {
             console.log("Please supply a string to requireNodeJSmodule!");
             return;
-        }
-
-        else {
+        } else {
             console.log(`require("${moduleName}")`);
-            /*const electron = window.require("electron");
+            const electron = window.require("electron");
             const remote = electron.remote;
-            remote.require(moduleName); */
-
-            return window.require("electron").remote.require(moduleName);
-        }
+            
+            return remote.require(moduleName); 
+        } //end else-statement
         
     } //end requireNodeJSModule() 
+
+    const whyDidYouUpdate = (optionsObject) => {
+        const isDev = requireNodeJSmodule("electron-is-dev");
+        if (isDev) {
+          /*
+            Optionally you can pass in options as a second parameter. The following options are available
+            include: [RegExp]
+            exclude: [RegExp]
+            groupByComponent: boolean
+            collapseComponentGroups: boolean
+            notifier: (groupByComponent: boolean, collapseComponentGroups: boolean, displayName: string, diffs: [Object]) => void
+        */
+        let React = window.require("react");
+        if (optionsObject) {
+            console.log("whyDidYouUpdate w/ optionsObject");
+            const { whyDidYouUpdate } = requireNodeJSmodule("why-did-you-update");
+            whyDidYouUpdate(React, optionsObject);
+          } //end inner if-statement
+          else {
+            console.log("whyDidYouUpdate");
+            const { whyDidYouUpdate } = requireNodeJSmodule("why-did-you-update");
+            whyDidYouUpdate(React);
+          } //end else-statement
+        } //end if-statement
+    }; //end whyDidYouUpdate
 
     const functionsObject  = {
         openLinksInBrowser: openLinksInBrowser,
         canUseDOM: canUseDOM,
         popNotification: popNotification,
         stringIsEmptyOrBlank: stringIsEmptyOrBlank,
-        requireNodeJSmodule: requireNodeJSmodule
+        requireNodeJSmodule: requireNodeJSmodule,
+        whyDidYouUpdate: whyDidYouUpdate
     };
 
     return functionsObject;
@@ -108,5 +132,6 @@ let canUseDOM = utilityFunctions().canUseDOM;
 let popNotification = utilityFunctions().popNotification;
 let stringIsEmptyOrBlank = utilityFunctions().stringIsEmptyOrBlank;
 let requireNodeJSmodule = utilityFunctions().requireNodeJSmodule;
+let whyDidYouUpdate = utilityFunctions().whyDidYouUpdate;
 
-export  { openLinksInBrowser, canUseDOM, popNotification, stringIsEmptyOrBlank, requireNodeJSmodule };
+export  { openLinksInBrowser, canUseDOM, popNotification, stringIsEmptyOrBlank, requireNodeJSmodule, whyDidYouUpdate };

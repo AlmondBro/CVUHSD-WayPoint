@@ -14,7 +14,7 @@ import FormButton from "./form-components/FormButton.js";
 import jsxToString from "jsx-to-string";
 
 //Impoty utility functions
-import { requireNodeJSmodule } from "./utilityFunctions.js";
+import { requireNodeJSmodule, whyDidYouUpdate } from "./utilityFunctions.js";
 
 class SubmitTicket extends Component {     
     // ---- Class Properties ----
@@ -186,9 +186,7 @@ class SubmitTicket extends Component {
         //dfd
       const isDev = requireNodeJSmodule("electron-is-dev");
       if (isDev) {
-        console.log("whyDidYouUpdate");
-        const { whyDidYouUpdate } = requireNodeJSmodule("why-did-you-update");
-        whyDidYouUpdate(React);
+        whyDidYouUpdate
       } //end if-statement
 
     }; //end componentDidMount()
