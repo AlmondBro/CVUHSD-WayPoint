@@ -12,7 +12,6 @@ import CheckBoxOrRadioGroup from "./form-components/CheckBoxOrRadioGroup.js";
 import FormButton from "./form-components/FormButton.js";
 
 //Import 3rd-party libraries
-import jsxToString from "jsx-to-string";
 
 //Impoty utility functions
 import { requireNodeJSmodule, whyDidYouUpdate } from "./utilityFunctions.js";
@@ -82,25 +81,19 @@ class SubmitTicket extends Component {
            
            const HTMLmessage =  ReactDOMServer.renderToStaticMarkup(emailJSX);
 
-         /*
-                                        jsxToString(<Email  title={this.state.title} 
-                                                            description={this.state.description}
-                                                            email={this.state.email}
-                                                            category={this.state.category}
-                                                            location={this.state.location}
-                                                            phoneExtension={this.state.phoneExtension}
-                                                            officeNumber={this.state.officeNumber} />).toString(); */
+         
             console.log("HTMLMessage:\t" + HTMLmessage);
-         /*
 
-         ,
+
+        /*
                 attachments: [  {   // file on disk as an attachment
                                     filename: this.state.fileAttachmentName,
                                     path: this.state.fileAttachmentPath // stream this file
                                 }
                             ]
+                            */
 
-         */
+         
            sendmail({
                 from: this.state.email,
                 to: "leggomyyeggo95@gmail.com",
