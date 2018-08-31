@@ -119,7 +119,8 @@ class SubmitTicket extends Component {
             fileUpload_inputField.value =  fileUpload_valueArray[fileUpload_valueArray.length - 1];
             this.fileAttachmentName = fileUpload_valueArray[fileUpload_valueArray.length - 1];
             console.log("fileAttachmentName:\t" + this.fileAttachmentName);
-        }
+        };
+
         //Do not allow dragging over
         document.addEventListener("dragover",  (e) => {
             e.preventDefault();
@@ -139,6 +140,8 @@ class SubmitTicket extends Component {
     
                 this.fileAttachmentPath = file_input.files[0].path;
                 console.log("FileattachmentPath:\t" + this.fileAttachmentPath );
+                this.setState({fileAttachmentPath: this.fileAttachmentPath});
+                this.setState({fileAttachmentName: this.fileAttachmentName});
                /* for (let f of e.dataTransfer.files) {
                     console.log('File(s) you dragged here: ', f.path)
                 } //end for loop */
