@@ -16,7 +16,7 @@ import FormButton from "./form-components/FormButton.js";
 //Impoty utility functions
 import { requireNodeJSmodule, whyDidYouUpdate, isNullOrUndefinedOrEmptyString } from "./utilityFunctions.js";
 
-class SubmitTicket extends Component {     
+class SubmitTicket extends Component {      
     // ---- Class Properties ----
     pageTitle = "Submit HelpDesk Ticket";
 
@@ -106,6 +106,7 @@ class SubmitTicket extends Component {
            });  
         //} //end else-statement
     }; //end sendMail() method
+    }; //end sendEmail
 
     fileAttachment = () => {
         let file_input = document.getElementById("file-input");
@@ -125,32 +126,32 @@ class SubmitTicket extends Component {
             e.preventDefault();
             e.stopPropagation();
         });
-    
+
         const formGetPathCode = () => {
             file_input.addEventListener("change", (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-    
+
                 console.log("onchange");
                 getFilePath(file_input, fileUpload_inputField);
                 console.log("transfer:\t" + e.dataTransfer);
                 console.log("path:\t" + file_input.files[0].path);
                 document.getElementById("uploadFile-path").value = this.fileAttachmentName ;
-    
+
                 this.fileAttachmentPath = file_input.files[0].path;
                 console.log("FileattachmentPath:\t" + this.fileAttachmentPath );
                 this.setState({fileAttachmentPath: this.fileAttachmentPath});
                 this.setState({fileAttachmentName: this.fileAttachmentName});
-               /* for (let f of e.dataTransfer.files) {
+            /* for (let f of e.dataTransfer.files) {
                     console.log('File(s) you dragged here: ', f.path)
                 } //end for loop */
-    
+
                 // this.value = null; 
                 //return false; 
             });
         } //end formGetPathCode()
-    
-      if (file_input != null) {
+
+    if (file_input != null) {
             formGetPathCode();
         } //end if-statement   
     }; //end fileAttachment() method
@@ -191,7 +192,7 @@ class SubmitTicket extends Component {
         } //end if-statement
 
     }; //end componentDidMount()
-    
+
     render = () => {
         return (
             <form className="helpDeskTicket-form" action="https://helpdesk.centinela.k12.ca.us/portal/new_ticket" method="POST" encType="multipart/form-data"  >
@@ -238,13 +239,13 @@ class SubmitTicket extends Component {
                     </p>
                     <p>
                         <label>Optional Attachment:</label>
-                   
+                
                         <label className="fileUpload-button redToDarkRedgradient clickable" htmlFor="file-input">
                                 Upload File
                         </label>
                         
                         <input type="file" name="attachment" id="file-input" value="" />
-    
+
                         <SingleInput label={true} labelClassName="" labelTitle="File name:" inputType="text" id="uploadFile-path" placeholder="File attachment name..." readOnly={true} />
                     </p>
                     <p>
@@ -254,8 +255,8 @@ class SubmitTicket extends Component {
                 </fieldset>
         </form>
         ); //end return statement
-    }; //end render
-   
-} //end SubmitTicket class
+    }; //end render()
+
+}//end SubmitTicket class
 
 export default SubmitTicket;
