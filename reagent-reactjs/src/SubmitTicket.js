@@ -183,7 +183,6 @@ class SubmitTicket extends Component {
         } //end window.onload
         window.onload = this.fileAttachment();
 
-        //dfd
       const isDev = requireNodeJSmodule("electron-is-dev");
       if (isDev) {
         whyDidYouUpdate
@@ -245,12 +244,6 @@ class SubmitTicket extends Component {
                         <input type="file" name="attachment" id="file-input" value="" />
     
                         <SingleInput label={true} labelClassName="" labelTitle="File name:" inputType="text" id="uploadFile-path" placeholder="File attachment name..." readOnly={true} />
-    
-                       {/* 
-                            <label htmlFor="uploadFile-path">File name:</label>
-                            <input type="text" placeholder="Optional file path..." readOnly name="uploadFile-path" id="uploadFile-path" />
-                        */} 
-                       
                     </p>
                     <p>
                         <FormButton inputType="submit" className="redToDarkRedgradient clickable" buttonTitle="Submit" eventFunc={this.sendEmail}  />

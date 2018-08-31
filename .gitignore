@@ -26,6 +26,8 @@ dist/*
 package-lock.json
 yarn.lock
 
+#Ignore Flow static type checking in JavaScript configuration file
+.flowconfig
 
 # dependencies
 node_modules
