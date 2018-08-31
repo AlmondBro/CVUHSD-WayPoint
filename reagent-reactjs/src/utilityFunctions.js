@@ -75,9 +75,20 @@ const utilityFunctions = () => {
     } //end stringIsEmptyOrBlank()
 
     const requireNodeJSmodule = (moduleName) => {
-        const electron = window.require("electron");
-        const remote = electron.remote;
-        remote.require(moduleName);
+        if (typeof(moduleName) !== "string") {
+            console.log("Please supply a string to requireNodeJSmodule!");
+            return;
+        }
+
+        else {
+            console.log(`require("${moduleName}")`);
+            /*const electron = window.require("electron");
+            const remote = electron.remote;
+            remote.require(moduleName); */
+
+            return window.require("electron").remote.require(moduleName);
+        }
+        
     } //end requireNodeJSModule() 
 
     const functionsObject  = {

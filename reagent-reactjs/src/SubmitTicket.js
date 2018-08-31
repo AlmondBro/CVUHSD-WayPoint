@@ -16,8 +16,6 @@ import jsxToString from "jsx-to-string";
 //Impoty utility functions
 import { requireNodeJSmodule } from "./utilityFunctions.js";
 
-const isDev = requireNodeJSmodule("electron-is-dev");
-
 class SubmitTicket extends Component {     
     // ---- Class Properties ----
     pageTitle = "Submit HelpDesk Ticket";
@@ -186,6 +184,7 @@ class SubmitTicket extends Component {
         window.onload = this.fileAttachment();
 
         //dfd
+      const isDev = requireNodeJSmodule("electron-is-dev");
       if (isDev) {
         console.log("whyDidYouUpdate");
         const { whyDidYouUpdate } = requireNodeJSmodule("why-did-you-update");
