@@ -192,7 +192,7 @@ class SubmitTicket extends Component {
                         <SingleInput label={true} labelTitle="Summary/Title" inputType="text" id="summary" placeholder="Title or summary of the technical issue..."  value={ this.state.title } controlFunc={(e)=>{ this.setState({title: e.target.value}); }} />
                     </p>
                     <p className="submitForm-inputContainer">
-                        <TextArea label={true} labelTitle="Detailed Description" id="detailed-description" cols={5} rows={3}  placeholder="Type the technical issue you are facing here..." resize="vertical" controlFunc={(e)=>{ this.setState({description: e.target.value}); }}/>
+                        <TextArea label={true} labelTitle="Detailed Description" id="detailed-description" cols={5} rows={3}  placeholder="Type the technical issue you are facing here..." resize="vertical" value={ this.state.description } controlFunc={(e)=>{ this.setState({description: e.target.value}); }}/>
                     </p>
                     <p className="submitForm-inputContainer">
                         <SingleInput label={true} labelTitle="Centinela E-mail" inputType="email" id="client-email" placeholder="Your Centinela e-mail..."  controlFunc={(e)=>{ this.setState({email: e.target.value}); }} />

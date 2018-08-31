@@ -2,14 +2,15 @@ import React from "react";
 import PropTypes from "prop-types"; // ES6
 
 const TextAreaHTML = (props) => {
-    let textAreaProps = props;
+    let textAreaProps = props.props;
+    console.log(JSON.stringify() );
     return (<textarea
                 className={textAreaProps.inputClassName}
                 id={textAreaProps.id}
                 name={textAreaProps.id}
                 cols={textAreaProps.cols}
                 rows={textAreaProps.rows}
-                value={textAreaProps.content}
+                value={textAreaProps.value}
                 onChange={textAreaProps.controlFunc}
                 style={ textAreaProps.resize ? {resize: textAreaProps.resize } : {resize: "none"} }
                 placeholder={textAreaProps.placeholder}
