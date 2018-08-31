@@ -1,22 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types"; // ES6
 
-   /*
-        Select Handler:
-            selectHandler(e) {
-                const newSelection = e.target.value;
-                let newSelectionArray;
-
-                if(this.state.selectedPets.indexOf(newSelection) > -1) {
-                    newSelectionArray = this.state.selectedPets.filter(s => s !== newSelection)
-                } else {
-                    newSelectionArray = [...this.state.selectedPets, newSelection];
-                }
-
-                    this.setState({ selectedPets: newSelectionArray });
-            }
-    */
-
 const CheckBoxOrRadioGroup = (props) => {
     return ([
         <label className={props.labelClassName} id={props.labelID}>{props.title}</label>,
@@ -57,3 +41,19 @@ CheckBoxOrRadioGroup.propTypes = {
 };
 
 export default CheckBoxOrRadioGroup;
+
+   /*
+        Select Handler:
+            selectHandler(e) {
+                const newSelection = e.target.value;
+                let newSelectionArray;
+
+                if(this.state.selectedPets.indexOf(newSelection) > -1) {
+                    newSelectionArray = this.state.selectedPets.filter(s => s !== newSelection)
+                } else {
+                    newSelectionArray = [...this.state.selectedPets, newSelection];
+                }
+
+                    this.setState({ selectedPets: newSelectionArray });
+            }
+    */

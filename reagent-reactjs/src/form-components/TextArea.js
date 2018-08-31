@@ -2,24 +2,22 @@ import React from "react";
 import PropTypes from "prop-types"; // ES6
 
 const TextAreaHTML = (props) => {
-   // console.log("TextAreaHTML props:\t" + JSON.stringify(props));
-    //onsole.log(props);
+    let textAreaProps = props;
     return (<textarea
-                className={props.props.inputClassName}
-                id={props.props.id}
-                name={props.props.id}
-                cols={props.props.cols}
-                rows={props.props.rows}
-                value={props.props.content}
-                onChange={props.props.controlFunc}
-                style={ props.props.resize ? {resize: props.props.resize } : {resize: "none"} }
-                placeholder={props.props.placeholder}
-                key={props.props.value}
+                className={textAreaProps.inputClassName}
+                id={textAreaProps.id}
+                name={textAreaProps.id}
+                cols={textAreaProps.cols}
+                rows={textAreaProps.rows}
+                value={textAreaProps.content}
+                onChange={textAreaProps.controlFunc}
+                style={ textAreaProps.resize ? {resize: textAreaProps.resize } : {resize: "none"} }
+                placeholder={textAreaProps.placeholder}
+                key={textAreaProps.value}
              />);
 } //end TextAreaHTML()
 
 const TextArea = (props) => {
-        let textAreaProps = props;
         return (props.label === true) ? 
                 (
                     [   <label htmlFor={props.id} 
@@ -29,9 +27,9 @@ const TextArea = (props) => {
                         >
                             {props.labelTitle}
                         </label>,
-                        <TextAreaHTML props={textAreaProps} />
+                        <TextAreaHTML props={props} />
                     ]
-                ) : ( <TextAreaHTML props={textAreaProps} />); //return statement
+                ) : ( <TextAreaHTML props={props} />); //return statement
 }; //TextArea() declaration
 
 TextArea.prototypes = {

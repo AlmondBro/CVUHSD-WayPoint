@@ -2,17 +2,18 @@ import React from "react";
 import PropTypes from "prop-types"; // ES6
 
 const InputHTML = (props) => {
-    return(
+    var InputHTMLprops = props.props;
+    return (
         <input 
-            type={props.props.inputType} 
-            className={props.props.inputClassName} 
-            name={props.props.id} id={props.props.id} 
-            placeholder={props.props.placeholder} 
-            value={props.props.value || ""} 
-            readOnly={props.props.readOnly}
-            onChange={props.props.controlFunc} 
-            value={props.props.value}
-            key={props.props.value} />
+            type={InputHTMLprops.inputType} 
+            className={InputHTMLprops.inputClassName} 
+            name={InputHTMLprops.id} id={InputHTMLprops.id} 
+            placeholder={InputHTMLprops.placeholder} 
+            value={InputHTMLprops.value || ""} 
+            readOnly={InputHTMLprops.readOnly}
+            onChange={InputHTMLprops.controlFunc} 
+            value={InputHTMLprops.value}
+            key={InputHTMLprops.value} />
         );
 } //end InputHTML()
 
