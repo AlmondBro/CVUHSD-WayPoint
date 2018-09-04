@@ -51,6 +51,22 @@ class SubmitTicket extends Component {
         } //end state object {}
     } //end constructor
 
+    resultMessage = (success) => {
+        if (arguments && !isNullOrUndefinedOrEmptyString(success)) {
+            return (<p id="submitEmailMessage">{this.state.submitEmailMessage}
+                    {   success ? (
+                        <span class="submitEmailMessage-icon">
+                            <i class="fa fa-times red-fail" aria-hidden="true"></i>
+                        </span>) : ( <span class="submitEmailMessage-icon">
+                            <i class="fa fa-check green-success" aria-hidden="true"></i> 
+                        </span>)
+                    } 
+                </p>);
+        } else {
+          return null;
+        }  //end else-statement
+    }; //resultMessage()
+
     sendEmail = (e) => {
         console.log("sendEmail(e)");
         ((e) => {
@@ -65,7 +81,8 @@ class SubmitTicket extends Component {
             isNullOrUndefinedOrEmptyString(this.state.emailMessage.phoneExtension) ||
             isNullOrUndefinedOrEmptyString(this.state.emailMessage.title) ) {
                 console.log("Undefined/null fields!");
-                this.setState({submitEmailMessage: "Please fill out all the fields!"});             
+                this.setState({submitEmailMessage: "Please fill out all the fields!"});   
+                this.resultMessage(false);          
         } else { 
             const sendmail = requireNodeJSmodule("sendmail")({silent: true});
 
@@ -95,11 +112,14 @@ class SubmitTicket extends Component {
                 if (err) {
                     console.log(err && err.stack);
                     console.dir(reply);
+                    this.setState({submitEmailMessage: "Error sending e-mail."});   
+                    this.resultMessage(false);  
                     return;
                 } else {
                     console.log("Successfully sent email!");
                     console.dir(reply);
                     this.setState({submitEmailMessage: "HelpDesk e-mail sent"}); 
+                    this.resultMessage(true); 
                     return;
                 } //end else-statement
            });  
@@ -317,8 +337,7 @@ class SubmitTicket extends Component {
                         <FormButton inputType="submit" className="redToDarkRedgradient clickable" buttonTitle="Submit" controlFunc={(e)=> { this.sendEmail(e); }  } />
                         <FormButton inputType="reset" className="redToDarkRedgradient clickable" buttonTitle="Reset" controlFunc={this.clearForm} />
                     </p>
-                    {/* <i class="fa fa-check green-success" aria-hidden="true"></i> */}
-                    <p id="submitEmailMessage">{this.state.submitEmailMessage}<span class="submitEmailMessage-icon"><i class="fa fa-times red-fail" aria-hidden="true"></i></span></p>
+                    <p id="submitEmailMessage">{this.state.submitEmailMessage}<span class="submitEmailMessage-icon"></span></p>
                 </fieldset>
         </form>
         ); //end return statement
