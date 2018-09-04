@@ -67,6 +67,10 @@ class SubmitTicket extends Component {
         }  //end else-statement
     }; //resultMessage()
 
+    submitEmailMessageIcon = () => {
+
+    };
+
     sendEmail = (e) => {
         console.log("sendEmail(e)");
         ((e) => {
@@ -337,7 +341,7 @@ class SubmitTicket extends Component {
                         <FormButton inputType="submit" className="redToDarkRedgradient clickable" buttonTitle="Submit" controlFunc={(e)=> { this.sendEmail(e); }  } />
                         <FormButton inputType="reset" className="redToDarkRedgradient clickable" buttonTitle="Reset" controlFunc={this.clearForm} />
                     </p>
-                    <p id="submitEmailMessage">{this.state.submitEmailMessage}<span class="submitEmailMessage-icon"></span></p>
+                    <p id="submitEmailMessage">{this.state.submitEmailMessage}<span class="submitEmailMessage-icon">{this.submitEmailMessageIcon}</span></p>
                 </fieldset>
         </form>
         ); //end return statement

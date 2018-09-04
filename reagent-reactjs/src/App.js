@@ -23,7 +23,7 @@ class App extends Component {
     super(props);
     this.state = { 
       pageTitle: "Home",
-      renderFooter: true
+      renderFooter: false
     };
     //this.updatePageTitle= this.updatePageTitle.bind(this);
   } //end constructor()
@@ -33,7 +33,14 @@ class App extends Component {
   }; //end updatePageTitle()
 
   renderFooterFunction = (renderFooterBool) => {
-    this.setState( {renderFooter: renderFooterBool} );
+    //Do not render footer on default
+    if (arguments && (renderFooterBool != "undefined") ) {
+      this.setState( {renderFooter: renderFooterBool } );
+    } else {
+      this.setState( {renderFooter: false } );
+    }
+   
+   
   }; //end renderFooterFunction()
 
   runDevTools = () => {
