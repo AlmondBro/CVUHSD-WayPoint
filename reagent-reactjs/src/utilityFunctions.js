@@ -66,6 +66,7 @@ const utilityFunctions = () => {
     const stringIsEmptyOrBlank = (string) => {
         //falsy values: null,undefined,0,000,"",false
         if (!string || (string.trim()).length === 0) {
+            string = "Empty/blank/null string"
             console.log(string + " is empty, blank, null or undefined");
             return true;
         } //end if-statement
@@ -77,14 +78,18 @@ const utilityFunctions = () => {
 
     const isNullOrUndefinedOrEmptyString = (element) => {
         if ( typeof(element) === "string" ) {
-            stringIsEmptyOrBlank(element)
+            if ( stringIsEmptyOrBlank(element) === true ) {
+                return true;
+            } else {
+                return false;
+            } //end inner else-statement
         } //end if-statement
 
         else if  (typeof(element) == "undefined" ) {
             return true;
         } else {
             return false;
-        }
+        } //return false
     };
 
     const requireNodeJSmodule = (moduleName) => {

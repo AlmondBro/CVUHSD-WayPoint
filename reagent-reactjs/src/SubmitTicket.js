@@ -59,24 +59,16 @@ class SubmitTicket extends Component {
              //return false;
         })(e); 
 
-       if ( isNullOrUndefinedOrEmptyString(this.state.emailMessage.category) || 
-            isNullOrUndefinedOrEmptyString(this.state.emailMessage.description) ||
+       if ( isNullOrUndefinedOrEmptyString(this.state.emailMessage.description) ||
             isNullOrUndefinedOrEmptyString(this.state.emailMessage.email) ||
-            isNullOrUndefinedOrEmptyString(this.state.emailMessage.location) ||
             isNullOrUndefinedOrEmptyString(this.state.emailMessage.officeNumber) ||
             isNullOrUndefinedOrEmptyString(this.state.emailMessage.phoneExtension) ||
             isNullOrUndefinedOrEmptyString(this.state.emailMessage.title) ) {
                 console.log("Undefined/null fields!");
-                this.setState({submitEmailMessage: "Please fill out all the fields!"});
-                return;
-        } 
-        else { 
-            const electron = window.require("electron");
-            //const {session} = window.require('electron')
-           // const ses = session.defaultSession;
-            const remote = electron.remote;
-            const sendmail = remote.require("sendmail")({silent: true});
-            //const jsxToString = remote.require("jsx-to-string");endm
+                this.setState({submitEmailMessage: "Please fill out all the fields!"});             
+        } else { 
+            const sendmail = requireNodeJSmodule("sendmail")({silent: true});
+
             const emailJSX = ( <Email title={this.state.emailMessage.title} 
                                     description={this.state.emailMessage.description}
                                     email={this.state.emailMessage.email}
@@ -105,14 +97,15 @@ class SubmitTicket extends Component {
                     console.dir(reply);
                     return;
                 } else {
-                    console.log("Successfully email!");
+                    console.log("Successfully sent email!");
                     console.dir(reply);
+                    this.setState({submitEmailMessage: "HelpDesk e-mail sent"}); 
                     return;
                 } //end else-statement
            });  
-        //} //end else-statement
+        } //end else-statement
     }; //end sendMail() method
-    }; //end sendEmail
+
 
     fileAttachment = () => {
         let file_input = document.getElementById("file-input");
