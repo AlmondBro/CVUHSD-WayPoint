@@ -92,7 +92,7 @@ class SubmitTicket extends Component {
 
            sendmail({
                 from: this.state.emailMessage.email,
-                to: "leggomyyeggo95@gmail.com",
+                to: "kevinerkelenz@gmail.com",
                 subject: this.state.emailMessage.title,
                 html: HTMLmessage,
                 attachments: [  {   // file on disk as an attachment
@@ -219,7 +219,7 @@ class SubmitTicket extends Component {
     }; //end componentDidMount()
 
     render = () => {
-        return (
+        return ([
             <form className="helpDeskTicket-form" action="https://helpdesk.centinela.k12.ca.us/portal/new_ticket" method="POST" encType="multipart/form-data"  >
                 <fieldset>
                     <legend className="form-legend">
@@ -331,13 +331,13 @@ class SubmitTicket extends Component {
                         <FormButton inputType="submit" className="redToDarkRedgradient clickable" buttonTitle="Submit" controlFunc={(e)=> { this.sendEmail(e); }  } />
                         <FormButton inputType="reset" className="redToDarkRedgradient clickable" buttonTitle="Reset" controlFunc={this.clearForm} />
                     </p>
-                    <p id="submitEmailMessage">{this.state.submitEmailMessage}
-                        <span class="submitEmailMessage-icon">
-                            {this.generateResultIcon()}                    
-                        </span>
-                    </p>
                 </fieldset>
-        </form>
+        </form>,
+           <p id="submitEmailMessage">{this.state.submitEmailMessage}
+           <span class="submitEmailMessage-icon">
+               {this.generateResultIcon()}                    
+           </span>
+       </p>]
         ); //end return statement
     }; //end render()
 

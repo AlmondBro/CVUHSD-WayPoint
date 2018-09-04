@@ -44,7 +44,7 @@ const utilityFunctions = () => {
 
         //User notifier NPM module since the native Electron Notifications is not working
         const notifier = remote.require("node-notifier");
-        const path = remote.require('path');
+        const path = remote.require("path");
 
         let notifierOptions = {
             title: notificationTitle || "Title",

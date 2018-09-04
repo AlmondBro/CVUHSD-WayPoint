@@ -162,10 +162,10 @@ class NotificationsPanel extends Component {
         return (
             <section className="notifications-section">
                 <h4 className="inline">Notifications</h4>
-
-                { this.state.noNotifications ? <button className="inline redToDarkRedgradient clickable" 
-                                                       id="add-button" 
-                                                       onClick={ () => this.addNotification(false, "hello") }>Add</button> : 
+                {/* for future implementation, if there are notifications: use an add button: */
+                    /* */
+                }
+                { this.state.noNotifications ? null : 
                                                 <button className="inline redToDarkRedgradient clickable" 
                                                         id="clear-button" 
                                                         onClick={ this.clearNotifications } >Clear</button> 

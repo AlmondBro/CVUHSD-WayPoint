@@ -1031,8 +1031,8 @@ p.submitForm-inputContainer {
 }
 
 #submitEmailMessage {
-    /* position: relative; 
-    top: 1px; */
+    position: relative; 
+    top: -25px;
     margin: 0 auto;
     text-align: center;
     font-size: 1.15em;
