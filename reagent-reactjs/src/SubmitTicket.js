@@ -14,7 +14,7 @@ import FormButton from "./form-components/FormButton.js";
 //Import 3rd-party libraries
 
 //Impoty utility functions
-import { requireNodeJSmodule, whyDidYouUpdate, isNullOrUndefinedOrEmptyString } from "./utilityFunctions.js";
+import { requireNodeJSmodule, whyDidYouUpdate, isNullOrUndefinedOrEmptyString, popNotification } from "./utilityFunctions.js";
 
 class SubmitTicket extends Component {      
     // ---- Class Properties ----
@@ -106,12 +106,14 @@ class SubmitTicket extends Component {
                     console.dir(reply);
                     this.setState({submitEmailMessage: "Error sending e-mail."});   
                     this.setState({ emailSuccess: false});
+                    popNotification("Error sending e-mail", "Please try again");
                     return;
                 } else {
                     console.log("Successfully sent email!");
                     console.dir(reply);
                     this.setState({submitEmailMessage: "HelpDesk e-mail sent"}); 
                     this.setState({ emailSuccess: true});
+                    popNotification("Success!", "Success!");
                     return;
                 } //end else-statement
            });  

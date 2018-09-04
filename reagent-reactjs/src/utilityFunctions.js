@@ -60,7 +60,7 @@ const utilityFunctions = () => {
             console.log("Notifier errors:\t" + error );
         };
 
-        notifier.notify(notifierOptions, callback);
+        return notifier.notify(notifierOptions, callback);
     } //notification()
     
     const stringIsEmptyOrBlank = (string) => {
