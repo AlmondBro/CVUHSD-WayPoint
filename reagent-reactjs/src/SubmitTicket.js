@@ -36,6 +36,7 @@ class SubmitTicket extends Component {
         super(props);
         this.state = {
             submitEmailMessage: "",
+            emailSuccess: "",
             emailMessage: {
                 title: "",
                 description: "",
@@ -47,28 +48,16 @@ class SubmitTicket extends Component {
                 fileAttachmentPath: "",
                 fileAttachmentName: ""
             }
-           
         } //end state object {}
     } //end constructor
 
-    resultMessage = (success) => {
-        if (arguments && !isNullOrUndefinedOrEmptyString(success)) {
-            return (<p id="submitEmailMessage">{this.state.submitEmailMessage}
-                    {   success ? (
-                        <span class="submitEmailMessage-icon">
-                            <i class="fa fa-times red-fail" aria-hidden="true"></i>
-                        </span>) : ( <span class="submitEmailMessage-icon">
-                            <i class="fa fa-check green-success" aria-hidden="true"></i> 
-                        </span>)
-                    } 
-                </p>);
+    generateResultIcon = () => {
+        if (this.state.emailSuccess === "" ) {
+            return null; 
         } else {
-          return null;
-        }  //end else-statement
-    }; //resultMessage()
-
-    submitEmailMessageIcon = () => {
-
+            return this.state.emailSuccess ? (<i class="fa fa-check green-success" aria-hidden="true"></i> ) :
+                                             (<i class="fa fa-times red-fail" aria-hidden="true"></i>);
+        } //end else-statement
     };
 
     sendEmail = (e) => {
@@ -85,8 +74,7 @@ class SubmitTicket extends Component {
             isNullOrUndefinedOrEmptyString(this.state.emailMessage.phoneExtension) ||
             isNullOrUndefinedOrEmptyString(this.state.emailMessage.title) ) {
                 console.log("Undefined/null fields!");
-                this.setState({submitEmailMessage: "Please fill out all the fields!"});   
-                this.resultMessage(false);          
+                this.setState({submitEmailMessage: "Please fill out all the fields!"});           
         } else { 
             const sendmail = requireNodeJSmodule("sendmail")({silent: true});
 
@@ -117,13 +105,13 @@ class SubmitTicket extends Component {
                     console.log(err && err.stack);
                     console.dir(reply);
                     this.setState({submitEmailMessage: "Error sending e-mail."});   
-                    this.resultMessage(false);  
+                    this.setState({ emailSuccess: false});
                     return;
                 } else {
                     console.log("Successfully sent email!");
                     console.dir(reply);
                     this.setState({submitEmailMessage: "HelpDesk e-mail sent"}); 
-                    this.resultMessage(true); 
+                    this.setState({ emailSuccess: true});
                     return;
                 } //end else-statement
            });  
@@ -202,6 +190,7 @@ class SubmitTicket extends Component {
         console.log(JSON.stringify(emailMessageReset));
         this.setState({
             submitEmailMessage: "",
+            emailSuccess: "",
             emailMessage: emailMessageReset
         }); //end this.setState
     }; //end clearForm() method
@@ -337,11 +326,16 @@ class SubmitTicket extends Component {
                                      id="uploadFile-path" placeholder="File attachment name..." 
                                      readOnly={true} />
                     </p>
+                    {/* <p id="submitEmailMessage">{this.state.submitEmailMessage}<span class="submitEmailMessage-icon">{this.submitEmailMessageIcon}</span></p> */}
                     <p>
                         <FormButton inputType="submit" className="redToDarkRedgradient clickable" buttonTitle="Submit" controlFunc={(e)=> { this.sendEmail(e); }  } />
                         <FormButton inputType="reset" className="redToDarkRedgradient clickable" buttonTitle="Reset" controlFunc={this.clearForm} />
                     </p>
-                    <p id="submitEmailMessage">{this.state.submitEmailMessage}<span class="submitEmailMessage-icon">{this.submitEmailMessageIcon}</span></p>
+                    <p id="submitEmailMessage">{this.state.submitEmailMessage}
+                        <span class="submitEmailMessage-icon">
+                            {this.generateResultIcon()}                    
+                        </span>
+                    </p>
                 </fieldset>
         </form>
         ); //end return statement
