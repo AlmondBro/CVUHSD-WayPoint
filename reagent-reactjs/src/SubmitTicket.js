@@ -177,6 +177,7 @@ class SubmitTicket extends Component {
         }
         console.log(JSON.stringify(emailMessageReset));
         this.setState({
+            submitEmailMessage: "",
             emailMessage: emailMessageReset
         }); //end this.setState
     }; //end clearForm() method
