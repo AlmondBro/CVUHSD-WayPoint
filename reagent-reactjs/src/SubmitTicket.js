@@ -67,6 +67,8 @@ class SubmitTicket extends Component {
             isNullOrUndefinedOrEmptyString(this.state.emailMessage.phoneExtension) ||
             isNullOrUndefinedOrEmptyString(this.state.emailMessage.title) ) {
                 console.log("Undefined/null fields!");
+                this.setState({submitEmailMessage: "Please fill out all the fields!"});
+                return;
         } 
         else { 
             const electron = window.require("electron");
@@ -168,7 +170,8 @@ class SubmitTicket extends Component {
     }; //end fileAttachment() method
 
     clearForm = () => {
-        this.setState({
+        let emailMessageReset = {
+            ...this.state.emailMessage, 
             title: "",
             description: "",
             email: "",
@@ -178,6 +181,10 @@ class SubmitTicket extends Component {
             officeNumber: "",
             fileAttachmentPath: "",
             fileAttachmentName: ""
+        }
+        console.log(JSON.stringify(emailMessageReset));
+        this.setState({
+            emailMessage: emailMessageReset
         }); //end this.setState
     }; //end clearForm() method
 
@@ -239,7 +246,7 @@ class SubmitTicket extends Component {
                                     id="client-email" placeholder="Your Centinela e-mail..."  
                                     controlFunc={ (e) => {  let emailMessage = {...this.state.emailMessage};
                                                                 emailMessage.email = e.target.value
-                                                            this.setState({emailMessage}); 
+                                                                this.setState({emailMessage}); 
                                                         } 
                                                 } />
                     </p>
