@@ -35,7 +35,7 @@
         "windows-shortcuts": "^0.1.6"
     },
     "scripts": {
-        "start": "set BROWSER=nul && flow status && react-scripts start",
+        "start": "set BROWSER=nul && react-scripts start",
         "server": "node src/server.js",
         "build": "flow && react-scripts build",
         "test": "react-scripts test --env=jsdom",
