@@ -1009,6 +1009,36 @@ input#client-name {
 p.submitForm-inputContainer {
     /* color: black; */
 }
+.green-success {
+    color: white;
+    background-color: green;
+    padding: 0.5em;
+    border-radius: 100%;
+    font-size: 0.6em;
+    margin: 0 auto;
+    display: inline-block;
+    vertical-align: bottom
+}
+
+.red-fail {
+    background-color: red;
+    padding: 0.3em 0.2em;
+    border-radius: 100%;
+    font-size: 0.6em;
+    margin: 0 auto;
+    display: inline-block;
+    vertical-align: bottom
+}
+
+#submitEmailMessage {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.15em;
+}
+
+.submitEmailMessage-icon {
+    margin-left: 7px;
+}
 
 textarea#detailed-description,
 textarea#detailed-description::-webkit-input-placeholder,

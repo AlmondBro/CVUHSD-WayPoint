@@ -132,7 +132,8 @@ const utilityFunctions = () => {
         popNotification: popNotification,
         stringIsEmptyOrBlank: stringIsEmptyOrBlank,
         requireNodeJSmodule: requireNodeJSmodule,
-        whyDidYouUpdate: whyDidYouUpdate
+        whyDidYouUpdate: whyDidYouUpdate,
+        isNullOrUndefinedOrEmptyString: isNullOrUndefinedOrEmptyString
     };
 
     return functionsObject;

@@ -35,15 +35,19 @@ class SubmitTicket extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: "",
-            description: "",
-            email: "",
-            category: "Computer Issue",
-            location: "Lawndale",
-            phoneExtension: "",
-            officeNumber: "",
-            fileAttachmentPath: "",
-            fileAttachmentName: ""
+            submitEmailMessage: "",
+            emailMessage: {
+                title: "",
+                description: "",
+                email: "",
+                category: "Computer Issue",
+                location: "Lawndale",
+                phoneExtension: "",
+                officeNumber: "",
+                fileAttachmentPath: "",
+                fileAttachmentName: ""
+            }
+           
         } //end state object {}
     } //end constructor
 
@@ -55,13 +59,13 @@ class SubmitTicket extends Component {
              //return false;
         })(e); 
 
-       if ( isNullOrUndefinedOrEmptyString(this.state.category) || 
-            isNullOrUndefinedOrEmptyString(this.state.description) ||
-            isNullOrUndefinedOrEmptyString(this.state.email) ||
-            isNullOrUndefinedOrEmptyString(this.state.location) ||
-            isNullOrUndefinedOrEmptyString(this.state.officeNumber) ||
-            isNullOrUndefinedOrEmptyString(this.state.phoneExtension) ||
-            isNullOrUndefinedOrEmptyString(this.state.title) ) {
+       if ( isNullOrUndefinedOrEmptyString(this.state.emailMessage.category) || 
+            isNullOrUndefinedOrEmptyString(this.state.emailMessage.description) ||
+            isNullOrUndefinedOrEmptyString(this.state.emailMessage.email) ||
+            isNullOrUndefinedOrEmptyString(this.state.emailMessage.location) ||
+            isNullOrUndefinedOrEmptyString(this.state.emailMessage.officeNumber) ||
+            isNullOrUndefinedOrEmptyString(this.state.emailMessage.phoneExtension) ||
+            isNullOrUndefinedOrEmptyString(this.state.emailMessage.title) ) {
                 console.log("Undefined/null fields!");
         } 
         else { 
@@ -71,26 +75,26 @@ class SubmitTicket extends Component {
             const remote = electron.remote;
             const sendmail = remote.require("sendmail")({silent: true});
             //const jsxToString = remote.require("jsx-to-string");endm
-            const emailJSX = ( <Email title={this.state.title} 
-                                    description={this.state.description}
-                                    email={this.state.email}
-                                    category={this.state.category}
-                                    location={this.state.location}
-                                    phoneExtension={this.state.phoneExtension}
-                                    officeNumber={this.state.officeNumber} />);
+            const emailJSX = ( <Email title={this.state.emailMessage.title} 
+                                    description={this.state.emailMessage.description}
+                                    email={this.state.emailMessage.email}
+                                    category={this.state.emailMessage.category}
+                                    location={this.state.emailMessage.location}
+                                    phoneExtension={this.state.emailMessage.phoneExtension}
+                                    officeNumber={this.state.emailMessage.officeNumber} />);
            
            const HTMLmessage =  ReactDOMServer.renderToStaticMarkup(emailJSX);
 
            console.log("HTMLMessage:\t" + HTMLmessage);
 
            sendmail({
-                from: this.state.email,
+                from: this.state.emailMessage.email,
                 to: "leggomyyeggo95@gmail.com",
-                subject: this.state.title,
+                subject: this.state.emailMessage.title,
                 html: HTMLmessage,
                 attachments: [  {   // file on disk as an attachment
-                        filename: this.state.fileAttachmentName,
-                        path: this.state.fileAttachmentPath // stream this file
+                        filename: this.state.emailMessage.fileAttachmentName,
+                        path: this.state.emailMessage.fileAttachmentPath // stream this file
                     }
                 ]
               }, (err, reply) => {
@@ -140,8 +144,15 @@ class SubmitTicket extends Component {
 
                 this.fileAttachmentPath = file_input.files[0].path;
                 console.log("FileattachmentPath:\t" + this.fileAttachmentPath );
-                this.setState({fileAttachmentPath: this.fileAttachmentPath});
-                this.setState({fileAttachmentName: this.fileAttachmentName});
+
+                //emailMessage
+                var emailMessage = {...this.state.emailMessage}
+                emailMessage.fileAttachmentPath = this.fileAttachmentPath;
+                emailMessage.fileAttachmentName = this.fileAttachmentName
+
+
+                this.setState({emailMessage}); //update fileAttachmentPath state 
+                //this.setState({fileAttachmentName: this.fileAttachmentName}); //update fileAttachmentName state
             /* for (let f of e.dataTransfer.files) {
                     console.log('File(s) you dragged here: ', f.path)
                 } //end for loop */
@@ -201,13 +212,36 @@ class SubmitTicket extends Component {
                         <h3>{this.pageTitle}</h3>
                     </legend>
                     <p className="submitForm-inputContainer">
-                        <SingleInput label={true} labelTitle="Summary/Title" inputType="text" id="summary" placeholder="Title or summary of the technical issue..."  controlFunc={(e)=>{ this.setState({title: e.target.value}); }} />
+                        <SingleInput label={true} 
+                                     labelTitle="Summary/Title" 
+                                     inputType="text" id="summary" 
+                                     placeholder="Title or summary of the technical issue..."  
+                                     controlFunc={ (e) => {    let emailMessage = {...this.state.emailMessage};
+                                                                    emailMessage.title = e.target.value;
+                                                                    this.setState({emailMessage}); 
+                                                            }
+                                                } />
                     </p>
                     <p className="submitForm-inputContainer">
-                        <TextArea label={true} labelTitle="Detailed Description" id="detailed-description" cols={5} rows={3}  placeholder="Type the technical issue you are facing here..." resize="vertical" controlFunc={(e)=>{ this.setState({description: e.target.value}); }}/>
+                        <TextArea label={true} labelTitle="Detailed Description" 
+                                  id="detailed-description" cols={5} rows={3}  
+                                  placeholder="Type the technical issue you are facing here..." 
+                                  resize="vertical" 
+                                  controlFunc={ (e) => {    let emailMessage={...this.state.emailMessage};
+                                                            emailMessage.description = e.target.value;
+                                                            this.setState({emailMessage}); 
+                                                        }
+                                            } />
                     </p>
                     <p className="submitForm-inputContainer">
-                        <SingleInput label={true} labelTitle="Centinela E-mail" inputType="email" id="client-email" placeholder="Your Centinela e-mail..."  controlFunc={(e)=>{ this.setState({email: e.target.value}); }} />
+                        <SingleInput label={true} 
+                                    labelTitle="Centinela E-mail" inputType="email" 
+                                    id="client-email" placeholder="Your Centinela e-mail..."  
+                                    controlFunc={ (e) => {  let emailMessage = {...this.state.emailMessage};
+                                                                emailMessage.email = e.target.value
+                                                            this.setState({emailMessage}); 
+                                                        } 
+                                                } />
                     </p>
                     <p className="inline fieldMargin">
                         <Select 
@@ -217,8 +251,13 @@ class SubmitTicket extends Component {
                             labelClassName="block" 
                             options={["Computer Issue", "Printer Issue", "Projector Issue", "Password Issue", "Other Type of Issue"]} 
                             placeholder="Problem Categories"
-                            selectedOption={ this.state.category }
-                            controlFunc={ (e) => { this.setState({ category: e.target.value })} }  />
+                            selectedOption={ this.state.emailMessage.category }
+                            controlFunc={ (e) => { 
+                                                    let emailMessage = {...this.state.emailMessage};
+                                                    emailMessage.category = e.target.value;
+                                                    this.setState({ emailMessage }); 
+                                                } 
+                                            }  />
                     </p>
                     <p className="inline fieldMargin">
                         <Select 
@@ -228,14 +267,36 @@ class SubmitTicket extends Component {
                                 labelClassName="block" 
                                 options={["Lawndale", "Leuzinger", "Hawthorne", "Lloyde", "District Office"]} 
                                 placeholder="School Sites" 
-                                selectedOption={ this.state.location }
-                                controlFunc={ (e) => { this.setState({ location: e.target.value })} } />
+                                selectedOption={ this.state.emailMessage.location }
+                                controlFunc={ (e) => { 
+                                                let emailMessage = {...this.state.emailMessage};
+                                                emailMessage.location = e.target.value;
+                                                this.setState({ emailMessage }); 
+                                            } 
+                                        }  />
                     </p>
                     <p className="inline fieldMargin">
-                        <SingleInput label={true} labelClassName="block" labelTitle="Phone Extension:" inputType="tel" id="phone-extension" placeholder="7811" controlFunc={ (e) => { this.setState( {phoneExtension: e.target.value}); } } />
+                        <SingleInput label={true} labelClassName="block" 
+                                     labelTitle="Phone Extension:" inputType="tel" 
+                                     id="phone-extension" placeholder="7811" 
+                                     controlFunc={ (e) => { 
+                                                           let emailMessage = { ...this.state.emailMessage};
+                                                           emailMessage.phoneExtension = e.target.value;
+                                                           this.setState( {emailMessage}); 
+                                                        } 
+                                                } />
                     </p>
                     <p className="inline fieldMargin">
-                        <SingleInput label={true} labelClassName="block" labelTitle="Office/Number #:" inputType="text" id="building-number" placeholder="A13" controlFunc={ (e) => { this.setState( {officeNumber: e.target.value}); } } />
+                        <SingleInput label={true} 
+                                     labelClassName="block" 
+                                     labelTitle="Office/Number #:" 
+                                     inputType="text" id="building-number" 
+                                     placeholder="A13" 
+                                     controlFunc={ (e) => { let emailMessage = {...this.state.emailMessage};
+                                                                emailMessage.officeNumber = e.target.value;
+                                                                this.setState( {emailMessage}); 
+                                                          } 
+                                                } />
                     </p>
                     <p>
                         <label>Optional Attachment:</label>
@@ -246,12 +307,17 @@ class SubmitTicket extends Component {
                         
                         <input type="file" name="attachment" id="file-input" value="" />
 
-                        <SingleInput label={true} labelClassName="" labelTitle="File name:" inputType="text" id="uploadFile-path" placeholder="File attachment name..." readOnly={true} />
+                        <SingleInput label={true} labelClassName=""
+                                     labelTitle="File name:" inputType="text" 
+                                     id="uploadFile-path" placeholder="File attachment name..." 
+                                     readOnly={true} />
                     </p>
                     <p>
                         <FormButton inputType="submit" className="redToDarkRedgradient clickable" buttonTitle="Submit" controlFunc={(e)=> { this.sendEmail(e); }  } />
                         <FormButton inputType="reset" className="redToDarkRedgradient clickable" buttonTitle="Reset" controlFunc={this.clearForm} />
                     </p>
+                    {/* <i class="fa fa-check green-success" aria-hidden="true"></i> */}
+                    <p id="submitEmailMessage">{this.state.submitEmailMessage}<span class="submitEmailMessage-icon"><i class="fa fa-times red-fail" aria-hidden="true"></i></span></p>
                 </fieldset>
         </form>
         ); //end return statement
