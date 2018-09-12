@@ -43,13 +43,13 @@ class WiFiMagic extends Component {
 
             let checkmark = document.getElementsByClassName("checkmark");
 
-            function showCheckmark() {
+            let showCheckmark = () => {
                 for (var i=0; i < checkmark.length; i++) {
                     checkmark[i].style.display = "inline-block";
                 }
             }
 
-            function loadTextFX() {
+            let loadTextFX = () => {
                 for (var i=0; i < compassMessage.length; i++) {
                     compassMessage[i].classList.add("message-loading");
                 }
@@ -67,18 +67,14 @@ class WiFiMagic extends Component {
                 console.log("Data:\t" + data);
             };
 
-            // runWiFiFix = async () =>
-            // async function runWiFiFix()
-            // this.runWiFiFix = this.runWiFiFix.bind(this);
             const runWiFiFix = async () => {
                 console.log("runWiFiFix():\t");
-
-              //  nrc.run('ls', { onData: commandConsoleOutput });
   
                 nrc.run("netsh winsock reset", { onData: commandConsoleOutput });
                 this.setState({
                     message: "Reset Windows socket\n" 
                 });
+
                 loadTextFX();
                 showCheckmark();
                 await sleep(2000);
@@ -129,11 +125,10 @@ class WiFiMagic extends Component {
 
    else {
         console.log("More than one click  -- not executing.");
-    } 
+    } //end else-statement 
         console.log("After fixWiFi():\t" + this.state.clicks);
         return;
-        
-    } //endFixWiFi method
+    } //endFixWiFi() method
 
    spinNeedle = () => {
         console.log("spinNeedle():\t\n");
@@ -153,8 +148,8 @@ class WiFiMagic extends Component {
                     <img src={ this.compassBody } className="" id="compass-body" alt="Compass Body"  onClick={ this.spinNeedle } />
                 </div>
                 <div className="wifiMagic-messages">
-                { this.state.message.split("\n").map((message, key) => { 
-                        return (    <Checkmark key={key.toString()} message={message} >{ message }</Checkmark> );
+                { this.state.message.split("\n").map( (message, key) => { 
+                        return (    <Checkmark key={key.toString() } message={message} >{ message }</Checkmark> );
                     }) }
                 </div> 
               
@@ -165,14 +160,4 @@ class WiFiMagic extends Component {
 } //end WiFiMagic class
 
 export default WiFiMagic;
-
-/*
-checkmark = () => {
-    return (
-    <div id="checkmark-container">
-        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-        <circle class="checkmarkcircle" cx="26" cy="26" r="25" fill="none"/>
-        <path class="checkmarkcheck" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
-    </div>);
-} */
 
