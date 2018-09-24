@@ -215,7 +215,7 @@ class SubmitTicket extends Component {
 
         const isDev = requireNodeJSmodule("electron-is-dev");
         if (isDev) {
-            whyDidYouUpdate
+            whyDidYouUpdate();
         } //end if-statement
 
     }; //end componentDidMount()

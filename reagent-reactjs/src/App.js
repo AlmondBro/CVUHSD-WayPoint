@@ -34,7 +34,7 @@ class App extends Component {
 
   renderFooterFunction = (renderFooterBool) => {
     //Do not render footer on default
-    if (arguments && (renderFooterBool != "undefined") ) {
+    if (arguments && (renderFooterBool !== "undefined") ) {
       this.setState( {renderFooter: renderFooterBool } );
     } else {
       this.setState( {renderFooter: false } );

@@ -12,7 +12,6 @@ const InputHTML = (props) => {
             value={InputHTMLprops.value || ""} 
             readOnly={InputHTMLprops.readOnly}
             onChange={InputHTMLprops.controlFunc} 
-            value={InputHTMLprops.value}
             key={InputHTMLprops.value} />
         );
 } //end InputHTML()

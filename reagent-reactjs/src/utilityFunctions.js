@@ -85,7 +85,7 @@ const utilityFunctions = () => {
             } //end inner else-statement
         } //end if-statement
 
-        else if  (typeof(element) == "undefined" ) {
+        else if  (typeof(element) === undefined ) {
             return true;
         } else {
             return false;

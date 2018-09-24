@@ -13,7 +13,7 @@ class BackButton extends Component {
     render = () => {
         console.log("History:\t" + JSON.stringify(this.context.router.history));
 
-        return (this.context.router.history.location.pathname == "/") ? null : 
+        return (this.context.router.history.location.pathname === "/") ? null : 
                 (
                     <div className="messageAndGoBack-container noHighlight noDrag">
                         <a className="goBack-container" onClick={this.context.router.history.goBack}>

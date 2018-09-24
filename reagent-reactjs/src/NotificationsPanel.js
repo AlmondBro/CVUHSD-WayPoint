@@ -35,9 +35,11 @@ class NotificationsPanel extends Component {
     componentDidMount = () => {
         //let Notification = window.require("electron").remote.Notification;
 
-        let myNotification = new window.Notification( "Hi", {
+       /*
+       let myNotification = new window.Notification( "Hi", {
             body: "Authenticated"
             });
+        */
     }
 
     addNotification = (urgent, notificationText, faIconClassName) => {
@@ -126,14 +128,14 @@ class NotificationsPanel extends Component {
         }
     });
        
-        this.setState({
-            notifications: this.state.notifications.concat({
-                urgent: urgent,
-                notificationText: notificationText,
-                faIconClassName: faIconClassName
-            }),
-            noNotifications: false
-        }); // */
+    this.setState({
+        notifications: this.state.notifications.concat({
+            urgent: urgent,
+            notificationText: notificationText,
+            faIconClassName: faIconClassName
+        }),
+        noNotifications: false
+    }); // */
 
         /* // Dialog Electron module
         const {dialog} = window.require("electron").remote;
@@ -177,7 +179,7 @@ class NotificationsPanel extends Component {
                                                                             urgent={notification.urgent} 
                                                                             notificationText={notification.notificationText} 
                                                                             faIconClassName={notification.faIconClassName} /> 
-                                                    ) : <p>No notifications 😀</p> 
+                                                    ) : <p>No notifications <span role="img" aria-label="Happy emoji">😀</span></p> 
                     }
                 </div>
                 <div className="blur-effect" id="notifications-blur-effect"></div>
