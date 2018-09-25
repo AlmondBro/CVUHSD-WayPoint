@@ -9,7 +9,7 @@ const InputHTML = (props) => {
             className={InputHTMLprops.inputClassName} 
             name={InputHTMLprops.id} id={InputHTMLprops.id} 
             placeholder={InputHTMLprops.placeholder} 
-            value={InputHTMLprops.value || ""} 
+            // value={InputHTMLprops.value || ""} 
             readOnly={InputHTMLprops.readOnly}
             onChange={InputHTMLprops.controlFunc} 
             key={InputHTMLprops.value} />

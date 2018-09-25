@@ -210,8 +210,9 @@ class SubmitTicket extends Component {
             this.location = document.getElementById("location");
             this.phoneExtension = document.getElementById("phone-extension");
             this.officeNumber = document.getElementById("building-number");
+
+            this.fileAttachment();
         } //end window.onload
-        window.onload = this.fileAttachment();
 
         const isDev = requireNodeJSmodule("electron-is-dev");
         if (isDev) {
@@ -232,11 +233,12 @@ class SubmitTicket extends Component {
                                      labelTitle="Summary/Title" 
                                      inputType="text" id="summary" 
                                      placeholder="Title or summary of the technical issue..."  
-                                     controlFunc={ (e) => {    let emailMessage = {...this.state.emailMessage};
-                                                                    emailMessage.title = e.target.value;
-                                                                    this.setState({emailMessage}); 
+                                     controlFunc={ (e) => {     let emailMessage = {...this.state.emailMessage};
+                                                                emailMessage.title = e.target.value;
+                                                                this.setState({emailMessage}); 
                                                             }
-                                                } />
+                                                }            
+                        />
                     </p>
                     <p className="submitForm-inputContainer">
                         <TextArea label={true} labelTitle="Detailed Description" 
