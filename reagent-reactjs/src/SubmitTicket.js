@@ -92,7 +92,7 @@ class SubmitTicket extends Component {
 
            sendmail({
                 from: this.state.emailMessage.email,
-                to: "kevinerkelenz@gmail.com",
+                to: "juandavidlopez95@yahoo.com",
                 subject: this.state.emailMessage.title,
                 html: HTMLmessage,
                 attachments: [  {   // file on disk as an attachment
@@ -113,7 +113,7 @@ class SubmitTicket extends Component {
                     console.dir(reply);
                     this.setState({submitEmailMessage: "HelpDesk e-mail sent"}); 
                     this.setState({ emailSuccess: true});
-                    popNotification("Success!", "Success!");
+                    popNotification("Email sent!", "Success!");
                     return;
                 } //end else-statement
            });  
@@ -210,9 +210,9 @@ class SubmitTicket extends Component {
             this.location = document.getElementById("location");
             this.phoneExtension = document.getElementById("phone-extension");
             this.officeNumber = document.getElementById("building-number");
-
-            this.fileAttachment();
         } //end window.onload
+
+        window.onload = this.fileAttachment();
 
         const isDev = requireNodeJSmodule("electron-is-dev");
         if (isDev) {
