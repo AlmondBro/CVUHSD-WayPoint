@@ -330,7 +330,6 @@ class SubmitTicket extends Component {
                                      id="uploadFile-path" placeholder="File attachment name..." 
                                      readOnly={true} />
                     </p>
-                    {/* <p id="submitEmailMessage">{this.state.submitEmailMessage}<span class="submitEmailMessage-icon">{this.submitEmailMessageIcon}</span></p> */}
                     <p>
                         <FormButton inputType="submit" className="redToDarkRedgradient clickable" buttonTitle="Submit" controlFunc={(e)=> { this.sendEmail(e); }  } />
                         <FormButton inputType="reset" className="redToDarkRedgradient clickable" buttonTitle="Reset" controlFunc={this.clearForm} />
