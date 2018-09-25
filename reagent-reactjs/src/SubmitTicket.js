@@ -336,7 +336,7 @@ class SubmitTicket extends Component {
                 </fieldset>
         </form>,
            <p id="submitEmailMessage">{this.state.submitEmailMessage}
-           <span class="submitEmailMessage-icon">
+           <span className="submitEmailMessage-icon">
                {this.generateResultIcon()}                    
            </span>
        </p>]

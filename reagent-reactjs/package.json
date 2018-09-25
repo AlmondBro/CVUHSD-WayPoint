@@ -37,7 +37,7 @@
     "scripts": {
         "start": "set BROWSER=nul && react-scripts start",
         "server": "node src/server.js",
-        "build": "flow && react-scripts build",
+        "build": "react-scripts build",
         "test": "react-scripts test --env=jsdom",
         "eject": "react-scripts eject",
         "electron": "electron .",
