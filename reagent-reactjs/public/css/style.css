@@ -904,6 +904,14 @@ transform: translate(-50%, -50%); */
     font-weight: bold;
 }
 
+p.randomFact-container {
+    font-size: 0.75em;
+}
+
+p.randomFact-container span {
+    font-weight: bold;
+}
+
 p.cv-way {
     position: relative;
     top: 10px;

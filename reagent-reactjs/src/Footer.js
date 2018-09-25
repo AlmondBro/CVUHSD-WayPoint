@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 
 //Import utilities
-import { stringIsEmptyOrBlank } from "./utilityFunctions.js";
+import { stringIsEmptyOrBlank, requireNodeJSmodule, popNotification} from "./utilityFunctions.js";
+import { corsAnywhere } from "./server.js"
 
+//const fetch = requireNodeJSmodule("electron-fetch");
+//import fetch from 'electron-fetch';
 class Footer extends Component {
     constructor(props) {
         super(props);
         this.state = {
             userName: this.getUsername(),
-            ipAddress: this.getIPAddress()
+            ipAddress: this.getIPAddress(),
+            randomFact: ""
         };
     } //end constructor()
     
@@ -81,11 +85,49 @@ class Footer extends Component {
         return IP_Address;
     }
 
+
+    randomFactFetch = () => {
+        corsAnywhere();
+
+        //Other interesting API:
+        //http://numbersapi.com/random/year?json
+        const jsonFetch = () => {
+            window.fetch('http://localhost:4000/https://catfact.ninja/fact', {
+                headers : { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+                }
+             })
+                .then( (response) => {
+                    return response.json();
+                })
+                .then( (myJson) => {
+                    console.log(JSON.stringify(myJson));
+                    let randomFact = myJson.fact;
+                    console.log("randomFact:\t" + randomFact);
+                    this.setState({
+                        randomFact: randomFact
+                    });
+                    
+                    //Constant cat fact notifications for the giggles
+                    popNotification("Random Fact:", randomFact, "https://image.shutterstock.com/image-illustration/question-mark-thin-line-icon-260nw-762116929.jpg");
+                })
+                .catch( (error) => {
+                    console.log('There has been a problem with your fetch operation: ', error.message);
+                }); 
+        }; 
+
+        jsonFetch();
+        window.setInterval( jsonFetch, 10000);
+    };
+
+
     componentDidMount = () => { 
     /*console.log("OS Network Interface Obj:\t" + JSON.stringify(os.networkInterfaces()) );
         console.log("MacAddress:\t" + JSON.stringify(macaddress.networkInterfaces(), null, 2));
         console.log("OS username:\t" + os.userInfo().username); */
-    } //end componentDidMount() 
+        this.randomFactFetch();
+    }; //end componentDidMount() 
 
     determineWindowsVersion = (releaseNumber) => {
         let windowsVersion;
@@ -110,7 +152,7 @@ class Footer extends Component {
         }
     
         return windowsVersion;
-    }  //end determineWindowsVersion() 
+    };  //end determineWindowsVersion() 
 
      render = () => {
         const electron = window.require("electron");
@@ -136,6 +178,7 @@ class Footer extends Component {
                         <div className="USER-container noDrag"><p>User: <span className="currentUserName">{ this.state.userName }</span></p></div>
                         <div className="IP-container noDrag"><p className="IP-message">IP Address:&#9;<span>{ this.state.ipAddress }</span></p></div>
                         <div className="OS-container noDrag"><p className="OS-platform">System:&#9;<span>{this.determineWindowsVersion(os.release()) || "OS Platform"}</span></p></div>
+                        <div className="noDrag"><p className="randomFact-container">Random Fact:&#9;<span className="randomFact">{this.state.randomFact}</span></p></div>
                         <p className="cv-way noDrag">Powered by: The CV-Way</p>
                     </footer>
                  ) : null

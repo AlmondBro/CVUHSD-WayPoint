@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import corsAnywhere  from "./server.js"; 
+import {corsAnywhere}  from "./server.js"; 
 
 //import { http } from "https";
 //var http = require("https");
