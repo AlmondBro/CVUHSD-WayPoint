@@ -87,17 +87,30 @@ class Footer extends Component {
 
 
     randomFactFetch = () => {
-        corsAnywhere();
-
+        let isDev = requireNodeJSmodule("electron-is-dev");
+        
+        if (isDev) {
+            corsAnywhere();
+        }
+        
         //Other interesting API:
         //http://numbersapi.com/random/year?json
         const jsonFetch = () => {
-            window.fetch('http://localhost:4000/https://catfact.ninja/fact', {
+
+            let API_URL = "https://catfact.ninja/fact";
+            let localHost_URL = "http://localhost:4000/";
+
+            let headers = {
                 headers : { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
                 }
-             })
+             };
+
+             let fetchURL = isDev ? (localHost_URL + API_URL) : API_URL;
+             
+
+            window.fetch(fetchURL, headers)
                 .then( (response) => {
                     return response.json();
                 })
