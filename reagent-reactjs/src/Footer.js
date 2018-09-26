@@ -107,9 +107,8 @@ class Footer extends Component {
                 }
              };
 
-             let fetchURL = isDev ? (localHost_URL + API_URL) : API_URL;
+            let fetchURL = isDev ? (localHost_URL + API_URL) : API_URL;
              
-
             window.fetch(fetchURL, headers)
                 .then( (response) => {
                     return response.json();
