@@ -38,13 +38,30 @@ const utilityFunctions = () => {
         window.document.createElement
     );
 
+    const requireNodeJSmodule = (moduleName) => {
+        if (typeof(moduleName) !== "string") {
+            console.log("Please supply a string to requireNodeJSmodule!");
+            return;
+        } else {
+            console.log(`require("${moduleName}")`);
+            const electron = window.require("electron");
+            const remote = electron.remote;
+            
+            return remote.require(moduleName); 
+        } //end else-statement
+        
+    } //end requireNodeJSModule() 
+
     let popNotification = (notificationTitle, notificationMessage, iconPath, soundOn, noWait) => {
         const electron = window.require("electron");
         const remote = electron.remote;
 
         //User notifier NPM module since the native Electron Notifications is not working
-        const notifier = remote.require("node-notifier");
-        const path = remote.require("path");
+       // const notifier = remote.require("node-notifier");
+      // const path = remote.require("path");
+        const notifier = requireNodeJSmodule("node-notifier");
+       
+        const path = requireNodeJSmodule("path");
 
         let notifierOptions = {
             title: notificationTitle || "Title",
@@ -91,20 +108,6 @@ const utilityFunctions = () => {
             return false;
         } //return false
     };
-
-    const requireNodeJSmodule = (moduleName) => {
-        if (typeof(moduleName) !== "string") {
-            console.log("Please supply a string to requireNodeJSmodule!");
-            return;
-        } else {
-            console.log(`require("${moduleName}")`);
-            const electron = window.require("electron");
-            const remote = electron.remote;
-            
-            return remote.require(moduleName); 
-        } //end else-statement
-        
-    } //end requireNodeJSModule() 
 
     const whyDidYouUpdate = (optionsObject) => {
         const isDev = requireNodeJSmodule("electron-is-dev");
