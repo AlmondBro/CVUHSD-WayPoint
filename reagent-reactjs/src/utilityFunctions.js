@@ -53,24 +53,29 @@ const utilityFunctions = () => {
     } //end requireNodeJSModule() 
 
     let popNotification = (notificationTitle, notificationMessage, iconPath, soundOn, noWait) => {
-        const electron = window.require("electron");
-        const remote = electron.remote;
-
         //User notifier NPM module since the native Electron Notifications is not working
-       // const notifier = remote.require("node-notifier");
-      // const path = remote.require("path");
         const notifier = requireNodeJSmodule("node-notifier");
        
         const path = requireNodeJSmodule("path");
-
-        let notifierOptions = {
+//iconPath || path.join(__dirname, iconPath) || 
+       let notifierOptions = {
             title: notificationTitle || "Title",
             message: notificationMessage || "Message",
-            icon: iconPath || path.join(__dirname, "./../public/img/wp-icon-grey.ico"), // Absolute path (doesn't work on balloons)
+            icon: path.join(__dirname, 'coulson.jpg'), // Absolute path (doesn't work on balloons)
+            contentImage: iconPath || path.join(__dirname, iconPath) || path.join(__dirname, "./../public/img/wp-icon-grey.ico"), // Absolute path (doesn't work on balloons)
+            open: 'file://' + path.join(__dirname, iconPath) || 'file://' + path.join(__dirname, "./../public/img/wp-icon-grey.ico"),
             sound: soundOn || true, // Only Notification Center or Windows Toasters
             wait: noWait || false // Wait with callback, until user action is taken against notification
-        }
+        } 
 
+       // const {nativeImage} =  requireNodeJSmodule("electron");
+      //  nativeImage.createFromPath
+        /*let notifierOptions =   {
+            message: 'Hello. This is a longer text\nWith "some" newlines.',
+            wait: true,
+            icon: 'coulson.jpg',
+            sound: true
+          }; */
         let callback = (error, response) => {
             // Response is response from notification
             console.log("Notifier response:\t" + response );

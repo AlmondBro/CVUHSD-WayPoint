@@ -111,6 +111,32 @@ class Footer extends Component {
                     
                     //Constant cat fact notifications for the giggles
                     popNotification("Random Fact:", randomFact, "https://image.shutterstock.com/image-illustration/question-mark-thin-line-icon-260nw-762116929.jpg");
+                /*
+                    var notifier = requireNodeJSmodule('node-notifier');
+                    var path = requireNodeJSmodule('path');
+
+                    notifier.notify(
+                    {
+                        message: 'Hi! Hello thereeeee',
+                        wait: true,
+                        icon: path.join(__dirname, './coulson.jpg'),
+                        sound: true
+                    },
+                    function(err, data) {
+                        // Will also wait until notification is closed.
+                        console.log('Waited');
+                        console.log(err, data);
+                    }
+                    );
+
+                    notifier.on('timeout', function() {
+                    console.log('Timed out!');
+                    });
+
+                    notifier.on('click', function() {
+                    console.log('Clicked!');
+                    }); */
+                
                 })
                 .catch( (error) => {
                     console.log('There has been a problem with your fetch operation: ', error.message);
