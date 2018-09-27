@@ -159,7 +159,6 @@ class Footer extends Component {
         window.setInterval( jsonFetch, 10000);
     };
 
-
     componentDidMount = () => { 
     /*console.log("OS Network Interface Obj:\t" + JSON.stringify(os.networkInterfaces()) );
         console.log("MacAddress:\t" + JSON.stringify(macaddress.networkInterfaces(), null, 2));
