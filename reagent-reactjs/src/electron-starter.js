@@ -38,7 +38,7 @@ const createWindow = () => {
     // ../public/img/wp-icon-grey.ico
     // ./gallery-icon.png
     const startUrl = isDev ? (process.env.ELECTRON_START_URL || "http://localhost:3000") : url.format({
-        pathname: path.join(__dirname, "/../build/index.html"),
+        pathname: path.join(__dirname, "./../build/index.html"),
         protocol: "file:",
         slashes: true
     });
@@ -176,7 +176,7 @@ preventMoreThanOneInstance();
 //app.setAppUserModelId(`${./../package.json build.appId}` || "com.waypoint");
 var ws = require("windows-shortcuts");
 ws.create("%APPDATA%/Microsoft/Windows/Start Menu/Programs/Electron.lnk", process.execPath);
-app.setAppUserModelId("centinela.waypoint.xxx");
+app.setAppUserModelId("centinela.waypoint");
 app.setAsDefaultProtocolClient("xxx");
 
 /*  This method will be called when Electron has finished

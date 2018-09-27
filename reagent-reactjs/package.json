@@ -82,18 +82,17 @@
                     ]
                 }
             ],
-            "icon": "build/img/wp-icon-grey-256x256.ico",
+            "icon": "./build/img/wp-icon-grey-256x256.ico",
             "publisherName": "Centinela Valley Union High School District"
         },
         "nsis": {
             "oneClick": false,
             "perMachine": true,
             "allowToChangeInstallationDirectory": true,
-            "installerIcon": "build/img/wp-icon-grey-256x256.ico",
+            "installerIcon": "./build/img/wp-icon-grey.ico",
             "runAfterFinish": true,
             "menuCategory": true,
-            "createDesktopShortcut": true,
-            "requestExecutionLevel": "highest"
+            "createDesktopShortcut": true
         }
     }
 }

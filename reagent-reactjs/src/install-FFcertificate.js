@@ -18,7 +18,10 @@ const installCertificate = () => {
 
     nrc.run("./addFFCerr/add-cers", { onData: commandConsoleOutput });
 
-    const dialogIcon = nativeImage.createFromPath(path.join(__dirname, "../../img/gallery-icon.png"));
+    const imagePath = path.join(__dirname, "./gallery-icon.png");
+    console.log("imagePath:\t" + imagePath);
+    
+    const dialogIcon = nativeImage.createFromPath(imagePath);
     console.log("dialogIcon:\t" + JSON.stringify(dialogIcon));
     
     const dialogOptions = {
