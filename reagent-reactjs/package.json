@@ -70,7 +70,8 @@
         "copyright": "Copyright © year `${author}`",
         "files": [
             "build/**/*",
-            "src/*"
+            "src/*",
+            "public/**/*"
         ],
         "win": {
             "target": [

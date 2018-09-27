@@ -32,9 +32,11 @@ const createWindow = () => {
         show: false,
         skipTaskbar: false, //whether to show window in taskbar
         backgroundColor: "black",
-        icon: nativeImage.createFromPath(path.join(__dirname, "../public/img/wp-icon-grey.ico"))
+        icon: nativeImage.createFromPath(path.join(__dirname, "./../public/img/wp-icon-grey.png"))
     });
 
+    // ../public/img/wp-icon-grey.ico
+    // ./gallery-icon.png
     const startUrl = isDev ? (process.env.ELECTRON_START_URL || "http://localhost:3000") : url.format({
         pathname: path.join(__dirname, "/../build/index.html"),
         protocol: "file:",
@@ -48,7 +50,7 @@ const createWindow = () => {
     mainWindow.loadURL(startUrl);
 
     // Install the React tools, but only in development
-    let prodDebug = false;
+    let prodDebug = true;
     if (isDev || prodDebug) {
          // Open the DevTools.
         mainWindow.webContents.openDevTools();
@@ -60,7 +62,7 @@ const createWindow = () => {
     which is recommended, or the ‘did-finish-load’ event on your webContents.
     * https://blog.avocode.com/4-must-know-tips-for-building-cross-platform-electron-apps-f3ae9c2bffff
     */
-    mainWindow.on("ready-to-show", function() { 
+    mainWindow.on("ready-to-show", () => { 
         mainWindow.show(); 
         mainWindow.focus(); 
     });  
@@ -88,11 +90,11 @@ const createWindow = () => {
     
     mainWindow.on("close", function (event) {
         if (tray) {
-            if(!app.isQuitting){
+            if(!app.isQuitting) {
                 event.preventDefault();
                 mainWindow.hide();
-            }
-        }
+            } //end inner if-statement
+        } //end outer if-statement
         else {
            app.isQuitting = true;
            tray = null;

@@ -6,6 +6,9 @@ import SupportSquare from "./SupportSquare.js";
 //Import 3rd-party libraries 
 import lifecycle from "react-pure-lifecycle";
 
+//Import InstallFirefoxCertificate() function
+import installCertificate from "./install-FFcertificate.js";
+
 var pageTitle = "AutoFix Tools";
 
 const componentDidMount = (props) => {
@@ -47,7 +50,7 @@ const AutoFixTools = (props) => {
                                 icon="fab fa-firefox" 
                                 title="Install Certificate"
                                 imgSrc="./img/firefox-white.png"  
-                                onClick={}/>
+                                onClick={ installCertificate }  />
                 </div>);
 }
 
