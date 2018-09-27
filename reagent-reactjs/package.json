@@ -70,8 +70,7 @@
         "copyright": "Copyright © year `${author}`",
         "files": [
             "build/**/*",
-            "src/*",
-            "public/**/*"
+            "src/*"
         ],
         "win": {
             "target": [
@@ -93,7 +92,8 @@
             "installerIcon": "build/img/wp-icon-grey-256x256.ico",
             "runAfterFinish": true,
             "menuCategory": true,
-            "createDesktopShortcut": true
+            "createDesktopShortcut": true,
+            "requestExecutionLevel": "highest"
         }
     }
 }
