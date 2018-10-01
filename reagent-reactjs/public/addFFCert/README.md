@@ -1,4 +1,4 @@
-firefox_add-certs: https://github.com/christian-korneck/firefox_add-certs
+firefox_add-certs
 ===========
 
 script to add new CA certificates to the Firefox trusted certificate store on Windows
@@ -6,8 +6,7 @@ script to add new CA certificates to the Firefox trusted certificate store on Wi
 
 Description
 -------------
-Unlike other  browsers, Firefox doesn't use the Windows certificate store, but comes with its own hardcoded list of trusted Certificate Authorities. New CA certificates
- can be added through the GUI and are stored in the user's Firefox profile.
+Unlike other  browsers, Firefox doesn't use the Windows certificate store, but comes with its own hardcoded list of trusted Certificate Authorities. New CA certificates can be added through the GUI and are stored in the user's Firefox profile.
 This cmd script is a very thin wrapper around Mozilla's NSS certutil command line tool, that adds all CA certificates from a given folder as trusted to:
 - the default Firefox profile (so that any newly created Firefox profile will automatically have them)
 - the Firefox profiles of all users on the local Windows machine (appropriate write permissions to these user profiles needed)
