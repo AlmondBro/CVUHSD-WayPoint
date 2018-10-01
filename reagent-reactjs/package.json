@@ -70,7 +70,6 @@
         "appId": "centinela.waypoint",
         "compression": "store",
         "copyright": "Copyright © year `${author}`",
-        "extraResources": "./build/addFFCert",
         "extraFiles":  "./build/addFFCert",
         "files": [
             "build/**/*",
