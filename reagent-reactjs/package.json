@@ -75,10 +75,13 @@
             "build/**/*",
             "src/*"
         ],
+        "directories": {
+            "buildResources": "./build"
+        },
         "win": {
             "target": [
                 {
-                    "target": "nsis",
+                    "target": "portable",
                     "arch": [
                         "x64",
                         "ia32"
