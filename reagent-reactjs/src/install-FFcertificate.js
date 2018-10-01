@@ -7,17 +7,18 @@ const childProcess = requireNodeJSmodule("child_process");
 const { dialog, nativeImage } = requireNodeJSmodule("electron");
 
 const isDev = requireNodeJSmodule("electron-is-dev");
+const publicOrBuild = isDev ? "public": "build";
 const url = requireNodeJSmodule("url");
 
 const installCertificate = () => {
     console.log("installCertificate()");
 
-    const imagePath = path.join("./public/img/firefox-white.png");
+    const imagePath = path.join(`./${publicOrBuild}/img/firefox-white.png`);
 
     const dialogIcon = nativeImage.createFromPath(imagePath);
     console.log("dialogIcon:\t" + JSON.stringify(dialogIcon));
 
-    const ffCertInstallPath = isDev ? path.resolve("./public/addFFCert/add-certs.cmd") :  path.resolve("./build/addFFCert/add-certs.cmd") ;
+    const ffCertInstallPath = path.resolve(`./${publicOrBuild}/addFFCert/add-certs.cmd`);
     console.log("yolo:\t" + ffCertInstallPath);
     console.log("directory:\t" + __dirname);
 
