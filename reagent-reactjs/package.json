@@ -64,9 +64,12 @@
     "author": "CVUHSD",
     "homepage": "./",
     "build": {
+        "asar": true,
         "extends": null,
         "productName": "WayPoint",
         "appId": "centinela.waypoint",
+        "compression": "store",
+        "extraResources": "./build/addFFCert",
         "copyright": "Copyright © year `${author}`",
         "files": [
             "build/**/*",
