@@ -69,8 +69,9 @@
         "productName": "WayPoint",
         "appId": "centinela.waypoint",
         "compression": "store",
-        "extraResources": "./build/addFFCert",
         "copyright": "Copyright © year `${author}`",
+        "extraResources": "./build/addFFCert",
+        "extraFiles":  "./build/addFFCert",
         "files": [
             "build/**/*",
             "src/*"

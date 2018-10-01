@@ -17,7 +17,7 @@ const installCertificate = () => {
     const dialogIcon = nativeImage.createFromPath(imagePath);
     console.log("dialogIcon:\t" + JSON.stringify(dialogIcon));
 
-    const ffCertInstallPath = isDev ? path.resolve("./public/addFFCert/add-certs.cmd") :  path.resolve("./../../build/addFFCert/add-certs.cmd") ;
+    const ffCertInstallPath = isDev ? path.resolve("./public/addFFCert/add-certs.cmd") :  path.resolve("./build/addFFCert/add-certs.cmd") ;
     console.log("yolo:\t" + ffCertInstallPath);
     console.log("directory:\t" + __dirname);
 
