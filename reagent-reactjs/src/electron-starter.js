@@ -32,7 +32,7 @@ const createWindow = () => {
         show: false,
         skipTaskbar: false, //whether to show window in taskbar
         backgroundColor: "black",
-        icon: nativeImage.createFromPath(path.join(__dirname, "./../public/img/wp-icon-grey.png"))
+        icon: isDev ? nativeImage.createFromPath(path.join(__dirname, "./../public/img/wp-icon-grey.png")) : nativeImage.createFromPath(path.join(__dirname, "./../build/img/wp-icon-grey.png"))
     });
 
     // ../public/img/wp-icon-grey.ico

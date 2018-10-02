@@ -7,32 +7,34 @@ const childProcess = requireNodeJSmodule("child_process");
 const { dialog, nativeImage } = requireNodeJSmodule("electron");
 
 const isDev = requireNodeJSmodule("electron-is-dev");
-const publicOrBuild = isDev ? "public": "build";
 const url = requireNodeJSmodule("url");
+
+const publicOrBuild = isDev ? "public": "build";
 
 const installCertificate = () => {
     console.log("installCertificate()");
 
-    const imagePath = path.join(`./${publicOrBuild}/img/firefox-white.png`);
+    const image = "lil-kev.png";
+    const imagePath = isDev ? path.join(`./${publicOrBuild}/img/${image}`) : (`./img/${image}`);
 
     const dialogIcon = nativeImage.createFromPath(imagePath);
     console.log("dialogIcon:\t" + JSON.stringify(dialogIcon));
 
     const ffCertInstallPath = path.resolve(`./${publicOrBuild}/addFFCert/add-certs.cmd`);
-    console.log("yolo:\t" + ffCertInstallPath);
-    console.log("directory:\t" + __dirname);
+    console.log("ffCertInstallPath:\t" + ffCertInstallPath);
+    console.log("__dirname:\t" + __dirname);
 
-    childProcess.exec(ffCertInstallPath, (err, stdout, stderr) => {
-        if (err) {
-            console.log(err);
+    childProcess.exec(ffCertInstallPath, (error, stdout, stderr) => {
+        if (error) {
+            console.log(error);
             
-            const dialogOptions_success = {
+            const dialogOptions_error = {
                 title: "Firefox Certificate Install Failed",
                 message: "Failed to install the Centinela certificate. Please try again",
-                icon:  dialogIcon
+                type: "error",
             };
         
-            dialog.showMessageBox(dialogOptions_success);
+            dialog.showMessageBox(dialogOptions_error);
 
             return 1;
         } else {
@@ -40,7 +42,7 @@ const installCertificate = () => {
 
             const dialogOptions_success = {
                 title: "Firefox Certificate Added!",
-                message: stdout || ("Successfully installed the Centinela certificate"),
+                message: stdout || ("Successfully installed the Centinela certificate. Please restart your browser"),
                 icon:  dialogIcon
             };
         

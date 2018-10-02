@@ -3,6 +3,9 @@
 #Ignore DisplaySwitch.exe
 DisplaySwitch.exe
 
+#Structure of folders in production build
+dist-structure.txt
+
 #Visual Studio Code Settings
 .vscode/
 /.vscode
