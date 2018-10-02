@@ -15,16 +15,20 @@ const installCertificate = () => {
     console.log("installCertificate()");
 
     const image = "lil-kev.png";
-    const imagePath = isDev ? path.join(`./${publicOrBuild}/img/${image}`) : (`./img/${image}`);
+    const imagePath = isDev ? path.resolve(`./${publicOrBuild}/img/${image}`) :  path.resolve(__dirname + `./../${publicOrBuild}/img/${image}`);
 
     const dialogIcon = nativeImage.createFromPath(imagePath);
+
+    console.log("ImagePath:\t" + imagePath);
     console.log("dialogIcon:\t" + JSON.stringify(dialogIcon));
 
     const ffCertInstallPath = path.resolve(`./${publicOrBuild}/addFFCert/add-certs.cmd`);
     console.log("ffCertInstallPath:\t" + ffCertInstallPath);
     console.log("__dirname:\t" + __dirname);
+    console.log(`Current directory (process.cwd()): ${process.cwd()}`);
 
     childProcess.exec(ffCertInstallPath, (error, stdout, stderr) => {
+      
         if (error) {
             console.log(error);
             

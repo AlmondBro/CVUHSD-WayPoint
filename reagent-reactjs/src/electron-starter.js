@@ -1,9 +1,11 @@
 const electron = require("electron");
-const remote = electron.remote;
+const { remote } = electron; //ES6 Destructuring -- Same as  const remote = electron.remote
+
 // Module to control application life.
-const app = electron.app;
+const { app } = electron; //ES6 Destructuring -- Same as const app = electron.app
+
 // Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow;
+const { BrowserWindow } = electron; //ES6 Destructuring -- Same as const BrowserWindow = electron.BrowserWindow
 
 const path = require("path");
 const url = require("url");
@@ -15,6 +17,8 @@ const { nativeImage } = require("electron");
  be closed automatically when the JavaScript object is garbage collected. */
 let mainWindow = null;
 let tray = null;
+
+process.env['APP_PATH'] = app.getAppPath();
 
 const createWindow = () => {
     // Create the browser window.
@@ -65,6 +69,7 @@ const createWindow = () => {
     mainWindow.on("ready-to-show", () => { 
         mainWindow.show(); 
         mainWindow.focus(); 
+        console.log(`App Path:\t ${app.getAppPath()}`);
     });  
 
     // Emitted when the window is closed.
