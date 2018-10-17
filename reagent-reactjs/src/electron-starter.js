@@ -23,7 +23,7 @@ process.env['APP_PATH'] = app.getAppPath();
 const createWindow = () => {
     // Create the browser window.
     //Show:false key-value pair is to delay loading until all resources have been loaded.
-    const mainWindow = new BrowserWindow({
+    var mainWindow = new BrowserWindow({
         title: "WayPoint", //Title of window whe frame is enabled
         width: 376, 
         height: 700, 
