@@ -4,7 +4,7 @@ import { requireNodeJSmodule} from "./utilityFunctions.js";
 const path = requireNodeJSmodule("path");
 const childProcess = requireNodeJSmodule("child_process");
 
-const { dialog, nativeImage } = requireNodeJSmodule("electron");
+const { dialog, nativeImage, app } = requireNodeJSmodule("electron");
 
 const isDev = requireNodeJSmodule("electron-is-dev");
 const url = requireNodeJSmodule("url");
@@ -15,7 +15,7 @@ const installCertificate = () => {
     console.log("installCertificate()");
 
     const image = "lil-kev.png";
-    const imagePath = isDev ? path.resolve(`./${publicOrBuild}/img/${image}`) :  path.resolve(__dirname + `./../${publicOrBuild}/img/${image}`);
+    const imagePath = isDev ? path.resolve(`./${publicOrBuild}/img/${image}`) :  path.resolve(`./${app.getAppPath()}/${publicOrBuild}/img/${image}`);
 
     const dialogIcon = nativeImage.createFromPath(imagePath);
 
@@ -27,8 +27,11 @@ const installCertificate = () => {
     console.log("__dirname:\t" + __dirname);
     console.log(`Current directory (process.cwd()): ${process.cwd()}`);
 
+    // console.log(`lil-kev Path:\t ${app.getPath(image)}`);
+    // console.log(`Exe Path:\t ${app.getPath("exe")}`);
+    // console.log(`App Path:\t ${app.getAppPath()}`);
+
     childProcess.exec(ffCertInstallPath, (error, stdout, stderr) => {
-      
         if (error) {
             console.log(error);
             

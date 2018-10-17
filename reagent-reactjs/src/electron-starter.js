@@ -23,7 +23,7 @@ process.env['APP_PATH'] = app.getAppPath();
 const createWindow = () => {
     // Create the browser window.
     //Show:false key-value pair is to delay loading until all resources have been loaded.
-    mainWindow = new BrowserWindow({
+    const mainWindow = new BrowserWindow({
         title: "WayPoint", //Title of window whe frame is enabled
         width: 376, 
         height: 700, 
@@ -74,9 +74,9 @@ const createWindow = () => {
 
     // Emitted when the window is closed.
     mainWindow.on("closed", () => {
-        // Dereference the window object, usually you would store windows
-        // in an array if your app supports multi windows, this is the time
-        // when you should delete the corresponding element.
+        /* Dereference the window object, usually you would store windows
+            in an array if your app supports multi windows, this is the time
+            when you should delete the corresponding element. */
         mainWindow = null;
     });
 
@@ -111,7 +111,7 @@ const createWindow = () => {
 } //end createWindow()
 
 const setTrayIcon = () => {
-    const {Menu, Tray, app, nativeImage} = require('electron');
+    const {Menu, Tray, app, nativeImage} = require("electron");
 
     //let tray = null;
     //or use extraresources field in electron-builder package.json to bundle the icon
@@ -175,14 +175,16 @@ const preventMoreThanOneInstance = () => {
 
 preventMoreThanOneInstance();
 
+
+var ws = require("windows-shortcuts");
+ws.create("%APPDATA%/Microsoft/Windows/Start Menu/Programs/Electron.lnk", process.execPath);
+
 /* Set app user model ID and setAsDefaultProtocol for windows notifications to run 
     Issue: https://github.com/electron/electron/issues/10864    
 */
-//app.setAppUserModelId(`${./../package.json build.appId}` || "com.waypoint");
-var ws = require("windows-shortcuts");
-ws.create("%APPDATA%/Microsoft/Windows/Start Menu/Programs/Electron.lnk", process.execPath);
-app.setAppUserModelId("centinela.waypoint");
-app.setAsDefaultProtocolClient("xxx");
+//(`${./../package.json build.appId}` || "com.waypoint");
+
+app.setAsDefaultProtocolClient("waypoint");
 
 /*  This method will be called when Electron has finished
     initialization and is ready to create browser windows.
@@ -193,11 +195,11 @@ app.setAsDefaultProtocolClient("xxx");
 app.on("ready", async () => {
     await createWindow();
     await electron.protocol.registerServiceWorkerSchemes(["file:"]);
-    /* //Register the file protocol as supported
-        electron.webFrame.registerURLSchemeAsPrivileged('file');
-        electron.webFrame.registerURLSchemeAsSecure('file');
-        electron.webFrame.registerURLSchemeAsBypassingCSP('file');
-    */
+    ///* Register the file protocol as supported
+        electron.webFrame.registerURLSchemeAsPrivileged("file");
+        electron.webFrame.registerURLSchemeAsSecure("file");
+        electron.webFrame.registerURLSchemeAsBypassingCSP("file");
+    // */
    await setTrayIcon();
 });
 
