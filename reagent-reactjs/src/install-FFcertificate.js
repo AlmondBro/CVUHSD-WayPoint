@@ -15,11 +15,12 @@ const installCertificate = () => {
     console.log("installCertificate()");
 
     const image = "lil-kev.png";
-    const imagePath = isDev ? path.resolve(`./${publicOrBuild}/img/${image}`) :  path.resolve(`./${app.getAppPath()}/${publicOrBuild}/img/${image}`);
+    //Looks like paths are relative to the WayPoint.exe in the "dist" folder in production. 
+    const imagePath = isDev ? path.resolve(`./${publicOrBuild}/img/${image}`) :  path.resolve(`./resources/app/build/img/${image}`);
 
     const dialogIcon = nativeImage.createFromPath(imagePath);
 
-    console.log("ImagePath:\t" + imagePath);
+    console.log("\nImagePath:\t" + imagePath);
     console.log("dialogIcon:\t" + JSON.stringify(dialogIcon));
 
     const ffCertInstallPath = path.resolve(`./${publicOrBuild}/addFFCert/add-certs.cmd`);

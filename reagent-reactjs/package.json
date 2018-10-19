@@ -64,10 +64,10 @@
     "author": "CVUHSD",
     "homepage": "./",
     "build": {
-        "asar": true,
+        "asar": false,
         "extends": null,
         "productName": "WayPoint",
-        "appId": "centinela.waypoint",
+        "appId": "Waypoint",
         "compression": "store",
         "copyright": "Copyright © year `${author}`",
         "extraFiles": "./build/addFFCert",
