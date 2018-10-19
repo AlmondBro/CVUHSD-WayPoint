@@ -15,8 +15,8 @@ const installCertificate = () => {
     console.log("installCertificate()");
 
     const image = "lil-kev.png";
-    //Looks like paths are relative to the WayPoint.exe in the "dist" folder in production. 
-    const imagePath = isDev ? path.resolve(`./${publicOrBuild}/img/${image}`) :  path.resolve(`./resources/app/build/img/${image}`);
+    //Looks like paths are relative to the WayPoint.exe in the "dist" folder in production. Use just "app" instead of "app.asar" if not using the asar option.
+    const imagePath = isDev ? path.resolve(`./${publicOrBuild}/img/${image}`) :  path.resolve(`./resources/app.asar/build/img/${image}`);
 
     const dialogIcon = nativeImage.createFromPath(imagePath);
 
