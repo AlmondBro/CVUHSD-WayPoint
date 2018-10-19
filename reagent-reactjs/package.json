@@ -30,8 +30,6 @@
         "sendmail": "^1.4.1",
         "twitter": "^1.7.1",
         "undefsafe": "^2.0.2",
-        "vex-dialog": "^1.1.0",
-        "vex-js": "^4.1.0",
         "windows-shortcuts": "^0.1.6"
     },
     "scripts": {
@@ -54,7 +52,7 @@
     "devDependencies": {
         "concurrently": "^3.6.1",
         "devtron": "^1.4.0",
-        "electron": "^2.0.5",
+        "electron": "^3.0.4",
         "electron-builder": "^20.26.0",
         "electron-react-devtools": "^0.5.3",
         "eslint-plugin-react": "^7.7.0",
@@ -66,32 +64,38 @@
     "author": "CVUHSD",
     "homepage": "./",
     "build": {
+        "asar": true,
         "extends": null,
         "productName": "WayPoint",
-        "appId": "centinela.waypoint.xxx",
+        "appId": "Waypoint",
+        "compression": "store",
         "copyright": "Copyright © year `${author}`",
+        "extraFiles": "./build/addFFCert",
         "files": [
             "build/**/*",
             "src/*"
         ],
+        "directories": {
+            "buildResources": "./build"
+        },
         "win": {
             "target": [
                 {
-                    "target": "nsis",
+                    "target": "portable",
                     "arch": [
                         "x64",
                         "ia32"
                     ]
                 }
             ],
-            "icon": "build/img/wp-icon-grey-256x256.ico",
+            "icon": "./build/img/wp-icon-grey-256x256.ico",
             "publisherName": "Centinela Valley Union High School District"
         },
         "nsis": {
             "oneClick": false,
             "perMachine": true,
             "allowToChangeInstallationDirectory": true,
-            "installerIcon": "build/img/wp-icon-grey-256x256.ico",
+            "installerIcon": "./build/img/wp-icon-grey.ico",
             "runAfterFinish": true,
             "menuCategory": true,
             "createDesktopShortcut": true

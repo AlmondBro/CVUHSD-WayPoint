@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Checkmark from "./Checkmark.js";
 
 class WiFiMagic extends Component {
@@ -149,7 +149,9 @@ class WiFiMagic extends Component {
                 </div>
                 <div className="wifiMagic-messages">
                 { this.state.message.split("\n").map( (message, key) => { 
-                        return (    <Checkmark key={key.toString() } message={message} >{ message }</Checkmark> );
+                        return  ( <Checkmark key={key.toString() } 
+                                             message={message}> { message }
+                                  </Checkmark> );
                     }) }
                 </div> 
               
