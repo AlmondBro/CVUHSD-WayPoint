@@ -175,7 +175,6 @@ const preventMoreThanOneInstance = () => {
 
 preventMoreThanOneInstance();
 
-
 var ws = require("windows-shortcuts");
 ws.create("%APPDATA%/Microsoft/Windows/Start Menu/Programs/Electron.lnk", process.execPath);
 
