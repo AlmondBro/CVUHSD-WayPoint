@@ -11,7 +11,7 @@ class BackButton extends Component {
     }
     
     render = () => {
-        console.log("History:\t" + JSON.stringify(this.context.router.history));
+       // console.log("History:\t" + JSON.stringify(this.context.router.history));
 
         return (this.context.router.history.location.pathname === "/") ? null : 
                 (

@@ -1,9 +1,11 @@
 const electron = require("electron");
-const remote = electron.remote;
+const { remote } = electron; //ES6 Destructuring -- Same as  const remote = electron.remote
+
 // Module to control application life.
-const app = electron.app;
+const { app } = electron; //ES6 Destructuring -- Same as const app = electron.app
+
 // Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow;
+const { BrowserWindow } = electron; //ES6 Destructuring -- Same as const BrowserWindow = electron.BrowserWindow
 
 const path = require("path");
 const url = require("url");
@@ -16,10 +18,12 @@ const { nativeImage } = require("electron");
 let mainWindow = null;
 let tray = null;
 
+process.env['APP_PATH'] = app.getAppPath();
+
 const createWindow = () => {
     // Create the browser window.
     //Show:false key-value pair is to delay loading until all resources have been loaded.
-    mainWindow = new BrowserWindow({
+    var mainWindow = new BrowserWindow({
         title: "WayPoint", //Title of window whe frame is enabled
         width: 376, 
         height: 700, 
@@ -32,11 +36,13 @@ const createWindow = () => {
         show: false,
         skipTaskbar: false, //whether to show window in taskbar
         backgroundColor: "black",
-        icon: nativeImage.createFromPath(path.join(__dirname, "../public/img/wp-icon-grey.ico"))
+        icon: isDev ? nativeImage.createFromPath(path.join(__dirname, "./../public/img/wp-icon-grey.png")) : nativeImage.createFromPath(path.join(__dirname, "./../build/img/wp-icon-grey.png"))
     });
 
+    // ../public/img/wp-icon-grey.ico
+    // ./gallery-icon.png
     const startUrl = isDev ? (process.env.ELECTRON_START_URL || "http://localhost:3000") : url.format({
-        pathname: path.join(__dirname, "/../build/index.html"),
+        pathname: path.join(__dirname, "./../build/index.html"),
         protocol: "file:",
         slashes: true
     });
@@ -60,16 +66,17 @@ const createWindow = () => {
     which is recommended, or the ‘did-finish-load’ event on your webContents.
     * https://blog.avocode.com/4-must-know-tips-for-building-cross-platform-electron-apps-f3ae9c2bffff
     */
-    mainWindow.on("ready-to-show", function() { 
+    mainWindow.on("ready-to-show", () => { 
         mainWindow.show(); 
         mainWindow.focus(); 
+        console.log(`App Path:\t ${app.getAppPath()}`);
     });  
 
     // Emitted when the window is closed.
     mainWindow.on("closed", () => {
-        // Dereference the window object, usually you would store windows
-        // in an array if your app supports multi windows, this is the time
-        // when you should delete the corresponding element.
+        /* Dereference the window object, usually you would store windows
+            in an array if your app supports multi windows, this is the time
+            when you should delete the corresponding element. */
         mainWindow = null;
     });
 
@@ -88,11 +95,11 @@ const createWindow = () => {
     
     mainWindow.on("close", function (event) {
         if (tray) {
-            if(!app.isQuitting){
+            if(!app.isQuitting) {
                 event.preventDefault();
                 mainWindow.hide();
-            }
-        }
+            } //end inner if-statement
+        } //end outer if-statement
         else {
            app.isQuitting = true;
            tray = null;
@@ -104,7 +111,7 @@ const createWindow = () => {
 } //end createWindow()
 
 const setTrayIcon = () => {
-    const {Menu, Tray, app, nativeImage} = require('electron');
+    const {Menu, Tray, app, nativeImage} = require("electron");
 
     //let tray = null;
     //or use extraresources field in electron-builder package.json to bundle the icon
@@ -168,14 +175,16 @@ const preventMoreThanOneInstance = () => {
 
 preventMoreThanOneInstance();
 
+
+var ws = require("windows-shortcuts");
+ws.create("%APPDATA%/Microsoft/Windows/Start Menu/Programs/Electron.lnk", process.execPath);
+
 /* Set app user model ID and setAsDefaultProtocol for windows notifications to run 
     Issue: https://github.com/electron/electron/issues/10864    
 */
-//app.setAppUserModelId(`${./../package.json build.appId}` || "com.waypoint");
-var ws = require("windows-shortcuts");
-ws.create("%APPDATA%/Microsoft/Windows/Start Menu/Programs/Electron.lnk", process.execPath);
-app.setAppUserModelId("centinela.waypoint.xxx");
-app.setAsDefaultProtocolClient("xxx");
+//(`${./../package.json build.appId}` || "com.waypoint");
+
+app.setAsDefaultProtocolClient("waypoint");
 
 /*  This method will be called when Electron has finished
     initialization and is ready to create browser windows.
@@ -186,11 +195,11 @@ app.setAsDefaultProtocolClient("xxx");
 app.on("ready", async () => {
     await createWindow();
     await electron.protocol.registerServiceWorkerSchemes(["file:"]);
-    /* //Register the file protocol as supported
-        electron.webFrame.registerURLSchemeAsPrivileged('file');
-        electron.webFrame.registerURLSchemeAsSecure('file');
-        electron.webFrame.registerURLSchemeAsBypassingCSP('file');
-    */
+    ///* Register the file protocol as supported
+        electron.webFrame.registerURLSchemeAsPrivileged("file");
+        electron.webFrame.registerURLSchemeAsSecure("file");
+        electron.webFrame.registerURLSchemeAsBypassingCSP("file");
+    // */
    await setTrayIcon();
 });
 
