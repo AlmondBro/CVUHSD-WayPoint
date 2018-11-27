@@ -4,7 +4,7 @@ import React, {Component} from "react";
 import Notification from "./Notification.js";
 
 //Import utility function(s)
-import { popNotification } from "./utilityFunctions.js";
+import { popNotification, requireNodeJSmodule } from "./utilityFunctions.js";
 
 class NotificationsPanel extends Component {
     constructor(props) {
@@ -34,7 +34,7 @@ class NotificationsPanel extends Component {
 
     componentDidMount = () => {
         //let Notification = window.require("electron").remote.Notification;
-
+        const { ipcMain } = requireNodeJSmodule("electron");
        /*
        let myNotification = new window.Notification( "Hi", {
             body: "Authenticated"
