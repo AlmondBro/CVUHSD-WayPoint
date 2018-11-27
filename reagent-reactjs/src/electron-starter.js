@@ -16,11 +16,12 @@ const { nativeImage } = require("electron");
 /*Keep a global reference of the electron window object, if you don't, the window will
  be closed automatically when the JavaScript object is garbage collected. */
 let mainWindow = null;
+let backgroundWindow = null;
 let tray = null;
 
 process.env['APP_PATH'] = app.getAppPath();
 
-const createWindow = () => {
+const create_MainWindow = () => {
     // Create the browser window.
     //Show:false key-value pair is to delay loading until all resources have been loaded.
     var mainWindow = new BrowserWindow({
@@ -47,8 +48,8 @@ const createWindow = () => {
         slashes: true
     });
 
-    console.log(JSON.stringify(process.env)); //Log the environment variables
-    console.log("process.env.ELECTRON_START_URL:\t" + process.env.ELECTRON_START_URL);
+   // console.log(JSON.stringify(process.env)); //Log the environment variables
+   //  console.log("process.env.ELECTRON_START_URL:\t" + process.env.ELECTRON_START_URL);
     // and load the index.html of the app.
     //mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
     mainWindow.loadURL(startUrl);
@@ -88,12 +89,12 @@ const createWindow = () => {
     });
 
     //Override minimize and close window functions to tray
-    mainWindow.on("minimize",function(event){
+    mainWindow.on("minimize", (event) => {
         event.preventDefault();
         mainWindow.minimize();
     });
     
-    mainWindow.on("close", function (event) {
+    mainWindow.on("close", (event) => {
         if (tray) {
             if(!app.isQuitting) {
                 event.preventDefault();
@@ -108,7 +109,40 @@ const createWindow = () => {
         }
         return false;
     });
-} //end createWindow()
+} //end create_MainWindow()
+
+const create_BackgroundWindow = () => {
+    console.log("create_BackgroundWindow()");
+    backgroundWindow = new BrowserWindow({
+        title: "WayPoint", //Title of window when frame is enabled
+        width: 0, 
+        height: 0, 
+        frame: false, 
+        fullscreen: false, 
+        resizable: false, 
+        webPreferences: {
+            nodeIntegrationInWorker: true,
+        },
+        show: false
+    });
+
+    const startUrl = isDev ? (process.env.ELECTRON_START_URL || "http://localhost:3000") : url.format({
+        pathname: path.join(__dirname, "./../build/index.html"),
+        protocol: "file:",
+        slashes: true
+    });
+
+   // backgroundWindow.loadURL(startURL);
+    backgroundWindow.on("ready-to-show", () => { 
+        console.log("backgroundWindow ready to show!!");
+        if (typeof(Worker) !== "undefined") {
+            console.log("Web worker supported");
+        } else {
+            let monitorsWorker = new Worker("worker.js");
+            console.log("Sorry! No Web Worker support...");
+        }
+    });
+};
 
 const setTrayIcon = () => {
     const {Menu, Tray, app, nativeImage} = require("electron");
@@ -192,12 +226,13 @@ app.setAsDefaultProtocolClient("waypoint");
     Trying out using async/wait here -- may need to remove */
 
 app.on("ready", async () => {
-    await createWindow();
-    await electron.protocol.registerServiceWorkerSchemes(["file:"]);
+   await create_MainWindow();
+   await create_BackgroundWindow();
+    electron.protocol.registerServiceWorkerSchemes(["file:"]);
     ///* Register the file protocol as supported
-        electron.webFrame.registerURLSchemeAsPrivileged("file");
+   /*     electron.webFrame.registerURLSchemeAsPrivileged("file");
         electron.webFrame.registerURLSchemeAsSecure("file");
-        electron.webFrame.registerURLSchemeAsBypassingCSP("file");
+        electron.webFrame.registerURLSchemeAsBypassingCSP("file"); */
     // */
    await setTrayIcon();
 });
@@ -216,7 +251,8 @@ app.on("activate", () => {
     /* On OS X it's common to re-create a window in the app when the
         dock icon is clicked and there are no other windows open. */
     if (mainWindow === null) {
-        createWindow();
+        create_MainWindow();
+        create_BackgroundWindow();
     }
 });
 
