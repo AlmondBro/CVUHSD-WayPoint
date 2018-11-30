@@ -9,13 +9,16 @@
     <body>
         <p>Hi</p>
         <script>
-          console.log("Background process");
+        let installWebWorker = () => {
+            console.log("installWebWorker()");
             if (typeof(Worker) !== "undefined") {
                 console.log("Web worker supported");
                 let monitorsWorker = new Worker("fetchMonitors.js",  { type: "module" });
             } else {
                 console.log("Sorry! No Web Worker support...");
-            }
+            }   
+        }; //end installWebWorker()
+     
         </script>
         <!-- <script src="fetchMonitors.js"></script> -->
     </body>
