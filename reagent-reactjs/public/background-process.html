@@ -13,12 +13,12 @@
             console.log("installWebWorker()");
             if (typeof(Worker) !== "undefined") {
                 console.log("Web worker supported");
-                let monitorsWorker = new Worker("fetchMonitors.js",  { type: "module" });
+                let monitorsWorker = new Worker("fetchMonitors.js");
             } else {
                 console.log("Sorry! No Web Worker support...");
             }   
         }; //end installWebWorker()
-     
+        installWebWorker();
         </script>
         <!-- <script src="fetchMonitors.js"></script> -->
     </body>
