@@ -52,7 +52,7 @@ class App extends Component {
     const url = requireNodeJSmodule("url");
 
     if (isDev) {
-      corsAnywhere();
+     // corsAnywhere();
     }
 
     console.log("createInvisibleWindow()");
@@ -65,12 +65,10 @@ class App extends Component {
         resizable: false, 
         webPreferences: {
           sandbox: false,
-            nodeIntegrationInWorker: true
-           
+          nodeIntegrationInWorker: true
         },
         show: true
     });
-
 
    // const imagePath = isDev ? path.resolve(`./${publicOrBuild}/img/${image}`) :  path.resolve(`./resources/app.asar/build/img/${image}`);
     //Might need to change production path to utilize path.resolve 
