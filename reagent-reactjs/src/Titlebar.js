@@ -1,14 +1,27 @@
 import React from "react";
+
+import { fetchMonitors } from "./fetchMonitors.js";
+
+//Import 3rd-party libraries 
+import lifecycle from "react-pure-lifecycle";
 import { requireNodeJSmodule} from "./utilityFunctions.js";
 
 //Import NodeJS modules to be used
 const path = requireNodeJSmodule("path");
 const childProcess = requireNodeJSmodule("child_process");
 
-const { dialog, nativeImage, app, BrowserWindow } = requireNodeJSmodule("electron");
+const { nativeImage, app, BrowserWindow } = requireNodeJSmodule("electron");
 
 const isDev = requireNodeJSmodule("electron-is-dev");
 const url = requireNodeJSmodule("url");
+
+const componentDidMount = (props) => {
+   // fetchMonitors();
+};
+
+const methods = {
+    componentDidMount
+};
 
 const Titlebar = (props) => {
     const createWindow = () => {
@@ -102,4 +115,4 @@ const Titlebar = (props) => {
     ); //end return
 }; //end titlebar()
 
-export default Titlebar;
+export default lifecycle(methods)(Titlebar);

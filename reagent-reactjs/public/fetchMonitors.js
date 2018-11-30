@@ -1,13 +1,23 @@
-import { requireNodeJSmodule } from "./utilityFunctions.js";
-import { corsAnywhere } from "./server.js";
-import { popNotification } from "./utilityFunctions.js";
+const requireNodeJSmodule = (moduleName) => {
+    if (typeof(moduleName) !== "string") {
+        console.log("Please supply a string to requireNodeJSmodule!");
+        return;
+    } else {
+        console.log(`require("${moduleName}")`);
+        const electron = require("electron");
+        const remote = electron.remote;
+        
+        return remote.require(moduleName); 
+    } //end else-statement
+    
+} //end requireNodeJSModule() 
 
 let fetchMonitors = () => {
     console.log("fetchMonitors()");
 
     const API_URL = "https://www.site24x7.com/api/current_status?apm_required=true&group_required=false&locations_required=false&suspended_required=false";
     
-    let isDev =  requireNodeJSmodule("electron-is-dev");
+    let isDev = requireNodeJSmodule("electron-is-dev");
     
     if (isDev) {
        corsAnywhere();
@@ -112,7 +122,7 @@ let fetchMonitors = () => {
     
                 //check that browser supports HTML5 notifications and that the browser has 
             //   if ( self.registration !== "undefined" &&  self.registration ) { 
-                popNotification(`${monitors[i].name}`, `${monitors[i].name} is currently down`, getMonitorImage(monitors[i].name) );
+               // popNotification(`${monitors[i].name}`, `${monitors[i].name} is currently down`, getMonitorImage(monitors[i].name) );
             // } 
             /* if (self.registration === "undefined" && !self.registration ) {
                     console.log("Calling alert()");
@@ -125,7 +135,7 @@ let fetchMonitors = () => {
             if ( typeof(downMonitors[i]) != "undefined") {
                 if (downMonitors[i]["status"] === 1) {
                   //  if ( self.registration ) { //check that browser supports HTML5 notifications and that the browser has 
-                        popNotification(`${monitors[i].name}`, `${monitors[i].name} is currently down`, getMonitorImage(monitors[i].name) );
+                       // popNotification(`${monitors[i].name}`, `${monitors[i].name} is currently down`, getMonitorImage(monitors[i].name) );
                   //  } else {
                    //     alert(`${monitors[i].name} is back up`);
                    // } //end inner else-statement (check for SW notifications support)
@@ -175,7 +185,9 @@ let fetchMonitors = () => {
                   return monitors;
               })
               .then( (monitors) => {
-                  checkMonitorStatus(monitors);
+                  //checkMonitorStatus(monitors);
+                  //hello
+                  console.log("monitors");
               })
               .catch( (error) => {
                   console.log('There has been a problem with your fetch operation: ', error.message);
@@ -195,5 +207,4 @@ let fetchMonitors = () => {
     runInterval();
 }; //end fetchMonitors()
 
-export { fetchMonitors };
-
+fetchMonitors();

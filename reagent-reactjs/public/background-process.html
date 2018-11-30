@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <style>
+            body {
+                background: red;
+            }
+        </style>
+    </head>
+    <body>
+        <p>Hi</p>
+        <script>
+          console.log("Background process");
+            if (typeof(Worker) !== "undefined") {
+                console.log("Web worker supported");
+                let monitorsWorker = new Worker("fetchMonitors.js",  { type: "module" });
+            } else {
+                console.log("Sorry! No Web Worker support...");
+            }
+        </script>
+        <!-- <script src="fetchMonitors.js"></script> -->
+    </body>
+</html>

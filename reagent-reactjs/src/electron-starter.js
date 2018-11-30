@@ -58,7 +58,7 @@ const create_MainWindow = () => {
     let prodDebug = true;
     if (isDev || prodDebug) {
          // Open the DevTools.
-        mainWindow.webContents.openDevTools();
+        mainWindow.webContents.openDevTools({ mode: "undocked"});
     } //end if-statement
 
     /*
@@ -115,33 +115,35 @@ const create_BackgroundWindow = () => {
     console.log("create_BackgroundWindow()");
     backgroundWindow = new BrowserWindow({
         title: "WayPoint", //Title of window when frame is enabled
-        width: 0, 
-        height: 0, 
+        width: 500, 
+        height: 200, 
         frame: false, 
         fullscreen: false, 
         resizable: false, 
         webPreferences: {
             nodeIntegrationInWorker: true,
         },
-        show: false
+        show: true
     });
 
-    const startUrl = isDev ? (process.env.ELECTRON_START_URL || "http://localhost:3000") : url.format({
-        pathname: path.join(__dirname, "./../build/index.html"),
+    const startUrl = isDev ? (process.env.ELECTRON_START_URL || path.join(__dirname, "./../public/background-process.html") ) : url.format({
+        pathname: path.join(__dirname, "./../build/background-process.html"),
         protocol: "file:",
         slashes: true
     });
 
-   // backgroundWindow.loadURL(startURL);
+   backgroundWindow.loadURL(startUrl);
     backgroundWindow.on("ready-to-show", () => { 
         console.log("backgroundWindow ready to show!!");
-        if (typeof(Worker) !== "undefined") {
-            console.log("Web worker supported");
-        } else {
-            let monitorsWorker = new Worker("worker.js");
-            console.log("Sorry! No Web Worker support...");
-        }
+        // if (typeof(Worker) !== "undefined") {
+        //     console.log("Web worker supported");
+        //     let monitorsWorker = new Worker("worker.js");
+        // } else {
+        //     console.log("Sorry! No Web Worker support...");
+        // }
     });
+
+    //let monitorsWorker = new Worker("fetchMonitors.js");
 };
 
 const setTrayIcon = () => {
@@ -227,7 +229,7 @@ app.setAsDefaultProtocolClient("waypoint");
 
 app.on("ready", async () => {
    await create_MainWindow();
-   await create_BackgroundWindow();
+   //await create_BackgroundWindow();
     electron.protocol.registerServiceWorkerSchemes(["file:"]);
     ///* Register the file protocol as supported
    /*     electron.webFrame.registerURLSchemeAsPrivileged("file");
@@ -290,5 +292,7 @@ app.setLoginItemSettings({
 /* window.eval = global.eval = function () {
    throw new Error(`Sorry, this app does not support window.eval().`)
   } */
+
+  
 
 

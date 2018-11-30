@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import {Route, BrowserRouter, Switch, HashRouter} from "react-router-dom";
+import { Route, BrowserRouter, Switch, HashRouter } from "react-router-dom";
+import { requireNodeJSmodule } from "./utilityFunctions.js";
 
 // Import General Page Components
 import Home from "./Home.js";
@@ -17,6 +18,10 @@ import AutoFixTools from "./AutoFixTools.js";
 import StaffPortal from "./StaffPortal.js";
 import Announcements from "./Announcements.js";
 import QuickFixChromeOS from "./quickFix-Components/ChromeOS/quickFix-ChromeOS.js";
+
+import { corsAnywhere } from "./server.js";
+
+const { BrowserWindow, ipcRenderer } = requireNodeJSmodule("electron");
 
 class App extends Component {
   constructor(props) {
@@ -39,9 +44,63 @@ class App extends Component {
     } else {
       this.setState( {renderFooter: false } );
     }
-   
-   
   }; //end renderFooterFunction()
+
+  createInvisibleWindow = () => {
+    const isDev = requireNodeJSmodule("electron-is-dev");
+    const path = requireNodeJSmodule("path");
+    const url = requireNodeJSmodule("url");
+
+    if (isDev) {
+      corsAnywhere();
+    }
+
+    console.log("createInvisibleWindow()");
+    let monitorFetchWindow = new BrowserWindow({
+        title: "WayPoint", //Title of window when frame is enabled
+        width: 500, 
+        height: 200, 
+        frame: false, 
+        fullscreen: false, 
+        resizable: false, 
+        webPreferences: {
+          sandbox: false,
+            nodeIntegrationInWorker: true
+           
+        },
+        show: true
+    });
+
+
+   // const imagePath = isDev ? path.resolve(`./${publicOrBuild}/img/${image}`) :  path.resolve(`./resources/app.asar/build/img/${image}`);
+    //Might need to change production path to utilize path.resolve 
+   const startUrl = isDev ? (process.env.ELECTRON_START_URL || path.resolve("./public/background-process.html") ) : url.format({
+        pathname: path.join(__dirname, "./../build/sections/threads/background-process.html"),
+        protocol: "file:",
+        slashes: true
+    });
+
+    monitorFetchWindow.loadURL(startUrl);
+
+    monitorFetchWindow.on("did-finish-load", () => { 
+      monitorFetchWindow.webContents.send("fetch-monitor")
+      ipcRenderer.on("monitor-fetched", (event, monitorData) => {
+        //Write code to update notifications according to monitor statuses
+        });
+    }); //end monitorFetchWindow.on()
+
+    //let monitorsWorker = new Worker("fetchMonitors.js");
+
+    let installWebWorker = () => {
+      if (typeof(Worker) !== "undefined") {
+        console.log("Web worker supported");
+        let monitorsWorker = new Worker("worker.js");
+      } else {
+        console.log("Sorry! No Web Worker support...");
+      }
+    }; //end installWebWorker();
+
+  }; //end createInvisibleWindow()
 
   runDevTools = () => {
     const isDev = window.require("electron").remote.require("electron-is-dev"); 
@@ -58,10 +117,11 @@ class App extends Component {
   componentDidMount = () => {
     this.runDevTools();
     this.setState( {renderFooter: true} );
+    this.createInvisibleWindow();
   }; //end componentDidMount()
 
   render = () => {
-    const isDev = window.require("electron").remote.require("electron-is-dev"); 
+    const isDev = requireNodeJSmodule("electron-is-dev"); 
     
     const appHTML = () => {
       return (
@@ -109,9 +169,7 @@ class App extends Component {
         </HashRouter>
       ); //end return statement
     } //end else-statement
-
   } //end render() process
-  
 } //end App class
 
 export default App;
