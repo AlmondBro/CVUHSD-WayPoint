@@ -12,16 +12,34 @@ const requireNodeJSmodule = (moduleName) => {
     
 } //end requireNodeJSModule() 
 
+let popNotification = (notificationTitle, notificationMessage, iconPath, soundOn, noWait) => {
+    //Use notifier NPM module since the native Electron Notifications is not working
+    const notifier = require("node-notifier");
+    const path = require("path");
+
+    let notifierOptions = {
+        title: notificationTitle || "Title",
+        message: notificationMessage || "Message",
+        icon: iconPath || path.join(__dirname, "./../public/img/wp-icon-grey.ico"), // Absolute path (doesn't work on balloons)
+        sound: soundOn || true, // Only Notification Center or Windows Toasters
+        wait: noWait || false // Wait with callback, until user action is taken against notification
+    }
+
+    let callback = (error, response) => {
+        // Response is response from notification
+        console.log("Notifier response:\t" + response );
+        console.log("Notifier errors:\t" + error );
+    };
+
+    return notifier.notify(notifierOptions, callback);
+} //notification()
+
 let fetchMonitors = () => {
     console.log("fetchMonitors()");
 
     const API_URL = "https://www.site24x7.com/api/current_status?apm_required=true&group_required=false&locations_required=false&suspended_required=false";
     
-    let isDev = requireNodeJSmodule("electron-is-dev");
-    
-    if (isDev) {
-       corsAnywhere();
-    }
+    let isDev = require("electron-is-dev");
     
     //Function used from:
     let intervalWithWait = (func, wait, times) => {
@@ -122,7 +140,7 @@ let fetchMonitors = () => {
     
                 //check that browser supports HTML5 notifications and that the browser has 
             //   if ( self.registration !== "undefined" &&  self.registration ) { 
-               // popNotification(`${monitors[i].name}`, `${monitors[i].name} is currently down`, getMonitorImage(monitors[i].name) );
+               popNotification(`${monitors[i].name}`, `${monitors[i].name} is currently down`, getMonitorImage(monitors[i].name) );
             // } 
             /* if (self.registration === "undefined" && !self.registration ) {
                     console.log("Calling alert()");
@@ -153,6 +171,8 @@ let fetchMonitors = () => {
     let monitors = [];
    
     let fetchJSON = () => {
+        //Even in development, for some reason here, the proxy url is not needed.
+        let isDev = false;
         let port = 4000;
         const proxy_URL = `http://localhost:${port}/`;
         // "https://cors-anywhere.herokuapp.com/";
@@ -185,9 +205,9 @@ let fetchMonitors = () => {
                   return monitors;
               })
               .then( (monitors) => {
-                  //checkMonitorStatus(monitors);
+                  checkMonitorStatus(monitors);
                   //hello
-                  console.log("monitors");
+                  console.log("monitors (return promise)");
               })
               .catch( (error) => {
                   console.log('There has been a problem with your fetch operation: ', error.message);

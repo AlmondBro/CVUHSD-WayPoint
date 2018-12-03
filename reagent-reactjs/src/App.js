@@ -21,7 +21,7 @@ import QuickFixChromeOS from "./quickFix-Components/ChromeOS/quickFix-ChromeOS.j
 
 import { corsAnywhere } from "./server.js";
 
-const { BrowserWindow, ipcRenderer } = requireNodeJSmodule("electron");
+const { BrowserWindow, ipcRenderer, app } = requireNodeJSmodule("electron");
 
 class App extends Component {
   constructor(props) {
@@ -30,6 +30,7 @@ class App extends Component {
       pageTitle: "Home",
       renderFooter: false
     };
+    console.log(`"App path:\t ${app.getAppPath()}"`);
     //this.updatePageTitle= this.updatePageTitle.bind(this);
   } //end constructor()
 
@@ -45,14 +46,14 @@ class App extends Component {
       this.setState( {renderFooter: false } );
     }
   }; //end renderFooterFunction()
-
+  
   createInvisibleWindow = () => {
     const isDev = requireNodeJSmodule("electron-is-dev");
     const path = requireNodeJSmodule("path");
     const url = requireNodeJSmodule("url");
 
     if (isDev) {
-     // corsAnywhere();
+      corsAnywhere();
     }
 
     console.log("createInvisibleWindow()");
@@ -67,13 +68,13 @@ class App extends Component {
           sandbox: false,
           nodeIntegrationInWorker: true
         },
-        show: true
+        show: false
     });
 
    // const imagePath = isDev ? path.resolve(`./${publicOrBuild}/img/${image}`) :  path.resolve(`./resources/app.asar/build/img/${image}`);
-    //Might need to change production path to utilize path.resolve 
+    // Production paths are relative to the WayPoint.exe executable. 
    const startUrl = isDev ? (process.env.ELECTRON_START_URL || path.resolve("./public/background-process.html") ) : url.format({
-        pathname: path.join(__dirname, "./../build/sections/threads/background-process.html"),
+        pathname: path.resolve("./resources/app.asar/build/background-process.html"),
         protocol: "file:",
         slashes: true
     });
@@ -98,6 +99,12 @@ class App extends Component {
       }
     }; //end installWebWorker();
 
+    let prodDebug = true;
+    if (isDev || prodDebug) {
+         // Open the DevTools.
+         monitorFetchWindow.webContents.openDevTools({ mode: "undocked"});
+    } //end if-statement
+    
   }; //end createInvisibleWindow()
 
   runDevTools = () => {

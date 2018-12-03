@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { corsAnywhere } from "./server.js"; 
-
 class Annoucements extends Component {
     constructor(props) {
         super(props);
@@ -16,7 +14,6 @@ class Annoucements extends Component {
     componentDidMount = () => {
         this.props.updateTitle(this.pageTitle);
         this.props.renderFooter(false);
-        corsAnywhere();
         this.FetchAPI();
         //this.openAuth();
     }; //end componentDidMount()
