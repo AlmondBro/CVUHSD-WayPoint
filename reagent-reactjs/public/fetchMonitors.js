@@ -1,3 +1,6 @@
+let isDev = require("electron-is-dev");
+let { ipcRenderer } = require("electron");
+
 const requireNodeJSmodule = (moduleName) => {
     if (typeof(moduleName) !== "string") {
         console.log("Please supply a string to requireNodeJSmodule!");
@@ -38,8 +41,6 @@ let fetchMonitors = () => {
     console.log("fetchMonitors()");
 
     const API_URL = "https://www.site24x7.com/api/current_status?apm_required=true&group_required=false&locations_required=false&suspended_required=false";
-    
-    let isDev = require("electron-is-dev");
     
     //Function used from:
     let intervalWithWait = (func, wait, times) => {
@@ -141,7 +142,9 @@ let fetchMonitors = () => {
                 //check that browser supports HTML5 notifications and that the browser has 
             //   if ( self.registration !== "undefined" &&  self.registration ) { 
                popNotification(`${monitors[i].name}`, `${monitors[i].name} is currently down`, getMonitorImage(monitors[i].name) );
-            // } 
+                ipcRenderer.send("toMainProcess", `${monitors[i].name}`);
+                
+               // } 
             /* if (self.registration === "undefined" && !self.registration ) {
                     console.log("Calling alert()");
                     console.log("Type of self.registration:\t" + typeof(self.registration) + "\t" + self.registration );

@@ -98,10 +98,10 @@ const utilityFunctions = () => {
             return;
         } else {
             console.log(`require("${moduleName}")`);
-            const electron = window.require("electron");
+            const electron = require("electron") || window.require("electron");
             const remote = electron.remote;
             
-            return remote.require(moduleName); 
+            return (require(moduleName) || remote.require(moduleName)); 
         } //end else-statement
         
     } //end requireNodeJSModule() 

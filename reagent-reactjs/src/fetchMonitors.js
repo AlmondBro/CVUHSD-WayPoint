@@ -113,7 +113,14 @@ let fetchMonitors = () => {
                 //check that browser supports HTML5 notifications and that the browser has 
             //   if ( self.registration !== "undefined" &&  self.registration ) { 
                 popNotification(`${monitors[i].name}`, `${monitors[i].name} is currently down`, getMonitorImage(monitors[i].name) );
-            // } 
+                
+                let downMonitor = `${monitors[i].name}`;
+
+                const { ipcRenderer } = require("electron");
+                ipcRenderer.send('toMainProcess', downMonitor);
+
+
+                // } 
             /* if (self.registration === "undefined" && !self.registration ) {
                     console.log("Calling alert()");
                     console.log("Type of self.registration:\t" + typeof(self.registration) + "\t" + self.registration );

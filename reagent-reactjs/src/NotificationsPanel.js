@@ -40,94 +40,23 @@ class NotificationsPanel extends Component {
             body: "Authenticated"
             });
         */
-    }
+    }; //end componentDidMount()
 
     addNotification = (urgent, notificationText, faIconClassName) => {
         console.log("Testing Notifications");
         /* 
-            Other way to add to array in state, using ES6 spread operator:
-            this.setState(previousState => ({
-            myArray: [...previousState.myArray, 'new value']
-            }));
+        Other way to add to array in state, using ES6 spread operator:
+        this.setState(previousState => ({
+        myArray: [...previousState.myArray, 'new value']
+        }));
 
-               // Append an array
+        // Append an array
         const newArr = [1,2,3,4]
         this.setState({ arr: [...this.state.arr, ...newArr] });
 
         // Append a single item
         this.setState({ arr: [...this.state.arr, 'new item'] });
         */
-      
-       /*
-        var electron = window.require("electron");
-       var remote  = electron.remote;
-       var vex = remote.require("vex-js");
-       vex.registerPlugin(remote.require("vex-dialog"));
-       vex.defaultOptions.className = "vex-theme-os"; //*/
-        
-       document.vexJS.dialog.open({
-        message: 'Enter your username and password:',
-        input: [
-            '<input name="username" type="text" placeholder="Username" required />',
-            '<input name="password" type="password" placeholder="Password" required />'
-        ].join(''),
-
-        callback: (data) => {
-            if (!data) {
-                console.log('Cancelled')
-            } else {
-                console.log('Username', data.username, 'Password', data.password)
-                var electron = window.require("electron");
-                var remote  = electron.remote;
-
-                var ActiveDirectory = remote.require('activedirectory');
-                var config = {  url: 'ldap://centinela.k12.ca.us',
-                                baseDN: "dc=centinela.k12.ca,dc=us",
-                                username: data.username + "@centinela.k12.ca.us",
-                                password: data.password }
-
-                var ad = new ActiveDirectory(config);
-
-                ad.authenticate(data.username + "@centinela.k12.ca.us", data.password, (err, auth) => {
-                    if (err) {
-                      console.log("Authentication ERROR: " +JSON.stringify(err));
-                      return;
-                    }
-                    
-                    if (auth) {
-                      console.log('Authenticated!');
-
-                      popNotification("Authenticated!", "Correct username and password");
-                      
-                      let myNotification = new window.Notification('Authenticated', {
-                        body: 'Authenticated'
-                        });
-
-                        myNotification.addEventListener("click", () => {
-                            console.log('Notification clicked')
-                          }); 
-
-                        //myNotification();
-                    }
-                    else {
-                      console.log('Authentication failed!');
-                    }
-                  });
-
-                  var groupName = 'CV_IT';
-                  ad.isUserMemberOf(data.username + "@centinela.k12.ca.us", groupName, function(err, isMember) {
-                    if (err) {
-                      console.log('isUserMemberOf ERROR: ' +JSON.stringify(err));
-                      return;
-                    }
-                   
-                    console.log(data.username + ' isMemberOf ' + groupName + ': ' + isMember);
-                  });
-
-            }
-        }
-    });
-       
     this.setState({
         notifications: this.state.notifications.concat({
             urgent: urgent,
@@ -135,23 +64,8 @@ class NotificationsPanel extends Component {
             faIconClassName: faIconClassName
         }),
         noNotifications: false
-    }); // */
-
-        /* // Dialog Electron module
-        const {dialog} = window.require("electron").remote;
-
-        const dialogOptions = {
-            type: "question", 
-            buttons: ["Enter", "Cancel"], 
-            message: "Please login to your AD account."
-        };
-
-        dialog.showMessageBox(dialogOptions, (response) => {
-
-        });
-        */
-
-    }; //end clearNotifications()
+    }); //end this.setState()
+}; //end clearNotifications()
 
     clearNotifications = () => {
         this.setState({

@@ -7,6 +7,8 @@ const { app } = electron; //ES6 Destructuring -- Same as const app = electron.ap
 // Module to create native browser window.
 const { BrowserWindow } = electron; //ES6 Destructuring -- Same as const BrowserWindow = electron.BrowserWindow
 
+const { ipcMain } = electron;
+
 const path = require("path");
 const url = require("url");
 const isDev = require("electron-is-dev"); 
@@ -79,6 +81,18 @@ const create_MainWindow = () => {
             in an array if your app supports multi windows, this is the time
             when you should delete the corresponding element. */
         mainWindow = null;
+    });
+
+    let receiveIPC = () => {
+        console.log("receiveIPC() main process");
+        ipcMain.on("toMainProcess", (event, monitor) => {
+            console.log("send message from main process");
+            event.sender.send("monitorDown", monitor);
+        });
+    };
+
+    mainWindow.webContents.on("did-finish-load", () => {
+        receiveIPC();
     });
 
     //Always show the tray icon when the mainWindow is hidden

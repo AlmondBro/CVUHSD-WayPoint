@@ -119,12 +119,23 @@ class App extends Component {
     }
   }; //end runDevTools()
 
+  ipcEvents = () => {
+    const { ipcRenderer } = window.require('electron');
+
+    ipcRenderer.on('monitorDown', (event, monitor) => {
+      window.alert("notification received" + monitor) ;// prints "pong"
+    });
+  
+  }; //end ipcEvents() 
+
   componentDidMount = () => {
     this.runDevTools();
     this.setState( {renderFooter: true} );
     this.createInvisibleWindow();
+    this.ipcEvents();
   }; //end componentDidMount()
 
+ 
   render = () => {
     const isDev = requireNodeJSmodule("electron-is-dev"); 
     
