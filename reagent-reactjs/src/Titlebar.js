@@ -35,8 +35,8 @@ const Titlebar = (props) => {
         //Show:false key-value pair is to delay loading until all resources have been loaded.
         var feedbackWindow = new BrowserWindow({
             title: "WayPoint", //Title of window whe frame is enabled
-            width: 376, 
-            height: 700, 
+            width: 360, 
+            height: 525, 
             frame: false, 
             fullscreen: false, 
             resizable: false, 
@@ -52,8 +52,8 @@ const Titlebar = (props) => {
         // ../public/img/wp-icon-grey.ico
         // ./gallery-icon.png
         //Productions paths are with "#/[component-path]"
-        const startUrl = isDev ? (process.env.ELECTRON_START_URL || "http://localhost:3000/feedback") : url.format({
-            pathname: path.resolve(`./resources/app.asar/build/index.html/#feedback`),
+        const startUrl = isDev ? (process.env.ELECTRON_START_URL || "http://localhost:3000/feedback.html") : url.format({
+            pathname: path.resolve(`./resources/app.asar/build/feedback.html`),
             protocol: "file:",
             slashes: true
         });

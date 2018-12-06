@@ -164,7 +164,7 @@ const create_BackgroundWindow = () => {
 };
 
 const setTrayIcon = () => {
-    const {Menu, Tray, app, nativeImage} = require("electron");
+    const { Menu, Tray, app, nativeImage } = require("electron");
 
     //let tray = null;
     //or use extraresources field in electron-builder package.json to bundle the icon
@@ -174,12 +174,12 @@ const setTrayIcon = () => {
 
     const contextMenu = Menu.buildFromTemplate([
         {   label: "Show WayPoint", 
-            click:  function() {
+            click:  () => {
                 mainWindow.show();
             } //end click()
         },
         { label: "Quit", 
-          click:  function() {
+          click:  () => {
                 app.isQuitting = true;
                  /* On OS X it is common for applications and their menu bar
                     to stay active until the user quits explicitly with Cmd + Q */
@@ -191,8 +191,8 @@ const setTrayIcon = () => {
                 mainWindow = null;
 
                 if ( !tray.isDestroyed() ) {
-                    tray.destroy();
-                    tray = null;
+                   // tray.destroy();
+                   // tray = null;
                 }
                 
                 app.quit();
@@ -312,7 +312,9 @@ app.setLoginItemSettings({
 /* window.eval = global.eval = function () {
    throw new Error(`Sorry, this app does not support window.eval().`)
   } */
-
+if (Error) {
+    console.log(Error.toString());
+}
   
 
 

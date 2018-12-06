@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>CV Waypoint</title>
+        <link rel="stylesheet" type="text/css" href="css/feedback-style.css">
+    </head>
+
+    <body>
+        <div id="container">
+            <div id="fb-titlebar">
+                <div id="title">
+                    <div id="fb-wp-icon-container">
+                        <img id="fb-wp-icon" src="img/wp-logo.svg" title="Waypoint Version 0.1">
+                    </div>
+                </div>
+                <div id="button-close" title="Close Window">
+                    <img src="img/icon-close.png">
+                </div>
+                <div id="button-minimize" title="Minimize Window">
+                    <img src="img/icon-minimize.png">
+                </div>
+            </div>
+            <section class="fb-page-content">
+                <div id="fb-form-container">
+                    <h2 id="fb-title">Provide Feedback</h2>
+
+                    <form action="action_page.php">
+                            <div class="row">
+                              <div class="col-25">
+                                <label for="name">Category:</label>
+                              </div>
+                              <div class="col-75">
+                                <input type="text" id="name" name="name" placeholder="">
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-25">
+                                <label for="system">Subject:</label>
+                              </div>
+                              <div class="col-75">
+                                <input type="text" id="system" name="operatingsystem" placeholder="">
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-25">
+                                <label for="subject">Description:</label>
+                              </div>
+                              <div class="col-75">
+                                <textarea id="subject" name="subject" placeholder="" style="height:180px"></textarea>
+                              </div>
+                            </div>
+                            <div class="row" id="fb-form-submit">
+                                <!-- <button id="fb-submit"> -->
+                                <input id="submit" type="submit" value="Submit">
+                                <!-- </button> -->
+                            </div>
+                          </form>
+
+                    <div id="fb-cv-way">Powered by: The CV-Way</div>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>
