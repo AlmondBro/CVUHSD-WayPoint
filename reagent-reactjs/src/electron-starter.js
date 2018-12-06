@@ -76,12 +76,14 @@ const create_MainWindow = () => {
     });  
 
     // Emitted when the window is closed.
+   
     mainWindow.on("closed", () => {
-        /* Dereference the window object, usually you would store windows
-            in an array if your app supports multi windows, this is the time
-            when you should delete the corresponding element. */
-        mainWindow = null;
-    });
+        // Dereference the window object, usually you would store windows
+          //  in an array if your app supports multi windows, this is the time
+         //   when you should delete the corresponding element. 
+       // mainWindow = null;
+       console.log("Main window closed");
+    }); 
 
     let receiveIPC = () => {
         console.log("receiveIPC() main process");
@@ -109,6 +111,7 @@ const create_MainWindow = () => {
     });
     
     mainWindow.on("close", (event) => {
+        event.preventDefault();
         if (tray) {
             if(!app.isQuitting) {
                 event.preventDefault();
@@ -118,7 +121,7 @@ const create_MainWindow = () => {
         else {
            app.isQuitting = true;
            tray = null;
-           mainWindow = null;
+          // mainWindow = null;
            app.quit();
         }
         return false;
@@ -183,11 +186,14 @@ const setTrayIcon = () => {
                /* if (process.platform !== "darwin") {
                     app.quit();
                 } */
+             
+              //  mainWindow.destroy();
+                mainWindow = null;
+
                 if ( !tray.isDestroyed() ) {
                     tray.destroy();
+                    tray = null;
                 }
-                tray = null;
-                mainWindow = null;
                 
                 app.quit();
             } //end click()

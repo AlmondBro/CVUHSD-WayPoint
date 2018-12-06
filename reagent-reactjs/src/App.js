@@ -40,7 +40,7 @@ class App extends Component {
 
   renderFooterFunction = (renderFooterBool) => {
     //Do not render footer on default
-    if (arguments && (renderFooterBool !== "undefined") ) {
+    if ((renderFooterBool !== "undefined") ) {
       this.setState( {renderFooter: renderFooterBool } );
     } else {
       this.setState( {renderFooter: false } );
@@ -88,6 +88,8 @@ class App extends Component {
         });
     }); //end monitorFetchWindow.on()
 
+    monitorFetchWindow.setFocusable(true);
+
     //let monitorsWorker = new Worker("fetchMonitors.js");
 
     let installWebWorker = () => {
@@ -105,6 +107,10 @@ class App extends Component {
          monitorFetchWindow.webContents.openDevTools({ mode: "undocked"});
     } //end if-statement
     
+    monitorFetchWindow.on("close", (event) => {
+      monitorFetchWindow.close();
+    });  //end monitorFetchWindow.on()
+
   }; //end createInvisibleWindow()
 
   runDevTools = () => {
@@ -131,7 +137,7 @@ class App extends Component {
   componentDidMount = () => {
     this.runDevTools();
     this.setState( {renderFooter: true} );
-    this.createInvisibleWindow();
+    // this.createInvisibleWindow();
     this.ipcEvents();
   }; //end componentDidMount()
 

@@ -1,4 +1,3 @@
-import { requireNodeJSmodule } from "./utilityFunctions.js";
 import { corsAnywhere } from "./server.js";
 import { popNotification } from "./utilityFunctions.js";
 
@@ -7,7 +6,7 @@ let fetchMonitors = () => {
 
     const API_URL = "https://www.site24x7.com/api/current_status?apm_required=true&group_required=false&locations_required=false&suspended_required=false";
     
-    let isDev =  requireNodeJSmodule("electron-is-dev");
+    let isDev =  require("electron-is-dev");
     
     if (isDev) {
        corsAnywhere();

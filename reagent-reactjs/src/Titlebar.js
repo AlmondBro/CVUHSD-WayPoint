@@ -1,30 +1,35 @@
 import React from "react";
 
-import { fetchMonitors } from "./fetchMonitors.js";
-
 //Import 3rd-party libraries 
-import lifecycle from "react-pure-lifecycle";
 import { requireNodeJSmodule} from "./utilityFunctions.js";
 
 //Import NodeJS modules to be used
-const path = requireNodeJSmodule("path");
-const childProcess = requireNodeJSmodule("child_process");
+const path = window.require("path");
 
 const { nativeImage, app, BrowserWindow } = requireNodeJSmodule("electron");
 
-const isDev = requireNodeJSmodule("electron-is-dev");
-const url = requireNodeJSmodule("url");
-
-const componentDidMount = (props) => {
-   // fetchMonitors();
-};
-
-const methods = {
-    componentDidMount
-};
+const isDev = window.require("electron-is-dev");
+const url =window.require("url");
 
 const Titlebar = (props) => {
-    const createWindow = () => {
+    let minimizeWindow = () => {
+        console.log("Button minimize");
+        const electron = window.require("electron");
+        const remote = electron.remote;
+
+        const currentWindow = remote.getCurrentWindow();
+        currentWindow.minimize(); 
+    }; //end minimizeAndClose()
+
+    let closeWindow = () => {
+        const electron = window.require("electron");
+        const remote = electron.remote;
+        const currentWindow = remote.getCurrentWindow();
+
+        currentWindow.close();
+    };
+
+    let createWindow = () => {
         console.log("createWindow()");
         // Create the browser window.
         //Show:false key-value pair is to delay loading until all resources have been loaded.
@@ -74,7 +79,7 @@ const Titlebar = (props) => {
         });  
     
         // Emitted when the window is closed.
-        feedbackWindow.on("closed", () => {
+        feedbackWindow.on("close", () => {
             /* Dereference the window object, usually you would store windows
                 in an array if your app supports multi windows, this is the time
                 when you should delete the corresponding element. */
@@ -92,16 +97,24 @@ const Titlebar = (props) => {
     return ( 
         <div id="titlebar" className="noHighlight noDrag">
             <div className="titleBarButtons-container">
-                <div className="titleBar-button" id="button-feedback" title="Provide Feedback" onClick={this.createWindow}>
+                <div className="titleBar-button" id="button-feedback" title="Provide Feedback">
                     <img src="img/icon-feedback.png" onClick={createWindow} alt="feedback" />
                 </div>
 
                 <div className="titleBar-button noDrag" id="button-minimize" title="Minimize Window">
-                    <img src="img/icon-minimize.png" className="noDrag" alt="minimize" />
+                    <img 
+                        src="img/icon-minimize.png" 
+                        className="noDrag" 
+                        alt="minimize" 
+                        onClick={ minimizeWindow }/>
                 </div>
 
                 <div className="titleBar-button noDrag" id="button-close" title="Close Window">
-                    <img src="img/icon-close.png" className="noDrag" alt="close" />
+                    <img 
+                        src="img/icon-close.png" 
+                        className="noDrag" 
+                        alt="close" 
+                        onClick={ closeWindow } />
                 </div>
             </div>
 
@@ -115,4 +128,4 @@ const Titlebar = (props) => {
     ); //end return
 }; //end titlebar()
 
-export default lifecycle(methods)(Titlebar);
+export default Titlebar;
