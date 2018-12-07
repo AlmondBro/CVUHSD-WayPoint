@@ -1,5 +1,4 @@
 const electron = require("electron");
-const { remote } = electron; //ES6 Destructuring -- Same as  const remote = electron.remote
 
 // Module to control application life.
 const { app } = electron; //ES6 Destructuring -- Same as const app = electron.app
@@ -23,7 +22,7 @@ process.env['APP_PATH'] = app.getAppPath();
 const createWindow = () => {
     // Create the browser window.
     //Show:false key-value pair is to delay loading until all resources have been loaded.
-    var mainWindow = new BrowserWindow({
+    mainWindow = new BrowserWindow({
         title: "WayPoint", //Title of window whe frame is enabled
         width: 376, 
         height: 700, 
@@ -194,12 +193,7 @@ app.setAsDefaultProtocolClient("waypoint");
 
 app.on("ready", async () => {
     await createWindow();
-    await electron.protocol.registerServiceWorkerSchemes(["file:"]);
-    ///* Register the file protocol as supported
-        electron.webFrame.registerURLSchemeAsPrivileged("file");
-        electron.webFrame.registerURLSchemeAsSecure("file");
-        electron.webFrame.registerURLSchemeAsBypassingCSP("file");
-    // */
+
    await setTrayIcon();
 });
 
