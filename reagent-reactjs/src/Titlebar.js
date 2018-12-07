@@ -87,7 +87,7 @@ const Titlebar = (props) => {
         });
 
         //Override minimize and close window functions to tray
-        feedbackWindow.on("minimize",function(event){
+        feedbackWindow.on("minimize", (event) => {
             event.preventDefault();
             feedbackWindow.minimize();
         });

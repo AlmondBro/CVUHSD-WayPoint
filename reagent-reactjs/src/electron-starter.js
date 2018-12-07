@@ -26,7 +26,7 @@ process.env['APP_PATH'] = app.getAppPath();
 const create_MainWindow = () => {
     // Create the browser window.
     //Show:false key-value pair is to delay loading until all resources have been loaded.
-    var mainWindow = new BrowserWindow({
+    mainWindow = new BrowserWindow({
         title: "WayPoint", //Title of window whe frame is enabled
         width: 376, 
         height: 700, 
@@ -121,7 +121,7 @@ const create_MainWindow = () => {
         else {
            app.isQuitting = true;
            tray = null;
-          // mainWindow = null;
+           //mainWindow = null;
            app.quit();
         }
         return false;
@@ -164,7 +164,7 @@ const create_BackgroundWindow = () => {
 };
 
 const setTrayIcon = () => {
-    const { Menu, Tray, app, nativeImage } = require("electron");
+    const {Menu, Tray, app, nativeImage} = require("electron");
 
     //let tray = null;
     //or use extraresources field in electron-builder package.json to bundle the icon
@@ -174,26 +174,23 @@ const setTrayIcon = () => {
 
     const contextMenu = Menu.buildFromTemplate([
         {   label: "Show WayPoint", 
-            click:  () => {
+            click:  function() {
                 mainWindow.show();
             } //end click()
         },
         { label: "Quit", 
-          click:  () => {
+          click:  function() {
                 app.isQuitting = true;
                  /* On OS X it is common for applications and their menu bar
                     to stay active until the user quits explicitly with Cmd + Q */
                /* if (process.platform !== "darwin") {
                     app.quit();
                 } */
-             
-              //  mainWindow.destroy();
-                mainWindow = null;
-
                 if ( !tray.isDestroyed() ) {
-                   // tray.destroy();
-                   // tray = null;
+                    tray.destroy();
                 }
+                // tray = null;
+                mainWindow = null;
                 
                 app.quit();
             } //end click()
@@ -212,6 +209,7 @@ const setTrayIcon = () => {
 //Prevent user from launching two different instances of the app.
 const preventMoreThanOneInstance = () => {
     const shouldQuit = app.makeSingleInstance( (commandLine, workingDirectory) => {
+        console.log("Prevent more than one instance");
         // Someone tried to run a second instance, we should focus our window.
         if (mainWindow) {
           if ( mainWindow.isMinimized() ) { 
@@ -273,8 +271,9 @@ app.on("activate", () => {
     /* On OS X it's common to re-create a window in the app when the
         dock icon is clicked and there are no other windows open. */
     if (mainWindow === null) {
+        console.log("Activating...");
         create_MainWindow();
-        create_BackgroundWindow();
+        //create_BackgroundWindow();
     }
 });
 

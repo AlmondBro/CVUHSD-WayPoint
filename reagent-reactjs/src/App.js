@@ -114,7 +114,7 @@ class App extends Component {
   }; //end createInvisibleWindow()
 
   runDevTools = () => {
-    const isDev = window.require("electron").remote.require("electron-is-dev"); 
+    const isDev = window.require("electron-is-dev"); 
 
     if (isDev) {
       window.require("devtron").install(); // can only be installed through renderer process
