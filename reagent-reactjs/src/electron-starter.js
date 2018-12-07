@@ -1,13 +1,10 @@
 const electron = require("electron");
-const { remote } = electron; //ES6 Destructuring -- Same as  const remote = electron.remote
 
 // Module to control application life.
 const { app } = electron; //ES6 Destructuring -- Same as const app = electron.app
 
 // Module to create native browser window.
 const { BrowserWindow } = electron; //ES6 Destructuring -- Same as const BrowserWindow = electron.BrowserWindow
-
-const { ipcMain } = electron;
 
 const path = require("path");
 const url = require("url");
@@ -18,12 +15,11 @@ const { nativeImage } = require("electron");
 /*Keep a global reference of the electron window object, if you don't, the window will
  be closed automatically when the JavaScript object is garbage collected. */
 let mainWindow = null;
-let backgroundWindow = null;
 let tray = null;
 
 process.env['APP_PATH'] = app.getAppPath();
 
-const create_MainWindow = () => {
+const createWindow = () => {
     // Create the browser window.
     //Show:false key-value pair is to delay loading until all resources have been loaded.
     mainWindow = new BrowserWindow({
@@ -50,8 +46,8 @@ const create_MainWindow = () => {
         slashes: true
     });
 
-   // console.log(JSON.stringify(process.env)); //Log the environment variables
-   //  console.log("process.env.ELECTRON_START_URL:\t" + process.env.ELECTRON_START_URL);
+    console.log(JSON.stringify(process.env)); //Log the environment variables
+    console.log("process.env.ELECTRON_START_URL:\t" + process.env.ELECTRON_START_URL);
     // and load the index.html of the app.
     //mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
     mainWindow.loadURL(startUrl);
@@ -60,7 +56,7 @@ const create_MainWindow = () => {
     let prodDebug = true;
     if (isDev || prodDebug) {
          // Open the DevTools.
-        mainWindow.webContents.openDevTools({ mode: "undocked"});
+        mainWindow.webContents.openDevTools();
     } //end if-statement
 
     /*
@@ -76,25 +72,11 @@ const create_MainWindow = () => {
     });  
 
     // Emitted when the window is closed.
-   
     mainWindow.on("closed", () => {
-        // Dereference the window object, usually you would store windows
-          //  in an array if your app supports multi windows, this is the time
-         //   when you should delete the corresponding element. 
-       // mainWindow = null;
-       console.log("Main window closed");
-    }); 
-
-    let receiveIPC = () => {
-        console.log("receiveIPC() main process");
-        ipcMain.on("toMainProcess", (event, monitor) => {
-            console.log("send message from main process");
-            event.sender.send("monitorDown", monitor);
-        });
-    };
-
-    mainWindow.webContents.on("did-finish-load", () => {
-        receiveIPC();
+        /* Dereference the window object, usually you would store windows
+            in an array if your app supports multi windows, this is the time
+            when you should delete the corresponding element. */
+        mainWindow = null;
     });
 
     //Always show the tray icon when the mainWindow is hidden
@@ -105,13 +87,12 @@ const create_MainWindow = () => {
     });
 
     //Override minimize and close window functions to tray
-    mainWindow.on("minimize", (event) => {
+    mainWindow.on("minimize",function(event){
         event.preventDefault();
         mainWindow.minimize();
     });
     
-    mainWindow.on("close", (event) => {
-        event.preventDefault();
+    mainWindow.on("close", function (event) {
         if (tray) {
             if(!app.isQuitting) {
                 event.preventDefault();
@@ -121,47 +102,12 @@ const create_MainWindow = () => {
         else {
            app.isQuitting = true;
            tray = null;
-           //mainWindow = null;
+           mainWindow = null;
            app.quit();
         }
         return false;
     });
-} //end create_MainWindow()
-
-const create_BackgroundWindow = () => {
-    console.log("create_BackgroundWindow()");
-    backgroundWindow = new BrowserWindow({
-        title: "WayPoint", //Title of window when frame is enabled
-        width: 500, 
-        height: 200, 
-        frame: false, 
-        fullscreen: false, 
-        resizable: false, 
-        webPreferences: {
-            nodeIntegrationInWorker: true,
-        },
-        show: true
-    });
-
-    const startUrl = isDev ? (process.env.ELECTRON_START_URL || path.join(__dirname, "./../public/background-process.html") ) : url.format({
-        pathname: path.join(__dirname, "./../build/background-process.html"),
-        protocol: "file:",
-        slashes: true
-    });
-
-   backgroundWindow.loadURL(startUrl);
-    backgroundWindow.on("ready-to-show", () => { 
-        console.log("backgroundWindow ready to show!!");
-        // if (typeof(Worker) !== "undefined") {
-        //     console.log("Web worker supported");
-        //     let monitorsWorker = new Worker("worker.js");
-        // } else {
-        //     console.log("Sorry! No Web Worker support...");
-        // }
-    });
-
-    //let monitorsWorker = new Worker("fetchMonitors.js");
-};
+} //end createWindow()
 
 const setTrayIcon = () => {
     const {Menu, Tray, app, nativeImage} = require("electron");
@@ -189,7 +135,7 @@ const setTrayIcon = () => {
                 if ( !tray.isDestroyed() ) {
                     tray.destroy();
                 }
-                // tray = null;
+                tray = null;
                 mainWindow = null;
                 
                 app.quit();
@@ -209,7 +155,6 @@ const setTrayIcon = () => {
 //Prevent user from launching two different instances of the app.
 const preventMoreThanOneInstance = () => {
     const shouldQuit = app.makeSingleInstance( (commandLine, workingDirectory) => {
-        console.log("Prevent more than one instance");
         // Someone tried to run a second instance, we should focus our window.
         if (mainWindow) {
           if ( mainWindow.isMinimized() ) { 
@@ -229,6 +174,7 @@ const preventMoreThanOneInstance = () => {
 
 preventMoreThanOneInstance();
 
+
 var ws = require("windows-shortcuts");
 ws.create("%APPDATA%/Microsoft/Windows/Start Menu/Programs/Electron.lnk", process.execPath);
 
@@ -242,15 +188,14 @@ app.setAsDefaultProtocolClient("waypoint");
 /*  This method will be called when Electron has finished
     initialization and is ready to create browser windows.
     Some APIs can only be used after this event occurs. 
-
     Trying out using async/wait here -- may need to remove */
 
 app.on("ready", async () => {
-   await create_MainWindow();
-   //await create_BackgroundWindow();
-    electron.protocol.registerServiceWorkerSchemes(["file:"]);
+    await createWindow();
+   
+   /* await electron.protocol.registerServiceWorkerSchemes(["file:"]);
     ///* Register the file protocol as supported
-   /*     electron.webFrame.registerURLSchemeAsPrivileged("file");
+        electron.webFrame.registerURLSchemeAsPrivileged("file");
         electron.webFrame.registerURLSchemeAsSecure("file");
         electron.webFrame.registerURLSchemeAsBypassingCSP("file"); */
     // */
@@ -271,9 +216,7 @@ app.on("activate", () => {
     /* On OS X it's common to re-create a window in the app when the
         dock icon is clicked and there are no other windows open. */
     if (mainWindow === null) {
-        console.log("Activating...");
-        create_MainWindow();
-        //create_BackgroundWindow();
+        createWindow();
     }
 });
 
@@ -291,7 +234,6 @@ app.on("web-contents-created", (event, contents) => {
    /* if ( !params.src.startsWith("https://portal.centinela.k12.ca.us/staff.html") ) {
         event.preventDefault();
       }  //end if-statement
-
     else if ( !params.src.startsWith("https://portal.centinela.k12.ca.us/troubleshooting.html") ) {
         event.preventDefault();
       }  //end if-statement  */
@@ -311,9 +253,3 @@ app.setLoginItemSettings({
 /* window.eval = global.eval = function () {
    throw new Error(`Sorry, this app does not support window.eval().`)
   } */
-if (Error) {
-    console.log(Error.toString());
-}
-  
-
-

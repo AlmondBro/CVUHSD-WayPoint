@@ -137,7 +137,7 @@ class App extends Component {
   componentDidMount = () => {
     this.runDevTools();
     this.setState( {renderFooter: true} );
-    // this.createInvisibleWindow();
+    this.createInvisibleWindow();
     this.ipcEvents();
   }; //end componentDidMount()
 
