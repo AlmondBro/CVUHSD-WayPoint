@@ -27,7 +27,7 @@ const Header = (props) => {
                     </label>
                 </section>
 
-                <NotificationsPanel addNotification={props.addNotification } clearNotifications={props.clearNotifications} notifications={props.notifications} noNotifications={props.noNotifications} />
+                <NotificationsPanel addNotification={props.addNotification } removeNotification={props.removeNotification} clearNotifications={props.clearNotifications} notifications={props.notifications} noNotifications={props.noNotifications} />
                 <BackButton />
         </header>
         );

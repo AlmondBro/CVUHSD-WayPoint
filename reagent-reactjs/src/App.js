@@ -102,6 +102,18 @@ class App extends Component {
     }); //end this.setState()
   }; //end addNotifications()
 
+  removeNotification = (index) => {
+    let newNotificationsArray =  [...this.state.notifications]; // Use ES6 destructuring to copy array.
+
+    newNotificationsArray.splice(index, 1);
+
+    let newNoNotifications = (newNotificationsArray.length === 0) ? true : false;
+    this.setState({
+        notifications: newNotificationsArray,
+        noNotifications: newNoNotifications
+    }); //end this.setState()
+  }; //end removeNotification()
+
   clearNotifications = () => {
       this.setState({
           notifications: [],
@@ -204,7 +216,7 @@ class App extends Component {
       <div>
         <Titlebar pageTitle={this.state.pageTitle}  updatePageTitle={this.updatePageTitle} />
           <main>
-            <Header addNotification={this.addNotification } clearNotifications={this.clearNotifications} notifications={this.state.notifications} noNotifications={this.state.noNotifications} />
+            <Header addNotification={this.addNotification } removeNotification={this.removeNotification} clearNotifications={this.clearNotifications} notifications={this.state.notifications} noNotifications={this.state.noNotifications} />
           {/* <Home/>*/}   {/* This is is the component you change when 
                         the page changes, since all components have a 
                         container, a main element, and a header. */}

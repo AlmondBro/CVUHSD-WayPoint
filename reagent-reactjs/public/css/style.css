@@ -707,6 +707,20 @@ section.notifications-section button {
     border-radius: 0.25em;
 }
 
+section.notifications-section button.removeNotification {
+    float: none;
+    background-color: white;
+    color: darkslategray;
+    position: relative;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    display: none;
+    margin: 0 auto;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
 .test {
     display: block;
 }
@@ -742,6 +756,10 @@ i.coffee {
 .notification-content-rectangle {
     background-color: rgb(115, 115, 115, 0.75);
     padding: 1em;
+}
+
+.update-notification.notification-content-rectangle:hover .removeNotification {
+    display: block;
 }
 
 #exclamation-button {

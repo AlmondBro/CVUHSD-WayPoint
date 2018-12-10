@@ -25,7 +25,8 @@ const NotificationsPanel = (props) => {
                                                                             urgent={notification.urgent} 
                                                                             notificationText={notification.notificationText} 
                                                                             faIconClassName={notification.faIconClassName}
-                                                                            image={notification.image} /> 
+                                                                            image={notification.image} 
+                                                                            removeNotification={props.removeNotification}/> 
                                                     ) : <p>No notifications <span role="img" aria-label="Happy emoji">😀</span></p> 
                     }
                 </div>
