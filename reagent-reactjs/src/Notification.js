@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types"; // ES6
 
 const Notification = (props) => {
-    let index = props.key;
+    let index = props.index;
+    console.log(`Notification index:\t ${props.key}`)
     return (
         <div className="notification-content-rectangle-container">
             <hr/>
@@ -10,11 +11,11 @@ const Notification = (props) => {
                 { props.urgent ? <button id="exclamation-button">!</button> : <i className={props.faIconClassName} aria-hidden="true"></i> }
                 { (props.image && !props.urgent) ? <img src={props.image} className="notificationMonitorImage" /> : null }
                 <p className="notificationsText">{props.notificationText}</p>
-                <button class="fa fa-times removeNotification" 
+                <button className="fa fa-times removeNotification" 
                         aria-hidden="true" 
-                        onClick={ (index) => { 
+                        onClick={ () => { 
                                         console.log("Remove notificatiob clicked");
-                                        props.removeNotification(index );
+                                        props.removeNotification(index);
                                 } 
                         }>
                 </button>
