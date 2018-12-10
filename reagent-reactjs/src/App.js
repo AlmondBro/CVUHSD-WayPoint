@@ -135,8 +135,8 @@ class App extends Component {
     console.log("createInvisibleWindow()");
     monitorFetchWindow = new BrowserWindow({
         title: "WayPoint", //Title of window when frame is enabled
-        width: 500, 
-        height: 200, 
+        width: 360, 
+        height: 525, 
         frame: false, 
         fullscreen: false, 
         resizable: false, 
