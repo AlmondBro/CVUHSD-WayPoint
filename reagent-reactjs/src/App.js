@@ -70,7 +70,7 @@ class App extends Component {
     }
   }; //end renderFooterFunction()
 
-  addNotification = (urgent, notificationText, faIconClassName) => {
+  addNotification = (urgent, notificationText, faIconClassName, image) => {
     console.log("addNotification()");
     /* 
     Other way to add to array in state, using ES6 spread operator:
@@ -92,7 +92,8 @@ class App extends Component {
     newNotificationsArray.unshift({
       urgent: urgent,
       notificationText: notificationText,
-      faIconClassName: faIconClassName
+      faIconClassName: faIconClassName,
+      image: image
     });
 
     this.setState({
@@ -180,9 +181,9 @@ class App extends Component {
   }; //end runDevTools()
 
   ipcEvents = () => {
-    ipcRenderer.on("toMainWindow", (event, monitorName, status) => {
+    ipcRenderer.on("toMainWindow", (event, monitorName, status, monitorImage) => {
       console.log(`toMainWindow received. ${monitorName} is ${status}` );
-      this.addNotification(true,`${monitorName} is ${status}`);
+      this.addNotification(false,`${monitorName} is ${status}`, null, monitorImage);
     });
 
     console.log("ipcEvents()");

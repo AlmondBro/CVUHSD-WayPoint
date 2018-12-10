@@ -90,10 +90,10 @@
                 
                     let getMonitorImage = (monitorName) => {
                         // console.log("getMonitorImage");
-                        let basePath = "./images/buttons/"
+                        let basePath = "./img/buttons/"
                         let monitorImage;
+
                         switch (monitorName) {
-                            
                             case "Destiny":
                                 monitorImage = "Destiny.png";
                                 break;
@@ -159,13 +159,14 @@
                         
                         if ( monitors[i]["name"] == "Destiny" ) {
                             status = "down";
+                            let monitorImage = getMonitorImage(monitors[i].name);
                             console.log(`${monitors[i].name} is currently down`);
                             //downMonitors.push(monitors[i]);
                 
                             //check that browser supports HTML5 notifications and that the browser has 
                         //   if ( self.registration !== "undefined" &&  self.registration ) { 
-                            popNotification(`${monitors[i].name}`, `${monitors[i].name} is currently down`, getMonitorImage(monitors[i].name) );
-                            ipcRenderer.send("toMainProcess", `${monitors[i].name}`, status);
+                            popNotification(`${monitors[i].name}`, `${monitors[i].name} is currently down`, monitorImage );
+                            ipcRenderer.send("toMainProcess", `${monitors[i].name}`, status, monitorImage);
                             
                         // } 
                         /* if (self.registration === "undefined" && !self.registration ) {
