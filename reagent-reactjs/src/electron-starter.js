@@ -87,12 +87,12 @@ const createWindow = () => {
     });
 
     //Override minimize and close window functions to tray
-    mainWindow.on("minimize",function(event){
+    mainWindow.on("minimize", (event) => {
         event.preventDefault();
         mainWindow.minimize();
     });
     
-    mainWindow.on("close", function (event) {
+    mainWindow.on("close", (event) => {
         if (tray) {
             if(!app.isQuitting) {
                 event.preventDefault();
@@ -120,12 +120,12 @@ const setTrayIcon = () => {
 
     const contextMenu = Menu.buildFromTemplate([
         {   label: "Show WayPoint", 
-            click:  function() {
+            click:  () => {
                 mainWindow.show();
             } //end click()
         },
         { label: "Quit", 
-          click:  function() {
+          click:  () => {
                 app.isQuitting = true;
                  /* On OS X it is common for applications and their menu bar
                     to stay active until the user quits explicitly with Cmd + Q */
@@ -150,6 +150,8 @@ const setTrayIcon = () => {
     tray.on("click", () => {
         mainWindow.show();
     });
+
+    mainWindow.isVisible() ? tray.setHighlightMode("never") : tray.setHighlightMode("always");
 }; //end setTrayIcon()
 
 //Prevent user from launching two different instances of the app.
@@ -172,8 +174,6 @@ const preventMoreThanOneInstance = () => {
       }
 }; //preventMoreThanOneInstance()
 
-preventMoreThanOneInstance();
-
 
 var ws = require("windows-shortcuts");
 ws.create("%APPDATA%/Microsoft/Windows/Start Menu/Programs/Electron.lnk", process.execPath);
@@ -192,6 +192,8 @@ app.setAsDefaultProtocolClient("waypoint");
 
 app.on("ready", async () => {
     await createWindow();
+    await preventMoreThanOneInstance();
+
    
    /* await electron.protocol.registerServiceWorkerSchemes(["file:"]);
     ///* Register the file protocol as supported

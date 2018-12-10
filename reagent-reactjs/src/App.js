@@ -48,9 +48,9 @@ class App extends Component {
   }; //end renderFooterFunction()
   
   createInvisibleWindow = () => {
-    const isDev = requireNodeJSmodule("electron-is-dev");
-    const path = requireNodeJSmodule("path");
-    const url = requireNodeJSmodule("url");
+    const isDev = window.require("electron-is-dev");
+    const path = window.require("path");
+    const url = window.require("url");
 
     if (isDev) {
       corsAnywhere();
@@ -82,16 +82,15 @@ class App extends Component {
     monitorFetchWindow.loadURL(startUrl);
 
     monitorFetchWindow.on("did-finish-load", () => { 
-      monitorFetchWindow.webContents.send("fetch-monitor")
+      monitorFetchWindow.webContents.send("fetch-monitor");
       ipcRenderer.on("monitor-fetched", (event, monitorData) => {
         //Write code to update notifications according to monitor statuses
         });
     }); //end monitorFetchWindow.on()
 
-    monitorFetchWindow.setFocusable(true);
+    //monitorFetchWindow.setFocusable(true);
 
-    //let monitorsWorker = new Worker("fetchMonitors.js");
-
+    //Do mot use service workers since the electron module is not supported.
     let installWebWorker = () => {
       if (typeof(Worker) !== "undefined") {
         console.log("Web worker supported");
@@ -106,11 +105,12 @@ class App extends Component {
          // Open the DevTools.
          monitorFetchWindow.webContents.openDevTools({ mode: "undocked"});
     } //end if-statement
-    
+   
+    /*
     monitorFetchWindow.on("close", (event) => {
       monitorFetchWindow.close();
     });  //end monitorFetchWindow.on()
-
+*/
   }; //end createInvisibleWindow()
 
   runDevTools = () => {
