@@ -103,9 +103,11 @@ class App extends Component {
   }; //end addNotifications()
 
   removeNotification = (index) => {
+    console.log(`Deleting notification with index of:\t ${index}`);
+    let indexNumber = parseInt(index);
     let newNotificationsArray =  [...this.state.notifications]; // Use ES6 destructuring to copy array.
 
-    newNotificationsArray.splice(index, 1);
+    newNotificationsArray.splice(indexNumber, 1);
 
     let newNoNotifications = (newNotificationsArray.length === 0) ? true : false;
     this.setState({
@@ -133,8 +135,8 @@ class App extends Component {
     console.log("createInvisibleWindow()");
     monitorFetchWindow = new BrowserWindow({
         title: "WayPoint", //Title of window when frame is enabled
-        width: 500, 
-        height: 200, 
+        width: 360, 
+        height: 525, 
         frame: false, 
         fullscreen: false, 
         resizable: false, 

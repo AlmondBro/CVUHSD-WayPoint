@@ -1,3 +1,10 @@
+*{
+    margin: 0;
+    padding: 0;
+    -webkit-app-region: drag;
+    -webkit-user-select: none;
+}
+
 body {
     font-size: 14px;
     color: white;

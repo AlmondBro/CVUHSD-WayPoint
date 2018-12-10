@@ -22,6 +22,7 @@ const NotificationsPanel = (props) => {
                     {
                         !props.noNotifications ? 
                         props.notifications.map( (notification, i) => <Notification key={i} 
+                                                                            index={i}
                                                                             urgent={notification.urgent} 
                                                                             notificationText={notification.notificationText} 
                                                                             faIconClassName={notification.faIconClassName}
