@@ -70,7 +70,7 @@ class App extends Component {
     }
   }; //end renderFooterFunction()
 
-  addNotification = (urgent, notificationText, faIconClassName) => {
+  addNotification = (urgent, notificationText, faIconClassName, image) => {
     console.log("addNotification()");
     /* 
     Other way to add to array in state, using ES6 spread operator:
@@ -92,7 +92,8 @@ class App extends Component {
     newNotificationsArray.unshift({
       urgent: urgent,
       notificationText: notificationText,
-      faIconClassName: faIconClassName
+      faIconClassName: faIconClassName,
+      image: image
     });
 
     this.setState({
@@ -100,6 +101,18 @@ class App extends Component {
         noNotifications: false
     }); //end this.setState()
   }; //end addNotifications()
+
+  removeNotification = (index) => {
+    let newNotificationsArray =  [...this.state.notifications]; // Use ES6 destructuring to copy array.
+
+    newNotificationsArray.splice(index, 1);
+
+    let newNoNotifications = (newNotificationsArray.length === 0) ? true : false;
+    this.setState({
+        notifications: newNotificationsArray,
+        noNotifications: newNoNotifications
+    }); //end this.setState()
+  }; //end removeNotification()
 
   clearNotifications = () => {
       this.setState({
@@ -180,9 +193,9 @@ class App extends Component {
   }; //end runDevTools()
 
   ipcEvents = () => {
-    ipcRenderer.on("toMainWindow", (event, monitorName, status) => {
+    ipcRenderer.on("toMainWindow", (event, monitorName, status, monitorImage) => {
       console.log(`toMainWindow received. ${monitorName} is ${status}` );
-      this.addNotification(true,`${monitorName} is ${status}`);
+      this.addNotification(false,`${monitorName} is ${status}`, null, monitorImage);
     });
 
     console.log("ipcEvents()");
@@ -203,7 +216,7 @@ class App extends Component {
       <div>
         <Titlebar pageTitle={this.state.pageTitle}  updatePageTitle={this.updatePageTitle} />
           <main>
-            <Header addNotification={this.addNotification } clearNotifications={this.clearNotifications} notifications={this.state.notifications} noNotifications={this.state.noNotifications} />
+            <Header addNotification={this.addNotification } removeNotification={this.removeNotification} clearNotifications={this.clearNotifications} notifications={this.state.notifications} noNotifications={this.state.noNotifications} />
           {/* <Home/>*/}   {/* This is is the component you change when 
                         the page changes, since all components have a 
                         container, a main element, and a header. */}

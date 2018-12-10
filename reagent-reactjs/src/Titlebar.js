@@ -35,7 +35,7 @@ const Titlebar = (props) => {
         //Show:false key-value pair is to delay loading until all resources have been loaded.
         var feedbackWindow = new BrowserWindow({
             title: "WayPoint", //Title of window whe frame is enabled
-            width: 360, 
+            width: 342, 
             height: 525, 
             frame: false, 
             fullscreen: false, 

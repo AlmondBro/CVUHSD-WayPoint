@@ -24,7 +24,9 @@ const NotificationsPanel = (props) => {
                         props.notifications.map( (notification, i) => <Notification key={i} 
                                                                             urgent={notification.urgent} 
                                                                             notificationText={notification.notificationText} 
-                                                                            faIconClassName={notification.faIconClassName} /> 
+                                                                            faIconClassName={notification.faIconClassName}
+                                                                            image={notification.image} 
+                                                                            removeNotification={props.removeNotification}/> 
                                                     ) : <p>No notifications <span role="img" aria-label="Happy emoji">😀</span></p> 
                     }
                 </div>

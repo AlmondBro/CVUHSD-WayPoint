@@ -3,13 +3,18 @@
     /* -webkit-user-drag: none; */
 }
 
+.notificationMonitorImage {
+    /* max-width: 25px; */
+    max-width: 60px;
+    max-height: 30px;
+}
 
 body {
     font-size: 16px;
     background-color: #757575;
-    background-image: url("https://media.cntraveler.com/photos/56549cc6659c4b4874865502/master/pass/mu-cang-chai-vietnam-cr-getty.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+    /* background-image: url("https://media.cntraveler.com/photos/56549cc6659c4b4874865502/master/pass/mu-cang-chai-vietnam-cr-getty.jpg"); */
+    /* background-size: cover; */
+    /* background-repeat: no-repeat; */
     /*font: "Liberation Sans", Trebuchet MS, Arial, sans-serif; */
     font-family: "Liberation Sans", "Trebuchet MS", "Arial", caption, sans-serif ; /* caption is deafult system font */
 }
@@ -702,6 +707,20 @@ section.notifications-section button {
     border-radius: 0.25em;
 }
 
+section.notifications-section button.removeNotification {
+    float: none;
+    background-color: white;
+    color: darkslategray;
+    position: relative;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    display: none;
+    margin: 0 auto;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
 .test {
     display: block;
 }
@@ -737,6 +756,10 @@ i.coffee {
 .notification-content-rectangle {
     background-color: rgb(115, 115, 115, 0.75);
     padding: 1em;
+}
+
+.update-notification.notification-content-rectangle:hover .removeNotification {
+    display: block;
 }
 
 #exclamation-button {
