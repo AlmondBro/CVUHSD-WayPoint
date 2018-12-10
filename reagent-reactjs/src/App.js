@@ -85,14 +85,20 @@ class App extends Component {
     // Append a single item
     this.setState({ arr: [...this.state.arr, 'new item'] });
     */
-      this.setState({
-          notifications: this.state.notifications.concat({
-              urgent: urgent,
-              notificationText: notificationText,
-              faIconClassName: faIconClassName
-          }),
-          noNotifications: false
-      }); //end this.setState()
+    /* State must be kept immutable, so you can not modify the state object directly.
+       Unshift() does this on an arrray, instead of returning a new copy. */
+   let newNotificationsArray =  [...this.state.notifications]; // Use ES6 destructuring to copy array.
+
+    newNotificationsArray.unshift({
+      urgent: urgent,
+      notificationText: notificationText,
+      faIconClassName: faIconClassName
+    });
+
+    this.setState({
+        notifications: newNotificationsArray,
+        noNotifications: false
+    }); //end this.setState()
   }; //end addNotifications()
 
   clearNotifications = () => {
