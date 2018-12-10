@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Checkmark from "./Checkmark.js";
+import { requireNodeJSmodule } from "./utilityFunctions.js";
 
 class WiFiMagic extends Component {
     constructor(props) {
@@ -28,9 +29,7 @@ class WiFiMagic extends Component {
     //  fixWiFi()
 
     fixWiFi = () => {
-        const electron = window.require("electron");
-        const remote = electron.remote;
-        const nrc = remote.require("node-run-cmd");
+        const nrc = window.require("node-run-cmd");
         
         if (this.state.clicks === 0 ) {
             this.setState( { clicks: this.state.clicks+1 } );

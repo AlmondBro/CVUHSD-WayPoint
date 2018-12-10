@@ -7,7 +7,7 @@ const Notification = (props) => {
             <hr/>
             <div className="update-notification notification-content-rectangle">
                 { props.urgent ? <button id="exclamation-button">!</button> : <i className={props.faIconClassName} aria-hidden="true"></i> }
-                <p>{props.notificationText}</p>
+                <p className="notificationsText">{props.notificationText}</p>
             </div>
             <hr/>
         </div>

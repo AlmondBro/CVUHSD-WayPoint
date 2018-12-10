@@ -14,7 +14,7 @@ import FormButton from "./form-components/FormButton.js";
 //Import 3rd-party libraries
 
 //Impoty utility functions
-import { requireNodeJSmodule, whyDidYouUpdate, isNullOrUndefinedOrEmptyString, popNotification } from "./utilityFunctions.js";
+import { whyDidYouUpdate, isNullOrUndefinedOrEmptyString, popNotification } from "./utilityFunctions.js";
 
 class SubmitTicket extends Component {      
     // ---- Class Properties ----
@@ -76,7 +76,7 @@ class SubmitTicket extends Component {
                 console.log("Undefined/null fields!");
                 this.setState({submitEmailMessage: "Please fill out all the fields!"});           
         } else { 
-            const sendmail = requireNodeJSmodule("sendmail")({silent: true});
+            const sendmail = window.require("sendmail")({silent: true});
 
             const emailJSX = ( <Email title={this.state.emailMessage.title} 
                                     description={this.state.emailMessage.description}
@@ -214,7 +214,7 @@ class SubmitTicket extends Component {
 
         window.onload = this.fileAttachment();
 
-        const isDev = requireNodeJSmodule("electron-is-dev");
+        const isDev = window.require("electron-is-dev");
         if (isDev) {
             whyDidYouUpdate();
         } //end if-statement

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import {Route, BrowserRouter, Switch, HashRouter} from "react-router-dom";
+import { Route, BrowserRouter, Switch, HashRouter } from "react-router-dom";
+import { requireNodeJSmodule } from "./utilityFunctions.js";
 
 // Import General Page Components
 import Home from "./Home.js";
@@ -18,13 +19,41 @@ import StaffPortal from "./StaffPortal.js";
 import Announcements from "./Announcements.js";
 import QuickFixChromeOS from "./quickFix-Components/ChromeOS/quickFix-ChromeOS.js";
 
+import { corsAnywhere } from "./server.js";
+
+const { BrowserWindow, app } = requireNodeJSmodule("electron"); //Use electron.remote for BrowserWindow and app are modules exclusive to the main process.
+const { ipcRenderer } = window.require('electron');
+
+let monitorFetchWindow = null;
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
       pageTitle: "Home",
-      renderFooter: false
-    };
+      renderFooter: false,
+      notifications: [
+          {   
+              urgent: true, 
+              notificationText: "Update required" 
+          },
+          {   urgent: false, 
+              notificationText: "No HelpDesk Requests",
+              faIconClassName: "fa fa-check greenCheck"  
+          },
+          {   urgent: false, 
+              notificationText: "10 files",
+              faIconClassName: "fas fa-archive archive"  
+          },
+          {   urgent: false, 
+              notificationText: "Coffee Taken",
+              faIconClassName: "fas fa-coffee coffee"  
+          }
+      ],
+      noNotifications: false
+    }; //end state object
+
+    // console.log(`"App path:\t ${app.getAppPath()}"`);
     //this.updatePageTitle= this.updatePageTitle.bind(this);
   } //end constructor()
 
@@ -34,17 +63,112 @@ class App extends Component {
 
   renderFooterFunction = (renderFooterBool) => {
     //Do not render footer on default
-    if (arguments && (renderFooterBool !== "undefined") ) {
+    if ((renderFooterBool !== "undefined") ) {
       this.setState( {renderFooter: renderFooterBool } );
     } else {
       this.setState( {renderFooter: false } );
     }
-   
-   
   }; //end renderFooterFunction()
 
+  addNotification = (urgent, notificationText, faIconClassName) => {
+    console.log("addNotification()");
+    /* 
+    Other way to add to array in state, using ES6 spread operator:
+    this.setState(previousState => ({
+    myArray: [...previousState.myArray, 'new value']
+    }));
+
+    // Append an array
+    const newArr = [1,2,3,4]
+    this.setState({ arr: [...this.state.arr, ...newArr] });
+
+    // Append a single item
+    this.setState({ arr: [...this.state.arr, 'new item'] });
+    */
+    /* State must be kept immutable, so you can not modify the state object directly.
+       Unshift() does this on an arrray, instead of returning a new copy. */
+   let newNotificationsArray =  [...this.state.notifications]; // Use ES6 destructuring to copy array.
+
+    newNotificationsArray.unshift({
+      urgent: urgent,
+      notificationText: notificationText,
+      faIconClassName: faIconClassName
+    });
+
+    this.setState({
+        notifications: newNotificationsArray,
+        noNotifications: false
+    }); //end this.setState()
+  }; //end addNotifications()
+
+  clearNotifications = () => {
+      this.setState({
+          notifications: [],
+          noNotifications: true
+      });
+  }; //end clearNotifications()
+  
+  createInvisibleWindow = () => {
+    const isDev = window.require("electron-is-dev");
+    const path = window.require("path");
+    const url = window.require("url");
+
+    if (isDev) {
+      corsAnywhere();
+    }
+
+    console.log("createInvisibleWindow()");
+    monitorFetchWindow = new BrowserWindow({
+        title: "WayPoint", //Title of window when frame is enabled
+        width: 500, 
+        height: 200, 
+        frame: false, 
+        fullscreen: false, 
+        resizable: false, 
+        webPreferences: {
+          sandbox: false,
+          nodeIntegrationInWorker: true
+        },
+        show: false
+    });
+
+   // const imagePath = isDev ? path.resolve(`./${publicOrBuild}/img/${image}`) :  path.resolve(`./resources/app.asar/build/img/${image}`);
+    // Production paths are relative to the WayPoint.exe executable. 
+   const startUrl = isDev ? (process.env.ELECTRON_START_URL || path.resolve("./public/background-process.html") ) : url.format({
+        pathname: path.resolve("./resources/app.asar/build/background-process.html"),
+        protocol: "file:",
+        slashes: true
+    });
+
+    monitorFetchWindow.loadURL(startUrl);
+
+    //monitorFetchWindow.setFocusable(true);
+
+    //Do mot use service workers since the electron module is not supported.
+    let installWebWorker = () => {
+      if (typeof(Worker) !== "undefined") {
+        console.log("Web worker supported");
+        let monitorsWorker = new Worker("worker.js");
+      } else {
+        console.log("Sorry! No Web Worker support...");
+      }
+    }; //end installWebWorker();
+
+    let prodDebug = true;
+    if (isDev || prodDebug) {
+         // Open the DevTools.
+         // monitorFetchWindow.webContents.openDevTools({ mode: "undocked"});
+    } //end if-statement
+   
+    /*
+    monitorFetchWindow.on("close", (event) => {
+      monitorFetchWindow.close();
+    });  //end monitorFetchWindow.on()
+*/
+  }; //end createInvisibleWindow()
+
   runDevTools = () => {
-    const isDev = window.require("electron").remote.require("electron-is-dev"); 
+    const isDev = window.require("electron-is-dev"); 
 
     if (isDev) {
       window.require("devtron").install(); // can only be installed through renderer process
@@ -55,20 +179,31 @@ class App extends Component {
     }
   }; //end runDevTools()
 
+  ipcEvents = () => {
+    ipcRenderer.on("toMainWindow", (event, monitorName, status) => {
+      console.log(`toMainWindow received. ${monitorName} is ${status}` );
+      this.addNotification(true,`${monitorName} is ${status}`);
+    });
+
+    console.log("ipcEvents()");
+  }; //end ipcEvents() 
+
   componentDidMount = () => {
     this.runDevTools();
     this.setState( {renderFooter: true} );
+    this.createInvisibleWindow();
+    this.ipcEvents();
   }; //end componentDidMount()
 
   render = () => {
-    const isDev = window.require("electron").remote.require("electron-is-dev"); 
+    const isDev = requireNodeJSmodule("electron-is-dev"); 
     
     const appHTML = () => {
       return (
       <div>
         <Titlebar pageTitle={this.state.pageTitle}  updatePageTitle={this.updatePageTitle} />
           <main>
-            <Header/>
+            <Header addNotification={this.addNotification } clearNotifications={this.clearNotifications} notifications={this.state.notifications} noNotifications={this.state.noNotifications} />
           {/* <Home/>*/}   {/* This is is the component you change when 
                         the page changes, since all components have a 
                         container, a main element, and a header. */}
@@ -77,6 +212,7 @@ class App extends Component {
                 <Route exact path="/" render={ (props) => <Home updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction}  /> } />
                 <Route path="/autoFix-tools" render={ props => <AutoFixTools updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> } />
                 <Route path="/submit-ticket" render={ props => <SubmitTicket updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> } />
+                <Route path="/feedback" render={ props => <SubmitTicket updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> } />
                 <Route path="/quickFix-tutorials" render={ props => <QuickFixTutorials updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> } />
                 <Route path="/call-helpdesk" render={ props => <HelpDesk updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> }  />
                 <Route path="/wiFiMagic" render={props => <WiFiMagic updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> } /> 
@@ -108,9 +244,7 @@ class App extends Component {
         </HashRouter>
       ); //end return statement
     } //end else-statement
-
   } //end render() process
-  
 } //end App class
 
 export default App;

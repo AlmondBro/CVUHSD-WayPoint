@@ -1,13 +1,12 @@
 import { requireNodeJSmodule} from "./utilityFunctions.js";
 
 //Import NodeJS modules to be used
-const path = requireNodeJSmodule("path");
-const childProcess = requireNodeJSmodule("child_process");
+const path = window.require("path");
+const childProcess = window.require("child_process");
 
-const { dialog, nativeImage, app } = requireNodeJSmodule("electron");
+const { dialog, nativeImage } = requireNodeJSmodule("electron");
 
-const isDev = requireNodeJSmodule("electron-is-dev");
-const url = requireNodeJSmodule("url");
+const isDev = window.require("electron-is-dev");
 
 const publicOrBuild = isDev ? "public": "build";
 

@@ -1,5 +1,7 @@
 
 /* Utility Functions to import into your JavaScript files for reuse! */
+let path = require("path");
+
 const utilityFunctions = () => {
     let openLinksInBrowser = (elementID) => {
         if (document.body.contains( document.getElementById(elementID) )) {
@@ -103,7 +105,6 @@ const utilityFunctions = () => {
             
             return remote.require(moduleName); 
         } //end else-statement
-        
     } //end requireNodeJSModule() 
 
     const whyDidYouUpdate = (optionsObject) => {

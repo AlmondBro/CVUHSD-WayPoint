@@ -10,12 +10,16 @@ class Footer extends Component {
             userName: this.getUsername(),
             ipAddress: this.getIPAddress()
         };
+
+        const os = window.require("os");
+        const userInfo_object = os.userInfo({encoding: 'utf8'});
+        const userInfo_name = userInfo_object.username;
+
+        const usernameIf = process.env.username || process.env.user;
     } //end constructor()
     
     getUsername = () => {
-        const electron = window.require("electron");
-        const remote = electron.remote;
-        const completeUserName = remote.require("fullname");
+        const completeUserName = window.require("fullname");
 
       completeUserName().then(name => {
           console.log("completeIserName():\t" + name);
@@ -28,10 +32,9 @@ class Footer extends Component {
                 });
             } //end if-statement 
             else {
-                const os = remote.require("os");
                 console.log("Complete username is empty!");
                 this.setState({
-                    userName: os.userInfo().username
+                    userName: this.userInfo_name
                 });
             } //end else-statement
         });  //end completeUserName() 
@@ -39,33 +42,32 @@ class Footer extends Component {
 
     getIPAddress = () => {
         console.log("Process env:\t" + JSON.stringify(process.env));
-        const electron = window.require("electron");
-        const remote = electron.remote;
+        const macaddress = window.require("macaddress");
+        const undefsafe = window.require("undefsafe");
 
-        const macaddress = remote.require("macaddress");
-        const undefsafe = remote.require("undefsafe");
+        console.log(`Mac address: ${JSON.stringify(macaddress.networkInterfaces()) }`);
 
         let IP_Address; 
 
         if ( undefsafe(macaddress.networkInterfaces(), "Ethernet.ipv4") !== undefined ) {
             //  IP_Address = macaddress.networkInterfaces()["Local Area Connection"]["ipv4"];
             IP_Address = undefsafe(macaddress.networkInterfaces(), "Ethernet.ipv4");
-         //   console.log("IPV4 ethernet:\t" + IP_Address);
-           // console.log("IPV4 ethernet Typeof:\t"+ typeof IP_Address);
+            console.log("IPV4 ethernet:\t" + IP_Address);
+            console.log("IPV4 ethernet Typeof:\t"+ typeof IP_Address);
         }
 
         else if ( undefsafe(macaddress.networkInterfaces(), "VirtualBox Host-Only Network.ipv4") !== undefined ) {
             //  IP_Address = macaddress.networkInterfaces()["Local Area Connection"]["ipv4"];
             IP_Address = undefsafe(macaddress.networkInterfaces(), "VirtualBox Host-Only Network.ipv4");
-            //console.log("Virtual Box host only network:\t" + IP_Address);
-           // console.log("Virtual Box host only network Typeof:\t"+ typeof IP_Address);
+            console.log("Virtual Box host only network:\t" + IP_Address);
+           console.log("Virtual Box host only network Typeof:\t"+ typeof IP_Address);
         }
 
         else if ( undefsafe(macaddress.networkInterfaces(), "Local Area Connection.ipv4") !== undefined ) {
           //  IP_Address = macaddress.networkInterfaces()["Local Area Connection"]["ipv4"];
           IP_Address = undefsafe(macaddress.networkInterfaces(), "Local Area Connection.ipv4");
-        //  console.log("IPV4 local area connection:\t" + IP_Address);
-         // console.log("IPV4  local area connection Typeof:\t"+ typeof IP_Address);
+          console.log("IPV4 local area connection:\t" + IP_Address);
+          console.log("IPV4  local area connection Typeof:\t"+ typeof IP_Address);
         }
 
         else if ( undefsafe(macaddress, "Wi-Fi.ipv4") !== undefined) {
@@ -113,9 +115,7 @@ class Footer extends Component {
     }  //end determineWindowsVersion() 
 
      render = () => {
-        const electron = window.require("electron");
-        const remote = electron.remote;
-        const os = remote.require("os");
+        const os = window.require("os");
 
         //If footer is rendered, shorten the height of the page content container.
         if (this.props.renderFooterBool) {
