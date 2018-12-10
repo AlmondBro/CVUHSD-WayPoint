@@ -9,7 +9,7 @@ window.eval = global.eval = () => {
     return -1;
 }; 
 
-const Header = () => {
+const Header = (props) => {
         return( 
             <header className="header-frame redToDarkRedgradient noHighlight noDrag">
                 <input type="checkbox" className="checkbox-hack" id="notification-icon-checkbox" />
@@ -27,7 +27,7 @@ const Header = () => {
                     </label>
                 </section>
 
-                <NotificationsPanel />
+                <NotificationsPanel addNotification={props.addNotification } clearNotifications={props.clearNotifications} notifications={props.notifications} noNotifications={props.noNotifications} />
                 <BackButton />
         </header>
         );

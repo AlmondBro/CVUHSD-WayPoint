@@ -31,9 +31,29 @@ class App extends Component {
     super(props);
     this.state = { 
       pageTitle: "Home",
-      renderFooter: false
-    };
-    console.log(`"App path:\t ${app.getAppPath()}"`);
+      renderFooter: false,
+      notifications: [
+          {   
+              urgent: true, 
+              notificationText: "Update required" 
+          },
+          {   urgent: false, 
+              notificationText: "No HelpDesk Requests",
+              faIconClassName: "fa fa-check greenCheck"  
+          },
+          {   urgent: false, 
+              notificationText: "10 files",
+              faIconClassName: "fas fa-archive archive"  
+          },
+          {   urgent: false, 
+              notificationText: "Coffee Taken",
+              faIconClassName: "fas fa-coffee coffee"  
+          }
+      ],
+      noNotifications: false
+    }; //end state object
+
+    // console.log(`"App path:\t ${app.getAppPath()}"`);
     //this.updatePageTitle= this.updatePageTitle.bind(this);
   } //end constructor()
 
@@ -49,6 +69,38 @@ class App extends Component {
       this.setState( {renderFooter: false } );
     }
   }; //end renderFooterFunction()
+
+  addNotification = (urgent, notificationText, faIconClassName) => {
+    console.log("addNotification()");
+    /* 
+    Other way to add to array in state, using ES6 spread operator:
+    this.setState(previousState => ({
+    myArray: [...previousState.myArray, 'new value']
+    }));
+
+    // Append an array
+    const newArr = [1,2,3,4]
+    this.setState({ arr: [...this.state.arr, ...newArr] });
+
+    // Append a single item
+    this.setState({ arr: [...this.state.arr, 'new item'] });
+    */
+      this.setState({
+          notifications: this.state.notifications.concat({
+              urgent: urgent,
+              notificationText: notificationText,
+              faIconClassName: faIconClassName
+          }),
+          noNotifications: false
+      }); //end this.setState()
+  }; //end addNotifications()
+
+  clearNotifications = () => {
+      this.setState({
+          notifications: [],
+          noNotifications: true
+      });
+  }; //end clearNotifications()
   
   createInvisibleWindow = () => {
     const isDev = window.require("electron-is-dev");
@@ -124,6 +176,7 @@ class App extends Component {
   ipcEvents = () => {
     ipcRenderer.on("toMainWindow", (event, monitorName, status) => {
       console.log(`toMainWindow received. ${monitorName} is ${status}` );
+      this.addNotification(true,`${monitorName} is ${status}`);
     });
 
     console.log("ipcEvents()");
@@ -136,7 +189,6 @@ class App extends Component {
     this.ipcEvents();
   }; //end componentDidMount()
 
- 
   render = () => {
     const isDev = requireNodeJSmodule("electron-is-dev"); 
     
@@ -145,7 +197,7 @@ class App extends Component {
       <div>
         <Titlebar pageTitle={this.state.pageTitle}  updatePageTitle={this.updatePageTitle} />
           <main>
-            <Header/>
+            <Header addNotification={this.addNotification } clearNotifications={this.clearNotifications} notifications={this.state.notifications} noNotifications={this.state.noNotifications} />
           {/* <Home/>*/}   {/* This is is the component you change when 
                         the page changes, since all components have a 
                         container, a main element, and a header. */}
@@ -187,10 +239,6 @@ class App extends Component {
       ); //end return statement
     } //end else-statement
   } //end render() process
-
-
 } //end App class
-
-
 
 export default App;

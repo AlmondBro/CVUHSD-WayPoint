@@ -9,7 +9,7 @@ const path = window.require("path");
 const { nativeImage, app, BrowserWindow } = requireNodeJSmodule("electron");
 
 const isDev = window.require("electron-is-dev");
-const url =window.require("url");
+const url = window.require("url");
 
 const Titlebar = (props) => {
     let minimizeWindow = () => {
