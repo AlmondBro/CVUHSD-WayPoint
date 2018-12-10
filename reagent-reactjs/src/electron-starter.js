@@ -10,7 +10,7 @@ const path = require("path");
 const url = require("url");
 const isDev = require("electron-is-dev"); 
 
-const { nativeImage } = require("electron");
+const { nativeImage, ipcMain } = require("electron");
 
 /*Keep a global reference of the electron window object, if you don't, the window will
  be closed automatically when the JavaScript object is garbage collected. */
@@ -202,6 +202,10 @@ app.on("ready", async () => {
         electron.webFrame.registerURLSchemeAsBypassingCSP("file"); */
     // */
    await setTrayIcon();
+
+   ipcMain.on('toMainProcess', (event, monitorName, status) => {
+    console.log(`${monitorName} is {$status}`);
+  });
 });
 
 
