@@ -204,8 +204,10 @@ app.on("ready", async () => {
    await setTrayIcon();
 
    ipcMain.on('toMainProcess', (event, monitorName, status) => {
-    console.log(`${monitorName} is {$status}`);
-  });
+        console.log(`toMainProcess received. ${monitorName} is ${status}. Sending info to mainWindow`);
+        // event.sender.send('toMainWindow', monitorName, status); //Sends event to window that sent it
+        mainWindow.webContents.send("toMainWindow", monitorName, status);
+    });
 });
 
 

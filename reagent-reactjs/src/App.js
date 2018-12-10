@@ -21,7 +21,10 @@ import QuickFixChromeOS from "./quickFix-Components/ChromeOS/quickFix-ChromeOS.j
 
 import { corsAnywhere } from "./server.js";
 
-const { BrowserWindow, ipcRenderer, app } = requireNodeJSmodule("electron");
+const { BrowserWindow, app } = requireNodeJSmodule("electron"); //Use electron.remote for BrowserWindow and app are modules exclusive to the main process.
+const { ipcRenderer } = window.require('electron');
+
+let monitorFetchWindow = null;
 
 class App extends Component {
   constructor(props) {
@@ -57,7 +60,7 @@ class App extends Component {
     }
 
     console.log("createInvisibleWindow()");
-    let monitorFetchWindow = new BrowserWindow({
+    monitorFetchWindow = new BrowserWindow({
         title: "WayPoint", //Title of window when frame is enabled
         width: 500, 
         height: 200, 
@@ -81,13 +84,6 @@ class App extends Component {
 
     monitorFetchWindow.loadURL(startUrl);
 
-    monitorFetchWindow.on("did-finish-load", () => { 
-      monitorFetchWindow.webContents.send("fetch-monitor");
-      ipcRenderer.on("monitor-fetched", (event, monitorData) => {
-        //Write code to update notifications according to monitor statuses
-        });
-    }); //end monitorFetchWindow.on()
-
     //monitorFetchWindow.setFocusable(true);
 
     //Do mot use service workers since the electron module is not supported.
@@ -103,7 +99,7 @@ class App extends Component {
     let prodDebug = true;
     if (isDev || prodDebug) {
          // Open the DevTools.
-         monitorFetchWindow.webContents.openDevTools({ mode: "undocked"});
+         // monitorFetchWindow.webContents.openDevTools({ mode: "undocked"});
     } //end if-statement
    
     /*
@@ -126,12 +122,11 @@ class App extends Component {
   }; //end runDevTools()
 
   ipcEvents = () => {
-    const { ipcRenderer } = window.require('electron');
-
-    ipcRenderer.on('monitorDown', (event, monitor) => {
-      window.alert("notification received" + monitor) ;// prints "pong"
+    ipcRenderer.on("toMainWindow", (event, monitorName, status) => {
+      console.log(`toMainWindow received. ${monitorName} is ${status}` );
     });
-  
+
+    console.log("ipcEvents()");
   }; //end ipcEvents() 
 
   componentDidMount = () => {
@@ -192,6 +187,10 @@ class App extends Component {
       ); //end return statement
     } //end else-statement
   } //end render() process
+
+
 } //end App class
+
+
 
 export default App;
