@@ -248,7 +248,7 @@ class App extends Component {
       return (
         <BrowserRouter>
           <div class="reagent-container animated fadeInUp" >
-            { appHTML() }
+            { this.appHTML() }
           </div>
         </BrowserRouter>
       ); //end return statement
@@ -258,7 +258,7 @@ class App extends Component {
       return (
         <HashRouter>
           <div class="reagent-container animated fadeInUp" >
-            { appHTML() }
+            { this.appHTML() }
           </div>
         </HashRouter>
       ); //end return statement
