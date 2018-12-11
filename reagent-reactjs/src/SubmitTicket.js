@@ -5,11 +5,11 @@ import ReactDOMServer from "react-dom/server";
 import Email from "./Email.js";
 
 //Import form components
-import SingleInput from "./form-components/SingleInput.js";
-import TextArea from "./form-components/TextArea.js";
-import Select from "./form-components/Select.js";
-import CheckBoxOrRadioGroup from "./form-components/CheckBoxOrRadioGroup.js";
-import FormButton from "./form-components/FormButton.js";
+import SingleInput from "./form-components/SingleInput/SingleInput.js";
+import TextArea from "./form-components/TextArea/TextArea.js";
+import Select from "./form-components/Select/Select.js";
+import CheckBoxOrRadioGroup from "./form-components/CheckBoxOrRadioGroup/CheckBoxOrRadioGroup.js";
+import FormButton from "./form-components/FormButton/FormButton.js";
 
 //Import 3rd-party libraries
 

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types"; // ES6
-
+import styles from "./TextArea.css";
 const TextAreaHTML = (props) => {
     let textAreaProps = props.props;
     return (<textarea
