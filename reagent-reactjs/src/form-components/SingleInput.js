@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types"; // ES6
 
 const InputHTML = (props) => {
-    var InputHTMLprops = props.props;
+    let InputHTMLprops = props.props;
     return (
         <input 
             type={InputHTMLprops.inputType} 
@@ -14,7 +14,7 @@ const InputHTML = (props) => {
             onChange={InputHTMLprops.controlFunc} 
             key={InputHTMLprops.value} />
         );
-} //end InputHTML()
+}; //end InputHTML()
 
 const SingleInput = (props) => {
     return ( (props.label === true) ?
