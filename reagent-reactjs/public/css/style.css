@@ -1083,7 +1083,7 @@ button[type="reset"] {
     border-radius: 5px;
     font-size: 1.25em;
     margin: 0px 30px;
-    margin-top: 5px;
+    /* margin-top: 5px; */
     margin-bottom: 1em;
     margin-right: 3em;
 }
@@ -1100,6 +1100,7 @@ button[type="reset"]:active {
 
 .fileUpload-button {
     font-size: 1.1em;
+    background-color: #ac2626;
 }
 
 input[type="file"]#file-input {

@@ -1,0 +1,10 @@
+button[data-formbutton="1"] {
+    background-color: #ac2626;
+    color: white;
+    /* padding: 12px 20px; */
+    cursor: pointer;
+}
+
+button[data-formbutton="1"] :hover {
+    background-color: #e73333;
+}

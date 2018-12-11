@@ -319,7 +319,7 @@ class SubmitTicket extends Component {
                     <p>
                         <label>Optional Attachment:</label>
                 
-                        <label className="fileUpload-button redToDarkRedgradient clickable" htmlFor="file-input">
+                        <label className="fileUpload-button clickable" htmlFor="file-input">
                                 Upload File
                         </label>
                         
@@ -331,8 +331,8 @@ class SubmitTicket extends Component {
                                      readOnly={true} />
                     </p>
                     <p>
-                        <FormButton inputType="submit" className="redToDarkRedgradient clickable" buttonTitle="Submit" controlFunc={(e)=> { this.sendEmail(e); }  } />
-                        <FormButton inputType="reset" className="redToDarkRedgradient clickable" buttonTitle="Reset" controlFunc={this.clearForm} />
+                        <FormButton inputType="submit" className="clickable" buttonTitle="Submit" controlFunc={(e)=> { this.sendEmail(e); }  } />
+                        <FormButton inputType="reset" className="clickable" buttonTitle="Reset" controlFunc={this.clearForm} />
                     </p>
                 </fieldset>
         </form>,
