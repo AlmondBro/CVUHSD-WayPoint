@@ -249,7 +249,8 @@ class SubmitTicket extends Component {
                                                             emailMessage.description = e.target.value;
                                                             this.setState({emailMessage}); 
                                                         }
-                                            } />
+                                            } 
+                        />
                     </p>
                     <p className="submitForm-inputContainer">
                         <SingleInput label={true} 
@@ -259,7 +260,8 @@ class SubmitTicket extends Component {
                                                                 emailMessage.email = e.target.value
                                                                 this.setState({emailMessage}); 
                                                         } 
-                                                } />
+                                                } 
+                            />
                     </p>
                     <p className="inline fieldMargin">
                         <Select 
@@ -275,7 +277,8 @@ class SubmitTicket extends Component {
                                                     emailMessage.category = e.target.value;
                                                     this.setState({ emailMessage }); 
                                                 } 
-                                            }  />
+                                            }  
+                            />
                     </p>
                     <p className="inline fieldMargin">
                         <Select 
