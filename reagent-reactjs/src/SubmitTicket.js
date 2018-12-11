@@ -5,11 +5,11 @@ import ReactDOMServer from "react-dom/server";
 import Email from "./Email.js";
 
 //Import form components
-import SingleInput from "./form-components/SingleInput.js";
-import TextArea from "./form-components/TextArea.js";
-import Select from "./form-components/Select.js";
-import CheckBoxOrRadioGroup from "./form-components/CheckBoxOrRadioGroup.js";
-import FormButton from "./form-components/FormButton.js";
+import SingleInput from "./form-components/SingleInput/SingleInput.js";
+import TextArea from "./form-components/TextArea/TextArea.js";
+import Select from "./form-components/Select/Select.js";
+import CheckBoxOrRadioGroup from "./form-components/CheckBoxOrRadioGroup/CheckBoxOrRadioGroup.js";
+import FormButton from "./form-components/FormButton/FormButton.js";
 
 //Import 3rd-party libraries
 
@@ -319,7 +319,7 @@ class SubmitTicket extends Component {
                     <p>
                         <label>Optional Attachment:</label>
                 
-                        <label className="fileUpload-button redToDarkRedgradient clickable" htmlFor="file-input">
+                        <label className="fileUpload-button clickable" htmlFor="file-input">
                                 Upload File
                         </label>
                         
@@ -331,8 +331,8 @@ class SubmitTicket extends Component {
                                      readOnly={true} />
                     </p>
                     <p>
-                        <FormButton inputType="submit" className="redToDarkRedgradient clickable" buttonTitle="Submit" controlFunc={(e)=> { this.sendEmail(e); }  } />
-                        <FormButton inputType="reset" className="redToDarkRedgradient clickable" buttonTitle="Reset" controlFunc={this.clearForm} />
+                        <FormButton inputType="submit" className="clickable" buttonTitle="Submit" controlFunc={(e)=> { this.sendEmail(e); }  } />
+                        <FormButton inputType="reset" className="clickable" buttonTitle="Reset" controlFunc={this.clearForm} />
                     </p>
                 </fieldset>
         </form>,
