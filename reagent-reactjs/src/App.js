@@ -247,7 +247,9 @@ class App extends Component {
     if (isDev) {
       return (
         <BrowserRouter>
-            {appHTML()}
+          <div class="reagent-container animated fadeInUp" >
+            { appHTML() }
+          </div>
         </BrowserRouter>
       ); //end return statement
     } //end if-statement
@@ -255,7 +257,9 @@ class App extends Component {
     else {
       return (
         <HashRouter>
-            {appHTML()}
+          <div class="reagent-container animated fadeInUp" >
+            { appHTML() }
+          </div>
         </HashRouter>
       ); //end return statement
     } //end else-statement

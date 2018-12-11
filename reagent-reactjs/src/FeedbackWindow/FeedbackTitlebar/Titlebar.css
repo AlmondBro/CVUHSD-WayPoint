@@ -1,0 +1,65 @@
+#title {
+    position: absolute;
+    width: 100%;
+}
+
+#title p {
+    position: relative;
+    display: inline;
+    line-height: 25px;
+    right: 9px;
+}
+
+#title img {
+    position: absolute;
+    height: 20px;
+    bottom: 1px;
+}
+
+#button-close {
+    position: relative;
+    float: right;
+    width: 35px;
+    height: 25px;
+    background-color: #2c2c2c;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 0px;
+}
+
+#button-close:hover {
+    background-color: red;
+}
+
+#button-close img {
+    width: 25px;
+}
+
+#button-close p {
+    position: relative;
+    bottom: 2px;
+}
+
+#button-minimize {
+    position: relative;
+    float: right;
+    width: 35px;
+    height: 25px;
+    background-color: #2c2c2c;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 0px;
+}
+
+#button-minimize img {
+    width: 25px;
+}
+
+#button-minimize:hover {
+    background-color: #4c4c4c;
+}
+
+#button-minimize p {
+    position: relative;
+    bottom: 2px;
+}
