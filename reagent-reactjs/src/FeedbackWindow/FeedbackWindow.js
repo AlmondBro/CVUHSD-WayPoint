@@ -16,19 +16,19 @@ class FeedbackWindow extends Component {
 
     render = () => {
         return (
-            <div id="container">
+            <div id="fb-container" class="noDrag">
                 <Titlebar />
                 <section class="fb-page-content">
                     <div id="fb-form-container">
                         <form action="#">
-                            <fieldset>
+                            <fieldset id="fb-fieldset">
                                 <legend>
                                     <h2 id="fb-title">Provide Feedback</h2>
                                 </legend>
-                                <p>
+                                <p class="fb-inputContainer">
                                     <Select 
                                         label={true} 
-                                        id="category" 
+                                        id="fb-category" 
                                         labelTitle="Category:" 
                                         labelClassName="block" 
                                         options={["Computer Issue", "Printer Issue", "Projector Issue", "Password Issue", "Other Type of Issue"]} 
@@ -39,24 +39,27 @@ class FeedbackWindow extends Component {
                                         
                                     />
                                 </p>
-                                <p>
-                                    <SingleInput label={true} 
-                                        labelTitle="Subject" inputType="text" 
-                                        id="system" placeholder=""  
+                                <p class="fb-inputContainer">
+                                    <SingleInput label={true} labelID="fb-subject-label"
+                                        labelTitle="Subject:" inputType="text" 
+                                        id="fb-subject-input" placeholder=""  
                                         controlFunc=""
                                     />
                                 </p>
-                                <p>
-                                    <TextArea label={true} labelTitle="Description" 
-                                        id="subject" cols={5} rows={3}  
+                                <p class="fb-inputContainer"> 
+                                    <TextArea label={true} labelTitle="Description:" 
+                                        id="fb-description" cols={5} rows={3}  
                                         placeholder="Let us know what you think of WayPoint! What features we can improve on, add, or even remove." 
-                                        resize="vertical" 
+                                        resize="none" 
                                         controlFunc=""
                                     />
                                 </p>
-                                <p>
-                                    <FormButton inputType="submit" className="clickable" buttonTitle="Submit" controlFunc="" />
-                                    <FormButton inputType="reset" className="clickable" buttonTitle="Reset" controlFunc=""/>
+                                <p class="fb-inputContainer" id="fb-formButtons-container">
+                                    <FormButton inputType="submit" className="clickable fb-form-buttons" id="fb-submit" buttonTitle="Submit" controlFunc="" />
+                                    <FormButton inputType="reset" className="clickable  fb-form-buttons"  id="fb-reset" buttonTitle="Reset" controlFunc=""/>
+                                </p>
+                                <p class="poweredBy">
+                                 Powered by: The CV-way   
                                 </p>
                             </fieldset>
                         </form>

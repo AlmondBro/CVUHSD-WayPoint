@@ -3,7 +3,12 @@ import PropTypes from "prop-types"; // ES6
 import styles from "./FormButton.css";
 const FormButton = (props) => {
     return(
-        <button data-formbutton="1" type={props.inputType} className={props.className} onClick={props.controlFunc}>
+        <button data-formbutton="1" 
+                type={props.inputType} 
+                className={props.className} 
+                id={props.id} 
+                onClick={props.controlFunc}
+        >
             {props.buttonTitle}
         </button>
     );

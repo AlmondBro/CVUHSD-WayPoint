@@ -21,6 +21,8 @@ import QuickFixChromeOS from "./quickFix-Components/ChromeOS/quickFix-ChromeOS.j
 
 import { corsAnywhere } from "./server.js";
 
+import FeedbackWindow from "./FeedbackWindow/FeedbackWindow.js"
+
 const { BrowserWindow, app } = requireNodeJSmodule("electron"); //Use electron.remote for BrowserWindow and app are modules exclusive to the main process.
 const { ipcRenderer } = window.require('electron');
 
@@ -212,7 +214,7 @@ class App extends Component {
 
   appHTML = () => {
     return (
-    <div>
+    <div class="reagent-container animated fadeInUp">
       <Titlebar pageTitle={this.state.pageTitle}  updatePageTitle={this.updatePageTitle} />
         <main>
           <Header addNotification={this.addNotification } removeNotification={this.removeNotification} clearNotifications={this.clearNotifications} notifications={this.state.notifications} noNotifications={this.state.noNotifications} />
@@ -243,26 +245,27 @@ class App extends Component {
 
   render = () => {
     const isDev = requireNodeJSmodule("electron-is-dev"); 
-  
-    if (isDev) {
-      return (
-        <BrowserRouter>
-          <div class="reagent-container animated fadeInUp" >
-            { this.appHTML() }
-          </div>
-        </BrowserRouter>
-      ); //end return statement
-    } //end if-statement
 
-    else {
-      return (
-        <HashRouter>
-          <div class="reagent-container animated fadeInUp" >
-            { this.appHTML() }
-          </div>
-        </HashRouter>
-      ); //end return statement
-    } //end else-statement
+    if (window.location.pathname == "/feedbackWindow") {
+      console.log("Loading FeedbackWindow");
+      return (<FeedbackWindow/>);
+    } else {
+      if (isDev) {
+        return (
+          <BrowserRouter>
+              { this.appHTML() }
+          </BrowserRouter>
+        ); //end return statement
+      } //end if-statement
+  
+      else  {
+        return (
+          <HashRouter>
+              { this.appHTML() }
+          </HashRouter>
+        ); //end return statement
+      } //end else-statement
+    }
   } //end render() process
 } //end App class
 
