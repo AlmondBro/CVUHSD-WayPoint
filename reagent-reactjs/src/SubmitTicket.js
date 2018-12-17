@@ -58,7 +58,7 @@ class SubmitTicket extends Component {
             return this.state.emailSuccess ? (<i class="fa fa-check green-success" aria-hidden="true"></i> ) :
                                              (<i class="fa fa-times red-fail" aria-hidden="true"></i>);
         } //end else-statement
-    };
+    }; //end generateResultIcon()
 
     sendEmail = (e) => {
         console.log("sendEmail(e)");
@@ -119,7 +119,6 @@ class SubmitTicket extends Component {
            });  
         } //end else-statement
     }; //end sendMail() method
-
 
     fileAttachment = () => {
         let file_input = document.getElementById("file-input");
@@ -225,10 +224,10 @@ class SubmitTicket extends Component {
         return ([
             <form className="helpDeskTicket-form" action="https://helpdesk.centinela.k12.ca.us/portal/new_ticket" method="POST" encType="multipart/form-data"  >
                 <fieldset>
-                    <legend className="form-legend">
+                    <legend className="form-legend noHighlight">
                         <h3>{this.pageTitle}</h3>
                     </legend>
-                    <p className="submitForm-inputContainer">
+                    <p className="submitForm-inputContainer noHighlight">
                         <SingleInput label={true} 
                                      labelTitle="Summary/Title" 
                                      inputType="text" id="summary" 
@@ -240,7 +239,7 @@ class SubmitTicket extends Component {
                                                 }            
                         />
                     </p>
-                    <p className="submitForm-inputContainer">
+                    <p className="submitForm-inputContainer noHighlight">
                         <TextArea label={true} labelTitle="Detailed Description" 
                                   id="detailed-description" cols={5} rows={3}  
                                   placeholder="Type the technical issue you are facing here..." 
@@ -252,7 +251,7 @@ class SubmitTicket extends Component {
                                             } 
                         />
                     </p>
-                    <p className="submitForm-inputContainer">
+                    <p className="submitForm-inputContainer noHighlight">
                         <SingleInput label={true} 
                                     labelTitle="Centinela E-mail" inputType="email" 
                                     id="client-email" placeholder="Your Centinela e-mail..."  
@@ -263,7 +262,7 @@ class SubmitTicket extends Component {
                                                 } 
                             />
                     </p>
-                    <p className="inline fieldMargin">
+                    <p className="inline fieldMargin noHighlight">
                         <Select 
                             label={true} 
                             id="category" 
