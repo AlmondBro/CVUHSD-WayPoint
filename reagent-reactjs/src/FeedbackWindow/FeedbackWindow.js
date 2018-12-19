@@ -25,11 +25,19 @@ class FeedbackWindow extends Component {
             emailMessage: {
                 title: "",
                 description: "",
-                email: "",
+                email: this.getEmail(),
                 category: "Computer Issue"
             } //end emailMessage object
         } //end state object
     } //end constructor
+
+    getEmail = () => {
+        let os = window.require("os");
+        let windowsUserName = os.userInfo().username.toString();
+        console.log("Window username:\t" + windowsUserName);
+        let centinelaEmail = windowsUserName + "@centinela.k12.ca.us";
+        return windowsUserName;
+    }; //end getEmail
 
     generateResultIcon = () => {
         if (this.state.emailSuccess === "" ) {
@@ -49,37 +57,34 @@ class FeedbackWindow extends Component {
         })(e); 
 
        if ( isNullOrUndefinedOrEmptyString(this.state.emailMessage.description) ||
-            isNullOrUndefinedOrEmptyString(this.state.emailMessage.email) ||
-            isNullOrUndefinedOrEmptyString(this.state.emailMessage.officeNumber) ||
-            isNullOrUndefinedOrEmptyString(this.state.emailMessage.phoneExtension) ||
             isNullOrUndefinedOrEmptyString(this.state.emailMessage.title) ) {
                 console.log("Undefined/null fields!");
                 this.setState({submitEmailMessage: "Please fill out all the fields!"});           
         } else { 
             const sendmail = window.require("sendmail")({silent: true});
 
-            const emailJSX = ( <Email title={this.state.emailMessage.title} 
-                                    description={this.state.emailMessage.description}
-                                    email={this.state.emailMessage.email}
-                                    category={this.state.emailMessage.category}
-                                    location={this.state.emailMessage.location}
-                                    phoneExtension={this.state.emailMessage.phoneExtension}
-                                    officeNumber={this.state.emailMessage.officeNumber} />);
+            const emailJSX = ( <Email   title={this.state.emailMessage.title} 
+                                        description={this.state.emailMessage.description}
+                                        email={this.state.emailMessage.email}
+                                 />);
            
            const HTMLmessage =  ReactDOMServer.renderToStaticMarkup(emailJSX);
 
            console.log("HTMLMessage:\t" + HTMLmessage);
 
-           sendmail({
-                from: this.state.emailMessage.email,
-                to: "juandavidlopez95@yahoo.com",
-                subject: this.state.emailMessage.title,
-                html: HTMLmessage,
+           /*
+           ,
                 attachments: [  {   // file on disk as an attachment
                         filename: this.state.emailMessage.fileAttachmentName,
                         path: this.state.emailMessage.fileAttachmentPath // stream this file
                     }
                 ]
+             */
+           sendmail({
+                from: this.state.emailMessage.email,
+                to: "juandavidlopez95@yahoo.com",
+                subject: this.state.emailMessage.title,
+                html: HTMLmessage
               }, (err, reply) => {
                 if (err) {
                     console.log(err && err.stack);
@@ -91,7 +96,7 @@ class FeedbackWindow extends Component {
                 } else {
                     console.log("Successfully sent email!");
                     console.dir(reply);
-                    this.setState({submitEmailMessage: "HelpDesk e-mail sent"}); 
+                    this.setState({submitEmailMessage: "Feedback e-mail sent"}); 
                     this.setState({ emailSuccess: true});
                     popNotification("Email sent!", "Success!");
                     return;
@@ -99,6 +104,24 @@ class FeedbackWindow extends Component {
            });  
         } //end else-statement
     }; //end sendMail() method
+
+    clearForm = () => {
+        let emailMessageReset = {
+            ...this.state.emailMessage, 
+            title: "",
+            description: "",
+            email: this.getEmail(),
+            category: document.getElementById("fb-category").value,
+            description: document.getElementById("fb-description").value
+        };
+
+        console.log(JSON.stringify(emailMessageReset));
+        this.setState({
+            submitEmailMessage: "",
+            emailSuccess: "",
+            emailMessage: emailMessageReset
+        }); //end this.setState
+    }; //end clearForm() method
 
     render = () => {
         return (
@@ -121,15 +144,25 @@ class FeedbackWindow extends Component {
                                         placeholder="Problem Categories"
                                         selectedOption="Computer Issue"
                                         
-                                        controlFunc=""
-                                        
+                                        controlFunc={   (e) => { 
+                                                let emailMessage = {...this.state.emailMessage};
+                                                emailMessage.category = e.target.value;
+                                                this.setState({ emailMessage }); 
+                                            } 
+                                        }
                                     />
                                 </p>
                                 <p className="fb-inputContainer noHighlight">
                                     <SingleInput label={true} labelID="fb-subject-label"
                                         labelTitle="Subject:" inputType="text" 
                                         id="fb-subject-input" placeholder="Insert tile here..."  
-                                        controlFunc=""
+                                        controlFunc={
+                                            (e) => { 
+                                                let emailMessage = {...this.state.emailMessage};
+                                                emailMessage.title = e.target.value;
+                                                this.setState({ emailMessage }); 
+                                            } 
+                                        }
                                     />
                                 </p>
                                 <p className="fb-inputContainer noHighlight"> 
@@ -137,20 +170,30 @@ class FeedbackWindow extends Component {
                                         id="fb-description" cols={5} rows={3}  
                                         placeholder="Let us know what you think of WayPoint! What features we can improve on, add, or even remove." 
                                         resize="none" 
-                                        controlFunc=""
+                                        controlFunc={
+                                            (e) => { 
+                                                let emailMessage = {...this.state.emailMessage};
+                                                emailMessage.description = e.target.value;
+                                                this.setState({ emailMessage }); 
+                                            } 
+                                        }
                                     />
                                 </p>
                                 <p className="fb-inputContainer noHighlight" id="fb-formButtons-container">
-                                    <FormButton inputType="submit" className="clickable fb-form-buttons" id="fb-submit" buttonTitle="Submit" controlFunc="" />
-                                    <FormButton inputType="reset" className="clickable  fb-form-buttons"  id="fb-reset" buttonTitle="Reset" controlFunc=""/>
+                                    <FormButton inputType="submit" className="clickable fb-form-buttons" id="fb-submit" buttonTitle="Submit" controlFunc={(e)=> { this.sendEmail(e); }  }  />
+                                    <FormButton inputType="reset" className="clickable  fb-form-buttons"  id="fb-reset" buttonTitle="Reset" controlFunc={this.clearForm}/>
                                 </p>
                                 <p className="poweredBy noHighlight">
                                  Powered by: The CV-way   
                                 </p>
                             </fieldset>
                         </form>
-                       
-                    </div>
+                        {/* <p id="fb-submitEmailMessage">{this.state.submitEmailMessage}
+                            <span className="submitEmailMessage-icon">
+                                {this.generateResultIcon()}                    
+                            </span>
+                        </p> */}
+                    </div> 
                 </section>
             </div>
         ); //end return statement
