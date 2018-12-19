@@ -31,10 +31,14 @@ const emailMessage = (props) => {
                 <p style={paragraphStyle}><strong>Summary/Title:</strong> {props.title}</p>
                 <p style={paragraphStyle}><strong>Description:</strong> {props.description}</p>
                 <p style={paragraphStyle}><strong>Centinela Email:</strong> {props.email}</p>
-                <p style={paragraphStyle}><strong>Category:</strong> {props.category}</p>
-                <p style={paragraphStyle}><strong>Location:</strong> {props.location}</p>
-                <p style={paragraphStyle}><strong>Phone Extension:</strong> <a></a>  {props.phoneExtension}</p>
-                <p style={paragraphStyle}><strong>Office Number:</strong>{props.officeNumber}</p>
+               {    props.submitTicket ? ([
+                        <p style={paragraphStyle}><strong>Category:</strong> {props.category}</p>,
+                        <p style={paragraphStyle}><strong>Location:</strong> {props.location}</p>,
+                        <p style={paragraphStyle}><strong>Phone Extension:</strong> <a></a>  {props.phoneExtension}</p>,
+                        <p style={paragraphStyle}><strong>Office Number:</strong>{props.officeNumber}</p> 
+                    ]): null
+               } 
+                
           </section>
       </div>
     );

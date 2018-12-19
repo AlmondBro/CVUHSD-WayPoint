@@ -13,7 +13,7 @@ const TextAreaHTML = (props) => {
                 onChange={textAreaProps.controlFunc}
                 style={ textAreaProps.resize ? {resize: textAreaProps.resize } : {resize: "none"} }
                 placeholder={textAreaProps.placeholder}
-                key={textAreaProps.value}
+                key={textAreaProps.id}
              />);
 } //end TextAreaHTML()
 

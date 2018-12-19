@@ -10,12 +10,14 @@ const CheckBoxOrRadioGroup = (props) => {
                     return ( 
                     <label HTMLfor={option} key={ option } className={props.labelClassName} id={option}>
                         <input
-                            className={props.inputClassName}
+                            className={ props.inputClassName }
                             name= { props.id }
+                            key={ option }
                             onChange= {props.controlFunc}
                             value= { option }
                             checked={ props.selectedOptions.indexOf(option) > -1 }
-                            type={ props.type } /> { option }
+                            type={ props.type } 
+                        /> { option }
                     </label>);
                 })
             }

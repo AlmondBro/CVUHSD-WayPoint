@@ -59,11 +59,13 @@ class FeedbackWindow extends Component {
        if ( isNullOrUndefinedOrEmptyString(this.state.emailMessage.description) ||
             isNullOrUndefinedOrEmptyString(this.state.emailMessage.title) ) {
                 console.log("Undefined/null fields!");
-                this.setState({submitEmailMessage: "Please fill out all the fields!"});           
+                this.setState({submitEmailMessage: "Please fill out all the fields!"});   
+                popNotification("Empty fields", "Please fill out the form fields");        
         } else { 
             const sendmail = window.require("sendmail")({silent: true});
 
-            const emailJSX = ( <Email   title={this.state.emailMessage.title} 
+            const emailJSX = ( <Email   submitTicket={false}
+                                        title={this.state.emailMessage.title} 
                                         description={this.state.emailMessage.description}
                                         email={this.state.emailMessage.email}
                                  />);
@@ -82,12 +84,12 @@ class FeedbackWindow extends Component {
              */
            sendmail({
                 from: this.state.emailMessage.email,
-                to: "juandavidlopez95@yahoo.com",
+                to: this.state.emailMessage.email,
                 subject: this.state.emailMessage.title,
                 html: HTMLmessage
-              }, (err, reply) => {
-                if (err) {
-                    console.log(err && err.stack);
+              }, (error, reply) => {
+                if (error) {
+                    console.log(error && error.stack);
                     console.dir(reply);
                     this.setState({submitEmailMessage: "Error sending e-mail."});   
                     this.setState({ emailSuccess: false});

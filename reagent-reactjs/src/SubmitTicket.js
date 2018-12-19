@@ -55,8 +55,8 @@ class SubmitTicket extends Component {
         if (this.state.emailSuccess === "" ) {
             return null; 
         } else {
-            return this.state.emailSuccess ? (<i class="fa fa-check green-success" aria-hidden="true"></i> ) :
-                                             (<i class="fa fa-times red-fail" aria-hidden="true"></i>);
+            return this.state.emailSuccess ? (<i className="fa fa-check green-success" aria-hidden="true"></i> ) :
+                                             (<i className="fa fa-times red-fail" aria-hidden="true"></i>);
         } //end else-statement
     }; //end generateResultIcon()
 
@@ -78,7 +78,8 @@ class SubmitTicket extends Component {
         } else { 
             const sendmail = window.require("sendmail")({silent: true});
 
-            const emailJSX = ( <Email title={this.state.emailMessage.title} 
+            const emailJSX = ( <Email submitTicket= {true}
+                                    title={this.state.emailMessage.title} 
                                     description={this.state.emailMessage.description}
                                     email={this.state.emailMessage.email}
                                     category={this.state.emailMessage.category}

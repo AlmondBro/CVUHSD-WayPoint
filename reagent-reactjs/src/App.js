@@ -214,7 +214,7 @@ class App extends Component {
 
   appHTML = () => {
     return (
-    <div class="reagent-container animated fadeInUp">
+    <div className="reagent-container animated fadeInUp">
       <Titlebar pageTitle={this.state.pageTitle}  updatePageTitle={this.updatePageTitle} />
         <main>
           <Header addNotification={this.addNotification } removeNotification={this.removeNotification} clearNotifications={this.clearNotifications} notifications={this.state.notifications} noNotifications={this.state.noNotifications} />
