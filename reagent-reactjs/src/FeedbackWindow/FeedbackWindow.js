@@ -145,7 +145,6 @@ class FeedbackWindow extends Component {
                                         options={["Computer Issue", "Printer Issue", "Projector Issue", "Password Issue", "Other Type of Issue"]} 
                                         placeholder="Problem Categories"
                                         selectedOption="Computer Issue"
-                                        
                                         controlFunc={   (e) => { 
                                                 let emailMessage = {...this.state.emailMessage};
                                                 emailMessage.category = e.target.value;

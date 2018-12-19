@@ -29,7 +29,7 @@ const Titlebar = (props) => {
         currentWindow.close();
     };
 
-    let createWindow = () => {
+    let createFeedbackWindow = () => {
         console.log("createWindow()");
         // Create the browser window.
         //Show:false key-value pair is to delay loading until all resources have been loaded.
@@ -99,7 +99,7 @@ const Titlebar = (props) => {
             <div className="titleBarButtons-container">
                 <div 
                     className="titleBar-button" id="button-feedback" 
-                    title="Provide Feedback"  onClick={createWindow} 
+                    title="Provide Feedback"  onClick={createFeedbackWindow} 
                 >
                     <img src="img/icon-feedback.png" alt="feedback" />
                 </div>

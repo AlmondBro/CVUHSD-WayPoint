@@ -8,6 +8,7 @@ const SelectHTML = (props) => {
     var selectHTMLProps = props.props; 
     return (
         <select
+            key={selectHTMLProps.id}
             id={selectHTMLProps.id}
             name={selectHTMLProps.id}
             value={ (props.selectedOption === "") ? selectHTMLProps.options[0]: props.selectedOption }

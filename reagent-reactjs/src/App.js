@@ -65,7 +65,7 @@ class App extends Component {
 
   renderFooterFunction = (renderFooterBool) => {
     //Do not render footer on default
-    if ((renderFooterBool !== "undefined") ) {
+    if ( renderFooterBool !== "undefined" ) {
       this.setState( {renderFooter: renderFooterBool } );
     } else {
       this.setState( {renderFooter: false } );
@@ -89,7 +89,7 @@ class App extends Component {
     */
     /* State must be kept immutable, so you can not modify the state object directly.
        Unshift() does this on an arrray, instead of returning a new copy. */
-   let newNotificationsArray =  [...this.state.notifications]; // Use ES6 destructuring to copy array.
+   let newNotificationsArray =  [...this.state.notifications]; // Use ES6 destructuring to copy array as a value and not a reference
 
     newNotificationsArray.unshift({
       urgent: urgent,
@@ -205,11 +205,15 @@ class App extends Component {
     console.log("ipcEvents()");
   }; //end ipcEvents() 
 
+  componentWillMount = () => {
+    this.ipcEvents();
+  }; 
+
+  //componentDidMount() gets called immediately after render() and the DOM is available at this time. This will happen only the first time it's loaded until the page refreshes.
   componentDidMount = () => {
     this.runDevTools();
     this.setState( {renderFooter: true} );
     this.createInvisibleWindow();
-    this.ipcEvents();
   }; //end componentDidMount()
 
   appHTML = () => {

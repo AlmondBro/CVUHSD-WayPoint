@@ -42,8 +42,8 @@
   "devDependencies": {
     "concurrently": "^4.1.0",
     "devtron": "^1.4.0",
-    "electron": "^3.0.10",
-    "electron-builder": "^20.38.2",
+    "electron": "^3.0.13",
+    "electron-builder": "^20.38.4",
     "electron-react-devtools": "^0.5.3",
     "eslint-plugin-react": "^7.7.0",
     "wait-on": "^3.2.0",
