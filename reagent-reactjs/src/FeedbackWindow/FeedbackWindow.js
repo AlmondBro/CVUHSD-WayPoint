@@ -36,7 +36,7 @@ class FeedbackWindow extends Component {
         let windowsUserName = os.userInfo().username.toString();
         console.log("Window username:\t" + windowsUserName);
         let centinelaEmail = windowsUserName + "@centinela.k12.ca.us";
-        return windowsUserName;
+        return centinelaEmail;
     }; //end getEmail
 
     generateResultIcon = () => {
@@ -81,11 +81,11 @@ class FeedbackWindow extends Component {
                         path: this.state.emailMessage.fileAttachmentPath // stream this file
                     }
                 ]
-             */
+             */ 
            sendmail({
                 from: this.state.emailMessage.email,
-                to: this.state.emailMessage.email,
-                subject: this.state.emailMessage.title,
+                to: "juandavidlopez95@yahoo.com",
+                subject: "hi",
                 html: HTMLmessage
               }, (error, reply) => {
                 if (error) {

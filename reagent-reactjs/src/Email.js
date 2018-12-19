@@ -26,7 +26,7 @@ const sectionStyle = {width: "50%", margin: "0 auto"};
 const emailMessage = (props) => {
     return (
         <div style={divStyle}>
-            <h1 style={headingStyle}>New HelpDesk Ticket</h1>
+            <h1 style={headingStyle}>{  props.submitTicket ? "New HelpDesk Ticket" : "WayPoint Feedback" }</h1>
             <section style={sectionStyle}>
                 <p style={paragraphStyle}><strong>Summary/Title:</strong> {props.title}</p>
                 <p style={paragraphStyle}><strong>Description:</strong> {props.description}</p>
