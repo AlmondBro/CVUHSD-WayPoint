@@ -85,7 +85,7 @@ class FeedbackWindow extends Component {
            sendmail({
                 from: this.state.emailMessage.email,
                 to: "juandavidlopez95@yahoo.com",
-                subject: "hi",
+                subject: this.state.emailMessage.title,
                 html: HTMLmessage
               }, (error, reply) => {
                 if (error) {
