@@ -12,6 +12,11 @@ const isDev = window.require("electron-is-dev");
 const url = window.require("url");
 
 const Titlebar = (props) => {
+    let feedbackWindow; 
+    const electron = window.require("electron");
+    const remote = electron.remote;
+    let currentWindow = remote.getCurrentWindow();
+
     let minimizeWindow = () => {
         console.log("Button minimize");
         const electron = window.require("electron");
@@ -33,7 +38,9 @@ const Titlebar = (props) => {
         console.log("createWindow()");
         // Create the browser window.
         //Show:false key-value pair is to delay loading until all resources have been loaded.
-        var feedbackWindow = new BrowserWindow({
+        feedbackWindow = new BrowserWindow({
+            parent: currentWindow,
+            modal: true,
             title: "WayPoint", //Title of window whe frame is enabled
             width: 360, 
             height: 525, 
@@ -48,7 +55,8 @@ const Titlebar = (props) => {
             backgroundColor: "black",
             icon: isDev ? nativeImage.createFromPath(path.join(__dirname, "./../public/img/wp-icon-grey.png")) : nativeImage.createFromPath(path.join(__dirname, "./../build/img/wp-icon-grey.png"))
         });
-    
+        // const currentWindow = remote.getCurrentWindow();
+
         // ../public/img/wp-icon-grey.ico
         // ./gallery-icon.png
         //Productions paths are with "#/[component-path]"
