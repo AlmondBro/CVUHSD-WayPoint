@@ -21,6 +21,8 @@ import QuickFixChromeOS from "./quickFix-Components/ChromeOS/quickFix-ChromeOS.j
 
 import { corsAnywhere } from "./server.js";
 
+import FeedbackWindow from "./FeedbackWindow/FeedbackWindow.js"
+
 const { BrowserWindow, app } = requireNodeJSmodule("electron"); //Use electron.remote for BrowserWindow and app are modules exclusive to the main process.
 const { ipcRenderer } = window.require('electron');
 
@@ -63,7 +65,7 @@ class App extends Component {
 
   renderFooterFunction = (renderFooterBool) => {
     //Do not render footer on default
-    if ((renderFooterBool !== "undefined") ) {
+    if ( renderFooterBool !== "undefined" ) {
       this.setState( {renderFooter: renderFooterBool } );
     } else {
       this.setState( {renderFooter: false } );
@@ -87,7 +89,7 @@ class App extends Component {
     */
     /* State must be kept immutable, so you can not modify the state object directly.
        Unshift() does this on an arrray, instead of returning a new copy. */
-   let newNotificationsArray =  [...this.state.notifications]; // Use ES6 destructuring to copy array.
+   let newNotificationsArray =  [...this.state.notifications]; // Use ES6 destructuring to copy array as a value and not a reference
 
     newNotificationsArray.unshift({
       urgent: urgent,
@@ -203,62 +205,71 @@ class App extends Component {
     console.log("ipcEvents()");
   }; //end ipcEvents() 
 
+  componentWillMount = () => {
+    this.ipcEvents();
+  }; 
+
+  //componentDidMount() gets called immediately after render() and the DOM is available at this time. This will happen only the first time it's loaded until the page refreshes.
   componentDidMount = () => {
     this.runDevTools();
     this.setState( {renderFooter: true} );
     this.createInvisibleWindow();
-    this.ipcEvents();
   }; //end componentDidMount()
+
+  appHTML = () => {
+    return (
+    <div className="reagent-container animated fadeInUp">
+      <Titlebar pageTitle={this.state.pageTitle}  updatePageTitle={this.updatePageTitle} />
+        <main>
+          <Header addNotification={this.addNotification } removeNotification={this.removeNotification} clearNotifications={this.clearNotifications} notifications={this.state.notifications} noNotifications={this.state.noNotifications} />
+        {/* <Home/>*/}   {/* This is is the component you change when 
+                      the page changes, since all components have a 
+                      container, a main element, and a header. */}
+          <section className="page-content">
+            <Switch>
+              <Route exact path="/" render={ (props) => <Home updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction}  /> } />
+              <Route path="/autoFix-tools" render={ props => <AutoFixTools updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> } />
+              <Route path="/submit-ticket" render={ props => <SubmitTicket updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> } />
+              <Route path="/feedback" render={ props => <SubmitTicket updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> } />
+              <Route path="/quickFix-tutorials" render={ props => <QuickFixTutorials updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> } />
+              <Route path="/call-helpdesk" render={ props => <HelpDesk updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> }  />
+              <Route path="/wiFiMagic" render={props => <WiFiMagic updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> } /> 
+              <Route path="/ProjectorMagic"  render={props => <ProjectorMagic updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> }  />
+              <Route path="/staffPortal" render={ props => <StaffPortal updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} />} /> 
+              <Route path="/announcements" render={ props => <Announcements updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} />} />
+              <Route path="/quickFix-ChromeOS" render={ props => <QuickFixChromeOS updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} />} />  
+            </Switch>  
+          </section>
+          <Footer renderFooterBool={this.state.renderFooter} />
+          <div className="blur-effect"></div>
+        </main>
+      </div>
+      );
+  } //end appHTML();
 
   render = () => {
     const isDev = requireNodeJSmodule("electron-is-dev"); 
-    
-    const appHTML = () => {
-      return (
-      <div>
-        <Titlebar pageTitle={this.state.pageTitle}  updatePageTitle={this.updatePageTitle} />
-          <main>
-            <Header addNotification={this.addNotification } removeNotification={this.removeNotification} clearNotifications={this.clearNotifications} notifications={this.state.notifications} noNotifications={this.state.noNotifications} />
-          {/* <Home/>*/}   {/* This is is the component you change when 
-                        the page changes, since all components have a 
-                        container, a main element, and a header. */}
-            <section className="page-content">
-              <Switch>
-                <Route exact path="/" render={ (props) => <Home updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction}  /> } />
-                <Route path="/autoFix-tools" render={ props => <AutoFixTools updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> } />
-                <Route path="/submit-ticket" render={ props => <SubmitTicket updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> } />
-                <Route path="/feedback" render={ props => <SubmitTicket updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> } />
-                <Route path="/quickFix-tutorials" render={ props => <QuickFixTutorials updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> } />
-                <Route path="/call-helpdesk" render={ props => <HelpDesk updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> }  />
-                <Route path="/wiFiMagic" render={props => <WiFiMagic updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> } /> 
-                <Route path="/ProjectorMagic"  render={props => <ProjectorMagic updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> }  />
-                <Route path="/staffPortal" render={ props => <StaffPortal updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} />} /> 
-                <Route path="/announcements" render={ props => <Announcements updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} />} />
-                <Route path="/quickFix-ChromeOS" render={ props => <QuickFixChromeOS updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} />} />  
-              </Switch>  
-            </section>
-            <Footer renderFooterBool={this.state.renderFooter} />
-            <div className="blur-effect"></div>
-          </main>
-        </div>
-        );
-    } //end appHTML
 
-    if (isDev) {
-      return (
-        <BrowserRouter>
-            {appHTML()}
-        </BrowserRouter>
-      ); //end return statement
-    } //end if-statement
-
-    else {
-      return (
-        <HashRouter>
-            {appHTML()}
-        </HashRouter>
-      ); //end return statement
-    } //end else-statement
+    if (window.location.pathname == "/feedbackWindow") {
+      console.log("Loading FeedbackWindow");
+      return (<FeedbackWindow/>);
+    } else {
+      if (isDev) {
+        return (
+          <BrowserRouter>
+              { this.appHTML() }
+          </BrowserRouter>
+        ); //end return statement
+      } //end if-statement
+  
+      else  {
+        return (
+          <HashRouter>
+              { this.appHTML() }
+          </HashRouter>
+        ); //end return statement
+      } //end else-statement
+    }
   } //end render() process
 } //end App class
 

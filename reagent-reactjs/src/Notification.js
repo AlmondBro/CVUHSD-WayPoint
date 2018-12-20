@@ -3,7 +3,6 @@ import PropTypes from "prop-types"; // ES6
 
 const Notification = (props) => {
     let index = props.index;
-    console.log(`Notification index:\t ${props.key}`)
     return (
         <div className="notification-content-rectangle-container">
             <hr/>

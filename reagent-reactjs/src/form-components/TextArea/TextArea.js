@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types"; // ES6
-
+import styles from "./TextArea.css";
 const TextAreaHTML = (props) => {
     let textAreaProps = props.props;
     return (<textarea
@@ -13,7 +13,7 @@ const TextAreaHTML = (props) => {
                 onChange={textAreaProps.controlFunc}
                 style={ textAreaProps.resize ? {resize: textAreaProps.resize } : {resize: "none"} }
                 placeholder={textAreaProps.placeholder}
-                key={textAreaProps.value}
+                key={textAreaProps.id}
              />);
 } //end TextAreaHTML()
 

@@ -5,11 +5,11 @@ import ReactDOMServer from "react-dom/server";
 import Email from "./Email.js";
 
 //Import form components
-import SingleInput from "./form-components/SingleInput.js";
-import TextArea from "./form-components/TextArea.js";
-import Select from "./form-components/Select.js";
-import CheckBoxOrRadioGroup from "./form-components/CheckBoxOrRadioGroup.js";
-import FormButton from "./form-components/FormButton.js";
+import SingleInput from "./form-components/SingleInput/SingleInput.js";
+import TextArea from "./form-components/TextArea/TextArea.js";
+import Select from "./form-components/Select/Select.js";
+import CheckBoxOrRadioGroup from "./form-components/CheckBoxOrRadioGroup/CheckBoxOrRadioGroup.js";
+import FormButton from "./form-components/FormButton/FormButton.js";
 
 //Import 3rd-party libraries
 
@@ -55,10 +55,10 @@ class SubmitTicket extends Component {
         if (this.state.emailSuccess === "" ) {
             return null; 
         } else {
-            return this.state.emailSuccess ? (<i class="fa fa-check green-success" aria-hidden="true"></i> ) :
-                                             (<i class="fa fa-times red-fail" aria-hidden="true"></i>);
+            return this.state.emailSuccess ? (<i className="fa fa-check green-success" aria-hidden="true"></i> ) :
+                                             (<i className="fa fa-times red-fail" aria-hidden="true"></i>);
         } //end else-statement
-    };
+    }; //end generateResultIcon()
 
     sendEmail = (e) => {
         console.log("sendEmail(e)");
@@ -78,7 +78,8 @@ class SubmitTicket extends Component {
         } else { 
             const sendmail = window.require("sendmail")({silent: true});
 
-            const emailJSX = ( <Email title={this.state.emailMessage.title} 
+            const emailJSX = ( <Email submitTicket= {true}
+                                    title={this.state.emailMessage.title} 
                                     description={this.state.emailMessage.description}
                                     email={this.state.emailMessage.email}
                                     category={this.state.emailMessage.category}
@@ -119,7 +120,6 @@ class SubmitTicket extends Component {
            });  
         } //end else-statement
     }; //end sendMail() method
-
 
     fileAttachment = () => {
         let file_input = document.getElementById("file-input");
@@ -225,10 +225,10 @@ class SubmitTicket extends Component {
         return ([
             <form className="helpDeskTicket-form" action="https://helpdesk.centinela.k12.ca.us/portal/new_ticket" method="POST" encType="multipart/form-data"  >
                 <fieldset>
-                    <legend className="form-legend">
+                    <legend className="form-legend noHighlight">
                         <h3>{this.pageTitle}</h3>
                     </legend>
-                    <p className="submitForm-inputContainer">
+                    <p className="submitForm-inputContainer noHighlight">
                         <SingleInput label={true} 
                                      labelTitle="Summary/Title" 
                                      inputType="text" id="summary" 
@@ -240,7 +240,7 @@ class SubmitTicket extends Component {
                                                 }            
                         />
                     </p>
-                    <p className="submitForm-inputContainer">
+                    <p className="submitForm-inputContainer noHighlight">
                         <TextArea label={true} labelTitle="Detailed Description" 
                                   id="detailed-description" cols={5} rows={3}  
                                   placeholder="Type the technical issue you are facing here..." 
@@ -249,9 +249,10 @@ class SubmitTicket extends Component {
                                                             emailMessage.description = e.target.value;
                                                             this.setState({emailMessage}); 
                                                         }
-                                            } />
+                                            } 
+                        />
                     </p>
-                    <p className="submitForm-inputContainer">
+                    <p className="submitForm-inputContainer noHighlight">
                         <SingleInput label={true} 
                                     labelTitle="Centinela E-mail" inputType="email" 
                                     id="client-email" placeholder="Your Centinela e-mail..."  
@@ -259,9 +260,10 @@ class SubmitTicket extends Component {
                                                                 emailMessage.email = e.target.value
                                                                 this.setState({emailMessage}); 
                                                         } 
-                                                } />
+                                                } 
+                            />
                     </p>
-                    <p className="inline fieldMargin">
+                    <p className="inline fieldMargin noHighlight">
                         <Select 
                             label={true} 
                             id="category" 
@@ -275,7 +277,8 @@ class SubmitTicket extends Component {
                                                     emailMessage.category = e.target.value;
                                                     this.setState({ emailMessage }); 
                                                 } 
-                                            }  />
+                                            }  
+                            />
                     </p>
                     <p className="inline fieldMargin">
                         <Select 
@@ -319,7 +322,7 @@ class SubmitTicket extends Component {
                     <p>
                         <label>Optional Attachment:</label>
                 
-                        <label className="fileUpload-button redToDarkRedgradient clickable" htmlFor="file-input">
+                        <label className="fileUpload-button clickable" htmlFor="file-input">
                                 Upload File
                         </label>
                         
@@ -331,8 +334,8 @@ class SubmitTicket extends Component {
                                      readOnly={true} />
                     </p>
                     <p>
-                        <FormButton inputType="submit" className="redToDarkRedgradient clickable" buttonTitle="Submit" controlFunc={(e)=> { this.sendEmail(e); }  } />
-                        <FormButton inputType="reset" className="redToDarkRedgradient clickable" buttonTitle="Reset" controlFunc={this.clearForm} />
+                        <FormButton inputType="submit" className="clickable" buttonTitle="Submit" controlFunc={(e)=> { this.sendEmail(e); }  } />
+                        <FormButton inputType="reset" className="clickable" buttonTitle="Reset" controlFunc={this.clearForm} />
                     </p>
                 </fieldset>
         </form>,

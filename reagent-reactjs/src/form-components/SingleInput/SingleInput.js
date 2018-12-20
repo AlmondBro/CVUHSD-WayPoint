@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types"; // ES6
+import styles from "./SingleInput.css";
 
 const InputHTML = (props) => {
-    var InputHTMLprops = props.props;
+    let InputHTMLprops = props.props;
     return (
         <input 
             type={InputHTMLprops.inputType} 
@@ -12,9 +13,9 @@ const InputHTML = (props) => {
             // value={InputHTMLprops.value || ""} 
             readOnly={InputHTMLprops.readOnly}
             onChange={InputHTMLprops.controlFunc} 
-            key={InputHTMLprops.value} />
+            key={InputHTMLprops.id} />
         );
-} //end InputHTML()
+}; //end InputHTML()
 
 const SingleInput = (props) => {
     return ( (props.label === true) ?
@@ -23,7 +24,7 @@ const SingleInput = (props) => {
                 htmlFor={props.id} 
                 className={props.labelClassName} 
                 id={props.labelID} 
-                key={11} 
+                key={props.labelID} 
             >{props.labelTitle}</label>,
          <InputHTML props={props} /> 
         ]):  

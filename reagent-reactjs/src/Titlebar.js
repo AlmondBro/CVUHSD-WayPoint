@@ -12,6 +12,11 @@ const isDev = window.require("electron-is-dev");
 const url = window.require("url");
 
 const Titlebar = (props) => {
+    let feedbackWindow; 
+    const electron = window.require("electron");
+    const remote = electron.remote;
+    let currentWindow = remote.getCurrentWindow();
+
     let minimizeWindow = () => {
         console.log("Button minimize");
         const electron = window.require("electron");
@@ -29,14 +34,16 @@ const Titlebar = (props) => {
         currentWindow.close();
     };
 
-    let createWindow = () => {
+    let createFeedbackWindow = () => {
         console.log("createWindow()");
         // Create the browser window.
         //Show:false key-value pair is to delay loading until all resources have been loaded.
-        var feedbackWindow = new BrowserWindow({
+        feedbackWindow = new BrowserWindow({
+            parent: currentWindow,
+            modal: true,
             title: "WayPoint", //Title of window whe frame is enabled
-            width: 362, 
-            height: 527, 
+            width: 360, 
+            height: 525, 
             frame: false, 
             fullscreen: false, 
             resizable: false, 
@@ -48,12 +55,13 @@ const Titlebar = (props) => {
             backgroundColor: "black",
             icon: isDev ? nativeImage.createFromPath(path.join(__dirname, "./../public/img/wp-icon-grey.png")) : nativeImage.createFromPath(path.join(__dirname, "./../build/img/wp-icon-grey.png"))
         });
-    
+        // const currentWindow = remote.getCurrentWindow();
+
         // ../public/img/wp-icon-grey.ico
         // ./gallery-icon.png
         //Productions paths are with "#/[component-path]"
-        const startUrl = isDev ? (process.env.ELECTRON_START_URL || "http://localhost:3000/feedback.html") : url.format({
-            pathname: path.resolve(`./resources/app.asar/build/feedback.html`),
+        const startUrl = isDev ? (process.env.ELECTRON_START_URL || "http://localhost:3000/feedbackWindow") : url.format({
+            pathname: path.resolve(`./resources/app.asar/build/index.html#/feedbackWindow"`),
             protocol: "file:",
             slashes: true
         });
@@ -97,8 +105,11 @@ const Titlebar = (props) => {
     return ( 
         <div id="titlebar" className="noHighlight noDrag">
             <div className="titleBarButtons-container">
-                <div className="titleBar-button" id="button-feedback" title="Provide Feedback">
-                    <img src="img/icon-feedback.png" onClick={createWindow} alt="feedback" />
+                <div 
+                    className="titleBar-button" id="button-feedback" 
+                    title="Provide Feedback"  onClick={createFeedbackWindow} 
+                >
+                    <img src="img/icon-feedback.png" alt="feedback" />
                 </div>
 
                 <div className="titleBar-button noDrag" id="button-minimize" title="Minimize Window">
