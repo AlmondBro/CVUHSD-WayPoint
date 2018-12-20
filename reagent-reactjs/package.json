@@ -4,20 +4,21 @@
   "version": "0.5.0",
   "private": true,
   "main": "src/electron-starter.js",
-  "repository" : { 
-    "type" : "git",
-    "url" : "https://github.com/JuanDavidLopez95/CVUHSD-WayPoint.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JuanDavidLopez95/CVUHSD-WayPoint.git"
   },
   "dependencies": {
     "cors-anywhere": "^0.4.1",
     "electron-is-dev": "^1.0.1",
+    "electron-updater": "^4.0.6",
     "fullname": "^3.3.0",
     "macaddress": "^0.2.9",
     "node-notifier": "^5.3.0",
     "node-run-cmd": "^1.0.1",
     "prop-types": "^15.6.2",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
     "react-pure-lifecycle": "^3.0.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
@@ -93,10 +94,18 @@
       "menuCategory": true,
       "createDesktopShortcut": true
     },
-    "publish": [{
-      "provider": "github",
-      "owner": "JuanDavidLopez95",
-      "repo": "CVUHSD-WayPoint"
-    }]
-  }
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "JuanDavidLopez95",
+        "repo": "CVUHSD-WayPoint"
+      }
+    ]
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

@@ -17,6 +17,8 @@ const Titlebar = (props) => {
     const remote = electron.remote;
     let currentWindow = remote.getCurrentWindow();
 
+    console.log(`App Path:\t ${app.getAppPath()}`);
+
     let minimizeWindow = () => {
         console.log("Button minimize");
         const electron = window.require("electron");
@@ -32,7 +34,7 @@ const Titlebar = (props) => {
         const currentWindow = remote.getCurrentWindow();
 
         currentWindow.close();
-    };
+    }; //end closeWindow()
 
     let createFeedbackWindow = () => {
         console.log("createWindow()");
@@ -61,7 +63,7 @@ const Titlebar = (props) => {
         // ./gallery-icon.png
         //Productions paths are with "#/[component-path]"
         const startUrl = isDev ? (process.env.ELECTRON_START_URL || "http://localhost:3000/feedbackWindow") : url.format({
-            pathname: path.resolve(`./resources/app.asar/build/index.html#/feedbackWindow"`),
+            pathname: path.resolve(`./resources/app.asar/build/index.html#/submit-ticket`),
             protocol: "file:",
             slashes: true
         });
@@ -100,7 +102,25 @@ const Titlebar = (props) => {
             feedbackWindow.minimize();
         });
         
-    } //end createWindow()
+    }; //end createWindow()
+
+    let aboutWayPoint = () => {
+        const { dialog } = remote;
+        let { version } = require("./../package.json"); //Get the build version from package.json
+
+        dialog.showMessageBox(currentWindow, {
+            type: "info",
+            title: "About WayPoint",
+            message: `Version:\t ${version}
+                      \n\t© 2019 Centinela Valley Union HSD 
+                        `,
+            detail: `Last update: 
+                    \n\t Up to date !\t☺
+                    `
+        });
+
+       
+    }; //end aboutWayPoint()
 
     return ( 
         <div id="titlebar" className="noHighlight noDrag">
@@ -130,8 +150,8 @@ const Titlebar = (props) => {
             </div>
 
             <div id="title">
-                <div id="wp-icon-container" className="noDrag">
-                    <img id="wp-icon" src="img/wp-icon-grey.png" title="Waypoint Version 0.1" alt="WayPoint Icon" />
+                <div id="wp-icon-container" className="clickable drag" onClick={ aboutWayPoint }>
+                    <img className="clickable drag" id="wp-icon" src="img/wp-icon-grey.png" title="Waypoint Version 0.1" alt="WayPoint Icon" />
                 </div>
                 <div id="page-title-container"><h2 id="page-title">{props.pageTitle}</h2></div>
             </div>

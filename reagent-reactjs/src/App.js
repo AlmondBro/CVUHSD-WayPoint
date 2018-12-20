@@ -213,7 +213,6 @@ class App extends Component {
   componentDidMount = () => {
     this.runDevTools();
     this.setState( {renderFooter: true} );
-    this.createInvisibleWindow();
   }; //end componentDidMount()
 
   appHTML = () => {

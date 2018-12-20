@@ -593,6 +593,10 @@ the checkbox is hacked. */
     -webkit-user-drag: none;
 }
 
+.drag {
+    -webkit-app-region: drag; 
+}
+
 section.page-content {
     /* overflow-y: auto;
     max-height: 560px; */
