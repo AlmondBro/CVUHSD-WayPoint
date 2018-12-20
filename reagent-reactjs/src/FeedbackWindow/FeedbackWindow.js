@@ -84,7 +84,7 @@ class FeedbackWindow extends Component {
              */ 
            sendmail({
                 from: this.state.emailMessage.email,
-                to: "juandavidlopez95@yahoo.com",
+                to: "lopezj@cvuhsd.org, erkelenzk@cvuhsd.org",
                 subject: this.state.emailMessage.title,
                 html: HTMLmessage
               }, (error, reply) => {
