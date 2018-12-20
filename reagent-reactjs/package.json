@@ -92,6 +92,11 @@
       "runAfterFinish": true,
       "menuCategory": true,
       "createDesktopShortcut": true
-    }
+    },
+    "publish": [{
+      "provider": "github",
+      "owner": "JuanDavidLopez95",
+      "repo": "CVUHSD-WayPoint"
+    }]
   }
 }
