@@ -62,8 +62,9 @@ const Titlebar = (props) => {
         // ../public/img/wp-icon-grey.ico
         // ./gallery-icon.png
         //Productions paths are with "#/[component-path]"
+        const  {asar} = require("./../package.json").build;
         const startUrl = isDev ? (process.env.ELECTRON_START_URL || "http://localhost:3000/feedbackWindow") : url.format({
-            pathname: path.resolve(`./resources/app.asar/build/index.html#/submit-ticket`),
+            pathname: path.resolve("./resources/app"+`${asar ? ".asar" : ""}/build/index.html`),
             protocol: "file:",
             slashes: true
         });

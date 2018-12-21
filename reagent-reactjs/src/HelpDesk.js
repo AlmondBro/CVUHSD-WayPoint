@@ -35,8 +35,8 @@ const HelpDesk = (props) => {
 
             <SupportSquare phone="tel:+01-310-263-3200;ext=7395" 
                         icon="fas fa-building" 
-                        title="Leuzinger" 
-                        imgSrc="./img/icon-building2.png"
+                        title="Kevin" 
+                        imgSrc="./img/icon-leuzinger.png"
                         ext="7395" />
 
             <SupportSquare phone="tel:+01-310-263-3200;ext=2346" 
