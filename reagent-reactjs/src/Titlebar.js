@@ -16,9 +16,24 @@ const Titlebar = (props) => {
     const electron = window.require("electron");
     const remote = electron.remote;
     let currentWindow = remote.getCurrentWindow();
+    console.log("Hash:\t"+"#");
 
     console.log(`App Path:\t ${app.getAppPath()}`);
 
+    console.log("window.location :\t" + window.location);
+    console.log("Window.location.pathname:\t" + window.location.pathname);
+    console.log("window.location.hash:\t" + window.location.hash);
+   
+/*
+    const  {asar} = require("./../package.json").build;
+    let productionWindowPath = url.format({
+        pathname: path.resolve("./resources/app"+`${asar ? ".asar" : ""}`+"/build/index.html#/wiFiMagic"),
+        protocol: "file:",
+        slashes: true
+    });
+
+    console.log("productionWindowPath:\t"+productionWindowPath);
+*/
     let minimizeWindow = () => {
         console.log("Button minimize");
         const electron = window.require("electron");
@@ -38,6 +53,9 @@ const Titlebar = (props) => {
 
     let createFeedbackWindow = () => {
         console.log("createWindow()");
+        console.log("window.location :\t" + window.location);
+        console.log("Window.location.pathname:\t" + window.location.pathname);
+        console.log("window.location.hash:\t" + window.location.hash);
         // Create the browser window.
         //Show:false key-value pair is to delay loading until all resources have been loaded.
         feedbackWindow = new BrowserWindow({
@@ -63,13 +81,17 @@ const Titlebar = (props) => {
         // ./gallery-icon.png
         //Productions paths are with "#/[component-path]"
         const  {asar} = require("./../package.json").build;
-        const startUrl = isDev ? (process.env.ELECTRON_START_URL || "http://localhost:3000/feedbackWindow") : url.format({
-            pathname: path.resolve("./resources/app"+`${asar ? ".asar" : ""}/build/index.html`),
+        let windowPath = url.format({
+            pathname: path.resolve("./resources/app"+`${asar ? ".asar" : ""}`+"/build/index.html#/feedbackWindow"),
             protocol: "file:",
             slashes: true
         });
+        let productionWindowPath = decodeURIComponent(windowPath); //Use decodeURIComponent() since path.resolve was changing #s (hashes) to '%23's
+        const startUrl = isDev ? (process.env.ELECTRON_START_URL || "http://localhost:3000/feedbackWindow") : productionWindowPath;
     
+
         console.log("New window path:\t",  path.join(__dirname, "./build/index.html")); 
+        console.log("productionWindowPath:\t"+productionWindowPath);
 
         console.log(JSON.stringify(process.env)); //Log the environment variables
         console.log("process.env.ELECTRON_START_URL:\t" + process.env.ELECTRON_START_URL);
@@ -86,6 +108,7 @@ const Titlebar = (props) => {
         feedbackWindow.on("ready-to-show", () => { 
             feedbackWindow.show(); 
             feedbackWindow.focus(); 
+            feedbackWindow.webContents.openDevTools();
             console.log(`App Path:\t ${app.getAppPath()}`);
         });  
     

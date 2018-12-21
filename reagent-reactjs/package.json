@@ -58,7 +58,7 @@
   "author": "CVUHSD",
   "homepage": "./",
   "build": {
-    "asar": false,
+    "asar": true,
     "extends": null,
     "productName": "WayPoint",
     "appId": "Waypoint",
