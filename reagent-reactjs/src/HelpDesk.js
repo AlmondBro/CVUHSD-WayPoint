@@ -30,7 +30,7 @@ const HelpDesk = (props) => {
             <SupportSquare phone="tel:+01-310-263-3200;ext=4413" 
                         icon="fas fa-building" 
                         title="Lawndale" 
-                        imgSrc="./img/icon-building2.png" 
+                        imgSrc="./img/icon-lawndale.png" 
                         ext="4413"/>
 
             <SupportSquare phone="tel:+01-310-263-3200;ext=7395" 
@@ -42,7 +42,7 @@ const HelpDesk = (props) => {
             <SupportSquare phone="tel:+01-310-263-3200;ext=2346" 
                         icon="fas fa-building" 
                         title="Hawthorne" 
-                        imgSrc="./img/icon-building2.png" 
+                        imgSrc="./img/icon-hawthorne.png" 
                         ext="2346"/>
 
             <SupportSquare phone="tel:+01-310-263-3200;ext=3286" 

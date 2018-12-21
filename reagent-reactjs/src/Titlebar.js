@@ -82,11 +82,12 @@ const Titlebar = (props) => {
         //Productions paths are with "#/[component-path]"
         const  {asar} = require("./../package.json").build;
         let windowPath = url.format({
-            pathname: path.resolve("./resources/app"+`${asar ? ".asar" : ""}`+"/build/index.html#/feedbackWindow"),
+            pathname: path.resolve("./resources/app"+`${asar ? ".asar" : ""}`+`/build/index.html#/feedbackWindow`),
             protocol: "file:",
             slashes: true
         });
-        let productionWindowPath = (decodeURIComponent(windowPath)); //Use decodeURIComponent() since path.resolve was changing #s (hashes) to '%23's
+
+        let productionWindowPath = (windowPath.replace("%23", "#")); //Use decodeURIComponent() since path.resolve was changing #s (hashes) to '%23's
         const startUrl = isDev ? (process.env.ELECTRON_START_URL || "http://localhost:3000/feedbackWindow") : productionWindowPath;
     
 
