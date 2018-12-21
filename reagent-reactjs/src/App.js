@@ -125,7 +125,7 @@ class App extends Component {
       });
   }; //end clearNotifications()
   
-  createInvisibleWindow = () => {
+  createMonitorFetchWindow = () => {
     const isDev = window.require("electron-is-dev");
     const path = window.require("path");
     const url = window.require("url");
@@ -134,7 +134,7 @@ class App extends Component {
       corsAnywhere();
     }
 
-    console.log("createInvisibleWindow()");
+    console.log("createMonitorFetchWindow()");
     monitorFetchWindow = new BrowserWindow({
         title: "WayPoint", //Title of window when frame is enabled
         width: 360, 
@@ -177,11 +177,9 @@ class App extends Component {
          // monitorFetchWindow.webContents.openDevTools({ mode: "undocked"});
     } //end if-statement
    
-    /*
     monitorFetchWindow.on("close", (event) => {
       monitorFetchWindow.close();
     });  //end monitorFetchWindow.on()
-*/
   }; //end createInvisibleWindow()
 
   runDevTools = () => {
@@ -213,6 +211,8 @@ class App extends Component {
   componentDidMount = () => {
     this.runDevTools();
     this.setState( {renderFooter: true} );
+    // this.createMonitorFetchWindow();
+   
   }; //end componentDidMount()
 
   appHTML = () => {
