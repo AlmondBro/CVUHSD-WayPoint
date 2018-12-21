@@ -211,7 +211,7 @@ class App extends Component {
   componentDidMount = () => {
     this.runDevTools();
     this.setState( {renderFooter: true} );
-    // this.createMonitorFetchWindow();
+    this.createMonitorFetchWindow();
    
   }; //end componentDidMount()
 

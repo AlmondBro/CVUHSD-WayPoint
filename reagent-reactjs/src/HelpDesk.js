@@ -25,7 +25,7 @@ const HelpDesk = (props) => {
                         title="Helpdesk Hotline"
                         id="helpdeskHotline-supportSquare"
                         imgSrc="./img/icon-building2.png" 
-                        ext="7398"/>
+                        ext="3290"/>
 
             <SupportSquare phone="tel:+01-310-263-3200;ext=4413" 
                         icon="fas fa-building" 

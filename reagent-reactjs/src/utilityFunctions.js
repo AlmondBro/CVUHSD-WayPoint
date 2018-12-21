@@ -48,10 +48,13 @@ const utilityFunctions = () => {
         const notifier = remote.require("node-notifier");
         const path = remote.require("path");
 
+        const  {asar} = require("./../package.json").build;
+        path.resolve("./resources/app"+`${asar ? ".asar" : ""}`+`/build/img/wp-icon-grey.ico`);
+
         let notifierOptions = {
             title: notificationTitle || "Title",
             message: notificationMessage || "Message",
-            icon: iconPath || path.join(__dirname, "./../public/img/wp-icon-grey.ico"), // Absolute path (doesn't work on balloons)
+            icon: path.resolve(__dirname, "./img/wp-icon-grey.ico"), // Absolute path (doesn't work on balloons)
             sound: soundOn || true, // Only Notification Center or Windows Toasters
             wait: noWait || false // Wait with callback, until user action is taken against notification
         }
