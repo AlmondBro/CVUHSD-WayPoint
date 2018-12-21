@@ -86,7 +86,7 @@ const Titlebar = (props) => {
             protocol: "file:",
             slashes: true
         });
-        let productionWindowPath = decodeURIComponent(windowPath); //Use decodeURIComponent() since path.resolve was changing #s (hashes) to '%23's
+        let productionWindowPath = (decodeURIComponent(windowPath)); //Use decodeURIComponent() since path.resolve was changing #s (hashes) to '%23's
         const startUrl = isDev ? (process.env.ELECTRON_START_URL || "http://localhost:3000/feedbackWindow") : productionWindowPath;
     
 
