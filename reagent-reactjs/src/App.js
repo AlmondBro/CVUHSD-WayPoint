@@ -212,7 +212,7 @@ class App extends Component {
     this.runDevTools();
     this.setState( {renderFooter: true} );
     this.createMonitorFetchWindow();
-   
+    console.log("Node notifier icon path:\t" + require("path").join(__dirname, "./../public/img/wp-icon-grey.png"));
   }; //end componentDidMount()
 
   appHTML = () => {
