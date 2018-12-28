@@ -23,7 +23,7 @@ import { corsAnywhere } from "./server.js";
 
 import FeedbackWindow from "./FeedbackWindow/FeedbackWindow.js"
 
-const { BrowserWindow, app } = requireNodeJSmodule("electron"); //Use electron.remote for BrowserWindow and app are modules exclusive to the main process.
+const { BrowserWindow } = requireNodeJSmodule("electron"); //Use electron.remote for BrowserWindow and app are modules exclusive to the main process.
 const { ipcRenderer } = window.require('electron');
 
 let monitorFetchWindow = null;
@@ -146,12 +146,12 @@ class App extends Component {
           sandbox: false,
           nodeIntegrationInWorker: true
         },
-        show: false
+        show: isDev
     });
 
    // const imagePath = isDev ? path.resolve(`./${publicOrBuild}/img/${image}`) :  path.resolve(`./resources/app.asar/build/img/${image}`);
     // Production paths are relative to the WayPoint.exe executable. 
-   const startUrl = isDev ? (process.env.ELECTRON_START_URL || path.resolve("./public/background-process.html") ) : url.format({
+   const startUrl = isDev ? (path.resolve("./public/background-process.html") ) : url.format({
         pathname: path.resolve("./resources/app.asar/build/background-process.html"),
         protocol: "file:",
         slashes: true

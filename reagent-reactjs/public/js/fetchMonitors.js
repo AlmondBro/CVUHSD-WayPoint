@@ -1,4 +1,6 @@
-import  { requireNodeJSModule } from "./utilityFunctions.js"
+let isDev = require("electron-is-dev");
+const path = require("path");
+let { ipcRenderer } = require("electron");
 
 let installWebWorker = () => {
     console.log("installWebWorker()");
@@ -10,9 +12,6 @@ let installWebWorker = () => {
     }   
 }; //end installWebWorker()
 // installWebWorker();
-
-let isDev = require("electron-is-dev");
-let { ipcRenderer } = require("electron");
 
 const requireNodeJSmodule = (moduleName) => {
     if (typeof(moduleName) !== "string") {
@@ -31,12 +30,11 @@ const requireNodeJSmodule = (moduleName) => {
 let popNotification = (notificationTitle, notificationMessage, iconPath, soundOn, noWait) => {
     //Use notifier NPM module since the native Electron Notifications is not working
     const notifier = require("node-notifier");
-    const path = require("path");
 
     let notifierOptions = {
         title: notificationTitle || "Title",
         message: notificationMessage || "Message",
-        icon: iconPath || path.join(__dirname, "./../public/img/wp-icon-grey.ico"), // Absolute path (doesn't work on balloons)
+        icon: iconPath || path.join(__dirname, "./img/CV-600x600.png"), // Absolute path (doesn't work on balloons)
         sound: soundOn || true, // Only Notification Center or Windows Toasters
         wait: noWait || false // Wait with callback, until user action is taken against notification
     }
@@ -81,7 +79,8 @@ let fetchMonitors = () => {
     
         let getMonitorImage = (monitorName) => {
             // console.log("getMonitorImage");
-            let basePath = "./img/buttons/"
+           
+            let basePath =  path.join(__dirname, "./img/buttons/");
             let monitorImage;
 
             switch (monitorName) {
