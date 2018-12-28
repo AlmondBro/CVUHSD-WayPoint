@@ -1,3 +1,16 @@
+import  { requireNodeJSModule } from "./utilityFunctions.js"
+
+let installWebWorker = () => {
+    console.log("installWebWorker()");
+    if (typeof(Worker) !== "undefined") {
+        console.log("Web worker supported");
+        let monitorsWorker = new Worker("fetchMonitors.js");
+    } else {
+        console.log("Sorry! No Web Worker support...");
+    }   
+}; //end installWebWorker()
+// installWebWorker();
+
 let isDev = require("electron-is-dev");
 let { ipcRenderer } = require("electron");
 
@@ -58,7 +71,7 @@ let fetchMonitors = () => {
                 }
             };
         }(wait, times);
-      
+    
         setTimeout(interv, wait);
     };
     
@@ -68,10 +81,10 @@ let fetchMonitors = () => {
     
         let getMonitorImage = (monitorName) => {
             // console.log("getMonitorImage");
-            let basePath = "./images/buttons/"
+            let basePath = "./img/buttons/"
             let monitorImage;
+
             switch (monitorName) {
-                
                 case "Destiny":
                     monitorImage = "Destiny.png";
                     break;
@@ -130,21 +143,23 @@ let fetchMonitors = () => {
     
         console.log(`checkMonitorStatus():\t ${JSON.stringify(monitors)}`);
         console.log(monitors[0]);
-    
+        let status = "";
         for (let i = 0; i < monitors.length; i++ ) {
             //console.log("checkMonitorStatus() for-loop");
             // console.dir(monitors[0]);
             
             if ( monitors[i]["name"] == "Destiny" ) {
+                status = "down";
+                let monitorImage = getMonitorImage(monitors[i].name);
                 console.log(`${monitors[i].name} is currently down`);
                 //downMonitors.push(monitors[i]);
     
                 //check that browser supports HTML5 notifications and that the browser has 
             //   if ( self.registration !== "undefined" &&  self.registration ) { 
-               popNotification(`${monitors[i].name}`, `${monitors[i].name} is currently down`, getMonitorImage(monitors[i].name) );
-                ipcRenderer.send("toMainProcess", `${monitors[i].name}`);
+                popNotification(`${monitors[i].name}`, `${monitors[i].name} is currently down`, monitorImage );
+                ipcRenderer.send("toMainProcess", `${monitors[i].name}`, status, monitorImage);
                 
-               // } 
+            // } 
             /* if (self.registration === "undefined" && !self.registration ) {
                     console.log("Calling alert()");
                     console.log("Type of self.registration:\t" + typeof(self.registration) + "\t" + self.registration );
@@ -155,11 +170,11 @@ let fetchMonitors = () => {
             /*Check if monitors that were previously down are now back up. */
             if ( typeof(downMonitors[i]) != "undefined") {
                 if (downMonitors[i]["status"] === 1) {
-                  //  if ( self.registration ) { //check that browser supports HTML5 notifications and that the browser has 
-                       // popNotification(`${monitors[i].name}`, `${monitors[i].name} is currently down`, getMonitorImage(monitors[i].name) );
-                  //  } else {
-                   //     alert(`${monitors[i].name} is back up`);
-                   // } //end inner else-statement (check for SW notifications support)
+                //  if ( self.registration ) { //check that browser supports HTML5 notifications and that the browser has 
+                    // popNotification(`${monitors[i].name}`, `${monitors[i].name} is currently down`, getMonitorImage(monitors[i].name) );
+                //  } else {
+                //     alert(`${monitors[i].name} is back up`);
+                // } //end inner else-statement (check for SW notifications support)
     
                     for (let j = 0; j < downMonitors.length; j++ ) {
                         if (downMonitors[i].name === downMonitors[j].name ) {
@@ -172,7 +187,7 @@ let fetchMonitors = () => {
     }; //end checkMonitorStatus();
     
     let monitors = [];
-   
+
     let fetchJSON = () => {
         //Even in development, for some reason here, the proxy url is not needed.
         let isDev = false;
@@ -190,31 +205,31 @@ let fetchMonitors = () => {
             },
         };
         
-          let fetchURL = isDev ? (proxy_URL + API_URL) : API_URL;
+        let fetchURL = isDev ? (proxy_URL + API_URL) : API_URL;
         
-          let request = new Request(fetchURL, initObject);
-          
-          fetch(request) //or use window.fetch(fetchURL, initObject)
-              .then( (response) => {
-                  console.log(response);
-                  return response.json();
-              })
-              .then( (myJson) => {
-                 console.log("JSON:\t" + JSON.stringify(myJson));
-                 
-                  monitors = myJson["data"]["monitors"];
-                  // console.log(`Monitors: ${JSON.stringify(monitors)}`);
+        let request = new Request(fetchURL, initObject);
         
-                  return monitors;
-              })
-              .then( (monitors) => {
-                  checkMonitorStatus(monitors);
-                  //hello
-                  console.log("monitors (return promise)");
-              })
-              .catch( (error) => {
-                  console.log('There has been a problem with your fetch operation: ', error.message);
-              }); 
+        fetch(request) //or use window.fetch(fetchURL, initObject)
+            .then( (response) => {
+                console.log(response);
+                return response.json();
+            })
+            .then( (myJson) => {
+                console.log("JSON:\t" + JSON.stringify(myJson));
+                
+                monitors = myJson["data"]["monitors"];
+                // console.log(`Monitors: ${JSON.stringify(monitors)}`);
+        
+                return monitors;
+            })
+            .then( (monitors) => {
+                checkMonitorStatus(monitors);
+                //hello
+                console.log("monitors (return promise)");
+            })
+            .catch( (error) => {
+                console.log('There has been a problem with your fetch operation: ', error.message);
+            }); 
     };
 
     const MINUTES = 5;
