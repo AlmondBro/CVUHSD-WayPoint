@@ -24,7 +24,7 @@ import { corsAnywhere } from "./server.js";
 import FeedbackWindow from "./FeedbackWindow/FeedbackWindow.js"
 
 const { BrowserWindow } = requireNodeJSmodule("electron"); //Use electron.remote for BrowserWindow and app are modules exclusive to the main process.
-const { ipcRenderer } = window.require('electron');
+const { ipcRenderer } = window.require("electron");
 
 let monitorFetchWindow = null;
 
@@ -88,7 +88,7 @@ class App extends Component {
     this.setState({ arr: [...this.state.arr, 'new item'] });
     */
     /* State must be kept immutable, so you can not modify the state object directly.
-       Unshift() does this on an arrray, instead of returning a new copy. */
+       Unshift() does this on an array, instead of returning a new copy. */
    let newNotificationsArray =  [...this.state.notifications]; // Use ES6 destructuring to copy array as a value and not a reference
 
     newNotificationsArray.unshift({
@@ -197,7 +197,7 @@ class App extends Component {
   ipcEvents = () => {
     ipcRenderer.on("toMainWindow", (event, monitorName, status, monitorImage) => {
       console.log(`toMainWindow received. ${monitorName} is ${status}` );
-      this.addNotification(false,`${monitorName} is ${status}`, null, monitorImage);
+      this.addNotification(false,`${monitorName} is ${status}`, null, monitorName);
     });
 
     console.log("ipcEvents()");
