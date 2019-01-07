@@ -6,13 +6,16 @@ const { app } = electron; //ES6 Destructuring -- Same as const app = electron.ap
 // Module to create native browser window.
 const { BrowserWindow } = electron; //ES6 Destructuring -- Same as const BrowserWindow = electron.BrowserWindow
 
-const { autoUpdater } = require("electron-updater");
-
 const path = require("path");
 const url = require("url");
 const isDev = require("electron-is-dev"); 
 
 const { nativeImage, ipcMain } = require("electron");
+
+const { autoUpdater } = require("electron-updater"); 
+// autoUpdater.logger = log;
+// autoUpdater.logger.transports.file.level = 'info';
+// log.info('App starting...');
 
 /*Keep a global reference of the electron window object, if you don't, the window will
  be closed automatically when the JavaScript object is garbage collected. */
@@ -179,8 +182,8 @@ const preventMoreThanOneInstance = () => {
 
 const autoUpdate = () => {
     console.log("autoUpdate()");
-
-    autoUpdater.autoDownload = true;
+    autoUpdater.checkForUpdatesAndNotify();
+    //autoUpdater.autoDownload = true;
 };
 
 var ws = require("windows-shortcuts");
@@ -210,14 +213,12 @@ app.on("ready", async () => {
         electron.webFrame.registerURLSchemeAsBypassingCSP("file"); */
     // */
    await setTrayIcon();
-
+   await autoUpdate();
    ipcMain.on('toMainProcess', (event, monitorName, status, image) => {
         console.log(`toMainProcess received. ${monitorName} is ${status}. ImagePath is ${image}.Sending info to mainWindow`);
         // event.sender.send('toMainWindow', monitorName, status); //Sends event to window that sent it
         mainWindow.webContents.send("toMainWindow", monitorName, status, image);
     });
-
-    await autoUpdate();
 });
 
 
