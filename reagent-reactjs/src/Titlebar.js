@@ -80,7 +80,7 @@ const Titlebar = (props) => {
         // ../public/img/wp-icon-grey.ico
         // ./gallery-icon.png
         //Productions paths are with "#/[component-path]"
-        const  {asar} = require("./../package.json").build;
+        const  { asar } = require("./../package.json").build;
         let windowPath = url.format({
             pathname: path.resolve("./resources/app"+`${asar ? ".asar" : ""}`+`/build/index.html#/feedbackWindow`),
             protocol: "file:",
@@ -90,9 +90,8 @@ const Titlebar = (props) => {
         let productionWindowPath = (windowPath.replace("%23", "#")); //Use decodeURIComponent() since path.resolve was changing #s (hashes) to '%23's
         const startUrl = isDev ? (process.env.ELECTRON_START_URL || "http://localhost:3000/feedbackWindow") : productionWindowPath;
     
-
         console.log("New window path:\t",  path.join(__dirname, "./build/index.html")); 
-        console.log("productionWindowPath:\t"+productionWindowPath);
+        console.log("productionWindowPath:\t" + productionWindowPath);
 
         console.log(JSON.stringify(process.env)); //Log the environment variables
         console.log("process.env.ELECTRON_START_URL:\t" + process.env.ELECTRON_START_URL);
@@ -174,9 +173,9 @@ const Titlebar = (props) => {
                 </div>
             </div>
 
-            <div id="title">
-                <div id="wp-icon-container" className="clickable drag" onClick={ aboutWayPoint }>
-                    <img className="clickable drag" id="wp-icon" src="img/wp-icon-grey.png" title="Waypoint Version 0.1" alt="WayPoint Icon" />
+            <div id="title" className="clickable" onClick={ aboutWayPoint }>
+                <div id="wp-icon-container" className="clickable noDrag" >
+                    <img className="clickable noDrag" id="wp-icon" src="img/wp-icon-grey.png" title="Waypoint Version 0.1" alt="WayPoint Icon" />
                 </div>
                 <div id="page-title-container"><h2 id="page-title">{props.pageTitle}</h2></div>
             </div>
