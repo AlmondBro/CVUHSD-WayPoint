@@ -16,7 +16,24 @@ const Titlebar = (props) => {
     const electron = window.require("electron");
     const remote = electron.remote;
     let currentWindow = remote.getCurrentWindow();
+    console.log("Hash:\t"+"#");
 
+    console.log(`App Path:\t ${app.getAppPath()}`);
+
+    console.log("window.location :\t" + window.location);
+    console.log("Window.location.pathname:\t" + window.location.pathname);
+    console.log("window.location.hash:\t" + window.location.hash);
+   
+/*
+    const  {asar} = require("./../package.json").build;
+    let productionWindowPath = url.format({
+        pathname: path.resolve("./resources/app"+`${asar ? ".asar" : ""}`+"/build/index.html#/wiFiMagic"),
+        protocol: "file:",
+        slashes: true
+    });
+
+    console.log("productionWindowPath:\t"+productionWindowPath);
+*/
     let minimizeWindow = () => {
         console.log("Button minimize");
         const electron = window.require("electron");
@@ -32,10 +49,13 @@ const Titlebar = (props) => {
         const currentWindow = remote.getCurrentWindow();
 
         currentWindow.close();
-    };
+    }; //end closeWindow()
 
     let createFeedbackWindow = () => {
         console.log("createWindow()");
+        console.log("window.location :\t" + window.location);
+        console.log("Window.location.pathname:\t" + window.location.pathname);
+        console.log("window.location.hash:\t" + window.location.hash);
         // Create the browser window.
         //Show:false key-value pair is to delay loading until all resources have been loaded.
         feedbackWindow = new BrowserWindow({
@@ -60,13 +80,18 @@ const Titlebar = (props) => {
         // ../public/img/wp-icon-grey.ico
         // ./gallery-icon.png
         //Productions paths are with "#/[component-path]"
-        const startUrl = isDev ? (process.env.ELECTRON_START_URL || "http://localhost:3000/feedbackWindow") : url.format({
-            pathname: path.resolve(`./resources/app.asar/build/index.html#/feedbackWindow"`),
+        const  { asar } = require("./../package.json").build;
+        let windowPath = url.format({
+            pathname: path.resolve("./resources/app"+`${asar ? ".asar" : ""}`+`/build/index.html#/feedbackWindow`),
             protocol: "file:",
             slashes: true
         });
+
+        let productionWindowPath = (windowPath.replace("%23", "#")); //Use decodeURIComponent() since path.resolve was changing #s (hashes) to '%23's
+        const startUrl = isDev ? (process.env.ELECTRON_START_URL || "http://localhost:3000/feedbackWindow") : productionWindowPath;
     
         console.log("New window path:\t",  path.join(__dirname, "./build/index.html")); 
+        console.log("productionWindowPath:\t" + productionWindowPath);
 
         console.log(JSON.stringify(process.env)); //Log the environment variables
         console.log("process.env.ELECTRON_START_URL:\t" + process.env.ELECTRON_START_URL);
@@ -83,6 +108,7 @@ const Titlebar = (props) => {
         feedbackWindow.on("ready-to-show", () => { 
             feedbackWindow.show(); 
             feedbackWindow.focus(); 
+            feedbackWindow.webContents.openDevTools();
             console.log(`App Path:\t ${app.getAppPath()}`);
         });  
     
@@ -100,7 +126,25 @@ const Titlebar = (props) => {
             feedbackWindow.minimize();
         });
         
-    } //end createWindow()
+    }; //end createWindow()
+
+    let aboutWayPoint = () => {
+        const { dialog } = remote;
+        let { version } = require("./../package.json"); //Get the build version from package.json
+        const { autoUpdater } = require("electron-updater");
+        dialog.showMessageBox(currentWindow, {
+            type: "info",
+            title: "About WayPoint",
+            message: `Version:\t ${version}
+                      \n\t© 2019 Centinela Valley Union HSD 
+                        `,
+            detail: `Last update: 
+                    \n\t Up to date !\t☺
+                    `
+        });
+
+       
+    }; //end aboutWayPoint()
 
     return ( 
         <div id="titlebar" className="noHighlight noDrag">
@@ -129,9 +173,9 @@ const Titlebar = (props) => {
                 </div>
             </div>
 
-            <div id="title">
-                <div id="wp-icon-container" className="noDrag">
-                    <img id="wp-icon" src="img/wp-icon-grey.png" title="Waypoint Version 0.1" alt="WayPoint Icon" />
+            <div id="title" className="clickable" onClick={ aboutWayPoint }>
+                <div id="wp-icon-container" className="clickable noDrag" >
+                    <img className="clickable noDrag" id="wp-icon" src="img/wp-icon-grey.png" title="Waypoint Version 0.1" alt="WayPoint Icon" />
                 </div>
                 <div id="page-title-container"><h2 id="page-title">{props.pageTitle}</h2></div>
             </div>

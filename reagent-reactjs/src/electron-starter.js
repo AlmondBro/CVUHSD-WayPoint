@@ -12,6 +12,11 @@ const isDev = require("electron-is-dev");
 
 const { nativeImage, ipcMain } = require("electron");
 
+const { autoUpdater } = require("electron-updater"); 
+// autoUpdater.logger = log;
+// autoUpdater.logger.transports.file.level = 'info';
+// log.info('App starting...');
+
 /*Keep a global reference of the electron window object, if you don't, the window will
  be closed automatically when the JavaScript object is garbage collected. */
 let mainWindow = null;
@@ -175,6 +180,12 @@ const preventMoreThanOneInstance = () => {
 }; //preventMoreThanOneInstance()
 
 
+const autoUpdate = () => {
+    console.log("autoUpdate()");
+    autoUpdater.checkForUpdatesAndNotify();
+    //autoUpdater.autoDownload = true;
+};
+
 var ws = require("windows-shortcuts");
 ws.create("%APPDATA%/Microsoft/Windows/Start Menu/Programs/Electron.lnk", process.execPath);
 
@@ -202,7 +213,7 @@ app.on("ready", async () => {
         electron.webFrame.registerURLSchemeAsBypassingCSP("file"); */
     // */
    await setTrayIcon();
-
+   await autoUpdate();
    ipcMain.on('toMainProcess', (event, monitorName, status, image) => {
         console.log(`toMainProcess received. ${monitorName} is ${status}. ImagePath is ${image}.Sending info to mainWindow`);
         // event.sender.send('toMainWindow', monitorName, status); //Sends event to window that sent it

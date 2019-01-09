@@ -23,8 +23,8 @@ import { corsAnywhere } from "./server.js";
 
 import FeedbackWindow from "./FeedbackWindow/FeedbackWindow.js"
 
-const { BrowserWindow, app } = requireNodeJSmodule("electron"); //Use electron.remote for BrowserWindow and app are modules exclusive to the main process.
-const { ipcRenderer } = window.require('electron');
+const { BrowserWindow } = requireNodeJSmodule("electron"); //Use electron.remote for BrowserWindow and app are modules exclusive to the main process.
+const { ipcRenderer } = window.require("electron");
 
 let monitorFetchWindow = null;
 
@@ -88,7 +88,7 @@ class App extends Component {
     this.setState({ arr: [...this.state.arr, 'new item'] });
     */
     /* State must be kept immutable, so you can not modify the state object directly.
-       Unshift() does this on an arrray, instead of returning a new copy. */
+       Unshift() does this on an array, instead of returning a new copy. */
    let newNotificationsArray =  [...this.state.notifications]; // Use ES6 destructuring to copy array as a value and not a reference
 
     newNotificationsArray.unshift({
@@ -125,7 +125,7 @@ class App extends Component {
       });
   }; //end clearNotifications()
   
-  createInvisibleWindow = () => {
+  createMonitorFetchWindow = () => {
     const isDev = window.require("electron-is-dev");
     const path = window.require("path");
     const url = window.require("url");
@@ -134,7 +134,7 @@ class App extends Component {
       corsAnywhere();
     }
 
-    console.log("createInvisibleWindow()");
+    console.log("createMonitorFetchWindow()");
     monitorFetchWindow = new BrowserWindow({
         title: "WayPoint", //Title of window when frame is enabled
         width: 360, 
@@ -146,12 +146,12 @@ class App extends Component {
           sandbox: false,
           nodeIntegrationInWorker: true
         },
-        show: false
+        show: isDev
     });
 
    // const imagePath = isDev ? path.resolve(`./${publicOrBuild}/img/${image}`) :  path.resolve(`./resources/app.asar/build/img/${image}`);
     // Production paths are relative to the WayPoint.exe executable. 
-   const startUrl = isDev ? (process.env.ELECTRON_START_URL || path.resolve("./public/background-process.html") ) : url.format({
+   const startUrl = isDev ? (path.resolve("./public/background-process.html") ) : url.format({
         pathname: path.resolve("./resources/app.asar/build/background-process.html"),
         protocol: "file:",
         slashes: true
@@ -177,11 +177,9 @@ class App extends Component {
          // monitorFetchWindow.webContents.openDevTools({ mode: "undocked"});
     } //end if-statement
    
-    /*
     monitorFetchWindow.on("close", (event) => {
       monitorFetchWindow.close();
     });  //end monitorFetchWindow.on()
-*/
   }; //end createInvisibleWindow()
 
   runDevTools = () => {
@@ -199,7 +197,7 @@ class App extends Component {
   ipcEvents = () => {
     ipcRenderer.on("toMainWindow", (event, monitorName, status, monitorImage) => {
       console.log(`toMainWindow received. ${monitorName} is ${status}` );
-      this.addNotification(false,`${monitorName} is ${status}`, null, monitorImage);
+      this.addNotification(false,`${monitorName} is ${status}`, null, monitorName);
     });
 
     console.log("ipcEvents()");
@@ -213,7 +211,8 @@ class App extends Component {
   componentDidMount = () => {
     this.runDevTools();
     this.setState( {renderFooter: true} );
-    this.createInvisibleWindow();
+    this.createMonitorFetchWindow();
+    console.log("Node notifier icon path:\t" + require("path").join(__dirname, "./../public/img/wp-icon-grey.png"));
   }; //end componentDidMount()
 
   appHTML = () => {
@@ -250,7 +249,8 @@ class App extends Component {
   render = () => {
     const isDev = requireNodeJSmodule("electron-is-dev"); 
 
-    if (window.location.pathname == "/feedbackWindow") {
+    let fbPathDevProd = isDev ? (window.location.pathname == "/feedbackWindow") : (window.location.hash == "#/\\feedbackWindow"); 
+    if (fbPathDevProd) {
       console.log("Loading FeedbackWindow");
       return (<FeedbackWindow/>);
     } else {

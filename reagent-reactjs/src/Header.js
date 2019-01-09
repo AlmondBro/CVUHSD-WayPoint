@@ -14,7 +14,7 @@ const Header = (props) => {
             <header className="header-frame redToDarkRedgradient noHighlight noDrag">
                 <input type="checkbox" className="checkbox-hack" id="notification-icon-checkbox" />
                 <section className="redToDarkRedgradient">
-                    <a><img src="https://portal.centinela.k12.ca.us/images/CV-600x600.png" className="img-responsive" id="reagentLogo" alt="CVUHSD Logo" /></a>
+                    <a><img src="./img/CV-600x600.png" className="img-responsive" id="reagentLogo" alt="CVUHSD Logo" /></a>
                     <h1>
                         <img src="img/wp-logo.svg" className="headerLogo noDrag" alt="Waypoint" />
                     </h1>

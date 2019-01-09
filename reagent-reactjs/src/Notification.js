@@ -8,7 +8,7 @@ const Notification = (props) => {
             <hr/>
             <div className="update-notification notification-content-rectangle">
                 { props.urgent ? <button id="exclamation-button">!</button> : <i className={props.faIconClassName} aria-hidden="true"></i> }
-                { (props.image && !props.urgent) ? <img src={props.image} className="notificationMonitorImage" /> : null }
+                { (props.image && !props.urgent) ? <img src={`./img/buttons/${props.image}.png` } className="notificationMonitorImage" /> : null }
                 <p className="notificationsText">{props.notificationText}</p>
                 <button className="fa fa-times removeNotification" 
                         aria-hidden="true" 

@@ -41,20 +41,24 @@ const utilityFunctions = () => {
     );
 
     let popNotification = (notificationTitle, notificationMessage, iconPath, soundOn, noWait) => {
-        const electron = window.require("electron");
-        const remote = electron.remote;
-
         //User notifier NPM module since the native Electron Notifications is not working
-        const notifier = remote.require("node-notifier");
-        const path = remote.require("path");
+        
+        const notifier = require("node-notifier");
+        const path = require("path");
+
+        const  {asar} = require("./../package.json").build;
+        path.resolve("./resources/app"+`${asar ? ".asar" : ""}`+`/build/img/wp-icon-grey.ico`);
 
         let notifierOptions = {
             title: notificationTitle || "Title",
             message: notificationMessage || "Message",
-            icon: iconPath || path.join(__dirname, "./../public/img/wp-icon-grey.ico"), // Absolute path (doesn't work on balloons)
+            icon: path.join(__dirname, "./../public/img/wp-icon-grey.png"), // Absolute path (doesn't work on balloons)
             sound: soundOn || true, // Only Notification Center or Windows Toasters
-            wait: noWait || false // Wait with callback, until user action is taken against notification
-        }
+            wait: noWait || false, // Wait with callback, until user action is taken against notification
+            type: 'info' 
+        };
+
+        console.log("Node notifier icon path:\t" + path.resolve(__dirname, "./img/wp-icon-grey.ico"));
 
         let callback = (error, response) => {
             // Response is response from notification
