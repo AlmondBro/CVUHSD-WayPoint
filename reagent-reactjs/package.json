@@ -1,7 +1,7 @@
 {
   "name": "centinela-waypoint",
   "description": "CVUHSD WayPoint is a desktop application where teachers can quickly access functions such as submitting a helpdesk ticket, calling the helpdesk, accessing the troubleshootign tutorials, or viewing announcements.",
-  "version": "0.5.0",
+  "version": "0.4.0-testing",
   "private": true,
   "main": "src/electron-starter.js",
   "repository": {
@@ -74,7 +74,7 @@
     "win": {
       "target": [
         {
-          "target": "nsis-web",
+          "target": "nsis",
           "arch": [
             "x64",
             "ia32"

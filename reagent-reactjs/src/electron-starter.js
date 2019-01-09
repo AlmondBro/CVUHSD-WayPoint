@@ -179,12 +179,43 @@ const preventMoreThanOneInstance = () => {
       }
 }; //preventMoreThanOneInstance()
 
+let sendStatusToWindow = (message) => {
+    mainWindow.webContents.send("sendStatus", message)
+}; //sendStatusToWindow()
 
 const autoUpdate = () => {
     console.log("autoUpdate()");
-    autoUpdater.checkForUpdatesAndNotify();
+    autoUpdater.checkForUpdates();
+    console.log("autoupdate module\t" + autoupdate);
     //autoUpdater.autoDownload = true;
 };
+
+autoUpdater.on('checking-for-update', () => {
+    sendStatusToWindow('Checking for update...');
+});
+
+autoUpdater.on('update-available', (ev, info) => {
+    sendStatusToWindow('Update available.');
+});
+
+autoUpdater.on('update-not-available', (ev, info) => {
+    sendStatusToWindow('Update not available.');
+});
+
+autoUpdater.on('error', (ev, err) => {
+    sendStatusToWindow('Error in auto-updater.');
+});
+
+autoUpdater.on('download-progress', (ev, progressObj) => {
+    sendStatusToWindow('Download progress...');
+});
+
+autoUpdater.on('update-downloaded', (ev, info) => {
+    sendStatusToWindow('Update downloaded; will install in 5 seconds');
+    setTimeout(() => {
+        autoUpdater.quitAndInstall();  
+    }, 5000)
+});
 
 var ws = require("windows-shortcuts");
 ws.create("%APPDATA%/Microsoft/Windows/Start Menu/Programs/Electron.lnk", process.execPath);

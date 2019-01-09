@@ -127,11 +127,11 @@ const Titlebar = (props) => {
         });
         
     }; //end createWindow()
-
+ 
     let aboutWayPoint = () => {
         const { dialog } = remote;
         let { version } = require("./../package.json"); //Get the build version from package.json
-        const { autoUpdater } = require("electron-updater");
+       
         dialog.showMessageBox(currentWindow, {
             type: "info",
             title: "About WayPoint",

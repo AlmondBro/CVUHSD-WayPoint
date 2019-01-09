@@ -198,7 +198,11 @@ class App extends Component {
     ipcRenderer.on("toMainWindow", (event, monitorName, status, monitorImage) => {
       console.log(`toMainWindow received. ${monitorName} is ${status}` );
       this.addNotification(false,`${monitorName} is ${status}`, null, monitorName);
-    });
+    }); //end ipcRenderer.on()
+
+    ipcRenderer.on("sendStatus", (event, message) => { 
+      console.log("Sendstatus message:\t" + message);   
+    }); //end ipcRenderer.on()
 
     console.log("ipcEvents()");
   }; //end ipcEvents() 
