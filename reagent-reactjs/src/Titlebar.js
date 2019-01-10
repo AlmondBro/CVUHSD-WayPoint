@@ -9,6 +9,7 @@ const path = window.require("path");
 const { nativeImage, app, BrowserWindow } = requireNodeJSmodule("electron");
 
 const isDev = window.require("electron-is-dev");
+let prodDebug = true;
 const url = window.require("url");
 
 const Titlebar = (props) => {
@@ -108,7 +109,9 @@ const Titlebar = (props) => {
         feedbackWindow.on("ready-to-show", () => { 
             feedbackWindow.show(); 
             feedbackWindow.focus(); 
-            feedbackWindow.webContents.openDevTools();
+            if (isDev || prodDebug) {
+                feedbackWindow.webContents.openDevTools();
+            } 
             console.log(`App Path:\t ${app.getAppPath()}`);
         });  
     
