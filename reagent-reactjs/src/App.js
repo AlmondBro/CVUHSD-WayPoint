@@ -149,10 +149,12 @@ class App extends Component {
         show: isDev
     });
 
+
+    const  { asar } = require("./../package.json").build;
    // const imagePath = isDev ? path.resolve(`./${publicOrBuild}/img/${image}`) :  path.resolve(`./resources/app.asar/build/img/${image}`);
     // Production paths are relative to the WayPoint.exe executable. 
    const startUrl = isDev ? (path.resolve("./public/background-process.html") ) : url.format({
-        pathname: path.resolve("./resources/app.asar/build/background-process.html"),
+        pathname: path.resolve("./resources/app"+`${asar ? ".asar" : ""}`+`/build/background-process.html`),
         protocol: "file:",
         slashes: true
     });
