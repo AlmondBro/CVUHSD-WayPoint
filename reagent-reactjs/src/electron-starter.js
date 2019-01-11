@@ -185,7 +185,7 @@ let sendStatusToWindow = (message) => {
 
 const autoUpdate = () => {
     console.log("autoUpdate()");
-    autoUpdater.checkForUpdates();
+    //autoUpdater.checkForUpdates();
     console.log("autoupdate module\t" + autoupdate);
     //autoUpdater.autoDownload = true;
 };
