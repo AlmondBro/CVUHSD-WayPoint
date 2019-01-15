@@ -233,7 +233,7 @@ app.setAsDefaultProtocolClient("waypoint");
 
 app.on("ready", async () => {
     createWindow();
-    preventMoreThanOneInstance();
+    await preventMoreThanOneInstance();
 
    
    /* await electron.protocol.registerServiceWorkerSchemes(["file:"]);
@@ -242,7 +242,7 @@ app.on("ready", async () => {
         electron.webFrame.registerURLSchemeAsSecure("file");
         electron.webFrame.registerURLSchemeAsBypassingCSP("file"); */
     // */
-   setTrayIcon();
+   await setTrayIcon();
    autoUpdate();
    ipcMain.on('toMainProcess', (event, monitorName, status, image) => {
         console.log(`toMainProcess received. ${monitorName} is ${status}. ImagePath is ${image}.Sending info to mainWindow`);
