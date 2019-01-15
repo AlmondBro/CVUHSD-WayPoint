@@ -185,7 +185,7 @@ let sendStatusToWindow = (message) => {
 const autoUpdate = () => {
     console.log("autoUpdate()");
     //autoUpdater.checkForUpdates();
-    console.log("autoupdate module\t" + autoupdate);
+    console.log("autoupdate module\t" );
     //autoUpdater.autoDownload = true;
 };
 
@@ -248,6 +248,7 @@ app.on("ready", async () => {
         console.log(`toMainProcess received. ${monitorName} is ${status}. ImagePath is ${image}.Sending info to mainWindow`);
         // event.sender.send('toMainWindow', monitorName, status); //Sends event to window that sent it
         mainWindow.webContents.send("toMainWindow", monitorName, status, image);
+        console.log("toMainWindow sending");
     });
 });
 
