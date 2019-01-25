@@ -51,7 +51,7 @@ const createWindow = () => {
         slashes: true
     });
 
-    console.log(JSON.stringify(process.env)); //Log the environment variables
+    //console.log(JSON.stringify(process.env)); //Log the environment variables
     console.log("process.env.ELECTRON_START_URL:\t" + process.env.ELECTRON_START_URL);
     // and load the index.html of the app.
     //mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
@@ -161,30 +161,60 @@ const setTrayIcon = () => {
 
 //Prevent user from launching two different instances of the app.
 const preventMoreThanOneInstance = () => {
-    const shouldQuit = app.makeSingleInstance( (commandLine, workingDirectory) => {
-        // Someone tried to run a second instance, we should focus our window.
-        if (mainWindow) {
-          if ( mainWindow.isMinimized() ) { 
-              mainWindow.restore();
-              mainWindow.show(); 
-              mainWindow.focus(); 
-            } // end inner if-statement
-          mainWindow.focus();
-        } //end outer if statement
-      }); //shouldQuit initialization
-    
-      if (shouldQuit) {
+    const appSingleInstanceLock = app.requestSingleInstanceLock();
+
+    if (!appSingleInstanceLock) {
         app.quit();
         return;
-      }
+    } else {
+        if (mainWindow) {
+            if ( mainWindow.isMinimized() ) { 
+                mainWindow.restore();
+                mainWindow.show(); 
+                mainWindow.focus(); 
+              } // end inner if-statement
+            mainWindow.focus();
+          } //end outer if statement
+    }
 }; //preventMoreThanOneInstance()
 
+let sendStatusToWindow = (message) => {
+    mainWindow.webContents.send("sendStatus", message)
+}; //sendStatusToWindow()
 
 const autoUpdate = () => {
     console.log("autoUpdate()");
-    autoUpdater.checkForUpdatesAndNotify();
+    //autoUpdater.checkForUpdates();
+    console.log("autoupdate module\t" );
     //autoUpdater.autoDownload = true;
 };
+
+autoUpdater.on('checking-for-update', () => {
+    sendStatusToWindow('Checking for update...');
+});
+
+autoUpdater.on('update-available', (ev, info) => {
+    sendStatusToWindow('Update available.');
+});
+
+autoUpdater.on('update-not-available', (ev, info) => {
+    sendStatusToWindow('Update not available.');
+});
+
+autoUpdater.on('error', (ev, err) => {
+    sendStatusToWindow('Error in auto-updater.');
+});
+
+autoUpdater.on('download-progress', (ev, progressObj) => {
+    sendStatusToWindow('Download progress...');
+});
+
+autoUpdater.on('update-downloaded', (ev, info) => {
+    sendStatusToWindow('Update downloaded; will install in 5 seconds');
+    setTimeout(() => {
+        autoUpdater.quitAndInstall();  
+    }, 5000)
+});
 
 var ws = require("windows-shortcuts");
 ws.create("%APPDATA%/Microsoft/Windows/Start Menu/Programs/Electron.lnk", process.execPath);
@@ -202,7 +232,7 @@ app.setAsDefaultProtocolClient("waypoint");
     Trying out using async/wait here -- may need to remove */
 
 app.on("ready", async () => {
-    await createWindow();
+    createWindow();
     await preventMoreThanOneInstance();
 
    
@@ -213,11 +243,12 @@ app.on("ready", async () => {
         electron.webFrame.registerURLSchemeAsBypassingCSP("file"); */
     // */
    await setTrayIcon();
-   await autoUpdate();
+   autoUpdate();
    ipcMain.on('toMainProcess', (event, monitorName, status, image) => {
         console.log(`toMainProcess received. ${monitorName} is ${status}. ImagePath is ${image}.Sending info to mainWindow`);
         // event.sender.send('toMainWindow', monitorName, status); //Sends event to window that sent it
         mainWindow.webContents.send("toMainWindow", monitorName, status, image);
+        console.log("toMainWindow sending");
     });
 });
 

@@ -13,7 +13,7 @@ const Notification = (props) => {
                 <button className="fa fa-times removeNotification" 
                         aria-hidden="true" 
                         onClick={ () => { 
-                                        console.log("Remove notificatiob clicked");
+                                        console.log("Remove notification clicked");
                                         props.removeNotification(index);
                                 } 
                         }>
