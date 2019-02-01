@@ -187,34 +187,35 @@ const autoUpdate = () => {
     //autoUpdater.checkForUpdates();
     console.log("autoupdate module\t" );
     //autoUpdater.autoDownload = true;
+
+    autoUpdater.on('checking-for-update', () => {
+        sendStatusToWindow('Checking for update...');
+    });
+    
+    autoUpdater.on('update-available', (ev, info) => {
+        sendStatusToWindow('Update available.');
+    });
+    
+    autoUpdater.on('update-not-available', (ev, info) => {
+        sendStatusToWindow('Update not available.');
+    });
+    
+    autoUpdater.on('error', (ev, err) => {
+        sendStatusToWindow('Error in auto-updater.');
+    });
+    
+    autoUpdater.on('download-progress', (ev, progressObj) => {
+        sendStatusToWindow('Download progress...');
+    });
+    
+    autoUpdater.on('update-downloaded', (ev, info) => {
+        sendStatusToWindow('Update downloaded; will install in 5 seconds');
+        setTimeout(() => {
+            autoUpdater.quitAndInstall();  
+        }, 5000)
+    });
+    
 };
-
-autoUpdater.on('checking-for-update', () => {
-    sendStatusToWindow('Checking for update...');
-});
-
-autoUpdater.on('update-available', (ev, info) => {
-    sendStatusToWindow('Update available.');
-});
-
-autoUpdater.on('update-not-available', (ev, info) => {
-    sendStatusToWindow('Update not available.');
-});
-
-autoUpdater.on('error', (ev, err) => {
-    sendStatusToWindow('Error in auto-updater.');
-});
-
-autoUpdater.on('download-progress', (ev, progressObj) => {
-    sendStatusToWindow('Download progress...');
-});
-
-autoUpdater.on('update-downloaded', (ev, info) => {
-    sendStatusToWindow('Update downloaded; will install in 5 seconds');
-    setTimeout(() => {
-        autoUpdater.quitAndInstall();  
-    }, 5000)
-});
 
 var ws = require("windows-shortcuts");
 ws.create("%APPDATA%/Microsoft/Windows/Start Menu/Programs/Electron.lnk", process.execPath);
@@ -243,7 +244,7 @@ app.on("ready", async () => {
         electron.webFrame.registerURLSchemeAsBypassingCSP("file"); */
     // */
    await setTrayIcon();
-   autoUpdate();
+   await autoUpdate();
    ipcMain.on('toMainProcess', (event, monitorName, status, image) => {
         console.log(`toMainProcess received. ${monitorName} is ${status}. ImagePath is ${image}.Sending info to mainWindow`);
         // event.sender.send('toMainWindow', monitorName, status); //Sends event to window that sent it
