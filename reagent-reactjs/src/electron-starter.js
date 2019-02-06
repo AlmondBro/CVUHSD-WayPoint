@@ -189,7 +189,7 @@ let sendStatusToWindow = (message) => {
 
 const autoUpdate = () => {
     console.log("autoUpdate()");
-    //autoUpdater.checkForUpdates();
+    autoUpdater.checkForUpdates();
     console.log("autoupdate module\t:" + JSON.stringify(autoUpdate));
     //autoUpdater.autoDownload = true;
 
@@ -197,18 +197,22 @@ const autoUpdate = () => {
 
     autoUpdater.on('checking-for-update', () => {
         sendStatusToWindow('Checking for update...');
+        onsole.log("Info:\t" + JSON.stringify(info));
     });
     
     autoUpdater.on('update-available', (ev, info) => {
         sendStatusToWindow('Update available.');
+        onsole.log("Info:\t" + JSON.stringify(info));
     });
     
     autoUpdater.on('update-not-available', (ev, info) => {
         sendStatusToWindow('Update not available.');
+        console.log("Info:\t" + JSON.stringify(info));
     });
     
     autoUpdater.on('error', (ev, err) => {
         sendStatusToWindow('Error in auto-updater.');
+        onsole.log("Info:\t" + JSON.stringify(info));
     });
     
     autoUpdater.on('download-progress', (ev, progressObj) => {

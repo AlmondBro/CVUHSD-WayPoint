@@ -1,5 +1,3 @@
----
-publish:
-- provider: github
-  owner: JuanDavidLopez95
-  repo: CVUHSD-WayPoint
+provider: github
+owner: JuanDavidLopez95
+repo: CVUHSD-WayPoint
