@@ -112,6 +112,8 @@ const createWindow = () => {
         }
         return false;
     });
+
+    sendStatusToWindow("Hi -- testing");
 } //end createWindow()
 
 const setTrayIcon = () => {
@@ -179,29 +181,38 @@ const preventMoreThanOneInstance = () => {
 }; //preventMoreThanOneInstance()
 
 let sendStatusToWindow = (message) => {
-    mainWindow.webContents.send("sendStatus", message)
+    console.log("sendStatusToWindow() message:\t" + message);
+    mainWindow.webContents.on('did-finish-load', () => { 
+        mainWindow.webContents.send("sendStatus", message);
+    });
 }; //sendStatusToWindow()
 
 const autoUpdate = () => {
     console.log("autoUpdate()");
-    //autoUpdater.checkForUpdates();
-    console.log("autoupdate module\t" );
+    autoUpdater.checkForUpdates();
+    console.log("autoupdate module\t:" + JSON.stringify(autoUpdate));
     //autoUpdater.autoDownload = true;
+
+    sendStatusToWindow("hello()");
 
     autoUpdater.on('checking-for-update', () => {
         sendStatusToWindow('Checking for update...');
+        onsole.log("Info:\t" + JSON.stringify(info));
     });
     
     autoUpdater.on('update-available', (ev, info) => {
         sendStatusToWindow('Update available.');
+        onsole.log("Info:\t" + JSON.stringify(info));
     });
     
     autoUpdater.on('update-not-available', (ev, info) => {
         sendStatusToWindow('Update not available.');
+        console.log("Info:\t" + JSON.stringify(info));
     });
     
     autoUpdater.on('error', (ev, err) => {
         sendStatusToWindow('Error in auto-updater.');
+        onsole.log("Info:\t" + JSON.stringify(info));
     });
     
     autoUpdater.on('download-progress', (ev, progressObj) => {
@@ -234,6 +245,7 @@ app.setAsDefaultProtocolClient("waypoint");
 
 app.on("ready", async () => {
     createWindow();
+    
     await preventMoreThanOneInstance();
 
    
@@ -245,6 +257,7 @@ app.on("ready", async () => {
     // */
    await setTrayIcon();
    await autoUpdate();
+   sendStatusToWindow("Tessssttttinggg");
    ipcMain.on('toMainProcess', (event, monitorName, status, image) => {
         console.log(`toMainProcess received. ${monitorName} is ${status}. ImagePath is ${image}.Sending info to mainWindow`);
         // event.sender.send('toMainWindow', monitorName, status); //Sends event to window that sent it
