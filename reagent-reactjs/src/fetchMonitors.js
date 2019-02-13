@@ -2,6 +2,7 @@ import { corsAnywhere } from "./server.js";
 import { popNotification } from "./utilityFunctions.js";
 
 let fetchMonitors = () => {
+
     console.log("fetchMonitors()");
 
     const API_URL = "https://www.site24x7.com/api/current_status?apm_required=true&group_required=false&locations_required=false&suspended_required=false";
@@ -149,6 +150,7 @@ let fetchMonitors = () => {
     let monitors = [];
    
     let fetchJSON = () => {
+        require("dotenv").config();
         let port = 4000;
         const proxy_URL = `http://localhost:${port}/`;
         // "https://cors-anywhere.herokuapp.com/";
@@ -158,7 +160,7 @@ let fetchMonitors = () => {
             headers : { 
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "Authorization": "Zoho-authtoken 400ff2f59afedd60b29e0ecec31f7c26",
+                "Authorization": `Zoho-authtoken ${process.env.SITE24X7}`,
                 "Cache-Control": "no-cache"
             },
         };

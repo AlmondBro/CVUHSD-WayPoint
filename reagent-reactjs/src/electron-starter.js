@@ -212,7 +212,7 @@ const autoUpdate = () => {
     
     autoUpdater.on('error', (ev, err) => {
         sendStatusToWindow('Error in auto-updater.');
-        onsole.log("Info:\t" + JSON.stringify(info));
+        console.log("Info:\t" + JSON.stringify(info));
     });
     
     autoUpdater.on('download-progress', (ev, progressObj) => {
