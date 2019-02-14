@@ -17,7 +17,7 @@
     "macaddress": "^0.2.9",
     "node-notifier": "^5.4.0",
     "node-run-cmd": "^1.0.1",
-    "prop-types": "^15.7.1",
+    "prop-types": "^15.7.2",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-pure-lifecycle": "^3.0.0",
