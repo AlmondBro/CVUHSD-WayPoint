@@ -188,7 +188,15 @@ let sendStatusToWindow = (message) => {
 }; //sendStatusToWindow()
 
 const autoUpdate = () => {
+    require("dotenv").config();
+    console.log("GH_TOKEN:\t" + `${process.env.GH_TOKEN}`);
     console.log("autoUpdate()");
+    autoUpdater.setFeedURL({
+        provider: "github",
+        token: `${process.env.GH_TOKEN}`,
+        owner: "JuanDavidLopez95",
+        repo: "CVUHSD-WayPoint"
+     })
     autoUpdater.checkForUpdates();
     console.log("autoupdate module\t:" + JSON.stringify(autoUpdate));
     //autoUpdater.autoDownload = true;
@@ -197,12 +205,12 @@ const autoUpdate = () => {
 
     autoUpdater.on('checking-for-update', () => {
         sendStatusToWindow('Checking for update...');
-        onsole.log("Info:\t" + JSON.stringify(info));
+        console.log("Info:\t" + JSON.stringify(info));
     });
     
     autoUpdater.on('update-available', (ev, info) => {
         sendStatusToWindow('Update available.');
-        onsole.log("Info:\t" + JSON.stringify(info));
+        console.log("Info:\t" + JSON.stringify(info));
     });
     
     autoUpdater.on('update-not-available', (ev, info) => {
