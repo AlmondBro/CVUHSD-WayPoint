@@ -560,7 +560,8 @@ p.optionMessage {
 
 .square-icon {
     padding-top: 5px;
-    width: 2.7em;
+    width: 75px;
+    height: 75px;
     /* 40px*/
 }
 

@@ -1,3 +1,4 @@
 provider: github
 owner: JuanDavidLopez95
 repo: CVUHSD-WayPoint
+token: process.env.GH_TOKEN
