@@ -189,14 +189,19 @@ let sendStatusToWindow = (message) => {
 
 const autoUpdate = () => {
     require("dotenv").config();
-    console.log("GH_TOKEN:\t" + `${process.env.GH_TOKEN}`);
+   // console.log("GH_TOKEN:\t" + process.env.GH_TOKEN);
     console.log("autoUpdate()");
+
+    autoUpdater.allowPrerelease = true;
+    autoUpdater.allowDowngrade  = true;
     autoUpdater.setFeedURL({
         provider: "github",
-        token: `${process.env.GH_TOKEN}`,
+        token: process.env.GH_TOKEN,
         owner: "JuanDavidLopez95",
         repo: "CVUHSD-WayPoint"
-     })
+     });
+
+    
     autoUpdater.checkForUpdates();
     console.log("autoupdate module\t:" + JSON.stringify(autoUpdate));
     //autoUpdater.autoDownload = true;
