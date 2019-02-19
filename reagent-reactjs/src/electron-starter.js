@@ -194,33 +194,41 @@ const autoUpdate = () => {
 
     autoUpdater.allowPrerelease = true;
     autoUpdater.allowDowngrade  = true;
-    autoUpdater.setFeedURL({
+    autoUpdater.autoDownload = true;
+    autoUpdater.fullChangelog = true; //default is false
+    autoUpdater.isForceRunAfter = false;
+    autoUpdater.isSilent = false; //default is true, I think!!
+
+    const setFeedURLOptions = {
         provider: "github",
         token: process.env.GH_TOKEN,
         owner: "JuanDavidLopez95",
         repo: "CVUHSD-WayPoint"
-     });
+    };
 
-    
+    autoUpdater.setFeedURL(setFeedURLOptions);
+
     autoUpdater.checkForUpdates();
     console.log("autoupdate module\t:" + JSON.stringify(autoUpdate));
     //autoUpdater.autoDownload = true;
 
     sendStatusToWindow("hello()");
 
-    autoUpdater.on('checking-for-update', () => {
+    autoUpdater.on('checking-for-update', (ev, ) => {
         sendStatusToWindow('Checking for update...');
-        console.log("Info:\t" + JSON.stringify(info));
+        //console.log("Info:\t" + JSON.stringify(info));
     });
     
-    autoUpdater.on('update-available', (ev, info) => {
+    autoUpdater.on('update-available', (ev, releaseNotes, releaseName) => {
         sendStatusToWindow('Update available.');
-        console.log("Info:\t" + JSON.stringify(info));
+        //console.log("Info:\t" + JSON.stringify(info));
+        console.log("Release notes:\t" + releaseNotes);
+        console.log("releaseName:\t" + releaseName);
     });
     
     autoUpdater.on('update-not-available', (ev, info) => {
         sendStatusToWindow('Update not available.');
-        console.log("Info:\t" + JSON.stringify(info));
+       // console.log("Info:\t" + JSON.stringify(info));
     });
     
     autoUpdater.on('error', (ev, err) => {
@@ -232,10 +240,12 @@ const autoUpdate = () => {
         sendStatusToWindow('Download progress...');
     });
     
-    autoUpdater.on('update-downloaded', (ev, info) => {
+    autoUpdater.on('update-downloaded', (event, info, releaseNotes ) => {
         sendStatusToWindow('Update downloaded; will install in 5 seconds');
+        sendStatusToWindow('Release Notes:\t' + releaseNotes);
+        sendStatusToWindow('Release Notes:\t' + releaseNotes);
         setTimeout(() => {
-            autoUpdater.quitAndInstall();  
+            // autoUpdater.quitAndInstall();  
         }, 5000)
     });
     
@@ -329,4 +339,13 @@ app.setLoginItemSettings({
 // code. You can also put them in separate files and require them here.
 /* window.eval = global.eval = function () {
    throw new Error(`Sorry, this app does not support window.eval().`)
-  } */
+  } 
+  
+  window.eval = global.eval = () => {
+    console.error(`Sorry, this app does not support window.eval() for security purposes.`);
+    return -1;
+}; 
+
+  
+  */
+
