@@ -112,8 +112,6 @@ const createWindow = () => {
         }
         return false;
     });
-
-    sendStatusToWindow("Hi -- testing");
 } //end createWindow()
 
 const setTrayIcon = () => {
