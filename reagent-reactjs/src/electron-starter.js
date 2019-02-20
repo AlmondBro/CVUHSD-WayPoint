@@ -190,7 +190,7 @@ let sendStatusToWindow = (message, addNotification, urgent, notificationText, fa
 const autoUpdate = () => {
     require("dotenv").config();
    // console.log("GH_TOKEN:\t" + process.env.GH_TOKEN);
-    console.log("autoUpdate()");
+    sendStatusToWindow("autoUpdate()");
 
     autoUpdater.allowPrerelease = true;
     autoUpdater.allowDowngrade  = true;
@@ -221,9 +221,11 @@ const autoUpdate = () => {
     
     autoUpdater.on('update-available', (event, releaseNotes, releaseName) => {
         //console.log("Info:\t" + JSON.stringify(info));
-        console.log("Release notes:\t" + releaseNotes);
-        console.log("releaseName:\t" + releaseName);
+        // console.log("Release notes:\t" + releaseNotes);
+        // console.log("releaseName:\t" + releaseName);
         sendStatusToWindow("Update available", true, true, "Update available");
+        sendStatusToWindow(`Release notes:\t ${releaseNotes}`);
+        sendStatusToWindow(`Release name:\t ${releaseNotes}`);
     });
     
     autoUpdater.on('update-not-available', (event, info) => {
@@ -242,7 +244,7 @@ const autoUpdate = () => {
     
     autoUpdater.on('update-downloaded', (event, info, releaseNotes ) => {
         sendStatusToWindow('Update downloaded; will install in 5 seconds');
-        sendStatusToWindow('Release Notes:\t' + releaseNotes);
+        sendStatusToWindow('Release Notes from update-downloaded event:\t' + releaseNotes);
         setTimeout(() => {
             // autoUpdater.quitAndInstall();  
         }, 5000)
