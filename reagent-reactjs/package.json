@@ -1,7 +1,7 @@
 {
   "name": "CVUHSD-Waypoint",
   "description": "CVUHSD WayPoint is a desktop application where teachers can quickly access functions such as submitting a helpdesk ticket, calling the helpdesk, accessing the troubleshootign tutorials, or viewing announcements.",
-  "version": "0.4.3-alpha",
+  "version": "0.4.4-alpha",
   "private": false,
   "main": "src/electron-starter.js",
   "repository": {

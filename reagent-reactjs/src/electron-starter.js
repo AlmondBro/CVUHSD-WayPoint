@@ -180,10 +180,10 @@ const preventMoreThanOneInstance = () => {
     }
 }; //preventMoreThanOneInstance()
 
-let sendStatusToWindow = (message) => {
+let sendStatusToWindow = (message, addNotification, urgent, notificationText, faIconClassName, image) => {
     console.log("sendStatusToWindow() message:\t" + message);
-    mainWindow.webContents.on('did-finish-load', () => { 
-        mainWindow.webContents.send("sendStatus", message);
+    mainWindow.webContents.on("did-finish-load", () => { 
+        mainWindow.webContents.send("sendStatus", message, addNotification, urgent, notificationText, faIconClassName, image);
     });
 }; //sendStatusToWindow()
 
@@ -197,7 +197,7 @@ const autoUpdate = () => {
     autoUpdater.autoDownload = true;
     autoUpdater.fullChangelog = true; //default is false
     autoUpdater.isForceRunAfter = false;
-    autoUpdater.isSilent = false; //default is true, I think!!
+    autoUpdater.isSilent = false; //default is false. 
 
     const setFeedURLOptions = {
         provider: "github",
@@ -214,35 +214,34 @@ const autoUpdate = () => {
 
     sendStatusToWindow("hello()");
 
-    autoUpdater.on('checking-for-update', (ev, ) => {
+    autoUpdater.on('checking-for-update', (event) => {
         sendStatusToWindow('Checking for update...');
         //console.log("Info:\t" + JSON.stringify(info));
     });
     
-    autoUpdater.on('update-available', (ev, releaseNotes, releaseName) => {
-        sendStatusToWindow('Update available.');
+    autoUpdater.on('update-available', (event, releaseNotes, releaseName) => {
         //console.log("Info:\t" + JSON.stringify(info));
         console.log("Release notes:\t" + releaseNotes);
         console.log("releaseName:\t" + releaseName);
+        sendStatusToWindow("Update available", true, true, "Update available");
     });
     
-    autoUpdater.on('update-not-available', (ev, info) => {
-        sendStatusToWindow('Update not available.');
+    autoUpdater.on('update-not-available', (event, info) => {
+        sendStatusToWindow("Update not available");
        // console.log("Info:\t" + JSON.stringify(info));
     });
     
-    autoUpdater.on('error', (ev, err) => {
-        sendStatusToWindow('Error in auto-updater.');
+    autoUpdater.on('error', (event, err) => {
+        sendStatusToWindow("Error in auto-updater:\t" + err.toString());
         console.log("Info:\t" + JSON.stringify(info));
     });
     
-    autoUpdater.on('download-progress', (ev, progressObj) => {
+    autoUpdater.on('download-progress', (event, progressObj) => {
         sendStatusToWindow('Download progress...');
     });
     
     autoUpdater.on('update-downloaded', (event, info, releaseNotes ) => {
         sendStatusToWindow('Update downloaded; will install in 5 seconds');
-        sendStatusToWindow('Release Notes:\t' + releaseNotes);
         sendStatusToWindow('Release Notes:\t' + releaseNotes);
         setTimeout(() => {
             // autoUpdater.quitAndInstall();  
