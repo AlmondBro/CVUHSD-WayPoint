@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "cors-anywhere": "^0.4.1",
+    "dotenv": "^6.2.0",
     "electron-is-dev": "^1.0.1",
     "electron-updater": "^4.0.6",
     "fullname": "^3.3.0",
@@ -50,7 +51,6 @@
   "devDependencies": {
     "concurrently": "^4.1.0",
     "devtron": "^1.4.0",
-    "dotenv": "^6.2.0",
     "electron": "^4.0.5",
     "electron-builder": "^20.38.5",
     "electron-react-devtools": "^0.5.3",

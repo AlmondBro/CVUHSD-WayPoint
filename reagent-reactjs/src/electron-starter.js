@@ -1,4 +1,5 @@
 const electron = require("electron");
+require("dotenv").config();
 
 // Module to control application life.
 const { app } = electron; //ES6 Destructuring -- Same as const app = electron.app
@@ -23,6 +24,83 @@ let mainWindow = null;
 let tray = null;
 
 process.env['APP_PATH'] = app.getAppPath();
+
+let sendStatusToWindow = (message, addNotification, urgent, notificationText, faIconClassName, image) => {
+    console.log("sendStatusToWindow() message:\t" + message);
+    if ( typeof mainWindow !== "undefined" || mainWindow !== null) {
+        mainWindow.webContents.on("did-finish-load", () => { 
+            mainWindow.webContents.send("sendStatus", message, addNotification, urgent, notificationText, faIconClassName, image);
+        });
+    } 
+    else {
+        return;
+    }
+}; //sendStatusToWindow()
+
+const autoUpdate = () => {
+   // console.log("GH_TOKEN:\t" + process.env.GH_TOKEN);
+    sendStatusToWindow("autoUpdate() called");
+
+    autoUpdater.allowPrerelease = true;
+    autoUpdater.allowDowngrade  = true;
+    autoUpdater.autoDownload = true;
+    autoUpdater.fullChangelog = true; //default is false
+    autoUpdater.isForceRunAfter = false;
+    autoUpdater.isSilent = false; //default is false. 
+    autoUpdater.autoInstallOnAppQuit = false; //default is true
+
+    const setFeedURLOptions = {
+        provider: "github",
+        token: process.env.GH_TOKEN,
+        owner: "JuanDavidLopez95",
+        repo: "CVUHSD-WayPoint"
+    };
+
+    autoUpdater.setFeedURL(setFeedURLOptions);
+
+    //autoUpdater.checkForUpdates();
+    console.log("autoupdate module\t:" + JSON.stringify(autoUpdate));
+    //autoUpdater.autoDownload = true;
+
+    sendStatusToWindow("hello()");
+
+    autoUpdater.on('checking-for-update', (event) => {
+        sendStatusToWindow('Checking for update...');
+        //console.log("Info:\t" + JSON.stringify(info));
+    });
+    
+    autoUpdater.on('update-available', (event, releaseNotes, releaseName) => {
+        //console.log("Info:\t" + JSON.stringify(info));
+        // console.log("Release notes:\t" + releaseNotes);
+        // console.log("releaseName:\t" + releaseName);
+        sendStatusToWindow("Update available", true, true, "Update available");
+        sendStatusToWindow(`Release notes:\t ${releaseNotes}`);
+        sendStatusToWindow(`Release name:\t ${releaseNotes}`);
+    });
+    
+    autoUpdater.on('update-not-available', (event, info) => {
+        sendStatusToWindow("Update not available");
+       // console.log("Info:\t" + JSON.stringify(info));
+    });
+    
+    autoUpdater.on('error', (event, err) => {
+        sendStatusToWindow("Error in auto-updater:\t" + err.toString());
+        //console.log("Info:\t" + JSON.stringify(info));
+    });
+    
+    autoUpdater.on('download-progress', (event, progressObj) => {
+        sendStatusToWindow('Download progress...');
+    });
+    
+    autoUpdater.on('update-downloaded', (event, info, releaseNotes ) => {
+        sendStatusToWindow('Update downloaded; will install in 5 seconds');
+        sendStatusToWindow('Release Notes from update-downloaded event:\t' + releaseNotes);
+        setTimeout(() => {
+            // autoUpdater.quitAndInstall();  
+        }, 5000)
+    });
+    
+};
 
 const createWindow = () => {
     // Create the browser window.
@@ -112,6 +190,8 @@ const createWindow = () => {
         }
         return false;
     });
+
+    autoUpdate();
 } //end createWindow()
 
 const setTrayIcon = () => {
@@ -141,9 +221,8 @@ const setTrayIcon = () => {
                     tray.destroy();
                 }
                 tray = null;
-                mainWindow = null;
-                
                 app.quit();
+                mainWindow = null;
             } //end click()
         }
     ]); //contextMenu declaration
@@ -178,77 +257,6 @@ const preventMoreThanOneInstance = () => {
     }
 }; //preventMoreThanOneInstance()
 
-let sendStatusToWindow = (message, addNotification, urgent, notificationText, faIconClassName, image) => {
-    console.log("sendStatusToWindow() message:\t" + message);
-    mainWindow.webContents.on("did-finish-load", () => { 
-        mainWindow.webContents.send("sendStatus", message, addNotification, urgent, notificationText, faIconClassName, image);
-    });
-}; //sendStatusToWindow()
-
-const autoUpdate = () => {
-    require("dotenv").config();
-   // console.log("GH_TOKEN:\t" + process.env.GH_TOKEN);
-    sendStatusToWindow("autoUpdate()");
-
-    autoUpdater.allowPrerelease = true;
-    autoUpdater.allowDowngrade  = true;
-    autoUpdater.autoDownload = true;
-    autoUpdater.fullChangelog = true; //default is false
-    autoUpdater.isForceRunAfter = false;
-    autoUpdater.isSilent = false; //default is false. 
-
-    const setFeedURLOptions = {
-        provider: "github",
-        token: process.env.GH_TOKEN,
-        owner: "JuanDavidLopez95",
-        repo: "CVUHSD-WayPoint"
-    };
-
-    autoUpdater.setFeedURL(setFeedURLOptions);
-
-    autoUpdater.checkForUpdates();
-    console.log("autoupdate module\t:" + JSON.stringify(autoUpdate));
-    //autoUpdater.autoDownload = true;
-
-    sendStatusToWindow("hello()");
-
-    autoUpdater.on('checking-for-update', (event) => {
-        sendStatusToWindow('Checking for update...');
-        //console.log("Info:\t" + JSON.stringify(info));
-    });
-    
-    autoUpdater.on('update-available', (event, releaseNotes, releaseName) => {
-        //console.log("Info:\t" + JSON.stringify(info));
-        // console.log("Release notes:\t" + releaseNotes);
-        // console.log("releaseName:\t" + releaseName);
-        sendStatusToWindow("Update available", true, true, "Update available");
-        sendStatusToWindow(`Release notes:\t ${releaseNotes}`);
-        sendStatusToWindow(`Release name:\t ${releaseNotes}`);
-    });
-    
-    autoUpdater.on('update-not-available', (event, info) => {
-        sendStatusToWindow("Update not available");
-       // console.log("Info:\t" + JSON.stringify(info));
-    });
-    
-    autoUpdater.on('error', (event, err) => {
-        sendStatusToWindow("Error in auto-updater:\t" + err.toString());
-        console.log("Info:\t" + JSON.stringify(info));
-    });
-    
-    autoUpdater.on('download-progress', (event, progressObj) => {
-        sendStatusToWindow('Download progress...');
-    });
-    
-    autoUpdater.on('update-downloaded', (event, info, releaseNotes ) => {
-        sendStatusToWindow('Update downloaded; will install in 5 seconds');
-        sendStatusToWindow('Release Notes from update-downloaded event:\t' + releaseNotes);
-        setTimeout(() => {
-            // autoUpdater.quitAndInstall();  
-        }, 5000)
-    });
-    
-};
 
 var ws = require("windows-shortcuts");
 ws.create("%APPDATA%/Microsoft/Windows/Start Menu/Programs/Electron.lnk", process.execPath);
@@ -278,8 +286,9 @@ app.on("ready", async () => {
         electron.webFrame.registerURLSchemeAsBypassingCSP("file"); */
     // */
    await setTrayIcon();
-   await autoUpdate();
-   sendStatusToWindow("Tessssttttinggg");
+   //await autoUpdate();
+   autoUpdater.checkForUpdatesAndNotify();
+   //sendStatusToWindow("Tessssttttinggg");
    ipcMain.on('toMainProcess', (event, monitorName, status, image) => {
         console.log(`toMainProcess received. ${monitorName} is ${status}. ImagePath is ${image}.Sending info to mainWindow`);
         // event.sender.send('toMainWindow', monitorName, status); //Sends event to window that sent it
