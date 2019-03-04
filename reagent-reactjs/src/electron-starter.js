@@ -39,6 +39,9 @@ let sendStatusToWindow = (message, addNotification, urgent, notificationText, fa
 
 const autoUpdate = () => {
    // console.log("GH_TOKEN:\t" + process.env.GH_TOKEN);
+
+    let WP_nativeImage = isDev ? nativeImage.createFromPath(path.join(__dirname, "./../public/img/wp-icon-grey.png")) : nativeImage.createFromPath(path.join(__dirname, "./../build/img/wp-icon-grey.png"));
+
     sendStatusToWindow("autoUpdate() called");
 
     autoUpdater.allowPrerelease = true;
@@ -65,8 +68,8 @@ const autoUpdate = () => {
     sendStatusToWindow("hello()");
 
     autoUpdater.on('checking-for-update', (event) => {
-        sendStatusToWindow('Checking for update...');
-        //console.log("Info:\t" + JSON.stringify(info));
+        sendStatusToWindow('Checking for update...',true, true, "Checking for update...");
+        //console.log("Info:\2t" + JSON.stringify(info));
     });
     
     autoUpdater.on('update-available', (event, releaseNotes, releaseName) => {
@@ -76,6 +79,12 @@ const autoUpdate = () => {
         sendStatusToWindow("Update available", true, true, "Update available");
         sendStatusToWindow(`Release notes:\t ${releaseNotes}`);
         sendStatusToWindow(`Release name:\t ${releaseNotes}`);
+
+        tray.displayBalloon({
+            title: "WayPoint update available.",
+            content: "Update will be downloaded.",
+            icon: WP_nativeImage
+        });
     });
     
     autoUpdater.on('update-not-available', (event, info) => {
@@ -96,8 +105,10 @@ const autoUpdate = () => {
         sendStatusToWindow('Update downloaded; will install in 5 seconds');
         sendStatusToWindow('Release Notes from update-downloaded event:\t' + releaseNotes);
         setTimeout(() => {
-            // autoUpdater.quitAndInstall();  
-        }, 5000)
+            if (!isDev) {
+                autoUpdater.quitAndInstall();  
+            } 
+        }, 5000);
     });
     
 };
@@ -287,7 +298,13 @@ app.on("ready", async () => {
     // */
    await setTrayIcon();
    //await autoUpdate();
-   autoUpdater.checkForUpdatesAndNotify();
+   autoUpdater.checkForUpdates();
+
+   const checkforUpdates_minutes = 1000*60*60; //1 hour - milliseconds => seconds in a minutes => minutes in a second
+   setInterval(() => {
+    autoUpdater.checkForUpdates()
+   }, checkforUpdates_minutes );
+   
    //sendStatusToWindow("Tessssttttinggg");
    ipcMain.on('toMainProcess', (event, monitorName, status, image) => {
         console.log(`toMainProcess received. ${monitorName} is ${status}. ImagePath is ${image}.Sending info to mainWindow`);
