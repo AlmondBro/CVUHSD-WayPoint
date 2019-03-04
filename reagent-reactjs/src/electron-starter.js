@@ -72,13 +72,16 @@ const autoUpdate = () => {
         //console.log("Info:\2t" + JSON.stringify(info));
     });
     
-    autoUpdater.on('update-available', (event, releaseNotes, releaseName) => {
-        //console.log("Info:\t" + JSON.stringify(info));
-        // console.log("Release notes:\t" + releaseNotes);
-        // console.log("releaseName:\t" + releaseName);
-        sendStatusToWindow("Update available", true, true, "Update available");
-        sendStatusToWindow(`Release notes:\t ${releaseNotes}`);
-        sendStatusToWindow(`Release name:\t ${releaseNotes}`);
+    autoUpdater.on('update-available', (updateInfo) => {
+        /*
+            UpdateInfo
+        */
+        sendStatusToWindow(`updateInfo:\t + ${JSON.stringify(updateInfo)}`);;
+        sendStatusToWindow(`Release notes:\t ${updateInfo.releaseNotes}`);
+        sendStatusToWindow(`Release name:\t ${updateInfo.releaseName}`);
+        sendStatusToWindow(`Release date:\t ${updateInfo.releaseDate}`);
+
+        sendStatusToWindow("Update available", true, true, "Update available"); //Add notification that there is an update available
 
         tray.displayBalloon({
             title: "WayPoint update available.",
@@ -98,12 +101,11 @@ const autoUpdate = () => {
     });
     
     autoUpdater.on('download-progress', (event, progressObj) => {
-        sendStatusToWindow('Download progress...');
+        sendStatusToWindow("Download progress...");
     });
     
-    autoUpdater.on('update-downloaded', (event, info, releaseNotes ) => {
-        sendStatusToWindow('Update downloaded; will install in 5 seconds');
-        sendStatusToWindow('Release Notes from update-downloaded event:\t' + releaseNotes);
+    autoUpdater.on('update-downloaded', (event) => {
+        sendStatusToWindow("Update downloaded; will install in 5 seconds");
         setTimeout(() => {
             if (!isDev) {
                 autoUpdater.quitAndInstall();  
