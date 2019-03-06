@@ -100,12 +100,29 @@ const autoUpdate = () => {
         //console.log("Info:\t" + JSON.stringify(info));
     });
     
-    autoUpdater.on('download-progress', (event, progressObj) => {
+    autoUpdater.on('download-progress', (progressObj) => {
+        let log_message = "Download speed: " + progressObj.bytesPerSecond;
+        log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
+        log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
+        
         sendStatusToWindow("Download progress...");
+
+        tray.displayBalloon({
+            title: "Download progress",
+            content: log_message,
+            icon: WP_nativeImage
+        });
     });
     
     autoUpdater.on('update-downloaded', (event) => {
         sendStatusToWindow("Update downloaded; will install in 5 seconds");
+
+        tray.displayBalloon({
+            title: "Update downloaded",
+            content: "Will install in 5 seconds",
+            icon: WP_nativeImage
+        });
+
         setTimeout(() => {
             if (!isDev) {
                 autoUpdater.quitAndInstall();  
