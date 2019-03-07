@@ -202,8 +202,11 @@ class App extends Component {
       this.addNotification(false,`${monitorName} is ${status}`, null, monitorName);
     }); //end ipcRenderer.on()
 
-    ipcRenderer.on("sendStatus", (event, message) => { 
-      console.log("Sendstatus message:\t" + message);   
+    ipcRenderer.on("sendStatus", (event, message, addNotification, urgent, notificationText, faIconClassName, image) => { 
+      console.log("Sendstatus message:\t" + message);  
+      if (addNotification === true) {
+        this.addNotification(urgent, notificationText, faIconClassName, image);  
+      }
     }); //end ipcRenderer.on()
 
     console.log("ipcEvents()");

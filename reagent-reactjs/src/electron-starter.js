@@ -1,4 +1,6 @@
 const electron = require("electron");
+require("dotenv").config();
+//import { formatBytes } from "./utilityFunctions.js";
 
 // Module to control application life.
 const { app } = electron; //ES6 Destructuring -- Same as const app = electron.app
@@ -23,6 +25,126 @@ let mainWindow = null;
 let tray = null;
 
 process.env['APP_PATH'] = app.getAppPath();
+
+let formatBytes = (bytes, decimals) => {
+    if (bytes == 0) {
+        return '0 Bytes';
+    } 
+
+    var baseSize = 1024;
+    var decimalPlaces = ( decimals <= 0 || typeof(decimals) != "undefined" ) ? 0 : decimals || 2;
+    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    
+    var i = Math.floor(Math.log(bytes) / Math.log(baseSize));
+    return parseFloat((bytes / Math.pow(baseSize, i)).toFixed(decimalPlaces)) + ' ' + sizes[i];
+};
+
+let sendStatusToWindow = (message, addNotification, urgent, notificationText, faIconClassName, image) => {
+    console.log("sendStatusToWindow() message:\t" + message);
+    if ( typeof mainWindow !== "undefined" || mainWindow !== null) {
+        mainWindow.webContents.on("did-finish-load", () => { 
+            mainWindow.webContents.send("sendStatus", message, addNotification, urgent, notificationText, faIconClassName, image);
+        });
+    } 
+    else {
+        return;
+    }
+}; //sendStatusToWindow()
+
+const autoUpdate = () => {
+   // console.log("GH_TOKEN:\t" + process.env.GH_TOKEN);
+
+    let WP_nativeImage = isDev ? nativeImage.createFromPath(path.join(__dirname, "./../public/img/wp-icon-grey.png")) : nativeImage.createFromPath(path.join(__dirname, "./../build/img/wp-icon-grey.png"));
+
+    sendStatusToWindow("autoUpdate() called");
+
+    autoUpdater.allowPrerelease = true;
+    autoUpdater.allowDowngrade  = true;
+    autoUpdater.autoDownload = true;
+    autoUpdater.fullChangelog = true; //default is false
+    autoUpdater.isForceRunAfter = false;
+    autoUpdater.isSilent = false; //default is false. 
+    autoUpdater.autoInstallOnAppQuit = false; //default is true
+
+    const setFeedURLOptions = {
+        provider: "github",
+        token: process.env.GH_TOKEN,
+        owner: "JuanDavidLopez95",
+        repo: "CVUHSD-WayPoint"
+    };
+
+    autoUpdater.setFeedURL(setFeedURLOptions);
+
+    //autoUpdater.checkForUpdates();
+    console.log("autoupdate module\t:" + JSON.stringify(autoUpdate));
+    //autoUpdater.autoDownload = true;
+
+    sendStatusToWindow("hello()");
+
+    autoUpdater.on('checking-for-update', (event) => {
+        sendStatusToWindow('Checking for update...',true, true, "Checking for update...");
+        //console.log("Info:\2t" + JSON.stringify(info));
+    });
+    
+    autoUpdater.on('update-available', (updateInfo) => {
+        /*
+            UpdateInfo
+        */
+        sendStatusToWindow(`updateInfo:\t + ${JSON.stringify(updateInfo)}`);;
+        sendStatusToWindow(`Release notes:\t ${updateInfo.releaseNotes}`);
+        sendStatusToWindow(`Release name:\t ${updateInfo.releaseName}`);
+        sendStatusToWindow(`Release date:\t ${updateInfo.releaseDate}`);
+
+        sendStatusToWindow("Update available", true, true, "Update available"); //Add notification that there is an update available
+
+        tray.displayBalloon({
+            title: "WayPoint update available.",
+            content: "Update will be downloaded.",
+            icon: WP_nativeImage
+        });
+    });
+    
+    autoUpdater.on('update-not-available', (event, info) => {
+        sendStatusToWindow("Update not available");
+       // console.log("Info:\t" + JSON.stringify(info));
+    });
+    
+    autoUpdater.on('error', (event, err) => {
+        sendStatusToWindow("Error in auto-updater:\t" + err.toString());
+        //console.log("Info:\t" + JSON.stringify(info));
+    });
+    
+    autoUpdater.on('download-progress', (progressObj) => {
+        let log_message = "Download speed: " + formatBytes(progressObj.bytesPerSecond) + "/s";
+            log_message = log_message + ' Downloaded: ' + progressObj.percent.toFixed(0).toString() + '%';
+            log_message = log_message + ' (' + formatBytes(progressObj.transferred) + "/" + formatBytes(progressObj.total) + ')';
+        
+        sendStatusToWindow("Download progress..." + log_message);
+
+        tray.displayBalloon({
+            title: "Update Download Progress",
+            content: log_message,
+            icon: WP_nativeImage
+        });
+    });
+    
+    autoUpdater.on('update-downloaded', (event) => {
+        sendStatusToWindow("Update downloaded; will install in 5 seconds");
+
+        tray.displayBalloon({
+            title: "Update downloaded",
+            content: "Will install in 5 seconds",
+            icon: WP_nativeImage
+        });
+
+        setTimeout(() => {
+            if (!isDev) {
+                autoUpdater.quitAndInstall();  
+            } 
+        }, 5000);
+    });
+    
+};
 
 const createWindow = () => {
     // Create the browser window.
@@ -113,7 +235,7 @@ const createWindow = () => {
         return false;
     });
 
-    sendStatusToWindow("Hi -- testing");
+    autoUpdate();
 } //end createWindow()
 
 const setTrayIcon = () => {
@@ -143,9 +265,8 @@ const setTrayIcon = () => {
                     tray.destroy();
                 }
                 tray = null;
-                mainWindow = null;
-                
                 app.quit();
+                mainWindow = null;
             } //end click()
         }
     ]); //contextMenu declaration
@@ -180,76 +301,6 @@ const preventMoreThanOneInstance = () => {
     }
 }; //preventMoreThanOneInstance()
 
-let sendStatusToWindow = (message) => {
-    console.log("sendStatusToWindow() message:\t" + message);
-    mainWindow.webContents.on('did-finish-load', () => { 
-        mainWindow.webContents.send("sendStatus", message);
-    });
-}; //sendStatusToWindow()
-
-const autoUpdate = () => {
-    require("dotenv").config();
-   // console.log("GH_TOKEN:\t" + process.env.GH_TOKEN);
-    console.log("autoUpdate()");
-
-    autoUpdater.allowPrerelease = true;
-    autoUpdater.allowDowngrade  = true;
-    autoUpdater.autoDownload = true;
-    autoUpdater.fullChangelog = true; //default is false
-    autoUpdater.isForceRunAfter = false;
-    autoUpdater.isSilent = false; //default is true, I think!!
-
-    const setFeedURLOptions = {
-        provider: "github",
-        token: process.env.GH_TOKEN,
-        owner: "JuanDavidLopez95",
-        repo: "CVUHSD-WayPoint"
-    };
-
-    autoUpdater.setFeedURL(setFeedURLOptions);
-
-    autoUpdater.checkForUpdates();
-    console.log("autoupdate module\t:" + JSON.stringify(autoUpdate));
-    //autoUpdater.autoDownload = true;
-
-    sendStatusToWindow("hello()");
-
-    autoUpdater.on('checking-for-update', (ev, ) => {
-        sendStatusToWindow('Checking for update...');
-        //console.log("Info:\t" + JSON.stringify(info));
-    });
-    
-    autoUpdater.on('update-available', (ev, releaseNotes, releaseName) => {
-        sendStatusToWindow('Update available.');
-        //console.log("Info:\t" + JSON.stringify(info));
-        console.log("Release notes:\t" + releaseNotes);
-        console.log("releaseName:\t" + releaseName);
-    });
-    
-    autoUpdater.on('update-not-available', (ev, info) => {
-        sendStatusToWindow('Update not available.');
-       // console.log("Info:\t" + JSON.stringify(info));
-    });
-    
-    autoUpdater.on('error', (ev, err) => {
-        sendStatusToWindow('Error in auto-updater.');
-        console.log("Info:\t" + JSON.stringify(info));
-    });
-    
-    autoUpdater.on('download-progress', (ev, progressObj) => {
-        sendStatusToWindow('Download progress...');
-    });
-    
-    autoUpdater.on('update-downloaded', (event, info, releaseNotes ) => {
-        sendStatusToWindow('Update downloaded; will install in 5 seconds');
-        sendStatusToWindow('Release Notes:\t' + releaseNotes);
-        sendStatusToWindow('Release Notes:\t' + releaseNotes);
-        setTimeout(() => {
-            // autoUpdater.quitAndInstall();  
-        }, 5000)
-    });
-    
-};
 
 var ws = require("windows-shortcuts");
 ws.create("%APPDATA%/Microsoft/Windows/Start Menu/Programs/Electron.lnk", process.execPath);
@@ -279,8 +330,15 @@ app.on("ready", async () => {
         electron.webFrame.registerURLSchemeAsBypassingCSP("file"); */
     // */
    await setTrayIcon();
-   await autoUpdate();
-   sendStatusToWindow("Tessssttttinggg");
+   //await autoUpdate();
+   autoUpdater.checkForUpdates();
+
+   const checkforUpdates_minutes = 1000*60*60; //1 hour - milliseconds => seconds in a minutes => minutes in a second
+   setInterval(() => {
+    autoUpdater.checkForUpdates()
+   }, checkforUpdates_minutes );
+   
+   //sendStatusToWindow("Tessssttttinggg");
    ipcMain.on('toMainProcess', (event, monitorName, status, image) => {
         console.log(`toMainProcess received. ${monitorName} is ${status}. ImagePath is ${image}.Sending info to mainWindow`);
         // event.sender.send('toMainWindow', monitorName, status); //Sends event to window that sent it

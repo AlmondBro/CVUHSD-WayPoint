@@ -13,7 +13,7 @@ import FormButton from "./form-components/FormButton/FormButton.js";
 
 //Import 3rd-party libraries
 
-//Impoty utility functions
+//Import utility functions
 import { whyDidYouUpdate, isNullOrUndefinedOrEmptyString, popNotification } from "./utilityFunctions.js";
 
 class SubmitTicket extends Component {      
