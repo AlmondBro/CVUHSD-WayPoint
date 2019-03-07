@@ -40,6 +40,20 @@ const utilityFunctions = () => {
         window.document.createElement
     );
 
+    let formatBytes = (bytes, decimals) => {
+        if (bytes == 0) {
+            return '0 Bytes';
+        } 
+    
+        var baseSize = 1024;
+        var decimalPlaces = ( decimals <= 0 || typeof(decimals) != "undefined" ) ? 0 : decimals || 2;
+        var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+        
+        var i = Math.floor(Math.log(bytes) / Math.log(baseSize));
+        return parseFloat((bytes / Math.pow(baseSize, i)).toFixed(decimalPlaces)) + ' ' + sizes[i];
+    };
+    
+
     let popNotification = (notificationTitle, notificationMessage, iconPath, soundOn, noWait) => {
         //User notifier NPM module since the native Electron Notifications is not working
         
@@ -67,7 +81,7 @@ const utilityFunctions = () => {
         };
 
         return notifier.notify(notifierOptions, callback);
-    } //notification()
+    }; //popNotification()
     
     const stringIsEmptyOrBlank = (string) => {
         //falsy values: null,undefined,0,000,"",false
@@ -80,7 +94,7 @@ const utilityFunctions = () => {
             console.log(string + " is not empty, blank, null or undefined");
             return false;
         } //end else-statement
-    } //end stringIsEmptyOrBlank()
+    }; //end stringIsEmptyOrBlank()
 
     const isNullOrUndefinedOrEmptyString = (element) => {
         if ( typeof(element) === "string" ) {
@@ -109,7 +123,7 @@ const utilityFunctions = () => {
             
             return remote.require(moduleName); 
         } //end else-statement
-    } //end requireNodeJSModule() 
+    }; //end requireNodeJSModule() 
 
     const whyDidYouUpdate = (optionsObject) => {
         const isDev = requireNodeJSmodule("electron-is-dev");
@@ -143,7 +157,8 @@ const utilityFunctions = () => {
         stringIsEmptyOrBlank: stringIsEmptyOrBlank,
         requireNodeJSmodule: requireNodeJSmodule,
         whyDidYouUpdate: whyDidYouUpdate,
-        isNullOrUndefinedOrEmptyString: isNullOrUndefinedOrEmptyString
+        isNullOrUndefinedOrEmptyString: isNullOrUndefinedOrEmptyString,
+        formatBytes: formatBytes
     };
 
     return functionsObject;
