@@ -1,3 +1,4 @@
+import { popNotification, requireNodeJSmodule } from "./utilityFunctions.js"
 let isDev = require("electron-is-dev");
 const path = require("path");
 let { ipcRenderer } = require("electron");
@@ -13,6 +14,7 @@ let installWebWorker = () => {
 }; //end installWebWorker()
 // installWebWorker();
 
+// /*
 const requireNodeJSmodule = (moduleName) => {
     if (typeof(moduleName) !== "string") {
         console.log("Please supply a string to requireNodeJSmodule!");
@@ -25,8 +27,9 @@ const requireNodeJSmodule = (moduleName) => {
         return remote.require(moduleName); 
     } //end else-statement
     
-} //end requireNodeJSModule() 
+} //end requireNodeJSModule() */ 
 
+// /*
 let popNotification = (notificationTitle, notificationMessage, iconPath, soundOn, noWait) => {
     //Use notifier NPM module since the native Electron Notifications is not working
     const notifier = require("node-notifier");
@@ -37,7 +40,7 @@ let popNotification = (notificationTitle, notificationMessage, iconPath, soundOn
         icon: iconPath || path.join(__dirname, "./img/CV-600x600.png"), // Absolute path (doesn't work on balloons)
         sound: soundOn || true, // Only Notification Center or Windows Toasters
         wait: noWait || false // Wait with callback, until user action is taken against notification
-    }
+    };
 
     let callback = (error, response) => {
         // Response is response from notification
@@ -46,7 +49,7 @@ let popNotification = (notificationTitle, notificationMessage, iconPath, soundOn
     };
 
     return notifier.notify(notifierOptions, callback);
-} //notification()
+} //notification() */
 
 let fetchMonitors = () => {
     console.log("fetchMonitors()");

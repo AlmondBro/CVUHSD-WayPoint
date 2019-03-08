@@ -114,7 +114,7 @@ const utilityFunctions = () => {
     };
 
     const requireNodeJSmodule = (moduleName) => {
-        if (typeof(moduleName) !== "string") {
+        if ( typeof(moduleName) !== "string" ) {
             console.log("Please supply a string to requireNodeJSmodule!");
             return;
         } else {
