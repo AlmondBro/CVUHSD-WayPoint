@@ -40,6 +40,7 @@ const utilityFunctions = () => {
         window.document.createElement
     );
 
+        
     let formatBytes = (bytes, decimals) => {
         if (bytes == 0) {
             return '0 Bytes';
@@ -113,7 +114,7 @@ const utilityFunctions = () => {
     };
 
     const requireNodeJSmodule = (moduleName) => {
-        if (typeof(moduleName) !== "string") {
+        if ( typeof(moduleName) !== "string" ) {
             console.log("Please supply a string to requireNodeJSmodule!");
             return;
         } else {
@@ -172,5 +173,6 @@ let stringIsEmptyOrBlank = utilityFunctions().stringIsEmptyOrBlank;
 let requireNodeJSmodule = utilityFunctions().requireNodeJSmodule;
 let whyDidYouUpdate = utilityFunctions().whyDidYouUpdate;
 let isNullOrUndefinedOrEmptyString = utilityFunctions().isNullOrUndefinedOrEmptyString;
+let formatBytes = utilityFunctions().formatBytes;
 
-export  { openLinksInBrowser, canUseDOM, popNotification, stringIsEmptyOrBlank, requireNodeJSmodule, whyDidYouUpdate, isNullOrUndefinedOrEmptyString };
+export  { openLinksInBrowser, canUseDOM, popNotification, stringIsEmptyOrBlank, requireNodeJSmodule, whyDidYouUpdate, isNullOrUndefinedOrEmptyString, formatBytes };
