@@ -1,6 +1,7 @@
+import { formatBytes } from "./utilityFunctions.js";
 const electron = require("electron");
 require("dotenv").config();
-//import { formatBytes } from "./utilityFunctions.js";
+
 
 // Module to control application life.
 const { app } = electron; //ES6 Destructuring -- Same as const app = electron.app
@@ -25,19 +26,6 @@ let mainWindow = null;
 let tray = null;
 
 process.env['APP_PATH'] = app.getAppPath();
-
-let formatBytes = (bytes, decimals) => {
-    if (bytes == 0) {
-        return '0 Bytes';
-    } 
-
-    var baseSize = 1024;
-    var decimalPlaces = ( decimals <= 0 || typeof(decimals) != "undefined" ) ? 0 : decimals || 2;
-    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-    
-    var i = Math.floor(Math.log(bytes) / Math.log(baseSize));
-    return parseFloat((bytes / Math.pow(baseSize, i)).toFixed(decimalPlaces)) + ' ' + sizes[i];
-};
 
 let sendStatusToWindow = (message, addNotification, urgent, notificationText, faIconClassName, image) => {
     console.log("sendStatusToWindow() message:\t" + message);
