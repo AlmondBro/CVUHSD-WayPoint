@@ -160,7 +160,7 @@ class App extends Component {
     });
 
     monitorFetchWindow.loadURL(startUrl);
-
+    if (isDev) monitorFetchWindow.webContents.openDevTools();
     //monitorFetchWindow.setFocusable(true);
 
     //Do mot use service workers since the electron module is not supported.

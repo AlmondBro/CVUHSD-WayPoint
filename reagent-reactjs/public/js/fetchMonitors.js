@@ -1,4 +1,4 @@
-import { popNotification, requireNodeJSmodule } from "./utilityFunctions.js"
+import { popNotification, requireNodeJSmodule } from "./../src/utilityFunctions.js"
 let isDev = require("electron-is-dev");
 const path = require("path");
 let { ipcRenderer } = require("electron");
@@ -13,43 +13,6 @@ let installWebWorker = () => {
     }   
 }; //end installWebWorker()
 // installWebWorker();
-
-// /*
-const requireNodeJSmodule = (moduleName) => {
-    if (typeof(moduleName) !== "string") {
-        console.log("Please supply a string to requireNodeJSmodule!");
-        return;
-    } else {
-        console.log(`require("${moduleName}")`);
-        const electron = require("electron");
-        const remote = electron.remote;
-        
-        return remote.require(moduleName); 
-    } //end else-statement
-    
-} //end requireNodeJSModule() */ 
-
-// /*
-let popNotification = (notificationTitle, notificationMessage, iconPath, soundOn, noWait) => {
-    //Use notifier NPM module since the native Electron Notifications is not working
-    const notifier = require("node-notifier");
-
-    let notifierOptions = {
-        title: notificationTitle || "Title",
-        message: notificationMessage || "Message",
-        icon: iconPath || path.join(__dirname, "./img/CV-600x600.png"), // Absolute path (doesn't work on balloons)
-        sound: soundOn || true, // Only Notification Center or Windows Toasters
-        wait: noWait || false // Wait with callback, until user action is taken against notification
-    };
-
-    let callback = (error, response) => {
-        // Response is response from notification
-        console.log("Notifier response:\t" + response );
-        console.log("Notifier errors:\t" + error );
-    };
-
-    return notifier.notify(notifierOptions, callback);
-} //notification() */
 
 let fetchMonitors = () => {
     console.log("fetchMonitors()");
@@ -207,7 +170,7 @@ let fetchMonitors = () => {
             },
         };
         
-        let fetchURL = isDev ? (proxy_URL + API_URL) : API_URL;
+        let fetchURL = isDev ? (proxy_URL + API_URL) : API_URL; //If in development, use a proxy to bypass CORS restriction
         
         let request = new Request(fetchURL, initObject);
         
