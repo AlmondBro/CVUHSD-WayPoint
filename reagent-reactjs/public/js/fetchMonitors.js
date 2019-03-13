@@ -1,7 +1,13 @@
-import { popNotification, requireNodeJSmodule } from "./../src/utilityFunctions.js"
+import dotenv from 'dotenv'
+import { popNotification, requireNodeJSmodule } from "./../src/utilityFunctions.js";
+//require("dotenv").config();
 let isDev = require("electron-is-dev");
 const path = require("path");
 let { ipcRenderer } = require("electron");
+
+
+let CircularJSON = require("circular-json");
+dotenv.config();
 
 let installWebWorker = () => {
     console.log("installWebWorker()");
@@ -16,6 +22,9 @@ let installWebWorker = () => {
 
 let fetchMonitors = () => {
     console.log("fetchMonitors()");
+    console.log(`Process:\t ${CircularJSON.stringify(process) }`);
+    console.log(`Process.env.zoho:\t ${process.env.ZOHO_TOKEN}`);
+    console.dir(`${process}`);
 
     const API_URL = "https://www.site24x7.com/api/current_status?apm_required=true&group_required=false&locations_required=false&suspended_required=false";
     
@@ -23,7 +32,7 @@ let fetchMonitors = () => {
     let intervalWithWait = (func, wait, times) => {
         var interv = function(w, t){
             return function(){
-                if(typeof t === "undefined" || t-- > 0){
+                if (typeof t === "undefined" || t-- > 0){
                     setTimeout(interv, w);
                     try{
                         func.call(null);
@@ -155,17 +164,17 @@ let fetchMonitors = () => {
 
     let fetchJSON = () => {
         //Even in development, for some reason here, the proxy url is not needed.
-        let isDev = false;
+        //let isDev = false;
         let port = 4000;
         const proxy_URL = `http://localhost:${port}/`;
         // "https://cors-anywhere.herokuapp.com/";
-        
+        //${process.env.ZOHO_TOKEN}
         let initObject = {
             method: "GET", 
             headers : { 
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "Authorization": "Zoho-authtoken 400ff2f59afedd60b29e0ecec31f7c26",
+                "Authorization": `Zoho-authtoken ${process.env.ZOHO_TOKEN}`,
                 "Cache-Control": "no-cache"
             },
         };
