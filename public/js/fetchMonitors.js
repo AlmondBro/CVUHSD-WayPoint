@@ -6,7 +6,7 @@ const path = require("path");
 let { ipcRenderer } = require("electron");
 
 
-let CircularJSON = require("circular-json");
+// let CircularJSON = require("circular-json");
 dotenv.config();
 
 let installWebWorker = () => {
@@ -22,7 +22,7 @@ let installWebWorker = () => {
 
 let fetchMonitors = () => {
     console.log("fetchMonitors()");
-    console.log(`Process:\t ${CircularJSON.stringify(process) }`);
+    //console.log(`Process:\t ${JSON.stringify(process) }`);
     console.log(`Process.env.zoho:\t ${process.env.ZOHO_TOKEN}`);
     console.dir(`${process}`);
 
