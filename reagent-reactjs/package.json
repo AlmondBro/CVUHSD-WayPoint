@@ -10,6 +10,7 @@
     "private": false
   },
   "dependencies": {
+    "circular-json": "^0.5.9",
     "cors-anywhere": "^0.4.1",
     "dotenv": "^6.2.0",
     "electron-is-dev": "^1.0.1",

@@ -1,7 +1,13 @@
-import { popNotification, requireNodeJSmodule } from "./utilityFunctions.js"
+import dotenv from 'dotenv'
+import { popNotification, requireNodeJSmodule } from "./../src/utilityFunctions.js";
+//require("dotenv").config();
 let isDev = require("electron-is-dev");
 const path = require("path");
 let { ipcRenderer } = require("electron");
+
+
+let CircularJSON = require("circular-json");
+dotenv.config();
 
 let installWebWorker = () => {
     console.log("installWebWorker()");
@@ -14,45 +20,11 @@ let installWebWorker = () => {
 }; //end installWebWorker()
 // installWebWorker();
 
-// /*
-const requireNodeJSmodule = (moduleName) => {
-    if (typeof(moduleName) !== "string") {
-        console.log("Please supply a string to requireNodeJSmodule!");
-        return;
-    } else {
-        console.log(`require("${moduleName}")`);
-        const electron = require("electron");
-        const remote = electron.remote;
-        
-        return remote.require(moduleName); 
-    } //end else-statement
-    
-} //end requireNodeJSModule() */ 
-
-// /*
-let popNotification = (notificationTitle, notificationMessage, iconPath, soundOn, noWait) => {
-    //Use notifier NPM module since the native Electron Notifications is not working
-    const notifier = require("node-notifier");
-
-    let notifierOptions = {
-        title: notificationTitle || "Title",
-        message: notificationMessage || "Message",
-        icon: iconPath || path.join(__dirname, "./img/CV-600x600.png"), // Absolute path (doesn't work on balloons)
-        sound: soundOn || true, // Only Notification Center or Windows Toasters
-        wait: noWait || false // Wait with callback, until user action is taken against notification
-    };
-
-    let callback = (error, response) => {
-        // Response is response from notification
-        console.log("Notifier response:\t" + response );
-        console.log("Notifier errors:\t" + error );
-    };
-
-    return notifier.notify(notifierOptions, callback);
-} //notification() */
-
 let fetchMonitors = () => {
     console.log("fetchMonitors()");
+    console.log(`Process:\t ${CircularJSON.stringify(process) }`);
+    console.log(`Process.env.zoho:\t ${process.env.ZOHO_TOKEN}`);
+    console.dir(`${process}`);
 
     const API_URL = "https://www.site24x7.com/api/current_status?apm_required=true&group_required=false&locations_required=false&suspended_required=false";
     
@@ -60,7 +32,7 @@ let fetchMonitors = () => {
     let intervalWithWait = (func, wait, times) => {
         var interv = function(w, t){
             return function(){
-                if(typeof t === "undefined" || t-- > 0){
+                if (typeof t === "undefined" || t-- > 0){
                     setTimeout(interv, w);
                     try{
                         func.call(null);
@@ -196,18 +168,18 @@ let fetchMonitors = () => {
         let port = 4000;
         const proxy_URL = `http://localhost:${port}/`;
         // "https://cors-anywhere.herokuapp.com/";
-        
+        //${process.env.ZOHO_TOKEN}
         let initObject = {
             method: "GET", 
             headers : { 
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "Authorization": "Zoho-authtoken 400ff2f59afedd60b29e0ecec31f7c26",
+                "Authorization": `Zoho-authtoken ${process.env.ZOHO_TOKEN}`,
                 "Cache-Control": "no-cache"
             },
         };
         
-        let fetchURL = isDev ? (proxy_URL + API_URL) : API_URL;
+        let fetchURL = isDev ? (proxy_URL + API_URL) : API_URL; //If in development, use a proxy to bypass CORS restriction
         
         let request = new Request(fetchURL, initObject);
         
