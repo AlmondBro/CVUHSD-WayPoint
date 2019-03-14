@@ -164,7 +164,7 @@ let fetchMonitors = () => {
 
     let fetchJSON = () => {
         //Even in development, for some reason here, the proxy url is not needed.
-        //let isDev = false;
+        let isDev = false;
         let port = 4000;
         const proxy_URL = `http://localhost:${port}/`;
         // "https://cors-anywhere.herokuapp.com/";
