@@ -1,6 +1,10 @@
 
 import React, { Component } from "react";
 
+/* 
+    rundll32 printui.dll,PrintUIEntry /if /b "HP LaserJet P4014" /f hpmews02.inf /r  "IP_10.2.128.29" /m "HP LaserJet P4014" /Z
+*/
+
 class ProjectorMagic extends Component {
     constructor(props) {
         super(props);
