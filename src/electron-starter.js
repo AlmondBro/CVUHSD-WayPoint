@@ -39,6 +39,41 @@ let sendStatusToWindow = (message, addNotification, urgent, notificationText, fa
     }
 }; //sendStatusToWindow()
 
+let sendLastUpdateTime = () => {
+    let convertHourFormat = (numberOfHours) => {
+        //If numberOfHours is more than 12, subtract 12 to get the time in the afternoon.
+        if (numberOfHours > 12)  {
+            return numberofHours - 12;
+        }
+
+        //If numberOfHours is 0, it is either noon or midnight.
+        if (numberOfHours === 0) {
+            return 12;
+        }
+    }; //convertHourFormat()
+
+    let getAMorPM = (numberOfHours) => {
+        if (numberOfHours > 12) {
+            return "PM";
+        } else {
+            return "AM";
+        }
+    }; //getAMorPM()
+
+    let date = new Date();
+    let currentDate = (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear();
+    
+    let time = convertHourFormat(date.getHours()) + ":" + date.getMinutes() + ":" + today.getSeconds() +"\t" + getAMorPM(date.getHours());
+
+    if ( typeof mainWindow !== "undefined" || mainWindow !== null) {
+        mainWindow.webContents.on("did-finish-load", () => { 
+            mainWindow.webContents.send("sendLastUpdateTime", currentDate, time);
+        });
+    } else {
+        return;
+    } //end else-statement
+}; //sendLastUpdateTime()
+
 const autoUpdate = () => {
    // console.log("GH_TOKEN:\t" + process.env.GH_TOKEN);
 
@@ -127,6 +162,7 @@ const autoUpdate = () => {
 
         setTimeout(() => {
             if (!isDev) {
+                //sendLastUpdateTime();
                 autoUpdater.quitAndInstall();  
             } 
         }, 5000);

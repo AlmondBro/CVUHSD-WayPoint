@@ -256,7 +256,7 @@ class App extends Component {
   } //end appHTML();
 
   render = () => {
-    const isDev = requireNodeJSmodule("electron-is-dev"); 
+    const isDev = window.require("electron-is-dev"); 
 
     let fbPathDevProd = isDev ? (window.location.pathname == "/feedbackWindow") : (window.location.hash == "#/\\feedbackWindow"); 
     if (fbPathDevProd) {
