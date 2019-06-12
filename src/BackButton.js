@@ -11,13 +11,13 @@ class BackButton extends Component {
     }
     
     render = () => {
-        console.log("History:\t" + JSON.stringify(this.context.router.history));
+        console.log("History:\t" + JSON.stringify(window.history));
         console.log("window.location.hash:\t" + window.location.hash);
         console.log("window.location :\t" + window.location);
-        return (this.context.router.history.location.pathname === "/") ? null : 
+        return (window.location.pathname === "/") ? null : 
                 (
                     <div className="messageAndGoBack-container noHighlight noDrag">
-                        <a className="goBack-container" onClick={this.context.router.history.goBack}>
+                        <a className="goBack-container" onClick={window.history.back}>
                             <img src="img/icon-back.png" id="back-icon" title="Go Back One Page" alt="Go Back Button" />
                             <p>Back</p>
                         </a>
