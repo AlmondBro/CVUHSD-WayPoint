@@ -2,7 +2,6 @@ import { formatBytes } from "./utilityFunctions.js";
 const electron = require("electron");
 require("dotenv").config();
 
-
 // Module to control application life.
 const { app } = electron; //ES6 Destructuring -- Same as const app = electron.app
 

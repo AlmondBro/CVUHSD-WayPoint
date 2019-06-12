@@ -1,9 +1,9 @@
 {
-  "name": "CVUHSD-Waypoint",
+  "name": "CVUHSD-WayPoint",
   "description": "CVUHSD WayPoint is a desktop application where teachers can quickly access functions such as submitting a helpdesk ticket, calling the helpdesk, accessing the troubleshootign tutorials, or viewing announcements.",
   "version": "0.4.4-alpha",
   "private": false,
-  "main": "src/electron-starter.js",
+  "main": "src/es6-init.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/JuanDavidLopez95/CVUHSD-WayPoint.git",
@@ -52,7 +52,6 @@
   "devDependencies": {
     "concurrently": "^4.1.0",
     "devtron": "^1.4.0",
-    "electron": "^4.0.0",
     "electron-builder": "^20.38.5",
     "electron-react-devtools": "^0.5.3",
     "eslint-plugin-react": "^7.12.4",
@@ -63,6 +62,7 @@
   "author": "CVUHSD",
   "homepage": "./",
   "build": {
+    "electronVersion": "4.0.0",
     "publish": {
       "provider": "github",
       "repo": "CVUHSD-WayPoint",
