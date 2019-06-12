@@ -11,11 +11,11 @@
   },
   "dependencies": {
     "cors-anywhere": "^0.4.1",
-    "dotenv": "^6.2.0",
-    "electron-is-dev": "^1.0.1",
+    "dotenv": "^8.0.0",
+    "electron-is-dev": "^1.1.0",
     "electron-prebuilt-compile": "^4.0.0",
     "electron-updater": "^4.0.6",
-    "fullname": "^3.3.0",
+    "fullname": "^4.0.0",
     "macaddress": "^0.2.9",
     "node-notifier": "^5.4.0",
     "node-run-cmd": "^1.0.1",
@@ -25,9 +25,9 @@
     "react-pure-lifecycle": "^3.0.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "^2.1.8",
+    "react-scripts": "^3.0.1",
     "sendmail": "^1.4.1",
-    "typescript": "^3.3.3333",
+    "typescript": "^3.5.1",
     "undefsafe": "^2.0.2",
     "windows-shortcuts": "^0.1.6"
   },
@@ -52,9 +52,9 @@
   "devDependencies": {
     "concurrently": "^4.1.0",
     "devtron": "^1.4.0",
-    "electron-builder": "^20.38.5",
+    "electron-builder": "^20.43.0",
     "electron-react-devtools": "^0.5.3",
-    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react": "^7.13.0",
     "wait-on": "^3.2.0",
     "why-did-you-update": "^1.0.6"
   },
@@ -62,7 +62,7 @@
   "author": "CVUHSD",
   "homepage": "./",
   "build": {
-    "electronVersion": "4.0.0",
+    "electronVersion": "5.0.3",
     "publish": {
       "provider": "github",
       "repo": "CVUHSD-WayPoint",
