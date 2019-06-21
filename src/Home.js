@@ -1,6 +1,16 @@
 import React, { Component } from "react";
 import SupportSquare from "./SupportSquare.js";
 
+import styled from "styled-components";
+
+let SupportSquaresContainer = styled.div`
+    margin: 5px auto;
+    text-align: center;
+    max-height: 100%; /*Was 90% with footer visible footer */
+    overflow-y: auto;
+`; //end SupportSquaresContainer styled-component
+
+
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -14,7 +24,7 @@ class Home extends Component {
 
     render = () => {
         return (
-            <div className="support-squares-container">
+            <SupportSquaresContainer>
                 <SupportSquare pageLink="/autoFix-tools" 
                                imgSrc="./img/icon-autofix.png" 
                                title="Autofix Tools" />
@@ -38,7 +48,7 @@ class Home extends Component {
                 <SupportSquare pageLink="/announcements" 
                     imgSrc="./img/icon-announce2.png" 
                     title="Announcements" />
-            </div>
+            </SupportSquaresContainer>
         ); //end return statement
     } //end render()
 } //end Home class

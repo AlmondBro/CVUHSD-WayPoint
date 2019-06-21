@@ -32,25 +32,6 @@ html {
     cursor: pointer;
 }
 
-.reagent-container {
-    position: relative;
-    /* top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-left: -188px;
-    margin-top: -269px; */
-    width: 376px;
-    height: 700px;
-    /* 660px */
-    /* height was 538px */
-    background-color: #1c1c1c;
-    color: white;
-    /* margin: 0 auto; */
-    /* border-radius: 0.3em; */
-    /* border: 1px solid black; */
-    /* margin: 10% auto; */
-}
-
 #titlebar {
     -webkit-app-region: drag;
     /* ElectronJS - make draggable */
@@ -596,23 +577,6 @@ the checkbox is hacked. */
 
 .drag {
     -webkit-app-region: drag; 
-}
-
-section.page-content {
-    /* overflow-y: auto;
-    max-height: 560px; */
-    position: relative;
-    max-height: 695px; /* Was  455px before with Footer always visible */
-    /*450px*/
-    /* 88% */
-    /* 83.4%; */
-    overflow-y: auto;
-    /*top: 30px;comment out*/
-    z-index: 1;
-    /* 92px  or ~15%*/
-    margin: 0 auto;
-    width: 100%;
-    top: 27px; /*Was 35px before conditional rendering of Footer */
 }
 
 footer {

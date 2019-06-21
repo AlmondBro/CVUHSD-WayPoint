@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Route, BrowserRouter, Switch, HashRouter } from "react-router-dom";
 import { requireNodeJSmodule } from "./utilityFunctions.js";
 
+import styled from "styled-components";
+
 // Import General Page Components
 import Home from "./Home.js";
 import Footer from "./Footer.js";
@@ -27,6 +29,24 @@ const { BrowserWindow } = requireNodeJSmodule("electron"); //Use electron.remote
 const { ipcRenderer } = window.require("electron");
 
 let monitorFetchWindow = null;
+
+let Container = styled.div`
+  position: relative;
+  width: 376px;
+  height: 700px;
+  background-color: #1c1c1c;
+  color: white;
+`; //end Container styled-component
+
+let PageContent = styled.div`
+  position: relative;
+  max-height: 695px;
+  overflow-y: auto;
+  z-index: 1;
+  margin: 0 auto;
+  width: 100%;
+  top: 27px;
+`;
 
 class App extends Component {
   constructor(props) {
@@ -226,14 +246,14 @@ class App extends Component {
 
   appHTML = () => {
     return (
-    <div className="reagent-container animated fadeInUp">
+    <Container>
       <Titlebar pageTitle={this.state.pageTitle}  updatePageTitle={this.updatePageTitle} />
         <main>
           <Header addNotification={this.addNotification } removeNotification={this.removeNotification} clearNotifications={this.clearNotifications} notifications={this.state.notifications} noNotifications={this.state.noNotifications} />
         {/* <Home/>*/}   {/* This is is the component you change when 
                       the page changes, since all components have a 
                       container, a main element, and a header. */}
-          <section className="page-content">
+          <PageContent>
             <Switch>
               <Route exact path="/" render={ (props) => <Home updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction}  /> } />
               <Route path="/autoFix-tools" render={ props => <AutoFixTools updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> } />
@@ -247,11 +267,11 @@ class App extends Component {
               <Route path="/announcements" render={ props => <Announcements updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} />} />
               <Route path="/quickFix-ChromeOS" render={ props => <QuickFixChromeOS updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} />} />  
             </Switch>  
-          </section>
+          </PageContent>
           <Footer renderFooterBool={this.state.renderFooter} />
           <div className="blur-effect"></div>
         </main>
-      </div>
+      </Container>
       );
   } //end appHTML();
 
