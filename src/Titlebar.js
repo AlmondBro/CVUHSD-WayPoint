@@ -1,6 +1,6 @@
 import React from "react";
 
-//Import 3rd-party libraries 
+//Import utility functions
 import { requireNodeJSmodule} from "./utilityFunctions.js";
 
 //Import NodeJS modules to be used
