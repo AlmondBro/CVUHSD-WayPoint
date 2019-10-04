@@ -438,21 +438,6 @@ main header .notificationIcon i {
     filter: grayscale(30%);
 }
 
-div.messageAndGoBack-container {
-    width: 376px;
-    height: 30px;
-    position: absolute;
-    max-height: 30px;
-    text-align: center;
-    padding: 0;
-    z-index: 2;
-    margin: 0 auto;
-    margin-bottom: 30px;
-    background: #1c1c1c;
-    display: block;
-    top: 64px;
-}
-
 a.goBack-container {
     position: relative;
     /* right: 3.2em; */

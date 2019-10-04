@@ -1,6 +1,22 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+//Import 3rd-party modules
+let GoBackContainer = styled.div`
+    width: 376px;
+    height: 30px;
+    position: absolute;
+    max-height: 30px;
+    text-align: center;
+    padding: 0;
+    z-index: 2;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    background: #1c1c1c;
+    display: block;
+    top: 64px;
+`;
+
 class BackButton extends Component {
     //Example from https://stackoverflow.com/questions/30915173/react-router-go-back-a-page-how-do-you-configure-history
     static contextTypes = {
