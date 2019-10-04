@@ -526,26 +526,6 @@ p.optionMessage {
     overflow-y: auto;
 }
 
-.support-square {
-    background-color: #2B2B2B;
-    color: white;
-    text-align: center;
-    width: 150px;
-    padding: 10px;
-    /* margin-left: 12px; */
-    display: inline-block;
-    margin: 5px 5px;
-    cursor: pointer;
-    line-height: 7px;
-}
-
-.square-icon {
-    padding-top: 5px;
-    width: 75px;
-    height: 75px;
-    /* 40px*/
-}
-
 #helpdeskHotline-supportSquare {
     width: 310px;
     text-align: center;
@@ -776,35 +756,6 @@ section.notifications-section div.notification-content-rectangle-container {
 
 
 /* End Notifications modal styling */
-
-.support-square:hover,
-.support-square:active {
-    background-color: #3c3c3c;
-}
-
-.support-square a {
-    color: white;
-    text-decoration: none;
-}
-
-.support-square a:hover,
-.support-square a:focus {
-    color: white;
-    text-decoration: none;
-}
-
-.support-square i {
-    font-size: 2em;
-    /*was 1.6em */
-    display: block;
-}
-
-.support-square h3 {
-    display: block;
-    font-size: 0.95em;
-    font-weight: 500;
-}
-
 i.fa-times {
     width: 18px;
     text-align: center;
