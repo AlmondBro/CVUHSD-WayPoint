@@ -518,14 +518,6 @@ p.optionMessage {
     /* background-color: red; */
 }
 
-.support-squares-container {
-    margin: 5px auto;
-    /*margin on top/bott. was 10px */
-    text-align: center;
-    max-height: 100%; /*Was 90% with footer visible footer */
-    overflow-y: auto;
-}
-
 #helpdeskHotline-supportSquare {
     width: 310px;
     text-align: center;
