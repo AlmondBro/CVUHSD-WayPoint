@@ -46,6 +46,10 @@ class Footer extends Component {
         const undefsafe = window.require("undefsafe");
 
         console.log(`Mac address: ${JSON.stringify(macaddress.networkInterfaces()) }`);
+        console.log(macaddress.networkInterfaces());
+        console.dir(macaddress.networkInterfaces());
+        console.dir(undefsafe(macaddress.networkInterfaces(), "en0", "ipv4")); 
+        console.dir(undefsafe(macaddress.networkInterfaces(), "en0.ipv4"));         
 
         let IP_Address; 
 
@@ -74,6 +78,12 @@ class Footer extends Component {
             IP_Address =  undefsafe(macaddress, "Wi-Fi.ipv4"); 
            // console.log("IPV4 wifi:\t" + IP_Address);
             //console.log("IPV4 wifTypeof:\t"+ typeof IP_Address);
+        }
+
+        else if ( undefsafe(macaddress.networkInterfaces(), "en0.ipv4") !== undefined) {
+            IP_Address =  undefsafe(macaddress.networkInterfaces(), "en0.ipv4") 
+           console.log("macbook wifi:\t" + IP_Address);
+            console.log("IPV4 wifType of:\t"+ typeof IP_Address);
         }
         
         else {
