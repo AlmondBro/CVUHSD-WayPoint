@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 //Import 3rd-party modules
+import styled from "styled-components";
+
 let GoBackContainer = styled.div`
     width: 376px;
     height: 30px;
