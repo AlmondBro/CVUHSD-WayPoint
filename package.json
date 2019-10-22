@@ -11,13 +11,13 @@
   },
   "dependencies": {
     "cors-anywhere": "^0.4.1",
-    "dotenv": "^8.0.0",
+    "dotenv": "^8.2.0",
     "electron-is-dev": "^1.1.0",
     "electron-prebuilt-compile": "^4.0.0",
     "electron-updater": "^4.0.6",
     "fullname": "^4.0.0",
     "macaddress": "^0.2.9",
-    "node-notifier": "^5.4.0",
+    "node-notifier": "^6.0.0",
     "node-run-cmd": "^1.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
@@ -27,7 +27,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "^3.0.1",
     "sendmail": "^1.4.1",
-    "typescript": "^3.5.2",
+    "typescript": "^3.6.4",
     "undefsafe": "^2.0.2",
     "windows-shortcuts": "^0.1.6"
   },
@@ -50,11 +50,11 @@
     "upload": "npm run build && npm run release"
   },
   "devDependencies": {
-    "concurrently": "^4.1.0",
+    "concurrently": "^5.0.0",
     "devtron": "^1.4.0",
-    "electron-builder": "^20.44.4",
+    "electron-builder": "^21.2.0",
     "electron-react-devtools": "^0.5.3",
-    "eslint-plugin-react": "^7.13.0",
+    "eslint-plugin-react": "^7.16.0",
     "wait-on": "^3.2.0",
     "why-did-you-update": "^1.0.6"
   },
@@ -108,10 +108,16 @@
       "createDesktopShortcut": true
     }
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
