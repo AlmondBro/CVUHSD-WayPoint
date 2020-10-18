@@ -181,6 +181,7 @@ const createWindow = () => {
         resizable: false, 
         webPreferences: {
             nodeIntegration: true,
+            enableRemoteModule: true
         },
         show: false,
         skipTaskbar: false, //whether to show window in taskbar
