@@ -210,9 +210,6 @@ class App extends Component {
     if (isDev) {
       window.require("devtron").install(); // can only be installed through renderer process
       console.log("Devtron installed");
-
-      window.require("electron-react-devtools").install();
-      console.log("Renderer process - electron-react-devtools ready to be installed");
     }
   }; //end runDevTools()
 

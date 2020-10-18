@@ -26,6 +26,9 @@ let tray = null;
 
 process.env['APP_PATH'] = app.getAppPath();
 
+let installExtension, 
+    REACT_DEVELOPER_TOOLS;
+
 let sendStatusToWindow = (message, addNotification, urgent, notificationText, faIconClassName, image) => {
     console.log("sendStatusToWindow() message:\t" + message);
     if ( typeof mainWindow !== "undefined" || mainWindow !== null) {
@@ -343,10 +346,17 @@ app.setAsDefaultProtocolClient("waypoint");
 
 app.on("ready", async () => {
     createWindow();
-    
+
+    if (isDev) {
+        const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
+        
+        installExtension(REACT_DEVELOPER_TOOLS)
+          .then(name => console.log(`Added Extension:  ${name}`))
+          .catch(error => console.log(`An error occurred: , ${error}`));
+      }
+
     await preventMoreThanOneInstance();
 
-   
    /* await electron.protocol.registerServiceWorkerSchemes(["file:"]);
     ///* Register the file protocol as supported
         electron.webFrame.registerURLSchemeAsPrivileged("file");
