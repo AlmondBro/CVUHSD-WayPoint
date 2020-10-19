@@ -28,6 +28,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "^3.0.1",
     "sendmail": "^1.4.1",
+    "styled-components": "^5.2.0",
     "typescript": "^4.0.3",
     "undefsafe": "^2.0.2",
     "windows-shortcuts": "^0.1.6"
