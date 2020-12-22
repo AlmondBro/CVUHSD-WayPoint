@@ -83,9 +83,6 @@ class App extends Component {
       ],
       noNotifications: false
     }; //end state object
-
-    // console.log(`"App path:\t ${app.getAppPath()}"`);
-    //this.updatePageTitle= this.updatePageTitle.bind(this);
   } //end constructor()
 
   updatePageTitle = (newPageTitle) => {

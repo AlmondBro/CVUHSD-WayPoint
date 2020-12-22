@@ -23,6 +23,7 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-fontawesome": "^1.7.1",
     "react-pure-lifecycle": "^3.0.0",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",

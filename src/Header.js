@@ -2,7 +2,7 @@ import React from "react";
 
 //Import required external components
 import NotificationsPanel from "./NotificationsPanel.js";
-import BackButton from "./BackButton.js";
+import BackButton from "./BackButton/BackButton.js";
 
 const Header = (props) => {
         return( 
