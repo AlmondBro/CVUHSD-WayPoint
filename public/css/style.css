@@ -22,6 +22,7 @@ body {
 body,
 html {
     min-height: 100%;
+    background: transparent;
 }
 
 *, *:focus, button:focus {

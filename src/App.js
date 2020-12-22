@@ -32,10 +32,14 @@ let monitorFetchWindow = null;
 
 let Container = styled.div`
   position: relative;
+
   width: 376px;
   height: 700px;
+  
   background-color: #1c1c1c;
   color: white;
+
+  border-radius: 10px;
 `; //end Container styled-component
 
 let PageContent = styled.div`
@@ -266,7 +270,7 @@ class App extends Component {
             </Switch>  
           </PageContent>
           <Footer renderFooterBool={this.state.renderFooter} />
-          <div className="blur-effect"></div>
+          {/* <div className="blur-effect"></div> */}
         </main>
       </Container>
       );
