@@ -2,55 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-//Import 3rd-party modules
-import styled from "styled-components";
-
-//TODO: Find all support-square CSS class instances
-let SupportSquareSection = styled.section`
-    background-color: #2B2B2B;
-    color: white;
-    text-align: center;
-    width: 150px;
-    padding: 10px;
-    /* margin-left: 12px; */
-    display: inline-block;
-    margin: 5px 5px;
-    cursor: pointer;
-    line-height: 7px;
-
-    &:hover, &:active {
-        background-color: #3c3c3c;
-    }
-
-    &:hover, &:focus {
-        color: white;
-        text-decoration: none;
-    }
-
-    & a {
-        color: white;
-        text-decoration: none;
-    }
-
-    & i {
-        font-size: 2em;
-        /*was 1.6em */
-        display: block;
-    }
-
-    & h3 {
-        display: block;
-        font-size: 0.95em;
-        font-weight: 500;
-    }
-`;
-
-let SquareIcon = styled.img`
-    padding-top: 5px;
-    width: 75px;
-    height: 75px;
-    /* 40px*/
-`
+//Import styled sub-components:
+import { SupportSquareSection, SquareIcon } from './styled-components.js';
 
 const SupportSquare = (props) => {
    return props.pageLink ? (

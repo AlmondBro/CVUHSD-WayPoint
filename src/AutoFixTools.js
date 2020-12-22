@@ -1,7 +1,7 @@
 import React from "react";
 
-//Import external components
-import SupportSquare from "./SupportSquare.js";
+//Import required external components
+import SupportSquare from './SupportSquare/SupportSquare.js';
 
 //Import 3rd-party libraries 
 import lifecycle from "react-pure-lifecycle";

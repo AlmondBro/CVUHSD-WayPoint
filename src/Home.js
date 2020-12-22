@@ -1,7 +1,9 @@
-import React, { Component } from "react";
-import SupportSquare from "./SupportSquare.js";
+import React, { Component } from 'react';
 
-import styled from "styled-components";
+//Import required external components
+import SupportSquare from './SupportSquare/SupportSquare.js';
+
+import styled from 'styled-components';
 
 let SupportSquaresContainer = styled.div`
     margin: 5px auto;
