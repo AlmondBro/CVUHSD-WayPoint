@@ -1,46 +1,36 @@
 import React, { useState, useEffect } from "react";
+
+//import styled- subcomponents
+import { AnnoucementsList, Image, HeaderContainer, Header, Details } from './styled-components.js';
+
 const Annoucements = ({ updateTitle, renderFooter }) => {
     const pageTitle = "Announcements";
     
-    const [ annoucements, setAnnouncements ] = useState([]);
+    const [ announcements, setAnnouncements ] = useState([]);
 
-    FetchAPI = () => {
+    const FetchAPI = () => {
     };  //end Fetch API()
 
     useEffect(() => {
-        updateTitle(this.pageTitle);
+        updateTitle(pageTitle);
         renderFooter(false);
 
         FetchAPI();
     }, []); //end componentDidMount()
 
     return  ( 
-        <section className="announcements-list">
-            <img src="img/gallery-icon.png" className="img-responsive" alt="Gallery icon" />
-            <div className="announcement-text">
-                <h3>
+        <AnnoucementsList className="announcements-list">
+            <Image src="img/gallery-icon.png" className="img-responsive" alt="Gallery icon" />
+            <HeaderContainer className="announcement-text">
+                <Header>
                     { announcements || "Earth Invaded by Aliens"}
-                </h3>
-                <p className="announcement-details">
+                </Header>
+                <Details className="announcement-details">
                     { announcements || "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida..."}
-                </p>
-            </div>
-        </section>
-    );
-    
+                </Details>
+            </HeaderContainer>
+        </AnnoucementsList>
+    ); //end return statement
 }; //end Annoucements class
 
 export default Annoucements;
-
-// const annoucements = (props) => {
-//     //Future array to hold the announcements titles and text. Could be populated via an API call to twitter.
-//     var infoArray = [];
-
-//     const generateAnnouncements = (infoArray) => {
-//         for (var i = 0; i < 7; i++) {
-//            return announcementHTMLBlock;
-//         }
-//     };
-//     return generateAnnouncements();
-// };
-
