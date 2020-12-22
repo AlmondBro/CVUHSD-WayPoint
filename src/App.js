@@ -16,7 +16,7 @@ import WiFiMagic from "./WiFiMagic.js";
 import ProjectorMagic from "./ProjectorMagic.js";
 import QuickFixTutorials from "./QuickFixTutorials.js";
 import HelpDesk from "./HelpDesk.js";
-import AutoFixTools from "./AutoFixTools.js";
+import AutoFixTools from "./AutoFixTools/AutoFixTools.js";
 import StaffPortal from "./StaffPortal.js";
 import Announcements from "./Annoucements/Announcements.js";
 import QuickFixChromeOS from "./quickFix-Components/ChromeOS/quickFix-ChromeOS.js";
@@ -42,14 +42,19 @@ let Container = styled.div`
   border-radius: 10px;
 `; //end Container styled-component
 
-let PageContent = styled.div`
+let AppContent = styled.div`
   position: relative;
-  max-height: 695px;
-  overflow-y: auto;
-  z-index: 1;
-  margin: 0 auto;
-  width: 100%;
+
   top: 27px;
+  z-index: 1;
+  overflow-y: auto;
+
+  width: 100%;
+  max-height: 695px;
+ 
+  margin: 0 auto;
+
+  text-align: center;
 `;
 
 class App extends Component {
@@ -254,7 +259,7 @@ class App extends Component {
         {/* <Home/>*/}   {/* This is is the component you change when 
                       the page changes, since all components have a 
                       container, a main element, and a header. */}
-          <PageContent>
+          <AppContent>
             <Switch>
               <Route exact path="/" render={ (props) => <Home updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction}  /> } />
               <Route path="/autoFix-tools" render={ props => <AutoFixTools updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} /> } />
@@ -268,7 +273,7 @@ class App extends Component {
               <Route path="/announcements" render={ props => <Announcements updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} />} />
               <Route path="/quickFix-ChromeOS" render={ props => <QuickFixChromeOS updateTitle={this.updatePageTitle} renderFooter={this.renderFooterFunction} />} />  
             </Switch>  
-          </PageContent>
+          </AppContent>
           <Footer renderFooterBool={this.state.renderFooter} />
           {/* <div className="blur-effect"></div> */}
         </main>
