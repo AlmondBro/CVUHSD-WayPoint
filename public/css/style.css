@@ -34,16 +34,21 @@ html {
 }
 
 #titlebar {
-    -webkit-app-region: drag;
-    /* ElectronJS - make draggable */
+    -webkit-app-region: drag; /* ElectronJS - make draggable */
+
     position: relative;
-    width: 100%;
-    margin: auto;
+    z-index: 2;
+
     color: white;
     background-color: #1c1c1c;
-    /* border-bottom: 1px solid black; */
-    z-index: 2;
+
+    width: 100%;
     height: 25px;
+
+    margin: auto;
+
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 #page-title-container {
@@ -97,6 +102,8 @@ html {
     z-index: 1;
     position: relative;
     -webkit-app-region: no-drag;
+
+    border-top-right-radius: 10px;
     /* ElectronJS */
 }
 
@@ -146,10 +153,13 @@ html {
     text-align: center;
     vertical-align: middle;
     line-height: 0px;
+
+    border-top-right-radius: 10px
 }
 
 .titleBar-button img {
     width: 25px;
+    border-top-right-radius: 10px;
 }
 
 .titleBar-button:hover {
