@@ -180,6 +180,7 @@ const createWindow = () => {
         width: 376, 
         height: 700, 
         frame: false, 
+        transparent: true,
         fullscreen: false, 
         resizable: false, 
         webPreferences: {
