@@ -12,7 +12,7 @@ import Titlebar from "./Titlebar.js";
 import Header from "./Header.js";
 
 // Import pages or external components
-import WiFiMagic from "./WiFiMagic.js";
+import WiFiMagic from "./WiFiMagic/WiFiMagic.js";
 import ProjectorMagic from "./ProjectorMagic.js";
 import QuickFixTutorials from "./QuickFixTutorials.js";
 import HelpDesk from "./HelpDesk.js";
