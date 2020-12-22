@@ -18,7 +18,7 @@ import QuickFixTutorials from "./QuickFixTutorials.js";
 import HelpDesk from "./HelpDesk.js";
 import AutoFixTools from "./AutoFixTools.js";
 import StaffPortal from "./StaffPortal.js";
-import Announcements from "./Announcements.js";
+import Announcements from "./Annoucements/Announcements.js";
 import QuickFixChromeOS from "./quickFix-Components/ChromeOS/quickFix-ChromeOS.js";
 
 import { corsAnywhere } from "./server.js";
